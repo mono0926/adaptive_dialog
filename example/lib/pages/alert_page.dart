@@ -86,6 +86,17 @@ class _AlertPageState extends State<AlertPage> {
               isDestructiveAction: true,
             ),
           ),
+          ListTile(
+            title: const Text('OK/Cancel Dialog (useActionSheetForCupertino)'),
+            onTap: () => showOkCancelAlertDialog(
+              context: context,
+              title: 'Title',
+              message: 'This is message.',
+              isDestructiveAction: true,
+              cancelLabel: 'No!',
+              useActionSheetForCupertino: true,
+            ),
+          ),
         ],
       ),
     );

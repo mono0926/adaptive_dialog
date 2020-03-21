@@ -23,6 +23,12 @@ Future<T> showAlertDialog<T>({
       context: context,
       title: title,
       message: message,
+      cancelLabel: actions
+          .firstWhere(
+            (a) => a.key == OkCancelResult.cancel,
+            orElse: () => null,
+          )
+          ?.label,
       actions: actions
           .where((a) => a.key != OkCancelResult.cancel)
           .map((a) => SheetAction(
@@ -88,6 +94,7 @@ Future<OkCancelResult> showOkCancelAlertDialog({
   bool isDestructiveAction = false,
   bool barrierDismissible = true,
   AdaptiveStyle alertStyle = AdaptiveStyle.adaptive,
+  bool useActionSheetForCupertino = false,
 }) async {
   final isCupertinoStyle = Theme.of(context).isCupertinoStyle;
   String defaultCancelLabel() {
@@ -101,6 +108,7 @@ Future<OkCancelResult> showOkCancelAlertDialog({
     message: message,
     barrierDismissible: barrierDismissible,
     style: alertStyle,
+    useActionSheetForCupertino: useActionSheetForCupertino,
     actions: [
       AlertDialogAction(
         label: cancelLabel ?? defaultCancelLabel(),
@@ -125,6 +133,7 @@ Future<OkCancelResult> showOkAlertDialog({
   String okLabel,
   bool barrierDismissible = true,
   AdaptiveStyle alertStyle = AdaptiveStyle.adaptive,
+  bool useActionSheetForCupertino = false,
 }) async {
   final result = await showAlertDialog<OkCancelResult>(
     context: context,
@@ -132,6 +141,7 @@ Future<OkCancelResult> showOkAlertDialog({
     message: message,
     barrierDismissible: barrierDismissible,
     style: alertStyle,
+    useActionSheetForCupertino: useActionSheetForCupertino,
     actions: [
       AlertDialogAction(
         label: okLabel ?? MaterialLocalizations.of(context).okButtonLabel,
