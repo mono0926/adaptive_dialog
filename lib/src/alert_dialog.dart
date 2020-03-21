@@ -1,4 +1,4 @@
-import 'package:adaptive_dialogs/adaptive_dialogs.dart';
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

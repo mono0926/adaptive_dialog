@@ -6,7 +6,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  adaptive_dialogs:
+  adaptive_dialog:
     path: ..
   mono_kit: ^0.14.0-dev
   provider:

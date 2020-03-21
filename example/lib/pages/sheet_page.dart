@@ -1,4 +1,4 @@
-import 'package:adaptive_dialogs/adaptive_dialogs.dart';
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:example/router.dart';
 import 'package:example/util/util.dart';
 import 'package:flutter/material.dart';
