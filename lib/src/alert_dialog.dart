@@ -12,10 +12,30 @@ Future<T> showAlertDialog<T>({
   @required List<AlertDialogAction<T>> actions,
   bool barrierDismissible = true,
   AdaptiveStyle style = AdaptiveStyle.adaptive,
+  bool useActionSheetForCupertino = false,
 }) {
   void pop(T key) => Navigator.of(context).pop(key);
   final theme = Theme.of(context);
   final colorScheme = theme.colorScheme;
+  final isCupertinoStyle = style.isCupertinoStyle(theme);
+  if (isCupertinoStyle && useActionSheetForCupertino) {
+    return showModalActionSheet(
+      context: context,
+      title: title,
+      message: message,
+      actions: actions
+          .where((a) => a.key != OkCancelResult.cancel)
+          .map((a) => SheetAction(
+                key: a.key,
+                label: a.label,
+                isDefaultAction: a.isDefaultAction,
+                isDestructiveAction: a.isDestructiveAction,
+                icon: null,
+              ))
+          .toList(),
+      style: style,
+    );
+  }
   return style.isCupertinoStyle(theme)
       ? showCupertinoDialog(
           context: context,
