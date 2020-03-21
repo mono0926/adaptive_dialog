@@ -11,6 +11,7 @@ Future<T> showModalActionSheet<T>({
   String message,
   String cancelLabel,
   AdaptiveStyle style = AdaptiveStyle.adaptive,
+  bool isDismissible = true,
 }) {
   final theme = Theme.of(context);
   final colorScheme = theme.colorScheme;
@@ -46,6 +47,7 @@ Future<T> showModalActionSheet<T>({
         )
       : showModalBottomSheet(
           context: context,
+          isDismissible: isDismissible,
           builder: (context) => SafeArea(
             child: Column(
               mainAxisSize: MainAxisSize.min,
