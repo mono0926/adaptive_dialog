@@ -6,10 +6,8 @@ homepage: https://github.com/mono0926/adaptive_dialogs
 environment:
   sdk: ">=2.6.0 <3.0.0"
 dependencies:
-#  flutter:
-#    sdk: flutter
-#  cloud_firestore:
-#  firebase:
+  flutter:
+    sdk: flutter
   meta:
 dev_dependencies:
   flutter_test:
