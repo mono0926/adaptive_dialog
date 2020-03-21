@@ -1,0 +1,22 @@
+name: example
+description: Eample application.
+version: 1.0.0+1
+environment:
+  sdk: ">=2.6.0 <3.0.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  adaptive_dialogs:
+    path: ..
+  mono_kit: ^0.14.0-dev
+  provider:
+  recase:
+  simple_logger:
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  pedantic_mono:
+dependency_overrides:
+  provider: ^4.1.0-dev
+flutter:
+  uses-material-design: true
