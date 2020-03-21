@@ -1,14 +1,13 @@
 name: adaptive_dialogs
 description: Show alert dialog or modal action sheet adaptively according to platform.
 version: 0.1.0
-author: Masayuki Ono <mono0926@gmail.com>
 homepage: https://github.com/mono0926/adaptive_dialogs
 environment:
   sdk: ">=2.6.0 <3.0.0"
 dependencies:
   flutter:
     sdk: flutter
-  meta:
+  meta: ^1.1.8
 dev_dependencies:
   flutter_test:
     sdk: flutter
