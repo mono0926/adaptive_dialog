@@ -1,4 +1,4 @@
-# daptive_dialogs
+# adaptive_dialogs
 
 Show alert dialog or modal action sheet adaptively according to platform.
 
