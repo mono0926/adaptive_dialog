@@ -8,9 +8,9 @@ import 'extensions/extensions.dart';
 /// Show alert dialog, whose appearance is adaptive according to platform
 Future<T> showAlertDialog<T>({
   @required BuildContext context,
-  @required List<AlertDialogAction<T>> actions,
   String title,
   String message,
+  List<AlertDialogAction<T>> actions = const [],
   bool barrierDismissible = true,
   AdaptiveStyle style = AdaptiveStyle.adaptive,
   bool useActionSheetForCupertino = false,
