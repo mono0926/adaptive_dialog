@@ -90,32 +90,41 @@ class _AlertPageState extends State<AlertPage> {
           ),
           ListTile(
             title: const Text('OK/Cancel Dialog (Default: Cancel)'),
-            onTap: () => showOkCancelAlertDialog(
-              context: context,
-              title: 'Title',
-              message: 'This is message.',
-              defaultType: OkCancelAlertDefaultType.cancel,
-            ),
+            onTap: () async {
+              final result = await showOkCancelAlertDialog(
+                context: context,
+                title: 'Title',
+                message: 'This is message.',
+                defaultType: OkCancelAlertDefaultType.cancel,
+              );
+              logger.info(result);
+            },
           ),
           ListTile(
             title: const Text('OK/Cancel Dialog (Destructive)'),
-            onTap: () => showOkCancelAlertDialog(
-              context: context,
-              title: 'Title',
-              message: 'This is message.',
-              isDestructiveAction: true,
-            ),
+            onTap: () async {
+              final result = await showOkCancelAlertDialog(
+                context: context,
+                title: 'Title',
+                message: 'This is message.',
+                isDestructiveAction: true,
+              );
+              logger.info(result);
+            },
           ),
           ListTile(
             title: const Text('OK/Cancel Dialog (useActionSheetForCupertino)'),
-            onTap: () => showOkCancelAlertDialog(
-              context: context,
-              title: 'Title',
-              message: 'This is message.',
-              isDestructiveAction: true,
-              cancelLabel: 'No!',
-              useActionSheetForCupertino: true,
-            ),
+            onTap: () async {
+              final result = await showOkCancelAlertDialog(
+                context: context,
+                title: 'Title',
+                message: 'This is message.',
+                isDestructiveAction: true,
+                cancelLabel: 'No!',
+                useActionSheetForCupertino: true,
+              );
+              logger.info(result);
+            },
           ),
         ],
       ),

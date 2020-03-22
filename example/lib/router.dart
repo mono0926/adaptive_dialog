@@ -1,3 +1,4 @@
+import 'package:example/pages/text_input_dialog_page.dart';
 import 'package:flutter/material.dart';
 import 'package:recase/recase.dart';
 
@@ -8,6 +9,7 @@ class Router {
   final Map<String, WidgetBuilder> pushRoutes = {
     AlertPage.routeName: (context) => const AlertPage(),
     SheetPage.routeName: (context) => const SheetPage(),
+    TextInputDialogPage.routeName: (context) => const TextInputDialogPage(),
   };
 
   Route onGenerateRoute(RouteSettings settings) {
@@ -39,5 +41,6 @@ class PageInfo {
   static List<PageInfo> get all => [
         AlertPage.routeName,
         SheetPage.routeName,
+        TextInputDialogPage.routeName,
       ].map((rn) => PageInfo(routeName: rn)).toList();
 }
