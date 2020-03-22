@@ -6,9 +6,9 @@ import 'extensions/extensions.dart';
 
 Future<T> showModalActionSheet<T>({
   @required BuildContext context,
-  @required List<SheetAction<T>> actions,
   String title,
   String message,
+  List<SheetAction<T>> actions = const [],
   String cancelLabel,
   AdaptiveStyle style = AdaptiveStyle.adaptive,
   bool isDismissible = true,
