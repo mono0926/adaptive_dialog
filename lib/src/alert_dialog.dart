@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'extensions/extensions.dart';
 
+/// Show alert dialog, whose appearance is adaptive according to platform
 Future<T> showAlertDialog<T>({
   @required BuildContext context,
   @required String title,
