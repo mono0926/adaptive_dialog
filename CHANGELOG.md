@@ -1,3 +1,8 @@
+## 0.2.0
+
+- Add showTextInputDialog
+- Add showTextAnswerDialog
+
 ## 0.1.2
 
 - Change SheetAction's icon to nullable

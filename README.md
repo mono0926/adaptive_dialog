@@ -28,3 +28,17 @@ iOS | Android
 <img width="497" alt="n7" src="https://user-images.githubusercontent.com/1255062/77220737-5b504b80-6b86-11ea-8f44-49568518717d.png"> | <img width="497" alt="n8" src="https://user-images.githubusercontent.com/1255062/77220738-5be8e200-6b86-11ea-9e7d-2067253e766d.png">
 <img width="497" alt="n9" src="https://user-images.githubusercontent.com/1255062/77220739-5c817880-6b86-11ea-88e8-b17caba6037d.png"> | <img width="497" alt="n10" src="https://user-images.githubusercontent.com/1255062/77220741-5d1a0f00-6b86-11ea-8525-120a0b3849ac.png">
 <img width="497" alt="n11" src="https://user-images.githubusercontent.com/1255062/77220742-5d1a0f00-6b86-11ea-9991-e1b5677eebf3.png"> | <img width="497" alt="n12" src="https://user-images.githubusercontent.com/1255062/77220743-5db2a580-6b86-11ea-9d9c-7b474a222c92.png">
+
+
+## [showTextInputDialog]()
+
+iOS | Android
+--- | ---
+<img width="516" alt="n1" src="https://user-images.githubusercontent.com/1255062/77243708-6b346200-6c50-11ea-9b54-252accd1df66.png"> | <img width="516" alt="n2" src="https://user-images.githubusercontent.com/1255062/77243709-6f607f80-6c50-11ea-8b71-a8932adc3dd7.png">
+<img width="516" alt="n3" src="https://user-images.githubusercontent.com/1255062/77243711-6ff91600-6c50-11ea-8458-56d75b958283.png"> | <img width="516" alt="n4" src="https://user-images.githubusercontent.com/1255062/77243712-7091ac80-6c50-11ea-8c08-be62e0999267.png">
+
+## [showTextAnswerDialog]()
+
+iOS | Android
+--- | ---
+<img width="516" alt="n5" src="https://user-images.githubusercontent.com/1255062/77243713-712a4300-6c50-11ea-81d4-75d7961d9224.png"> | <img width="516" alt="n6" src="https://user-images.githubusercontent.com/1255062/77243714-71c2d980-6c50-11ea-8bed-aa6b4dfcba0a.png">
