@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 
 import 'extensions/extensions.dart';
 
+/// Show modal action sheet, whose appearance is adaptive according to platform
+
+/// The [isDismissible] parameter only works for material style and it specifies
+/// whether the bottom sheet will be dismissed when user taps on the scrim.
 Future<T> showModalActionSheet<T>({
   @required BuildContext context,
   String title,
@@ -89,6 +93,7 @@ Future<T> showModalActionSheet<T>({
         );
 }
 
+/// Used for specifying [showModalActionSheet]'s actions.
 @immutable
 class SheetAction<T> {
   const SheetAction({

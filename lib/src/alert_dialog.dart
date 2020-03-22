@@ -6,6 +6,10 @@ import 'package:flutter/material.dart';
 import 'extensions/extensions.dart';
 
 /// Show alert dialog, whose appearance is adaptive according to platform
+///
+/// [useActionSheetForCupertino] (default: false) only works for
+/// cupertino style. If it is set to true, [showModalActionSheet] is called
+/// instead.
 Future<T> showAlertDialog<T>({
   @required BuildContext context,
   String title,
@@ -87,6 +91,14 @@ Future<T> showAlertDialog<T>({
         );
 }
 
+/// Show OK/Cancel alert dialog, whose appearance is adaptive according to platform
+///
+/// This is convenient wrapper of [showAlertDialog].
+/// [barrierDismissible] (default: true) only works for material style,
+/// and if it is set to false, pressing OK or Cancel buttons is only way to
+/// close alert.
+/// [defaultType] only works for cupertino style and if it is specified
+/// OK or Cancel button label will be changed to bold.
 Future<OkCancelResult> showOkCancelAlertDialog({
   @required BuildContext context,
   String title,
@@ -129,6 +141,11 @@ Future<OkCancelResult> showOkCancelAlertDialog({
   return result ?? OkCancelResult.cancel;
 }
 
+/// Show OK alert dialog, whose appearance is adaptive according to platform
+///
+/// This is convenient wrapper of [showAlertDialog].
+/// [barrierDismissible] (default: true) only works for material style,
+/// and if it is set to false, pressing OK button is only way to close alert.
 Future<OkCancelResult> showOkAlertDialog({
   @required BuildContext context,
   String title,
@@ -155,6 +172,7 @@ Future<OkCancelResult> showOkAlertDialog({
   return result ?? OkCancelResult.cancel;
 }
 
+/// Used for specifying [showAlertDialog]'s actions.
 @immutable
 class AlertDialogAction<T> {
   const AlertDialogAction({
@@ -173,13 +191,20 @@ class AlertDialogAction<T> {
 
   /// Make font color to destructive/error color(red).
   final bool isDestructiveAction;
+
+  /// Change textStyle to another from default.
+  ///
+  /// Recommended to keep null.
   final TextStyle textStyle;
 }
 
+// Used to specify [showOkCancelAlertDialog]'s [defaultType]
 enum OkCancelAlertDefaultType {
   ok,
   cancel,
 }
+
+// Result type of [showOkAlertDialog] or [showOkCancelAlertDialog].
 enum OkCancelResult {
   ok,
   cancel,
