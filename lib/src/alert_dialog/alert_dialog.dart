@@ -3,7 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'extensions/extensions.dart';
+import '../extensions/extensions.dart';
+import 'alert_dialog_action.dart';
+
+export 'alert_dialog_action.dart';
 
 /// Show alert dialog, whose appearance is adaptive according to platform
 ///
@@ -28,21 +31,8 @@ Future<T> showAlertDialog<T>({
       context: context,
       title: title,
       message: message,
-      cancelLabel: actions
-          .firstWhere(
-            (a) => a.key == OkCancelResult.cancel,
-            orElse: () => null,
-          )
-          ?.label,
-      actions: actions
-          .where((a) => a.key != OkCancelResult.cancel)
-          .map((a) => SheetAction(
-                key: a.key,
-                label: a.label,
-                isDefaultAction: a.isDefaultAction,
-                isDestructiveAction: a.isDestructiveAction,
-              ))
-          .toList(),
+      cancelLabel: actions.findCancelLabel(),
+      actions: actions.convertToSheetActions(),
       style: style,
     );
   }
@@ -54,17 +44,9 @@ Future<T> showAlertDialog<T>({
           builder: (context) => CupertinoAlertDialog(
             title: titleText,
             content: messageText,
-            actions: actions
-                .map(
-                  (a) => CupertinoDialogAction(
-                    child: Text(a.label),
-                    isDefaultAction: a.isDefaultAction,
-                    isDestructiveAction: a.isDestructiveAction,
-                    textStyle: a.textStyle,
-                    onPressed: () => pop(a.key),
-                  ),
-                )
-                .toList(),
+            actions: actions.convertToCupertinoDialogActions(
+              onPressed: pop,
+            ),
           ),
         )
       : showDialog(
@@ -73,19 +55,10 @@ Future<T> showAlertDialog<T>({
           builder: (context) => AlertDialog(
             title: titleText,
             content: messageText,
-            actions: actions
-                .map(
-                  (a) => FlatButton(
-                    child: Text(
-                      a.label,
-                      style: a.textStyle.copyWith(
-                        color: a.isDestructiveAction ? colorScheme.error : null,
-                      ),
-                    ),
-                    onPressed: () => pop(a.key),
-                  ),
-                )
-                .toList(),
+            actions: actions.convertToMaterialDialogActions(
+              onPressed: pop,
+              destructiveColor: colorScheme.error,
+            ),
           ),
         );
 }
@@ -171,40 +144,8 @@ Future<OkCancelResult> showOkAlertDialog({
   return result ?? OkCancelResult.cancel;
 }
 
-/// Used for specifying [showAlertDialog]'s actions.
-@immutable
-class AlertDialogAction<T> {
-  const AlertDialogAction({
-    this.key,
-    @required this.label,
-    this.isDefaultAction = false,
-    this.isDestructiveAction = false,
-    this.textStyle = const TextStyle(),
-  });
-
-  final T key;
-  final String label;
-
-  /// Make font weight to bold(Only works for CupertinoStyle).
-  final bool isDefaultAction;
-
-  /// Make font color to destructive/error color(red).
-  final bool isDestructiveAction;
-
-  /// Change textStyle to another from default.
-  ///
-  /// Recommended to keep null.
-  final TextStyle textStyle;
-}
-
 // Used to specify [showOkCancelAlertDialog]'s [defaultType]
 enum OkCancelAlertDefaultType {
-  ok,
-  cancel,
-}
-
-// Result type of [showOkAlertDialog] or [showOkCancelAlertDialog].
-enum OkCancelResult {
   ok,
   cancel,
 }

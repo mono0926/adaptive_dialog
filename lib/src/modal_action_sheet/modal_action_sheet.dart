@@ -1,5 +1,4 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:adaptive_dialog/src/extensions/extensions.dart';
 import 'package:adaptive_dialog/src/modal_action_sheet/material_modal_action_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
