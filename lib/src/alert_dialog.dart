@@ -41,7 +41,6 @@ Future<T> showAlertDialog<T>({
                 label: a.label,
                 isDefaultAction: a.isDefaultAction,
                 isDestructiveAction: a.isDestructiveAction,
-                icon: null,
               ))
           .toList(),
       style: style,

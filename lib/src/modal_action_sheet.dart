@@ -70,13 +70,16 @@ Future<T> showModalActionSheet<T>({
                 ],
                 ...actions.map(
                   (a) {
+                    final icon = a.icon;
                     final color =
                         a.isDestructiveAction ? colorScheme.error : null;
                     return ListTile(
-                      leading: Icon(
-                        a.icon,
-                        color: color,
-                      ),
+                      leading: icon == null
+                          ? null
+                          : Icon(
+                              icon,
+                              color: color,
+                            ),
                       title: Text(
                         a.label,
                         style: TextStyle(
@@ -98,8 +101,8 @@ Future<T> showModalActionSheet<T>({
 class SheetAction<T> {
   const SheetAction({
     @required this.label,
-    @required this.icon,
     this.key,
+    this.icon,
     this.isDefaultAction = false,
     this.isDestructiveAction = false,
   });

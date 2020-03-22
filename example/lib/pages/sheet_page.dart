@@ -73,6 +73,23 @@ class _SheetPageState extends State<SheetPage> {
             },
           ),
           ListTile(
+            title: const Text('Title/Message (No Icon)'),
+            onTap: () async {
+              final result = await showModalActionSheet<String>(
+                context: context,
+                title: 'Title',
+                message: 'Message',
+                actions: const [
+                  SheetAction(
+                    label: 'Hello',
+                    key: 'helloKey',
+                  ),
+                ],
+              );
+              logger.info(result);
+            },
+          ),
+          ListTile(
             title: const Text('Default action'),
             onTap: () async {
               final result = await showModalActionSheet<String>(
