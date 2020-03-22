@@ -8,9 +8,9 @@ import 'extensions/extensions.dart';
 /// Show alert dialog, whose appearance is adaptive according to platform
 Future<T> showAlertDialog<T>({
   @required BuildContext context,
-  @required String title,
-  @required String message,
   @required List<AlertDialogAction<T>> actions,
+  String title,
+  String message,
   bool barrierDismissible = true,
   AdaptiveStyle style = AdaptiveStyle.adaptive,
   bool useActionSheetForCupertino = false,
@@ -43,12 +43,14 @@ Future<T> showAlertDialog<T>({
       style: style,
     );
   }
+  final titleText = title == null ? null : Text(title);
+  final messageText = message == null ? null : Text(message);
   return style.isCupertinoStyle(theme)
       ? showCupertinoDialog(
           context: context,
           builder: (context) => CupertinoAlertDialog(
-            title: Text(title),
-            content: Text(message),
+            title: titleText,
+            content: messageText,
             actions: actions
                 .map(
                   (a) => CupertinoDialogAction(
@@ -66,8 +68,8 @@ Future<T> showAlertDialog<T>({
           context: context,
           barrierDismissible: barrierDismissible,
           builder: (context) => AlertDialog(
-            title: Text(title),
-            content: Text(message),
+            title: titleText,
+            content: messageText,
             actions: actions
                 .map(
                   (a) => FlatButton(
@@ -87,8 +89,8 @@ Future<T> showAlertDialog<T>({
 
 Future<OkCancelResult> showOkCancelAlertDialog({
   @required BuildContext context,
-  @required String title,
-  @required String message,
+  String title,
+  String message,
   String okLabel,
   String cancelLabel,
   OkCancelAlertDefaultType defaultType,
@@ -129,8 +131,8 @@ Future<OkCancelResult> showOkCancelAlertDialog({
 
 Future<OkCancelResult> showOkAlertDialog({
   @required BuildContext context,
-  @required String title,
-  @required String message,
+  String title,
+  String message,
   String okLabel,
   bool barrierDismissible = true,
   AdaptiveStyle alertStyle = AdaptiveStyle.adaptive,

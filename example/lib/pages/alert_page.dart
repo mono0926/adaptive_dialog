@@ -58,6 +58,26 @@ class _AlertPageState extends State<AlertPage> {
             },
           ),
           ListTile(
+            title: const Text('OK Dialog (No Title)'),
+            onTap: () async {
+              final result = await showOkAlertDialog(
+                context: context,
+                message: 'This is message.',
+              );
+              logger.info(result);
+            },
+          ),
+          ListTile(
+            title: const Text('OK Dialog (No Message)'),
+            onTap: () async {
+              final result = await showOkAlertDialog(
+                context: context,
+                title: 'Title',
+              );
+              logger.info(result);
+            },
+          ),
+          ListTile(
             title: const Text('OK/Cancel Dialog'),
             onTap: () async {
               final result = await showOkCancelAlertDialog(
