@@ -10,6 +10,7 @@ class TextInputDialogPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(pascalCaseFromRouteName(routeName)),
@@ -87,7 +88,9 @@ class TextInputDialogPage extends StatelessWidget {
                 hintText: 'Start with "F"',
                 retryTitle: 'Incorrect',
                 retryMessage: 'Retry?',
-                retryOkLabel: 'Retry',
+                retryOkLabel: AdaptiveStyle.adaptive.isCupertinoStyle(theme)
+                    ? 'Retry'
+                    : 'RETRY',
               );
               print('ok: $ok');
               if (!ok) {
