@@ -1,3 +1,7 @@
+## 0.2.2
+
+- Fix showTextAnswerDialog
+
 ## 0.2.1
 
 - Add isDestructiveAction to showTextInputDialog and showTextAnswerDialog

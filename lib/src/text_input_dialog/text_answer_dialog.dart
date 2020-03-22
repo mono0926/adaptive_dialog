@@ -29,10 +29,13 @@ Future<bool> showTextAnswerDialog({
     style: style,
   );
   final text = texts == null ? null : texts[0];
+  if (text == null) {
+    return false;
+  }
   if (text == keyword) {
     return true;
   }
-  final result = showOkCancelAlertDialog(
+  final result = await showOkCancelAlertDialog(
     context: context,
     title: retryTitle,
     message: retryMessage,
