@@ -8,6 +8,7 @@ Future<bool> showTextAnswerDialog({
   String message,
   String okLabel,
   String cancelLabel,
+  bool isDestructiveAction = false,
   String hintText,
   String retryTitle,
   String retryMessage,
@@ -24,6 +25,7 @@ Future<bool> showTextAnswerDialog({
     message: message,
     okLabel: okLabel,
     cancelLabel: cancelLabel,
+    isDestructiveAction: isDestructiveAction,
     style: style,
   );
   final text = texts == null ? null : texts[0];

@@ -10,6 +10,7 @@ class CupertinoTextInputDialog extends StatefulWidget {
     this.message,
     this.okLabel,
     this.cancelLabel,
+    this.isDestructiveAction = false,
     this.style = AdaptiveStyle.adaptive,
   });
   @override
@@ -21,6 +22,7 @@ class CupertinoTextInputDialog extends StatefulWidget {
   final String message;
   final String okLabel;
   final String cancelLabel;
+  final bool isDestructiveAction;
   final AdaptiveStyle style;
 }
 
@@ -46,6 +48,8 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
     final navigator = Navigator.of(context);
     void pop() => navigator.pop(
           _textControllers.map((c) => c.text).toList(),
@@ -54,6 +58,9 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
     final titleText = widget.title == null ? null : Text(widget.title);
     final okText = Text(
       widget.okLabel ?? MaterialLocalizations.of(context).okButtonLabel,
+      style: TextStyle(
+        color: widget.isDestructiveAction ? colorScheme.error : null,
+      ),
     );
     BoxDecoration borderDecoration({
       @required bool isTopRounded,

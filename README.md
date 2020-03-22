@@ -30,14 +30,17 @@ iOS | Android
 <img width="497" alt="n11" src="https://user-images.githubusercontent.com/1255062/77220742-5d1a0f00-6b86-11ea-9991-e1b5677eebf3.png"> | <img width="497" alt="n12" src="https://user-images.githubusercontent.com/1255062/77220743-5db2a580-6b86-11ea-9d9c-7b474a222c92.png">
 
 
-## [showTextInputDialog]()
+## [showTextInputDialog](https://pub.dev/documentation/adaptive_dialog/latest/adaptive_dialog/showTextInputDialog.html)
 
 iOS | Android
 --- | ---
 <img width="516" alt="n1" src="https://user-images.githubusercontent.com/1255062/77243708-6b346200-6c50-11ea-9b54-252accd1df66.png"> | <img width="516" alt="n2" src="https://user-images.githubusercontent.com/1255062/77243709-6f607f80-6c50-11ea-8b71-a8932adc3dd7.png">
 <img width="516" alt="n3" src="https://user-images.githubusercontent.com/1255062/77243711-6ff91600-6c50-11ea-8458-56d75b958283.png"> | <img width="516" alt="n4" src="https://user-images.githubusercontent.com/1255062/77243712-7091ac80-6c50-11ea-8c08-be62e0999267.png">
 
-## [showTextAnswerDialog]()
+## [showTextAnswerDialog](https://pub.dev/documentation/adaptive_dialog/latest/adaptive_dialog/showTextAnswerDialog.html)
+
+Show text input dialog until answer is correct or cancelled.
+This is useful for preventing very destructive action is executed mistakenly.
 
 iOS | Android
 --- | ---

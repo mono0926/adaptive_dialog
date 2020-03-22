@@ -87,6 +87,7 @@ class TextInputDialogPage extends StatelessWidget {
                 keyword: 'Flutter',
                 title: 'What\'s the best mobile application framework?',
                 message: 'Input answer and press OK',
+                isDestructiveAction: true,
                 hintText: 'Start with "F"',
                 retryTitle: 'Incorrect',
                 retryMessage: 'Retry?',

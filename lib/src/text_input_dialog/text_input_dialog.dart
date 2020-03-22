@@ -12,6 +12,7 @@ Future<List<String>> showTextInputDialog({
   String message,
   String okLabel,
   String cancelLabel,
+  bool isDestructiveAction = false,
   AdaptiveStyle style = AdaptiveStyle.adaptive,
 }) {
   final theme = Theme.of(context);
@@ -24,6 +25,7 @@ Future<List<String>> showTextInputDialog({
             message: message,
             okLabel: okLabel,
             cancelLabel: cancelLabel,
+            isDestructiveAction: isDestructiveAction,
             style: style,
           ),
         )
@@ -35,6 +37,7 @@ Future<List<String>> showTextInputDialog({
             message: message,
             okLabel: okLabel,
             cancelLabel: cancelLabel,
+            isDestructiveAction: isDestructiveAction,
             style: style,
           ),
         );
