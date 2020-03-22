@@ -5,10 +5,10 @@ import 'package:adaptive_dialog/src/extensions/extensions.dart';
 class MaterialTextInputDialog extends StatefulWidget {
   const MaterialTextInputDialog({
     @required this.textFields,
-    this.titleLabel,
+    this.title,
+    this.message,
     this.okLabel,
     this.cancelLabel,
-    this.messageLabel,
     this.style = AdaptiveStyle.adaptive,
   });
   @override
@@ -16,10 +16,10 @@ class MaterialTextInputDialog extends StatefulWidget {
       _MaterialTextInputDialogState();
 
   final List<DialogTextField> textFields;
-  final String titleLabel;
+  final String title;
+  final String message;
   final String okLabel;
   final String cancelLabel;
-  final String messageLabel;
   final AdaptiveStyle style;
 }
 
@@ -50,8 +50,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
           _textControllers.map((c) => c.text).toList(),
         );
     void cancel() => navigator.pop();
-    final titleText =
-        widget.titleLabel == null ? null : Text(widget.titleLabel);
+    final titleText = widget.title == null ? null : Text(widget.title);
     final okText = Text(
       widget.okLabel ?? MaterialLocalizations.of(context).okButtonLabel,
     );
@@ -61,13 +60,13 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (widget.messageLabel != null)
+          if (widget.message != null)
             Flexible(
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 8),
                 child: Scrollbar(
                   child: SingleChildScrollView(
-                    child: Text(widget.messageLabel),
+                    child: Text(widget.message),
                   ),
                 ),
               ),

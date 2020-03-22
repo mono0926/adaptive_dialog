@@ -36,7 +36,7 @@ class TextInputDialogPage extends StatelessWidget {
                 textFields: const [
                   DialogTextField(),
                 ],
-                titleLabel: 'Hello',
+                title: 'Hello',
               );
               logger.info(text);
             },
@@ -49,8 +49,8 @@ class TextInputDialogPage extends StatelessWidget {
                 textFields: const [
                   DialogTextField(),
                 ],
-                titleLabel: 'Hello',
-                messageLabel: 'This is a message',
+                title: 'Hello',
+                message: 'This is a message',
               );
               logger.info(text);
             },
@@ -70,10 +70,33 @@ class TextInputDialogPage extends StatelessWidget {
                     obscureText: true,
                   ),
                 ],
-                titleLabel: 'Hello',
-                messageLabel: 'This is a message',
+                title: 'Hello',
+                message: 'This is a message',
               );
               logger.info(text);
+            },
+          ),
+          ListTile(
+            title: const Text('TextAnswerDialog'),
+            onTap: () async {
+              final ok = await showTextAnswerDialog(
+                context: context,
+                keyword: 'Flutter',
+                title: 'What\'s the best mobile application framework?',
+                message: 'Input answer and press OK',
+                hintText: 'Start with "F"',
+                retryTitle: 'Incorrect',
+                retryMessage: 'Retry?',
+                retryOkLabel: 'Retry',
+              );
+              print('ok: $ok');
+              if (!ok) {
+                return;
+              }
+              await showOkAlertDialog(
+                context: context,
+                title: 'That\'s right👍',
+              );
             },
           ),
         ],

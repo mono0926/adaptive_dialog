@@ -6,10 +6,10 @@ import 'package:adaptive_dialog/src/extensions/extensions.dart';
 class CupertinoTextInputDialog extends StatefulWidget {
   const CupertinoTextInputDialog({
     @required this.textFields,
-    this.titleLabel,
+    this.title,
+    this.message,
     this.okLabel,
     this.cancelLabel,
-    this.messageLabel,
     this.style = AdaptiveStyle.adaptive,
   });
   @override
@@ -17,10 +17,10 @@ class CupertinoTextInputDialog extends StatefulWidget {
       _CupertinoTextInputDialogState();
 
   final List<DialogTextField> textFields;
-  final String titleLabel;
+  final String title;
+  final String message;
   final String okLabel;
   final String cancelLabel;
-  final String messageLabel;
   final AdaptiveStyle style;
 }
 
@@ -51,8 +51,7 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
           _textControllers.map((c) => c.text).toList(),
         );
     void cancel() => navigator.pop();
-    final titleText =
-        widget.titleLabel == null ? null : Text(widget.titleLabel);
+    final titleText = widget.title == null ? null : Text(widget.title);
     final okText = Text(
       widget.okLabel ?? MaterialLocalizations.of(context).okButtonLabel,
     );
@@ -92,7 +91,7 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          if (widget.messageLabel != null) Text(widget.messageLabel),
+          if (widget.message != null) Text(widget.message),
           const SizedBox(height: 22),
           ..._textControllers.mapWithIndex(
             (c, i) {

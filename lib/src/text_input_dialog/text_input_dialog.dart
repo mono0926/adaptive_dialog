@@ -8,10 +8,10 @@ import 'material_text_input_dialog.dart';
 Future<List<String>> showTextInputDialog({
   @required BuildContext context,
   @required List<DialogTextField> textFields,
-  String titleLabel,
+  String title,
+  String message,
   String okLabel,
   String cancelLabel,
-  String messageLabel,
   AdaptiveStyle style = AdaptiveStyle.adaptive,
 }) {
   final theme = Theme.of(context);
@@ -20,10 +20,10 @@ Future<List<String>> showTextInputDialog({
           context: context,
           builder: (context) => CupertinoTextInputDialog(
             textFields: textFields,
-            titleLabel: titleLabel,
+            title: title,
+            message: message,
             okLabel: okLabel,
             cancelLabel: cancelLabel,
-            messageLabel: messageLabel,
             style: style,
           ),
         )
@@ -31,10 +31,10 @@ Future<List<String>> showTextInputDialog({
           context: context,
           builder: (context) => MaterialTextInputDialog(
             textFields: textFields,
-            titleLabel: titleLabel,
+            title: title,
+            message: message,
             okLabel: okLabel,
             cancelLabel: cancelLabel,
-            messageLabel: messageLabel,
             style: style,
           ),
         );
