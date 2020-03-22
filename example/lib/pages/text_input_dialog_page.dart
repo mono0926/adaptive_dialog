@@ -48,7 +48,9 @@ class TextInputDialogPage extends StatelessWidget {
               final text = await showTextInputDialog(
                 context: context,
                 textFields: const [
-                  DialogTextField(),
+                  DialogTextField(
+                    hintText: 'hintText',
+                  ),
                 ],
                 title: 'Hello',
                 message: 'This is a message',
