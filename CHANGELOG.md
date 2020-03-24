@@ -1,3 +1,7 @@
+## 0.3.1
+
+- Add `showDialog2020`, which wraps `showModal` with `FadeScaleTransitionConfiguration()`.
+
 ## 0.3.0
 
 - Use `showModal` with `FadeScaleTransitionConfiguration` of [animations](https://pub.dev/packages/animations) for Material alert dialog

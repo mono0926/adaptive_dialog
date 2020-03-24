@@ -44,11 +44,8 @@ Future<T> showAlertDialog<T>({
             ),
           ),
         )
-      : showModal(
+      : showDialog2020(
           context: context,
-          configuration: FadeScaleTransitionConfiguration(
-            barrierDismissible: barrierDismissible,
-          ),
           builder: (context) => AlertDialog(
             title: titleText,
             content: messageText,
