@@ -1,4 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:animations/animations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -43,9 +44,11 @@ Future<T> showAlertDialog<T>({
             ),
           ),
         )
-      : showDialog(
+      : showModal(
           context: context,
-          barrierDismissible: barrierDismissible,
+          configuration: FadeScaleTransitionConfiguration(
+            barrierDismissible: barrierDismissible,
+          ),
           builder: (context) => AlertDialog(
             title: titleText,
             content: messageText,

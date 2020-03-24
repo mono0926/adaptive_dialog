@@ -1,3 +1,7 @@
+## 0.3.0
+
+- Use `showModal` with `FadeScaleTransitionConfiguration` of animations for Material alert dialog
+
 ## 0.2.2
 
 - Fix showTextAnswerDialog
