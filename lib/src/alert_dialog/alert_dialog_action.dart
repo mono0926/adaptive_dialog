@@ -1,8 +1,7 @@
+import 'package:adaptive_dialog/src/action_callback.dart';
 import 'package:adaptive_dialog/src/modal_action_sheet/sheet_action.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-typedef ActionCallback<T> = void Function(T key);
 
 /// Used for specifying showAlertDialog's actions.
 @immutable

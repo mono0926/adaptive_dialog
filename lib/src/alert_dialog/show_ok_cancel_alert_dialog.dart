@@ -21,6 +21,7 @@ Future<OkCancelResult> showOkCancelAlertDialog({
   bool barrierDismissible = true,
   AdaptiveStyle alertStyle = AdaptiveStyle.adaptive,
   bool useActionSheetForCupertino = false,
+  bool useRootNavigator = true,
 }) async {
   final isCupertinoStyle = Theme.of(context).isCupertinoStyle;
   String defaultCancelLabel() {
@@ -35,6 +36,7 @@ Future<OkCancelResult> showOkCancelAlertDialog({
     barrierDismissible: barrierDismissible,
     style: alertStyle,
     useActionSheetForCupertino: useActionSheetForCupertino,
+    useRootNavigator: useRootNavigator,
     actions: [
       AlertDialogAction(
         label: cancelLabel ?? defaultCancelLabel(),

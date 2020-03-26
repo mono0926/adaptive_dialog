@@ -1,3 +1,4 @@
+import 'package:adaptive_dialog/src/action_callback.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:adaptive_dialog/src/extensions/extensions.dart';
@@ -6,12 +7,14 @@ import 'sheet_action.dart';
 class CupertinoModalActionSheet<T> extends StatelessWidget {
   const CupertinoModalActionSheet({
     Key key,
+    @required this.onPressed,
     this.title,
     this.message,
     this.actions,
     this.cancelLabel,
   }) : super(key: key);
 
+  final ActionCallback<T> onPressed;
   final String title;
   final String message;
   final List<SheetAction<T>> actions;
@@ -19,7 +22,6 @@ class CupertinoModalActionSheet<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void pop(T key) => Navigator.of(context).pop(key);
     return CupertinoActionSheet(
       title: title == null ? null : Text(title),
       message: message == null ? null : Text(message),
@@ -31,14 +33,14 @@ class CupertinoModalActionSheet<T> extends StatelessWidget {
                   .capitalizedForce,
         ),
         isDefaultAction: !actions.any((a) => a.isDefaultAction),
-        onPressed: () => pop(null),
+        onPressed: () => onPressed(null),
       ),
       actions: actions
           .map((a) => CupertinoActionSheetAction(
                 child: Text(a.label),
                 isDestructiveAction: a.isDestructiveAction,
                 isDefaultAction: a.isDefaultAction,
-                onPressed: () => pop(a.key),
+                onPressed: () => onPressed(a.key),
               ))
           .toList(),
     );

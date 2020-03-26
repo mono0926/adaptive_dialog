@@ -14,6 +14,7 @@ Future<OkCancelResult> showOkAlertDialog({
   bool barrierDismissible = true,
   AdaptiveStyle alertStyle = AdaptiveStyle.adaptive,
   bool useActionSheetForCupertino = false,
+  bool useRootNavigator = true,
 }) async {
   final result = await showAlertDialog<OkCancelResult>(
     context: context,
@@ -22,6 +23,7 @@ Future<OkCancelResult> showOkAlertDialog({
     barrierDismissible: barrierDismissible,
     style: alertStyle,
     useActionSheetForCupertino: useActionSheetForCupertino,
+    useRootNavigator: useRootNavigator,
     actions: [
       AlertDialogAction(
         label: okLabel ?? MaterialLocalizations.of(context).okButtonLabel,

@@ -1,5 +1,4 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:animations/animations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,8 +15,12 @@ Future<T> showAlertDialog<T>({
   bool barrierDismissible = true,
   AdaptiveStyle style = AdaptiveStyle.adaptive,
   bool useActionSheetForCupertino = false,
+  bool useRootNavigator = true,
 }) {
-  void pop(T key) => Navigator.of(context).pop(key);
+  void pop(T key) => Navigator.of(
+        context,
+        rootNavigator: useRootNavigator,
+      ).pop(key);
   final theme = Theme.of(context);
   final colorScheme = theme.colorScheme;
   final isCupertinoStyle = style.isCupertinoStyle(theme);
@@ -29,6 +32,7 @@ Future<T> showAlertDialog<T>({
       cancelLabel: actions.findCancelLabel(),
       actions: actions.convertToSheetActions(),
       style: style,
+      useRootNavigator: useRootNavigator,
     );
   }
   final titleText = title == null ? null : Text(title);
@@ -36,6 +40,7 @@ Future<T> showAlertDialog<T>({
   return style.isCupertinoStyle(theme)
       ? showCupertinoDialog(
           context: context,
+          useRootNavigator: useRootNavigator,
           builder: (context) => CupertinoAlertDialog(
             title: titleText,
             content: messageText,
@@ -46,6 +51,7 @@ Future<T> showAlertDialog<T>({
         )
       : showDialog2020(
           context: context,
+          useRootNavigator: useRootNavigator,
           builder: (context) => AlertDialog(
             title: titleText,
             content: messageText,

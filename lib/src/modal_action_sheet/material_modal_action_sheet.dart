@@ -1,15 +1,18 @@
+import 'package:adaptive_dialog/src/action_callback.dart';
 import 'package:flutter/material.dart';
 import 'sheet_action.dart';
 
 class MaterialModalActionSheet<T> extends StatelessWidget {
   const MaterialModalActionSheet({
     Key key,
+    @required this.onPressed,
     this.title,
     this.message,
     this.actions,
     this.cancelLabel,
   }) : super(key: key);
 
+  final ActionCallback<T> onPressed;
   final String title;
   final String message;
   final List<SheetAction<T>> actions;
@@ -51,7 +54,7 @@ class MaterialModalActionSheet<T> extends StatelessWidget {
                   color: color,
                 ),
               ),
-              onTap: () => Navigator.of(context).pop(a.key),
+              onTap: () => onPressed(a.key),
             );
           }),
         ],

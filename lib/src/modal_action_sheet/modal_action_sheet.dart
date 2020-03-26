@@ -19,12 +19,19 @@ Future<T> showModalActionSheet<T>({
   String cancelLabel,
   AdaptiveStyle style = AdaptiveStyle.adaptive,
   bool isDismissible = true,
+  bool useRootNavigator = true,
 }) {
+  void pop(T key) => Navigator.of(
+        context,
+        rootNavigator: useRootNavigator,
+      ).pop(key);
   final theme = Theme.of(context);
   return style.isCupertinoStyle(theme)
       ? showCupertinoModalPopup(
           context: context,
+          useRootNavigator: useRootNavigator,
           builder: (context) => CupertinoModalActionSheet(
+            onPressed: pop,
             title: title,
             message: message,
             actions: actions,
@@ -34,7 +41,9 @@ Future<T> showModalActionSheet<T>({
       : showModalBottomSheet(
           context: context,
           isDismissible: isDismissible,
+          useRootNavigator: useRootNavigator,
           builder: (context) => MaterialModalActionSheet(
+            onPressed: pop,
             title: title,
             message: message,
             actions: actions,

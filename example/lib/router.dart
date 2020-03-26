@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:recase/recase.dart';
 
 import 'pages/alert_page.dart';
+import 'pages/nested_navigator_page.dart';
 import 'pages/sheet_page.dart';
 
 class Router {
@@ -10,6 +11,7 @@ class Router {
     AlertPage.routeName: (context) => const AlertPage(),
     SheetPage.routeName: (context) => const SheetPage(),
     TextInputDialogPage.routeName: (context) => const TextInputDialogPage(),
+    NestedNavigatorPage.routeName: (context) => const NestedNavigatorPage(),
   };
 
   Route onGenerateRoute(RouteSettings settings) {
@@ -42,5 +44,6 @@ class PageInfo {
         AlertPage.routeName,
         SheetPage.routeName,
         TextInputDialogPage.routeName,
+        NestedNavigatorPage.routeName,
       ].map((rn) => PageInfo(routeName: rn)).toList();
 }

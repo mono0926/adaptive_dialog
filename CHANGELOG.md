@@ -1,3 +1,10 @@
+## 0.4.0
+
+- Support nested navigator
+  - Expose `useRootNavigator`
+  - It works fine without specifying `useRootNavigator` in most cases
+  - Check [example/lib/nested_navigator_page.dart](https://github.com/mono0926/adaptive_dialog/blob/master/example/lib/pages/nested_navigator_page.dart)
+
 ## 0.3.1
 
 - Add `showDialog2020`, which wraps `showModal` with `FadeScaleTransitionConfiguration()`.
