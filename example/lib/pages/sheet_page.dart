@@ -3,16 +3,11 @@ import 'package:example/router.dart';
 import 'package:example/util/util.dart';
 import 'package:flutter/material.dart';
 
-class SheetPage extends StatefulWidget {
+class SheetPage extends StatelessWidget {
   const SheetPage({Key key}) : super(key: key);
 
   static const routeName = '/sheet';
 
-  @override
-  _SheetPageState createState() => _SheetPageState();
-}
-
-class _SheetPageState extends State<SheetPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -3,16 +3,11 @@ import 'package:example/router.dart';
 import 'package:example/util/logger.dart';
 import 'package:flutter/material.dart';
 
-class AlertPage extends StatefulWidget {
+class AlertPage extends StatelessWidget {
   const AlertPage({Key key}) : super(key: key);
 
   static const routeName = '/alert';
 
-  @override
-  _AlertPageState createState() => _AlertPageState();
-}
-
-class _AlertPageState extends State<AlertPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
