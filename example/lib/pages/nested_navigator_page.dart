@@ -55,7 +55,7 @@ class _RootPage extends StatelessWidget {
               final result = await showModalActionSheet<String>(
                 context: context,
                 actions: [
-                  SheetAction(
+                  const SheetAction(
                     icon: Icons.info,
                     label: 'Hello',
                     key: 'helloKey',

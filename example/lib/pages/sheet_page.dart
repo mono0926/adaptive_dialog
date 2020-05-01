@@ -22,7 +22,7 @@ class SheetPage extends StatelessWidget {
               final result = await showModalActionSheet<String>(
                 context: context,
                 actions: [
-                  SheetAction(
+                  const SheetAction(
                     icon: Icons.info,
                     label: 'Hello',
                     key: 'helloKey',
@@ -39,7 +39,7 @@ class SheetPage extends StatelessWidget {
                 context: context,
                 title: 'Title',
                 actions: [
-                  SheetAction(
+                  const SheetAction(
                     icon: Icons.info,
                     label: 'Hello',
                     key: 'helloKey',
@@ -57,7 +57,7 @@ class SheetPage extends StatelessWidget {
                 title: 'Title',
                 message: 'Message',
                 actions: [
-                  SheetAction(
+                  const SheetAction(
                     icon: Icons.info,
                     label: 'Hello',
                     key: 'helloKey',
@@ -92,12 +92,12 @@ class SheetPage extends StatelessWidget {
                 title: 'Title',
                 message: 'Message',
                 actions: [
-                  SheetAction(
+                  const SheetAction(
                     icon: Icons.info,
                     label: 'Hello',
                     key: 'helloKey',
                   ),
-                  SheetAction(
+                  const SheetAction(
                     icon: Icons.refresh,
                     label: 'Default',
                     key: 'defaultKey',
@@ -116,12 +116,12 @@ class SheetPage extends StatelessWidget {
                 title: 'Title',
                 message: 'Message',
                 actions: [
-                  SheetAction(
+                  const SheetAction(
                     icon: Icons.info,
                     label: 'Hello',
                     key: 'helloKey',
                   ),
-                  SheetAction(
+                  const SheetAction(
                     icon: Icons.warning,
                     label: 'Destructive',
                     key: 'destructiveKey',
