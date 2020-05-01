@@ -11,7 +11,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const title = 'mono_kit Demo';
+    const title = 'adaptive_dialog Demo';
     return MaterialApp(
       title: title,
       home: const HomePage(title: title),
