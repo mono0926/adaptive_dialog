@@ -1,3 +1,8 @@
+## 0.5.0
+
+- Add `materialConfiguration` to `showModalBottomSheet`
+  - This suppresses many actions (long list) sheet from overflow
+
 ## 0.4.0
 
 - Support nested navigator

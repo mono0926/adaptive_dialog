@@ -20,6 +20,7 @@ Future<T> showModalActionSheet<T>({
   AdaptiveStyle style = AdaptiveStyle.adaptive,
   bool isDismissible = true,
   bool useRootNavigator = true,
+  MaterialModalActionSheetConfiguration materialConfiguration,
 }) {
   void pop(T key) => Navigator.of(
         context,
@@ -40,6 +41,7 @@ Future<T> showModalActionSheet<T>({
         )
       : showModalBottomSheet(
           context: context,
+          isScrollControlled: materialConfiguration != null,
           isDismissible: isDismissible,
           useRootNavigator: useRootNavigator,
           builder: (context) => MaterialModalActionSheet(
@@ -48,6 +50,19 @@ Future<T> showModalActionSheet<T>({
             message: message,
             actions: actions,
             cancelLabel: cancelLabel,
+            materialConfiguration: materialConfiguration,
           ),
         );
+}
+
+@immutable
+class MaterialModalActionSheetConfiguration {
+  const MaterialModalActionSheetConfiguration({
+    this.initialChildSize = 0.5,
+    this.minChildSize = 0.25,
+    this.maxChildSize = 0.9,
+  });
+  final double initialChildSize;
+  final double minChildSize;
+  final double maxChildSize;
 }
