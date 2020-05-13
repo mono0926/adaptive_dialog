@@ -101,7 +101,6 @@ class _ConfirmationDialogState<T> extends State<_ConfirmationDialog<T>> {
                     padding: const EdgeInsets.only(top: 4),
                     child: Text(
                       widget.message,
-                      textAlign: TextAlign.center,
                       style: theme.textTheme.caption,
                     ),
                   ),

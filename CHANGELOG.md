@@ -1,3 +1,7 @@
+## 0.6.1
+
+- Fix `showConfirmationDialog` message text alignment
+
 ## 0.6.0
 
 - Add `showConfirmationDialog`
