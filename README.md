@@ -27,8 +27,7 @@ Show [confirmation dialog](https://material.io/components/dialogs#confirmation-d
 
 iOS | Android
 --- | ---
-<img width="497" alt="n3" src="https://user-images.githubusercontent.com/1255062/81771694-a6e7fb80-951e-11ea-89ff-9cd8a5e5074b.png">
-<img width="497" alt="n5" src="https://user-images.githubusercontent.com/1255062/81771688-a3ed0b00-951e-11ea-914b-79d9dd20d68e.png">
+<img width="497" alt="n3" src="https://user-images.githubusercontent.com/1255062/81771694-a6e7fb80-951e-11ea-89ff-9cd8a5e5074b.png"> | <img width="497" alt="n5" src="https://user-images.githubusercontent.com/1255062/81771688-a3ed0b00-951e-11ea-914b-79d9dd20d68e.png">
 
 ## [showModalActionSheet](https://pub.dev/documentation/adaptive_dialog/latest/adaptive_dialog/showModalActionSheet.html)
 
