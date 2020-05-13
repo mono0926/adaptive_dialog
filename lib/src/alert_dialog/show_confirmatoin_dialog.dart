@@ -123,7 +123,7 @@ class _ConfirmationDialogState<T> extends State<_ConfirmationDialog<T>> {
                               _selectedValue = value;
                             });
                           },
-                          // Not supported at 1.17.0
+                          // TODO(mono): Not supported at 1.17.0
 //                          toggleable: true,
                         ))
                     .toList(),
