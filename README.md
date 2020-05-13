@@ -23,7 +23,7 @@ iOS | Android
 
 ## [showConfirmationDialog](https://pub.dev/documentation/adaptive_dialog/latest/adaptive_dialog/showConfirmationDialog.html)
 
-Show [confirmation dialog](https://material.io/components/dialogs#confirmation-dialog). For cupertino, fallback to ActionSheet.
+Show [confirmation dialog](https://material.io/components/dialogs#confirmation-dialog). For Cupertino, fallback to ActionSheet.
 
 iOS | Android
 --- | ---

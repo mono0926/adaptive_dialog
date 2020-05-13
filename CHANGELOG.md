@@ -2,7 +2,7 @@
 
 - Add `showConfirmationDialog`
   - Show [confirmation dialog](https://material.io/components/dialogs#confirmation-dialog), whose appearance is adaptive according to platform
-  - For cupertino, fallback to ActionSheet
+  - For Cupertino, fallback to ActionSheet
 
 ## 0.5.0
 
