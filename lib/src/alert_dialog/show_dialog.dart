@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 
 Future<T> showDialog2020<T>({
   @required BuildContext context,
-  bool useRootNavigator = true,
   WidgetBuilder builder,
+  bool useRootNavigator = true,
+  bool barrierDismissible = true,
 }) {
   return showModal<T>(
     context: context,
-    configuration: FadeScaleTransitionConfiguration(),
+    configuration: FadeScaleTransitionConfiguration(
+      barrierDismissible: barrierDismissible,
+    ),
     useRootNavigator: useRootNavigator,
     builder: builder,
   );

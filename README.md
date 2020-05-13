@@ -21,6 +21,15 @@ iOS | Android
 <img width="497" alt="n3" src="https://user-images.githubusercontent.com/1255062/77220732-5a1f1e80-6b86-11ea-8e1f-beb08e45387a.png"> | <img width="497" alt="n4" src="https://user-images.githubusercontent.com/1255062/77220733-5a1f1e80-6b86-11ea-8a2a-3f60185877a1.png">
 <img width="497" alt="n5" src="https://user-images.githubusercontent.com/1255062/77220734-5ab7b500-6b86-11ea-941b-7327f5302c9e.png"> | <img width="497" alt="n6" src="https://user-images.githubusercontent.com/1255062/77220736-5b504b80-6b86-11ea-9559-cab8f725d6fd.png">
 
+## [showConfirmationDialog](https://pub.dev/documentation/adaptive_dialog/latest/adaptive_dialog/showConfirmationDialog.html)
+
+Show [confirmation dialog](https://material.io/components/dialogs#confirmation-dialog). For cupertino, fallback to ActionSheet.
+
+iOS | Android
+--- | ---
+<img width="497" alt="n3" src="https://user-images.githubusercontent.com/1255062/81771694-a6e7fb80-951e-11ea-89ff-9cd8a5e5074b.png">
+<img width="497" alt="n5" src="https://user-images.githubusercontent.com/1255062/81771688-a3ed0b00-951e-11ea-914b-79d9dd20d68e.png">
+
 ## [showModalActionSheet](https://pub.dev/documentation/adaptive_dialog/latest/adaptive_dialog/showModalActionSheet.html)
 
 iOS | Android

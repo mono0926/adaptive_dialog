@@ -52,6 +52,7 @@ Future<T> showAlertDialog<T>({
       : showDialog2020(
           context: context,
           useRootNavigator: useRootNavigator,
+          barrierDismissible: barrierDismissible,
           builder: (context) => AlertDialog(
             title: titleText,
             content: messageText,

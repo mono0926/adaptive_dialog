@@ -121,6 +121,26 @@ class AlertPage extends StatelessWidget {
               logger.info(result);
             },
           ),
+          ListTile(
+            title: const Text('Confirmation Dialog'),
+            onTap: () async {
+              final result = await showConfirmationDialog<int>(
+                context: context,
+                title: 'Title',
+                message: 'This is message.',
+                actions: [
+                  ...List.generate(
+                    20,
+                    (index) => AlertDialogAction(
+                      label: 'Answer $index',
+                      key: index,
+                    ),
+                  ),
+                ],
+              );
+              logger.info(result);
+            },
+          ),
         ],
       ),
     );
