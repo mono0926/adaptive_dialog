@@ -1,3 +1,7 @@
+## 0.6.2
+
+- Fix `showTextAnswerDialog` retry
+
 ## 0.6.1
 
 - Fix `showConfirmationDialog` message text alignment

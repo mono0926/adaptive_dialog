@@ -47,9 +47,11 @@ Future<bool> showTextAnswerDialog({
       ? showTextAnswerDialog(
           context: context,
           keyword: keyword,
+          title: title,
           message: message,
           okLabel: okLabel,
           cancelLabel: cancelLabel,
+          isDestructiveAction: isDestructiveAction,
           hintText: hintText,
           retryTitle: retryTitle,
           retryMessage: retryMessage,
