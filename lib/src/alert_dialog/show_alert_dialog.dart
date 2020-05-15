@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 /// [useActionSheetForCupertino] (default: false) only works for
 /// cupertino style. If it is set to true, [showModalActionSheet] is called
 /// instead.
+/// [actionsOverflowDirection] works only for Material style currently.
 Future<T> showAlertDialog<T>({
   @required BuildContext context,
   String title,
@@ -16,6 +17,7 @@ Future<T> showAlertDialog<T>({
   AdaptiveStyle style = AdaptiveStyle.adaptive,
   bool useActionSheetForCupertino = false,
   bool useRootNavigator = true,
+  VerticalDirection actionsOverflowDirection = VerticalDirection.up,
 }) {
   void pop(T key) => Navigator.of(
         context,
@@ -47,6 +49,8 @@ Future<T> showAlertDialog<T>({
             actions: actions.convertToCupertinoDialogActions(
               onPressed: pop,
             ),
+            // TODO(mono): Set actionsOverflowDirection if available
+            // https://twitter.com/_mono/status/1261122914218160128
           ),
         )
       : showDialog2020(
@@ -60,6 +64,7 @@ Future<T> showAlertDialog<T>({
               onPressed: pop,
               destructiveColor: colorScheme.error,
             ),
+            actionsOverflowDirection: actionsOverflowDirection,
           ),
         );
 }

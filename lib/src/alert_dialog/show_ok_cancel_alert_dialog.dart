@@ -10,6 +10,7 @@ import 'package:adaptive_dialog/src/extensions/extensions.dart';
 /// close alert.
 /// [defaultType] only works for cupertino style and if it is specified
 /// OK or Cancel button label will be changed to bold.
+/// [actionsOverflowDirection] works only for Material style currently.
 Future<OkCancelResult> showOkCancelAlertDialog({
   @required BuildContext context,
   String title,
@@ -22,6 +23,7 @@ Future<OkCancelResult> showOkCancelAlertDialog({
   AdaptiveStyle alertStyle = AdaptiveStyle.adaptive,
   bool useActionSheetForCupertino = false,
   bool useRootNavigator = true,
+  VerticalDirection actionsOverflowDirection = VerticalDirection.up,
 }) async {
   final isCupertinoStyle = Theme.of(context).isCupertinoStyle;
   String defaultCancelLabel() {
@@ -37,6 +39,7 @@ Future<OkCancelResult> showOkCancelAlertDialog({
     style: alertStyle,
     useActionSheetForCupertino: useActionSheetForCupertino,
     useRootNavigator: useRootNavigator,
+    actionsOverflowDirection: actionsOverflowDirection,
     actions: [
       AlertDialogAction(
         label: cancelLabel ?? defaultCancelLabel(),

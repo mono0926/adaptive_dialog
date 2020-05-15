@@ -1,6 +1,6 @@
 name: adaptive_dialog
 description: Show alert dialog or modal action sheet adaptively according to platform.
-version: 0.6.2
+version: 0.6.3
 homepage: https://github.com/mono0926/adaptive_dialog
 environment:
   sdk: ">=2.6.0 <3.0.0"

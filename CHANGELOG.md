@@ -1,3 +1,8 @@
+## 0.6.3
+
+- Add `actionsOverflowDirection` to `showAlertDialog`
+  - Only works for Material style
+
 ## 0.6.2
 
 - Fix `showTextAnswerDialog` retry

@@ -108,6 +108,19 @@ class AlertPage extends StatelessWidget {
             },
           ),
           ListTile(
+            title: const Text('OK/Cancel Dialog (long button label)'),
+            onTap: () async {
+              final result = await showOkCancelAlertDialog(
+                context: context,
+                title: 'Title',
+                message: 'This is message.',
+                okLabel: 'Long OK' * 2,
+                cancelLabel: 'Long Cancel' * 2,
+              );
+              logger.info(result);
+            },
+          ),
+          ListTile(
             title: const Text('OK/Cancel Dialog (useActionSheetForCupertino)'),
             onTap: () async {
               final result = await showOkCancelAlertDialog(
