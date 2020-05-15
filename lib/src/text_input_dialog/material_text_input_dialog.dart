@@ -11,6 +11,7 @@ class MaterialTextInputDialog extends StatefulWidget {
     this.cancelLabel,
     this.isDestructiveAction = false,
     this.style = AdaptiveStyle.adaptive,
+    this.actionsOverflowDirection = VerticalDirection.up,
   });
   @override
   _MaterialTextInputDialogState createState() =>
@@ -23,6 +24,7 @@ class MaterialTextInputDialog extends StatefulWidget {
   final String cancelLabel;
   final bool isDestructiveAction;
   final AdaptiveStyle style;
+  final VerticalDirection actionsOverflowDirection;
 }
 
 class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
@@ -104,6 +106,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
           onPressed: pop,
         )
       ],
+      actionsOverflowDirection: widget.actionsOverflowDirection,
     );
   }
 }

@@ -14,6 +14,7 @@ Future<List<String>> showTextInputDialog({
   String cancelLabel,
   bool isDestructiveAction = false,
   AdaptiveStyle style = AdaptiveStyle.adaptive,
+  VerticalDirection actionsOverflowDirection = VerticalDirection.up,
 }) {
   final theme = Theme.of(context);
   return style.isCupertinoStyle(theme)
@@ -39,6 +40,7 @@ Future<List<String>> showTextInputDialog({
             cancelLabel: cancelLabel,
             isDestructiveAction: isDestructiveAction,
             style: style,
+            actionsOverflowDirection: actionsOverflowDirection,
           ),
         );
 }
