@@ -15,12 +15,6 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: title,
       home: const HomePage(title: title),
-      builder: (context, child) => MultiProvider(
-        providers: const [
-          TextScaleFactor(),
-        ],
-        child: child,
-      ),
       theme: lightTheme(),
       darkTheme: darkTheme(),
       onGenerateRoute: context.watch<Router>().onGenerateRoute,
