@@ -1,3 +1,7 @@
+## 0.6.4
+
+- Override `textScaleFactor` to keep larger than 1 for `CupertinoActionSheet`
+
 ## 0.6.3
 
 - Add `actionsOverflowDirection` to `showAlertDialog`
