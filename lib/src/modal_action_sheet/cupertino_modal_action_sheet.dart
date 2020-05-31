@@ -29,7 +29,7 @@ class CupertinoModalActionSheet<T> extends StatelessWidget {
       data: mediaQuery.copyWith(
         // `CupertinoAlertDialog` overrides textScaleFactor
         // to keep larger than 1, but `CupertinoActionSheet` doesn't.
-        // https://twitter.com/_mono/status/1262955228892147713
+        // https://twitter.com/_mono/status/1266997626693509126
         textScaleFactor: max(1, mediaQuery.textScaleFactor),
       ),
       child: CupertinoActionSheet(
