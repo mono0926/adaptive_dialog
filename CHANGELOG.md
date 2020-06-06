@@ -1,3 +1,8 @@
+## 0.7.0
+
+- Delete `showDialog2020` function
+  - the `configuration` parameter of [animations](https://pub.dev/packages/animations) `showModal` can be omitted at v1.1.0 so, `showDialog2020` no longer the point of existence.
+
 ## 0.6.4
 
 - Override `textScaleFactor` to keep larger than 1 for `CupertinoActionSheet`
