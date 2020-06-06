@@ -1,4 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:animations/animations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -33,10 +34,12 @@ Future<T> showConfirmationDialog<T>({
           style: style,
           useRootNavigator: useRootNavigator,
         )
-      : showDialog2020(
+      : showModal(
           context: context,
           useRootNavigator: useRootNavigator,
-          barrierDismissible: barrierDismissible,
+          configuration: FadeScaleTransitionConfiguration(
+            barrierDismissible: barrierDismissible,
+          ),
           builder: (context) => _ConfirmationDialog(
             title: title,
             onSelect: pop,
