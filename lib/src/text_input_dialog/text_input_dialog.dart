@@ -14,13 +14,16 @@ Future<List<String>> showTextInputDialog({
   String okLabel,
   String cancelLabel,
   bool isDestructiveAction = false,
+  bool barrierDismissible = true,
   AdaptiveStyle style = AdaptiveStyle.adaptive,
+  bool useRootNavigator = true,
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
 }) {
   final theme = Theme.of(context);
   return style.isCupertinoStyle(theme)
       ? showCupertinoDialog(
           context: context,
+          useRootNavigator: useRootNavigator,
           builder: (context) => CupertinoTextInputDialog(
             textFields: textFields,
             title: title,
@@ -29,10 +32,15 @@ Future<List<String>> showTextInputDialog({
             cancelLabel: cancelLabel,
             isDestructiveAction: isDestructiveAction,
             style: style,
+            useRootNavigator: useRootNavigator,
           ),
         )
       : showModal(
           context: context,
+          useRootNavigator: useRootNavigator,
+          configuration: FadeScaleTransitionConfiguration(
+            barrierDismissible: barrierDismissible,
+          ),
           builder: (context) => MaterialTextInputDialog(
             textFields: textFields,
             title: title,
@@ -42,6 +50,7 @@ Future<List<String>> showTextInputDialog({
             isDestructiveAction: isDestructiveAction,
             style: style,
             actionsOverflowDirection: actionsOverflowDirection,
+            useRootNavigator: useRootNavigator,
           ),
         );
 }

@@ -9,12 +9,14 @@ Future<bool> showTextAnswerDialog({
   String okLabel,
   String cancelLabel,
   bool isDestructiveAction = false,
+  bool barrierDismissible = true,
   String hintText,
   String retryTitle,
   String retryMessage,
   String retryOkLabel,
   String retryCancelLabel,
   AdaptiveStyle style = AdaptiveStyle.adaptive,
+  bool useRootNavigator = true,
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
 }) async {
   final texts = await showTextInputDialog(
@@ -45,6 +47,8 @@ Future<bool> showTextAnswerDialog({
     cancelLabel: retryCancelLabel,
     defaultType: OkCancelAlertDefaultType.ok,
     actionsOverflowDirection: actionsOverflowDirection,
+    barrierDismissible: barrierDismissible,
+    useRootNavigator: useRootNavigator,
   );
   return result == OkCancelResult.ok
       ? showTextAnswerDialog(
@@ -55,12 +59,14 @@ Future<bool> showTextAnswerDialog({
           okLabel: okLabel,
           cancelLabel: cancelLabel,
           isDestructiveAction: isDestructiveAction,
+          barrierDismissible: barrierDismissible,
           hintText: hintText,
           retryTitle: retryTitle,
           retryMessage: retryMessage,
           retryOkLabel: retryOkLabel,
           retryCancelLabel: retryCancelLabel,
           style: style,
+          useRootNavigator: useRootNavigator,
           actionsOverflowDirection: actionsOverflowDirection,
         )
       : Future.value(false);

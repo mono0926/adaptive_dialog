@@ -12,6 +12,7 @@ class MaterialTextInputDialog extends StatefulWidget {
     this.isDestructiveAction = false,
     this.style = AdaptiveStyle.adaptive,
     this.actionsOverflowDirection = VerticalDirection.up,
+    this.useRootNavigator = true,
   });
   @override
   _MaterialTextInputDialogState createState() =>
@@ -25,6 +26,7 @@ class MaterialTextInputDialog extends StatefulWidget {
   final bool isDestructiveAction;
   final AdaptiveStyle style;
   final VerticalDirection actionsOverflowDirection;
+  final bool useRootNavigator;
 }
 
 class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
@@ -51,7 +53,10 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final navigator = Navigator.of(context);
+    final navigator = Navigator.of(
+      context,
+      rootNavigator: widget.useRootNavigator,
+    );
     void pop() => navigator.pop(
           _textControllers.map((c) => c.text).toList(),
         );

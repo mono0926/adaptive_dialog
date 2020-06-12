@@ -12,6 +12,7 @@ class CupertinoTextInputDialog extends StatefulWidget {
     this.cancelLabel,
     this.isDestructiveAction = false,
     this.style = AdaptiveStyle.adaptive,
+    this.useRootNavigator = true,
   });
   @override
   _CupertinoTextInputDialogState createState() =>
@@ -24,6 +25,7 @@ class CupertinoTextInputDialog extends StatefulWidget {
   final String cancelLabel;
   final bool isDestructiveAction;
   final AdaptiveStyle style;
+  final bool useRootNavigator;
 }
 
 class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
@@ -50,7 +52,10 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final navigator = Navigator.of(context);
+    final navigator = Navigator.of(
+      context,
+      rootNavigator: widget.useRootNavigator,
+    );
     void pop() => navigator.pop(
           _textControllers.map((c) => c.text).toList(),
         );
