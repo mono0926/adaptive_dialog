@@ -1,3 +1,7 @@
+## 0.7.1
+
+- User showModal instead of showDialog for showTextInputDialog
+
 ## 0.7.0
 
 - Delete `showDialog2020` function
