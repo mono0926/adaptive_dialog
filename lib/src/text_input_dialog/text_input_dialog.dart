@@ -1,5 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_dialog/src/text_input_dialog/cupertino_text_input_dialog.dart';
+import 'package:animations/animations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +31,7 @@ Future<List<String>> showTextInputDialog({
             style: style,
           ),
         )
-      : showDialog(
+      : showModal(
           context: context,
           builder: (context) => MaterialTextInputDialog(
             textFields: textFields,
