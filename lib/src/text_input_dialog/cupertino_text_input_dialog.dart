@@ -30,6 +30,7 @@ class CupertinoTextInputDialog extends StatefulWidget {
 
 class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
   List<TextEditingController> _textControllers;
+  String _validationMessage;
 
   @override
   void initState() {
@@ -51,7 +52,6 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
     final navigator = Navigator.of(
       context,
       rootNavigator: widget.useRootNavigator,
@@ -65,14 +65,11 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
       widget.okLabel ?? MaterialLocalizations.of(context).okButtonLabel,
       style: TextStyle(
         color: widget.isDestructiveAction
-            ? CupertinoDynamicColor.resolve(
-                CupertinoColors.destructiveRed,
-                context,
-              )
+            ? CupertinoColors.systemRed.resolveFrom(context)
             : null,
       ),
     );
-    BoxDecoration borderDecoration({
+    BoxDecoration _borderDecoration({
       @required bool isTopRounded,
       @required bool isBottomRounded,
     }) {
@@ -118,13 +115,29 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
                 autofocus: i == 0,
                 placeholder: field.hintText,
                 obscureText: field.obscureText,
-                decoration: borderDecoration(
+                decoration: _borderDecoration(
                   isTopRounded: i == 0,
                   isBottomRounded: i == _textControllers.length - 1,
                 ),
               );
             },
           ),
+          if (_validationMessage != null)
+            Container(
+              alignment: AlignmentDirectional.centerStart,
+              padding: const EdgeInsets.only(
+                top: 4,
+                left: 4,
+              ),
+              child: Text(
+                _validationMessage,
+                style: TextStyle(
+                  color: CupertinoColors.systemRed.resolveFrom(context),
+                  height: 1.2,
+                ),
+                textAlign: TextAlign.start,
+              ),
+            ),
         ],
       ),
       actions: <Widget>[
@@ -140,7 +153,21 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
         ),
         CupertinoDialogAction(
           child: okText,
-          onPressed: pop,
+          onPressed: () {
+            final validations = widget.textFields.mapWithIndex((tf, i) {
+              final validator = tf.validator;
+              return validator == null
+                  ? null
+                  : validator(_textControllers[i].text);
+            }).where((result) => result != null);
+            if (validations.isEmpty) {
+              pop();
+            } else {
+              setState(() {
+                _validationMessage = validations.join('\n');
+              });
+            }
+          },
         ),
       ],
     );

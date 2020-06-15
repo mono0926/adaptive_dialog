@@ -69,6 +69,11 @@ class TextInputDialogPage extends StatelessWidget {
                     validator: (value) =>
                         value.isEmpty ? 'Input more than one character' : null,
                   ),
+                  DialogTextField(
+                    hintText: 'hintText',
+                    validator: (value) =>
+                        value.isEmpty ? 'Input more than two characters' : null,
+                  ),
                 ],
                 title: 'Hello',
                 message: 'This is a message',
