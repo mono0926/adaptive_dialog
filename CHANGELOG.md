@@ -1,3 +1,8 @@
+## 0.7.2
+
+- Support validation for showTextInputDialog
+- Fix destructive color of showTextInputDialog for Cupertino 
+
 ## 0.7.1
 
 - User showModal instead of showDialog for showTextInputDialog
