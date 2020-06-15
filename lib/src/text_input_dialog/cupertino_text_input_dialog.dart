@@ -64,7 +64,12 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
     final okText = Text(
       widget.okLabel ?? MaterialLocalizations.of(context).okButtonLabel,
       style: TextStyle(
-        color: widget.isDestructiveAction ? colorScheme.error : null,
+        color: widget.isDestructiveAction
+            ? CupertinoDynamicColor.resolve(
+                CupertinoColors.destructiveRed,
+                context,
+              )
+            : null,
       ),
     );
     BoxDecoration borderDecoration({
