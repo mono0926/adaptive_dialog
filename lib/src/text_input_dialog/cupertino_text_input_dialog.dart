@@ -31,6 +31,7 @@ class CupertinoTextInputDialog extends StatefulWidget {
 class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
   List<TextEditingController> _textControllers;
   String _validationMessage;
+  bool _autovalidate = false;
 
   @override
   void initState() {
@@ -39,6 +40,14 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
     _textControllers = widget.textFields
         .map((tf) => TextEditingController(text: tf.initialText))
         .toList();
+
+    for (final c in _textControllers) {
+      c.addListener(() {
+        if (_autovalidate) {
+          _validate();
+        }
+      });
+    }
   }
 
   @override
@@ -51,7 +60,6 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final navigator = Navigator.of(
       context,
       rootNavigator: widget.useRootNavigator,
@@ -154,22 +162,24 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
         CupertinoDialogAction(
           child: okText,
           onPressed: () {
-            final validations = widget.textFields.mapWithIndex((tf, i) {
-              final validator = tf.validator;
-              return validator == null
-                  ? null
-                  : validator(_textControllers[i].text);
-            }).where((result) => result != null);
-            if (validations.isEmpty) {
+            if (_validate()) {
               pop();
-            } else {
-              setState(() {
-                _validationMessage = validations.join('\n');
-              });
             }
           },
         ),
       ],
     );
+  }
+
+  bool _validate() {
+    _autovalidate = true;
+    final validations = widget.textFields.mapWithIndex((tf, i) {
+      final validator = tf.validator;
+      return validator == null ? null : validator(_textControllers[i].text);
+    }).where((result) => result != null);
+    setState(() {
+      _validationMessage = validations.join('\n');
+    });
+    return validations.isEmpty;
   }
 }

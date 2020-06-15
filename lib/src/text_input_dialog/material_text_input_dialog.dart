@@ -32,6 +32,7 @@ class MaterialTextInputDialog extends StatefulWidget {
 class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
   List<TextEditingController> _textControllers;
   final _formKey = GlobalKey<FormState>();
+  var _autovalidate = false;
 
   @override
   void initState() {
@@ -98,6 +99,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
                   hintText: textField.hintText,
                 ),
                 validator: textField.validator,
+                autovalidate: _autovalidate,
               );
             })
           ],
@@ -115,6 +117,10 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
             onPressed: () {
               if (_formKey.currentState.validate()) {
                 pop();
+              } else if (!_autovalidate) {
+                setState(() {
+                  _autovalidate = true;
+                });
               }
             },
           )

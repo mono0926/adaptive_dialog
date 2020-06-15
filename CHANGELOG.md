@@ -1,3 +1,7 @@
+## 0.7.3
+
+- Support autovalidate for showTextInputDialog
+
 ## 0.7.2
 
 - Support validation for showTextInputDialog
