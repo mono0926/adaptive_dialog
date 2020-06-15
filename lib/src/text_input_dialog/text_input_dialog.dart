@@ -62,8 +62,10 @@ class DialogTextField {
     this.initialText,
     this.hintText,
     this.obscureText = false,
+    this.validator,
   });
   final String initialText;
   final String hintText;
   final bool obscureText;
+  final FormFieldValidator<String> validator;
 }

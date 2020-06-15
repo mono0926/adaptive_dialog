@@ -31,6 +31,7 @@ class MaterialTextInputDialog extends StatefulWidget {
 
 class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
   List<TextEditingController> _textControllers;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -68,50 +69,58 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
         color: widget.isDestructiveAction ? colorScheme.error : null,
       ),
     );
-    return AlertDialog(
-      title: titleText,
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (widget.message != null)
-            Flexible(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Scrollbar(
-                  child: SingleChildScrollView(
-                    child: Text(widget.message),
+    return Form(
+      key: _formKey,
+      child: AlertDialog(
+        title: titleText,
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (widget.message != null)
+              Flexible(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Scrollbar(
+                    child: SingleChildScrollView(
+                      child: Text(widget.message),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ..._textControllers.mapWithIndex((c, i) {
-            final textField = widget.textFields[i];
-            return TextField(
-              controller: c,
-              autofocus: i == 0,
-              obscureText: textField.obscureText,
-              decoration: InputDecoration(
-                hintText: textField.hintText,
-              ),
-            );
-          })
-        ],
-      ),
-      actions: [
-        FlatButton(
-          child: Text(
-            widget.cancelLabel ??
-                MaterialLocalizations.of(context).cancelButtonLabel,
-          ),
-          onPressed: cancel,
+            ..._textControllers.mapWithIndex((c, i) {
+              final textField = widget.textFields[i];
+              return TextFormField(
+                controller: c,
+                autofocus: i == 0,
+                obscureText: textField.obscureText,
+                decoration: InputDecoration(
+                  hintText: textField.hintText,
+                ),
+                validator: textField.validator,
+              );
+            })
+          ],
         ),
-        FlatButton(
-          child: okText,
-          onPressed: pop,
-        )
-      ],
-      actionsOverflowDirection: widget.actionsOverflowDirection,
+        actions: [
+          FlatButton(
+            child: Text(
+              widget.cancelLabel ??
+                  MaterialLocalizations.of(context).cancelButtonLabel,
+            ),
+            onPressed: cancel,
+          ),
+          FlatButton(
+            child: okText,
+            onPressed: () {
+              if (_formKey.currentState.validate()) {
+                pop();
+              }
+            },
+          )
+        ],
+        actionsOverflowDirection: widget.actionsOverflowDirection,
+      ),
     );
   }
 }

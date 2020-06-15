@@ -59,6 +59,24 @@ class TextInputDialogPage extends StatelessWidget {
             },
           ),
           ListTile(
+            title: const Text('Title/Message (Validation)'),
+            onTap: () async {
+              final text = await showTextInputDialog(
+                context: context,
+                textFields: [
+                  DialogTextField(
+                    hintText: 'hintText',
+                    validator: (value) =>
+                        value.isEmpty ? 'Input more than one character' : null,
+                  ),
+                ],
+                title: 'Hello',
+                message: 'This is a message',
+              );
+              logger.info(text);
+            },
+          ),
+          ListTile(
             title: const Text('Multi Text Field'),
             onTap: () async {
               final text = await showTextInputDialog(
