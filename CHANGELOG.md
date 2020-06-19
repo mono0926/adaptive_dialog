@@ -1,3 +1,7 @@
+## 0.7.5
+
+- If there is enough height, `NeverScrollableScrollPhysics` will be set to `showConfirmationDialog`'s inner `ListView`
+
 ## 0.7.4
 
 - Add `shrinkWrap` to `showConfirmationDialog` and it is defaults to `true`, which is opposite of the default value of ListView

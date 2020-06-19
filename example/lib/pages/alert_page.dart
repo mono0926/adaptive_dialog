@@ -143,7 +143,7 @@ class AlertPage extends StatelessWidget {
                 message: 'This is message.',
                 actions: [
                   ...List.generate(
-                    3,
+                    5,
                     (index) => AlertDialogAction(
                       label: 'Answer $index',
                       key: index,

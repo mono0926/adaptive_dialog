@@ -87,6 +87,7 @@ class _ConfirmationDialog<T> extends StatefulWidget {
 
 class _ConfirmationDialogState<T> extends State<_ConfirmationDialog<T>> {
   T _selectedValue;
+  final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -124,6 +125,9 @@ class _ConfirmationDialogState<T> extends State<_ConfirmationDialog<T>> {
             child: SizedBox(
               height: widget.contentMaxHeight,
               child: ListView(
+                // This switches physics automatically, so if there is enough
+                // height, `NeverScrollableScrollPhysics` will be set.
+                controller: _scrollController,
                 shrinkWrap: widget.shrinkWrap,
                 children: widget.actions
                     .map((action) => RadioListTile<T>(
