@@ -64,11 +64,11 @@ class _ConfirmationDialog<T> extends StatefulWidget {
     Key key,
     @required this.title,
     @required this.onSelect,
-    this.message,
-    this.okLabel,
-    this.cancelLabel,
-    this.actions = const [],
-    this.contentMaxHeight = double.infinity,
+    @required this.message,
+    @required this.okLabel,
+    @required this.cancelLabel,
+    @required this.actions,
+    @required this.contentMaxHeight,
     @required this.shrinkWrap,
   }) : super(key: key);
 
