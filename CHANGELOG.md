@@ -1,3 +1,7 @@
+## 0.7.4
+
+- Add `shrinkWrap` to `showConfirmationDialog` and it is defaults to `true`, which is opposite of the default value of ListView
+
 ## 0.7.3
 
 - Support autovalidate for showTextInputDialog

@@ -7,6 +7,11 @@ import 'package:flutter/material.dart';
 /// whose appearance is adaptive according to platform
 ///
 /// For Cupertino, fallback to ActionSheet.
+///
+/// If [shrinkWrap] is true, material dialog height is determined by the
+/// contents. This argument defaults to `true`. If you know the content height
+/// is taller than the height of screen, it is recommended to set to `false`
+/// for performance optimization.
 Future<T> showConfirmationDialog<T>({
   @required BuildContext context,
   @required String title,
@@ -18,6 +23,7 @@ Future<T> showConfirmationDialog<T>({
   bool barrierDismissible = true,
   AdaptiveStyle style = AdaptiveStyle.adaptive,
   bool useRootNavigator = true,
+  bool shrinkWrap = true,
 }) {
   void pop(T key) => Navigator.of(
         context,
@@ -48,6 +54,7 @@ Future<T> showConfirmationDialog<T>({
             cancelLabel: cancelLabel,
             actions: actions,
             contentMaxHeight: contentMaxHeight,
+            shrinkWrap: shrinkWrap,
           ),
         );
 }
@@ -62,6 +69,7 @@ class _ConfirmationDialog<T> extends StatefulWidget {
     this.cancelLabel,
     this.actions = const [],
     this.contentMaxHeight = double.infinity,
+    @required this.shrinkWrap,
   }) : super(key: key);
 
   final String title;
@@ -71,6 +79,7 @@ class _ConfirmationDialog<T> extends StatefulWidget {
   final String cancelLabel;
   final List<AlertDialogAction<T>> actions;
   final double contentMaxHeight;
+  final bool shrinkWrap;
 
   @override
   _ConfirmationDialogState<T> createState() => _ConfirmationDialogState<T>();
@@ -115,6 +124,7 @@ class _ConfirmationDialogState<T> extends State<_ConfirmationDialog<T>> {
             child: SizedBox(
               height: widget.contentMaxHeight,
               child: ListView(
+                shrinkWrap: widget.shrinkWrap,
                 children: widget.actions
                     .map((action) => RadioListTile<T>(
                           title: Text(action.label),

@@ -8,7 +8,7 @@ dependencies:
     sdk: flutter
   adaptive_dialog:
     path: ..
-  mono_kit: ^0.14.0-dev
+  mono_kit:
   provider:
   recase:
   simple_logger:
@@ -16,7 +16,5 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   pedantic_mono:
-dependency_overrides:
-  provider: ^4.1.0-dev
 flutter:
   uses-material-design: true

@@ -135,7 +135,27 @@ class AlertPage extends StatelessWidget {
             },
           ),
           ListTile(
-            title: const Text('Confirmation Dialog'),
+            title: const Text('Confirmation Dialog (few selections)'),
+            onTap: () async {
+              final result = await showConfirmationDialog<int>(
+                context: context,
+                title: 'Title',
+                message: 'This is message.',
+                actions: [
+                  ...List.generate(
+                    3,
+                    (index) => AlertDialogAction(
+                      label: 'Answer $index',
+                      key: index,
+                    ),
+                  ),
+                ],
+              );
+              logger.info(result);
+            },
+          ),
+          ListTile(
+            title: const Text('Confirmation Dialog (many selections)'),
             onTap: () async {
               final result = await showConfirmationDialog<int>(
                 context: context,
@@ -150,6 +170,7 @@ class AlertPage extends StatelessWidget {
                     ),
                   ),
                 ],
+                shrinkWrap: false,
               );
               logger.info(result);
             },
