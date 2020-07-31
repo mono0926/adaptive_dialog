@@ -1,3 +1,7 @@
+## 0.8.0-dev
+
+- Use new buttons
+
 ## 0.7.5
 
 - If there is enough height, `NeverScrollableScrollPhysics` will be set to `showConfirmationDialog`'s inner `ListView`

@@ -105,14 +105,14 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
           ],
         ),
         actions: [
-          FlatButton(
+          TextButton(
             child: Text(
               widget.cancelLabel ??
                   MaterialLocalizations.of(context).cancelButtonLabel,
             ),
             onPressed: cancel,
           ),
-          FlatButton(
+          TextButton(
             child: okText,
             onPressed: () {
               if (_formKey.currentState.validate()) {
