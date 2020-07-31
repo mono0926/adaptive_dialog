@@ -7,8 +7,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  animations: ^1.1.0
-  meta: ^1.1.8
+  animations: ^1.1.2
+  meta: ^1.2.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
