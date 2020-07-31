@@ -7,7 +7,6 @@ dependencies:
   flutter:
     sdk: flutter
   adaptive_dialog:
-    path: ..
   mono_kit: 0.15.7
   provider:
   recase:
