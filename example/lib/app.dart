@@ -15,6 +15,8 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: title,
       home: const HomePage(title: title),
+      theme: lightTheme(),
+      darkTheme: darkTheme(),
       onGenerateRoute: context.watch<Router>().onGenerateRoute,
     );
   }
