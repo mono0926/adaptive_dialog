@@ -150,14 +150,14 @@ class _ConfirmationDialogState<T> extends State<_ConfirmationDialog<T>> {
           ButtonBar(
             layoutBehavior: ButtonBarLayoutBehavior.constrained,
             children: [
-              FlatButton(
+              TextButton(
                 child: Text(
                   widget.cancelLabel ??
                       MaterialLocalizations.of(context).cancelButtonLabel,
                 ),
                 onPressed: () => widget.onSelect(null),
               ),
-              FlatButton(
+              TextButton(
                 child: Text(
                   widget.okLabel ??
                       MaterialLocalizations.of(context).okButtonLabel,

@@ -7,7 +7,7 @@ dependencies:
   flutter:
     sdk: flutter
   adaptive_dialog:
-  mono_kit: 0.15.7
+  mono_kit: ^0.16.0-dev
   provider:
   recase:
   simple_logger:

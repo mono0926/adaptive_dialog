@@ -38,7 +38,7 @@ class _RootPage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         children: <Widget>[
-          RaisedButton(
+          ElevatedButton(
             child: const Text('Dialog'),
             onPressed: () async {
               final result = await showOkAlertDialog(
@@ -49,7 +49,7 @@ class _RootPage extends StatelessWidget {
               logger.info(result);
             },
           ),
-          RaisedButton(
+          ElevatedButton(
             child: const Text('Sheet'),
             onPressed: () async {
               final result = await showModalActionSheet<String>(
@@ -66,7 +66,7 @@ class _RootPage extends StatelessWidget {
             },
           ),
           const Divider(),
-          RaisedButton(
+          ElevatedButton(
             child: const Text('Next Page'),
             onPressed: () {
               Navigator.of(context).push<void>(MaterialPageRoute(

@@ -46,7 +46,7 @@ extension AlertDialogActionEx<T> on AlertDialogAction<T> {
     @required ActionCallback<T> onPressed,
     @required Color destructiveColor,
   }) {
-    return FlatButton(
+    return TextButton(
       child: Text(
         label,
         style: textStyle.copyWith(
