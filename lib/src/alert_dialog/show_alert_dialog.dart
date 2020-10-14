@@ -19,6 +19,7 @@ Future<T> showAlertDialog<T>({
   bool useActionSheetForCupertino = false,
   bool useRootNavigator = true,
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
+  bool fullyCapitalizedForMaterial = true,
 }) {
   void pop(T key) => Navigator.of(
         context,
@@ -66,6 +67,7 @@ Future<T> showAlertDialog<T>({
             actions: actions.convertToMaterialDialogActions(
               onPressed: pop,
               destructiveColor: colorScheme.error,
+              fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
             ),
             actionsOverflowDirection: actionsOverflowDirection,
           ),

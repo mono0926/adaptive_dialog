@@ -135,6 +135,37 @@ class AlertPage extends StatelessWidget {
             },
           ),
           ListTile(
+            title: const Text(
+              'Yes/No Dialog (fullyCapitalizedForMaterial: true)',
+            ),
+            onTap: () async {
+              final result = await showOkCancelAlertDialog(
+                context: context,
+                title: 'Title',
+                message: 'This is message.',
+                okLabel: 'Yes',
+                cancelLabel: 'Decline It',
+              );
+              logger.info(result);
+            },
+          ),
+          ListTile(
+            title: const Text(
+              'Yes/No Dialog (fullyCapitalizedForMaterial: false)',
+            ),
+            onTap: () async {
+              final result = await showOkCancelAlertDialog(
+                context: context,
+                title: 'Title',
+                message: 'This is message.',
+                okLabel: 'Yes',
+                cancelLabel: 'Decline It',
+                fullyCapitalizedForMaterial: false,
+              );
+              logger.info(result);
+            },
+          ),
+          ListTile(
             title: const Text('Confirmation Dialog (few selections)'),
             onTap: () async {
               final result = await showConfirmationDialog<int>(

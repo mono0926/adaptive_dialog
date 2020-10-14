@@ -1,3 +1,9 @@
+## 0.9.0
+
+- Add `fullyCapitalizedForMaterial` to `showAlertDialog`
+  - default: true
+  - If it is true, button label is fully capitalized automatically, which is recommended at the Material Design guide.
+
 ## 0.8.0
 
 - Use new buttons
