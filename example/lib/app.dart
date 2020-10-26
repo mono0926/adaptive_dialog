@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart' hide Router;
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mono_kit/mono_kit.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +18,11 @@ class App extends StatelessWidget {
       theme: lightTheme(),
       darkTheme: darkTheme(),
       onGenerateRoute: context.watch<Router>().onGenerateRoute,
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
     );
   }
 }

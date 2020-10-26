@@ -53,3 +53,32 @@ This is useful for preventing very destructive action is executed mistakenly.
 iOS | Android
 --- | ---
 <img width="516" alt="n5" src="https://user-images.githubusercontent.com/1255062/77243713-712a4300-6c50-11ea-81d4-75d7961d9224.png"> | <img width="516" alt="n6" src="https://user-images.githubusercontent.com/1255062/77243714-71c2d980-6c50-11ea-8bed-aa6b4dfcba0a.png">
+
+---
+
+# FAQ
+
+## The getter `modalBarrierDismissLabel` was called on null
+
+`adaptive_dialog` uses Cupertino-style widgets internally on iOS, so `GlobalCupertinoLocalizations.delegate` is required under certain conditions.
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+class App extends StatelessWidget {
+  const App({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      //...
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate, // This is required
+      ],
+    );
+  }
+}
+```

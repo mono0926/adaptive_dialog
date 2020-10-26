@@ -6,6 +6,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   adaptive_dialog:
   mono_kit: ^0.16.0-dev
   provider:
