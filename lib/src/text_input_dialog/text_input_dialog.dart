@@ -63,9 +63,15 @@ class DialogTextField {
     this.hintText,
     this.obscureText = false,
     this.validator,
+    this.keyboardType,
+    this.prefixText,
+    this.suffixText,
   });
   final String initialText;
   final String hintText;
   final bool obscureText;
   final FormFieldValidator<String> validator;
+  final TextInputType keyboardType;
+  final String prefixText;
+  final String suffixText;
 }

@@ -95,8 +95,11 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
                 controller: c,
                 autofocus: i == 0,
                 obscureText: textField.obscureText,
+                keyboardType: textField.keyboardType,
                 decoration: InputDecoration(
                   hintText: textField.hintText,
+                  prefixText: textField.prefixText,
+                  suffixText: textField.suffixText,
                 ),
                 validator: textField.validator,
                 autovalidateMode: _autovalidateMode,
