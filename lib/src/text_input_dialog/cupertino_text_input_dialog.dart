@@ -118,6 +118,8 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
           ..._textControllers.mapWithIndex(
             (c, i) {
               final field = widget.textFields[i];
+              final prefixText = field.prefixText;
+              final suffixText = field.suffixText;
               return CupertinoTextField(
                 controller: c,
                 autofocus: i == 0,
@@ -126,10 +128,8 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
                 keyboardType: field.keyboardType,
                 minLines: field.minLines,
                 maxLines: field.maxLines,
-                prefix:
-                    field.prefixText != null ? Text(field.prefixText) : null,
-                suffix:
-                    field.suffixText != null ? Text(field.suffixText) : null,
+                prefix: prefixText == null ? null : Text(prefixText),
+                suffix: suffixText == null ? null : Text(suffixText),
                 decoration: _borderDecoration(
                   isTopRounded: i == 0,
                   isBottomRounded: i == _textControllers.length - 1,

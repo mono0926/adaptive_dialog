@@ -1,3 +1,7 @@
+## 0.9.1
+
+- Add prefixText/suffixText to DialogTextField (#11)
+
 ## 0.9.0
 
 - Add `fullyCapitalizedForMaterial` to `showAlertDialog`
