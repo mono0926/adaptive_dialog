@@ -66,6 +66,8 @@ class DialogTextField {
     this.keyboardType,
     this.prefixText,
     this.suffixText,
+    this.minLines,
+    this.maxLines,
   });
   final String initialText;
   final String hintText;
@@ -74,4 +76,6 @@ class DialogTextField {
   final TextInputType keyboardType;
   final String prefixText;
   final String suffixText;
+  final int minLines;
+  final int maxLines;
 }
