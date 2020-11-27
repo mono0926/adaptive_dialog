@@ -1,3 +1,7 @@
+## 0.9.2
+
+- Add minLines/maxLines to DialogTextField (#12)
+
 ## 0.9.1
 
 - Add prefixText/suffixText to DialogTextField (#11)
