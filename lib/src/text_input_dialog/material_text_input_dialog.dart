@@ -96,6 +96,8 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
                 autofocus: i == 0,
                 obscureText: textField.obscureText,
                 keyboardType: textField.keyboardType,
+                minLines: textField.minLines,
+                maxLines: textField.maxLines,
                 decoration: InputDecoration(
                   hintText: textField.hintText,
                   prefixText: textField.prefixText,
