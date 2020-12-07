@@ -1,3 +1,8 @@
+## 0.9.3
+
+- Support initial selection for showConfirmationDialog
+- Set toggleable true for showConfirmationDialog
+
 ## 0.9.2
 
 - Add minLines/maxLines to DialogTextField (#12)
