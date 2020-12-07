@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 /// contents. This argument defaults to `true`. If you know the content height
 /// is taller than the height of screen, it is recommended to set to `false`
 /// for performance optimization.
+/// if [initialSelectedActionKey] is set, corresponding action is selected
+/// initially. This works only for Android style.
 Future<T> showConfirmationDialog<T>({
   @required BuildContext context,
   @required String title,
@@ -20,6 +22,7 @@ Future<T> showConfirmationDialog<T>({
   String cancelLabel,
   double contentMaxHeight,
   List<AlertDialogAction<T>> actions = const [],
+  T initialSelectedActionKey,
   bool barrierDismissible = true,
   AdaptiveStyle style = AdaptiveStyle.adaptive,
   bool useRootNavigator = true,
@@ -53,6 +56,7 @@ Future<T> showConfirmationDialog<T>({
             okLabel: okLabel,
             cancelLabel: cancelLabel,
             actions: actions,
+            initialSelectedActionKey: initialSelectedActionKey,
             contentMaxHeight: contentMaxHeight,
             shrinkWrap: shrinkWrap,
           ),
@@ -68,6 +72,7 @@ class _ConfirmationDialog<T> extends StatefulWidget {
     @required this.okLabel,
     @required this.cancelLabel,
     @required this.actions,
+    @required this.initialSelectedActionKey,
     @required this.contentMaxHeight,
     @required this.shrinkWrap,
   }) : super(key: key);
@@ -78,6 +83,7 @@ class _ConfirmationDialog<T> extends StatefulWidget {
   final String okLabel;
   final String cancelLabel;
   final List<AlertDialogAction<T>> actions;
+  final T initialSelectedActionKey;
   final double contentMaxHeight;
   final bool shrinkWrap;
 
@@ -86,8 +92,15 @@ class _ConfirmationDialog<T> extends StatefulWidget {
 }
 
 class _ConfirmationDialogState<T> extends State<_ConfirmationDialog<T>> {
-  T _selectedValue;
+  T _selectedKey;
   final _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _selectedKey = widget.initialSelectedActionKey;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -133,10 +146,10 @@ class _ConfirmationDialogState<T> extends State<_ConfirmationDialog<T>> {
                     .map((action) => RadioListTile<T>(
                           title: Text(action.label),
                           value: action.key,
-                          groupValue: _selectedValue,
+                          groupValue: _selectedKey,
                           onChanged: (value) {
                             setState(() {
-                              _selectedValue = value;
+                              _selectedKey = value;
                             });
                           },
                           // TODO(mono): Not supported at 1.17.0
@@ -162,9 +175,9 @@ class _ConfirmationDialogState<T> extends State<_ConfirmationDialog<T>> {
                   widget.okLabel ??
                       MaterialLocalizations.of(context).okButtonLabel,
                 ),
-                onPressed: _selectedValue == null
+                onPressed: _selectedKey == null
                     ? null
-                    : () => widget.onSelect(_selectedValue),
+                    : () => widget.onSelect(_selectedKey),
               )
             ],
           )
