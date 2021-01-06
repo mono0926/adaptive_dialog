@@ -16,6 +16,7 @@ iOS | Android
 
 Convenient wrapper of [showAlertDialog](https://pub.dev/documentation/adaptive_dialog/latest/adaptive_dialog/showAlertDialog.html).
 
+
 iOS | Android
 --- | ---
 <img width="497" alt="n3" src="https://user-images.githubusercontent.com/1255062/77220732-5a1f1e80-6b86-11ea-8e1f-beb08e45387a.png"> | <img width="497" alt="n4" src="https://user-images.githubusercontent.com/1255062/77220733-5a1f1e80-6b86-11ea-8a2a-3f60185877a1.png">
