@@ -5,7 +5,7 @@ import 'package:adaptive_dialog/src/extensions/extensions.dart';
 
 class CupertinoTextInputDialog extends StatefulWidget {
   const CupertinoTextInputDialog({
-    @required this.textFields,
+    required this.textFields,
     this.title,
     this.message,
     this.okLabel,
@@ -19,18 +19,18 @@ class CupertinoTextInputDialog extends StatefulWidget {
       _CupertinoTextInputDialogState();
 
   final List<DialogTextField> textFields;
-  final String title;
-  final String message;
-  final String okLabel;
-  final String cancelLabel;
+  final String? title;
+  final String? message;
+  final String? okLabel;
+  final String? cancelLabel;
   final bool isDestructiveAction;
   final AdaptiveStyle style;
   final bool useRootNavigator;
 }
 
 class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
-  List<TextEditingController> _textControllers;
-  String _validationMessage;
+  late final List<TextEditingController> _textControllers;
+  String? _validationMessage;
   bool _autovalidate = false;
 
   @override
@@ -64,11 +64,13 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
       context,
       rootNavigator: widget.useRootNavigator,
     );
+    final title = widget.title;
+    final message = widget.message;
     void pop() => navigator.pop(
           _textControllers.map((c) => c.text).toList(),
         );
     void cancel() => navigator.pop();
-    final titleText = widget.title == null ? null : Text(widget.title);
+    final titleText = title == null ? null : Text(title);
     final okText = Text(
       widget.okLabel ?? MaterialLocalizations.of(context).okButtonLabel,
       style: TextStyle(
@@ -78,8 +80,8 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
       ),
     );
     BoxDecoration _borderDecoration({
-      @required bool isTopRounded,
-      @required bool isBottomRounded,
+      required bool isTopRounded,
+      required bool isBottomRounded,
     }) {
       const radius = 6.0;
       const borderSide = BorderSide(
@@ -108,12 +110,13 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
       );
     }
 
+    final validationMessage = _validationMessage;
     return CupertinoAlertDialog(
       title: titleText,
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          if (widget.message != null) Text(widget.message),
+          if (message != null) Text(message),
           const SizedBox(height: 22),
           ..._textControllers.mapWithIndex(
             (c, i) {
@@ -137,7 +140,7 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
               );
             },
           ),
-          if (_validationMessage != null)
+          if (validationMessage != null)
             Container(
               alignment: AlignmentDirectional.centerStart,
               padding: const EdgeInsets.only(
@@ -145,7 +148,7 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
                 left: 4,
               ),
               child: Text(
-                _validationMessage,
+                validationMessage,
                 style: TextStyle(
                   color: CupertinoColors.systemRed.resolveFrom(context),
                   height: 1.2,

@@ -4,11 +4,11 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.6.0 <3.0.0"
 dependencies:
+  adaptive_dialog:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  adaptive_dialog:
   mono_kit: ^0.16.0-dev
   provider:
   recase:

@@ -1,3 +1,7 @@
+## 0.10.0
+
+- Migrate to null safety (https://github.com/mono0926/adaptive_dialog/issues/25)
+
 ## 0.9.4
 
 - Fix missing `fullyCapitalizedForMaterial` (https://github.com/mono0926/adaptive_dialog/issues/23)

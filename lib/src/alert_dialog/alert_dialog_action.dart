@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 @immutable
 class AlertDialogAction<T> {
   const AlertDialogAction({
-    this.key,
-    @required this.label,
+    required this.key,
+    required this.label,
     this.isDefaultAction = false,
     this.isDestructiveAction = false,
     this.textStyle = const TextStyle(),
@@ -31,7 +31,7 @@ class AlertDialogAction<T> {
 
 extension AlertDialogActionEx<T> on AlertDialogAction<T> {
   Widget convertToCupertinoDialogAction({
-    @required ActionCallback<T> onPressed,
+    required ActionCallback<T> onPressed,
   }) {
     return CupertinoDialogAction(
       child: Text(label),
@@ -43,9 +43,9 @@ extension AlertDialogActionEx<T> on AlertDialogAction<T> {
   }
 
   Widget convertToMaterialDialogAction({
-    @required ActionCallback<T> onPressed,
-    @required Color destructiveColor,
-    @required bool fullyCapitalized,
+    required ActionCallback<T> onPressed,
+    required Color destructiveColor,
+    required bool fullyCapitalized,
   }) {
     return TextButton(
       child: Text(
@@ -61,16 +61,16 @@ extension AlertDialogActionEx<T> on AlertDialogAction<T> {
 
 extension AlertDialogActionListEx<T> on List<AlertDialogAction<T>> {
   List<Widget> convertToCupertinoDialogActions({
-    @required ActionCallback<T> onPressed,
+    required ActionCallback<T> onPressed,
   }) =>
       map((a) => a.convertToCupertinoDialogAction(
             onPressed: onPressed,
           )).toList();
 
   List<Widget> convertToMaterialDialogActions({
-    @required ActionCallback<T> onPressed,
-    @required Color destructiveColor,
-    @required bool fullyCapitalized,
+    required ActionCallback<T> onPressed,
+    required Color destructiveColor,
+    required bool fullyCapitalized,
   }) =>
       map((a) => a.convertToMaterialDialogAction(
             onPressed: onPressed,
@@ -88,10 +88,14 @@ extension AlertDialogActionListEx<T> on List<AlertDialogAction<T>> {
               ))
           .toList();
 
-  String findCancelLabel() => firstWhere(
-        (a) => a.key == OkCancelResult.cancel,
-        orElse: () => null,
-      )?.label;
+  String? findCancelLabel() {
+    try {
+      return firstWhere((a) => a.key == OkCancelResult.cancel).label;
+      // ignore: avoid_catching_errors
+    } on StateError {
+      return null;
+    }
+  }
 }
 
 // Result type of [showOkAlertDialog] or [showOkCancelAlertDialog].

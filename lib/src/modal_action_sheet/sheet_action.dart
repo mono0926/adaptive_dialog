@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 @immutable
 class SheetAction<T> {
   const SheetAction({
-    @required this.label,
+    required this.label,
     this.key,
     this.icon,
     this.isDefaultAction = false,
@@ -15,10 +15,10 @@ class SheetAction<T> {
   final String label;
 
   /// Only works for Material Style
-  final IconData icon;
+  final IconData? icon;
 
   /// Used for checking selection result
-  final T key;
+  final T? key;
 
   /// Make font weight to bold(Only works for CupertinoStyle).
   final bool isDefaultAction;

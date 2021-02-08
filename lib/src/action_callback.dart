@@ -1,1 +1,1 @@
-typedef ActionCallback<T> = void Function(T key);
+typedef ActionCallback<T> = void Function(T? key);

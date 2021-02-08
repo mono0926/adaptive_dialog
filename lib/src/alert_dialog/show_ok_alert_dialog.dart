@@ -8,10 +8,10 @@ import 'package:flutter/material.dart';
 /// and if it is set to false, pressing OK button is only way to close alert.
 /// [actionsOverflowDirection] works only for Material style currently.
 Future<OkCancelResult> showOkAlertDialog({
-  @required BuildContext context,
-  String title,
-  String message,
-  String okLabel,
+  required BuildContext context,
+  String? title,
+  String? message,
+  String? okLabel,
   bool barrierDismissible = true,
   AdaptiveStyle alertStyle = AdaptiveStyle.adaptive,
   bool useActionSheetForCupertino = false,
