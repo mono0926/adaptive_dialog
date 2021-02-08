@@ -13,6 +13,7 @@ class MaterialTextInputDialog extends StatefulWidget {
     this.style = AdaptiveStyle.adaptive,
     this.actionsOverflowDirection = VerticalDirection.up,
     this.useRootNavigator = true,
+    this.fullyCapitalized = true,
   });
   @override
   _MaterialTextInputDialogState createState() =>
@@ -27,6 +28,7 @@ class MaterialTextInputDialog extends StatefulWidget {
   final AdaptiveStyle style;
   final VerticalDirection actionsOverflowDirection;
   final bool useRootNavigator;
+  final bool fullyCapitalized;
 }
 
 class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
@@ -64,8 +66,11 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
         );
     void cancel() => navigator.pop();
     final titleText = widget.title == null ? null : Text(widget.title);
+    final cancelLabel = widget.cancelLabel;
+    final okLabel = widget.okLabel;
     final okText = Text(
-      widget.okLabel ?? MaterialLocalizations.of(context).okButtonLabel,
+      (widget.fullyCapitalized ? okLabel?.toUpperCase() : okLabel) ??
+          MaterialLocalizations.of(context).okButtonLabel,
       style: TextStyle(
         color: widget.isDestructiveAction ? colorScheme.error : null,
       ),
@@ -112,7 +117,9 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
         actions: [
           TextButton(
             child: Text(
-              widget.cancelLabel ??
+              (widget.fullyCapitalized
+                      ? cancelLabel?.toUpperCase()
+                      : cancelLabel) ??
                   MaterialLocalizations.of(context).cancelButtonLabel,
             ),
             onPressed: cancel,

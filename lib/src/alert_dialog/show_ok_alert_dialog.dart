@@ -17,6 +17,7 @@ Future<OkCancelResult> showOkAlertDialog({
   bool useActionSheetForCupertino = false,
   bool useRootNavigator = true,
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
+  bool fullyCapitalizedForMaterial = true,
 }) async {
   final result = await showAlertDialog<OkCancelResult>(
     context: context,
@@ -27,6 +28,7 @@ Future<OkCancelResult> showOkAlertDialog({
     useActionSheetForCupertino: useActionSheetForCupertino,
     useRootNavigator: useRootNavigator,
     actionsOverflowDirection: actionsOverflowDirection,
+    fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
     actions: [
       AlertDialogAction(
         label: okLabel ?? MaterialLocalizations.of(context).okButtonLabel,

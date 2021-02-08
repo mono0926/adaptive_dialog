@@ -18,6 +18,7 @@ Future<List<String>> showTextInputDialog({
   AdaptiveStyle style = AdaptiveStyle.adaptive,
   bool useRootNavigator = true,
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
+  bool fullyCapitalizedForMaterial = true,
 }) {
   final theme = Theme.of(context);
   return style.isCupertinoStyle(theme)
@@ -51,6 +52,7 @@ Future<List<String>> showTextInputDialog({
             style: style,
             actionsOverflowDirection: actionsOverflowDirection,
             useRootNavigator: useRootNavigator,
+            fullyCapitalized: fullyCapitalizedForMaterial,
           ),
         );
 }

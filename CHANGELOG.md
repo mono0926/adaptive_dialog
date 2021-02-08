@@ -1,3 +1,7 @@
+## 0.9.4
+
+- Fix missing `fullyCapitalizedForMaterial` (https://github.com/mono0926/adaptive_dialog/issues/23)
+
 ## 0.9.3
 
 - Support initial selection for showConfirmationDialog

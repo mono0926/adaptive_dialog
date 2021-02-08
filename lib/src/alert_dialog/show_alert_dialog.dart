@@ -67,7 +67,7 @@ Future<T> showAlertDialog<T>({
             actions: actions.convertToMaterialDialogActions(
               onPressed: pop,
               destructiveColor: colorScheme.error,
-              fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
+              fullyCapitalized: fullyCapitalizedForMaterial,
             ),
             actionsOverflowDirection: actionsOverflowDirection,
           ),

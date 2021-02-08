@@ -23,6 +23,8 @@ class AlertPage extends StatelessWidget {
                 context: context,
                 title: 'Title',
                 message: 'This is message.',
+                okLabel: 'aaa',
+                fullyCapitalizedForMaterial: false,
               );
               logger.info(result);
             },
@@ -172,6 +174,7 @@ class AlertPage extends StatelessWidget {
                 context: context,
                 title: 'Title',
                 message: 'This is message.',
+                okLabel: 'aaa',
                 actions: [
                   ...List.generate(
                     5,

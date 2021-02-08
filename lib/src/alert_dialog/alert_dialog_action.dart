@@ -45,11 +45,11 @@ extension AlertDialogActionEx<T> on AlertDialogAction<T> {
   Widget convertToMaterialDialogAction({
     @required ActionCallback<T> onPressed,
     @required Color destructiveColor,
-    @required bool fullyCapitalizedForMaterial,
+    @required bool fullyCapitalized,
   }) {
     return TextButton(
       child: Text(
-        fullyCapitalizedForMaterial ? label.toUpperCase() : label,
+        fullyCapitalized ? label.toUpperCase() : label,
         style: textStyle.copyWith(
           color: isDestructiveAction ? destructiveColor : null,
         ),
@@ -70,12 +70,12 @@ extension AlertDialogActionListEx<T> on List<AlertDialogAction<T>> {
   List<Widget> convertToMaterialDialogActions({
     @required ActionCallback<T> onPressed,
     @required Color destructiveColor,
-    @required bool fullyCapitalizedForMaterial,
+    @required bool fullyCapitalized,
   }) =>
       map((a) => a.convertToMaterialDialogAction(
             onPressed: onPressed,
             destructiveColor: destructiveColor,
-            fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
+            fullyCapitalized: fullyCapitalized,
           )).toList();
 
   List<SheetAction<T>> convertToSheetActions() =>

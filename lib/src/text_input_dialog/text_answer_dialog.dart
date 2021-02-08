@@ -18,6 +18,7 @@ Future<bool> showTextAnswerDialog({
   AdaptiveStyle style = AdaptiveStyle.adaptive,
   bool useRootNavigator = true,
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
+  bool fullyCapitalizedForMaterial = true,
 }) async {
   final texts = await showTextInputDialog(
     context: context,
@@ -31,6 +32,7 @@ Future<bool> showTextAnswerDialog({
     isDestructiveAction: isDestructiveAction,
     style: style,
     actionsOverflowDirection: actionsOverflowDirection,
+    fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
   );
   final text = texts == null ? null : texts[0];
   if (text == null) {
@@ -49,6 +51,7 @@ Future<bool> showTextAnswerDialog({
     actionsOverflowDirection: actionsOverflowDirection,
     barrierDismissible: barrierDismissible,
     useRootNavigator: useRootNavigator,
+    fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
   );
   return result == OkCancelResult.ok
       ? showTextAnswerDialog(
@@ -68,6 +71,7 @@ Future<bool> showTextAnswerDialog({
           style: style,
           useRootNavigator: useRootNavigator,
           actionsOverflowDirection: actionsOverflowDirection,
+          fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
         )
       : Future.value(false);
 }

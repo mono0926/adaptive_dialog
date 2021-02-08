@@ -27,6 +27,7 @@ Future<T> showConfirmationDialog<T>({
   AdaptiveStyle style = AdaptiveStyle.adaptive,
   bool useRootNavigator = true,
   bool shrinkWrap = true,
+  bool fullyCapitalizedForMaterial = true,
 }) {
   void pop(T key) => Navigator.of(
         context,
@@ -49,7 +50,7 @@ Future<T> showConfirmationDialog<T>({
           configuration: FadeScaleTransitionConfiguration(
             barrierDismissible: barrierDismissible,
           ),
-          builder: (context) => _ConfirmationDialog(
+          builder: (context) => _ConfirmationMaterialDialog(
             title: title,
             onSelect: pop,
             message: message,
@@ -59,12 +60,13 @@ Future<T> showConfirmationDialog<T>({
             initialSelectedActionKey: initialSelectedActionKey,
             contentMaxHeight: contentMaxHeight,
             shrinkWrap: shrinkWrap,
+            fullyCapitalized: fullyCapitalizedForMaterial,
           ),
         );
 }
 
-class _ConfirmationDialog<T> extends StatefulWidget {
-  const _ConfirmationDialog({
+class _ConfirmationMaterialDialog<T> extends StatefulWidget {
+  const _ConfirmationMaterialDialog({
     Key key,
     @required this.title,
     @required this.onSelect,
@@ -75,6 +77,7 @@ class _ConfirmationDialog<T> extends StatefulWidget {
     @required this.initialSelectedActionKey,
     @required this.contentMaxHeight,
     @required this.shrinkWrap,
+    @required this.fullyCapitalized,
   }) : super(key: key);
 
   final String title;
@@ -86,12 +89,15 @@ class _ConfirmationDialog<T> extends StatefulWidget {
   final T initialSelectedActionKey;
   final double contentMaxHeight;
   final bool shrinkWrap;
+  final bool fullyCapitalized;
 
   @override
-  _ConfirmationDialogState<T> createState() => _ConfirmationDialogState<T>();
+  _ConfirmationMaterialDialogState<T> createState() =>
+      _ConfirmationMaterialDialogState<T>();
 }
 
-class _ConfirmationDialogState<T> extends State<_ConfirmationDialog<T>> {
+class _ConfirmationMaterialDialogState<T>
+    extends State<_ConfirmationMaterialDialog<T>> {
   T _selectedKey;
   final _scrollController = ScrollController();
 
@@ -105,6 +111,8 @@ class _ConfirmationDialogState<T> extends State<_ConfirmationDialog<T>> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final cancelLabel = widget.cancelLabel;
+    final okLabel = widget.okLabel;
     return Dialog(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -164,14 +172,18 @@ class _ConfirmationDialogState<T> extends State<_ConfirmationDialog<T>> {
             children: [
               TextButton(
                 child: Text(
-                  widget.cancelLabel ??
+                  (widget.fullyCapitalized
+                          ? cancelLabel?.toUpperCase()
+                          : cancelLabel) ??
                       MaterialLocalizations.of(context).cancelButtonLabel,
                 ),
                 onPressed: () => widget.onSelect(null),
               ),
               TextButton(
                 child: Text(
-                  widget.okLabel ??
+                  (widget.fullyCapitalized
+                          ? okLabel?.toUpperCase()
+                          : okLabel) ??
                       MaterialLocalizations.of(context).okButtonLabel,
                 ),
                 onPressed: _selectedKey == null
