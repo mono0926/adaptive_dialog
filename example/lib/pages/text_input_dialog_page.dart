@@ -54,9 +54,6 @@ class TextInputDialogPage extends StatelessWidget {
                 ],
                 title: 'Hello',
                 message: 'This is a message',
-                okLabel: 'aaa',
-                cancelLabel: 'bbb',
-                fullyCapitalizedForMaterial: false,
               );
               logger.info(text);
             },
