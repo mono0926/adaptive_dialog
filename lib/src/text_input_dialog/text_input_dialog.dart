@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 
 import 'material_text_input_dialog.dart';
 
-Future<List<String>> showTextInputDialog({
-  @required BuildContext context,
-  @required List<DialogTextField> textFields,
-  String title,
-  String message,
-  String okLabel,
-  String cancelLabel,
+Future<List<String>?> showTextInputDialog({
+  required BuildContext context,
+  required List<DialogTextField> textFields,
+  String? title,
+  String? message,
+  String? okLabel,
+  String? cancelLabel,
   bool isDestructiveAction = false,
   bool barrierDismissible = true,
   AdaptiveStyle style = AdaptiveStyle.adaptive,
@@ -71,13 +71,13 @@ class DialogTextField {
     this.minLines,
     this.maxLines,
   });
-  final String initialText;
-  final String hintText;
+  final String? initialText;
+  final String? hintText;
   final bool obscureText;
-  final FormFieldValidator<String> validator;
-  final TextInputType keyboardType;
-  final String prefixText;
-  final String suffixText;
-  final int minLines;
-  final int maxLines;
+  final FormFieldValidator<String>? validator;
+  final TextInputType? keyboardType;
+  final String? prefixText;
+  final String? suffixText;
+  final int? minLines;
+  final int? maxLines;
 }

@@ -12,12 +12,12 @@ import 'package:adaptive_dialog/src/extensions/extensions.dart';
 /// OK or Cancel button label will be changed to bold.
 /// [actionsOverflowDirection] works only for Material style currently.
 Future<OkCancelResult> showOkCancelAlertDialog({
-  @required BuildContext context,
-  String title,
-  String message,
-  String okLabel,
-  String cancelLabel,
-  OkCancelAlertDefaultType defaultType,
+  required BuildContext context,
+  String? title,
+  String? message,
+  String? okLabel,
+  String? cancelLabel,
+  OkCancelAlertDefaultType? defaultType,
   bool isDestructiveAction = false,
   bool barrierDismissible = true,
   AdaptiveStyle alertStyle = AdaptiveStyle.adaptive,

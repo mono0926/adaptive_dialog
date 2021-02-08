@@ -4,7 +4,7 @@ import 'package:adaptive_dialog/src/extensions/extensions.dart';
 
 class MaterialTextInputDialog extends StatefulWidget {
   const MaterialTextInputDialog({
-    @required this.textFields,
+    required this.textFields,
     this.title,
     this.message,
     this.okLabel,
@@ -20,10 +20,10 @@ class MaterialTextInputDialog extends StatefulWidget {
       _MaterialTextInputDialogState();
 
   final List<DialogTextField> textFields;
-  final String title;
-  final String message;
-  final String okLabel;
-  final String cancelLabel;
+  final String? title;
+  final String? message;
+  final String? okLabel;
+  final String? cancelLabel;
   final bool isDestructiveAction;
   final AdaptiveStyle style;
   final VerticalDirection actionsOverflowDirection;
@@ -32,7 +32,7 @@ class MaterialTextInputDialog extends StatefulWidget {
 }
 
 class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
-  List<TextEditingController> _textControllers;
+  late final List<TextEditingController> _textControllers;
   final _formKey = GlobalKey<FormState>();
   var _autovalidateMode = AutovalidateMode.disabled;
 
@@ -57,6 +57,8 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final title = widget.title;
+    final message = widget.message;
     final navigator = Navigator.of(
       context,
       rootNavigator: widget.useRootNavigator,
@@ -65,7 +67,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
           _textControllers.map((c) => c.text).toList(),
         );
     void cancel() => navigator.pop();
-    final titleText = widget.title == null ? null : Text(widget.title);
+    final titleText = title == null ? null : Text(title);
     final cancelLabel = widget.cancelLabel;
     final okLabel = widget.okLabel;
     final okText = Text(
@@ -83,13 +85,13 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (widget.message != null)
+            if (message != null)
               Flexible(
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Scrollbar(
                     child: SingleChildScrollView(
-                      child: Text(widget.message),
+                      child: Text(message),
                     ),
                   ),
                 ),
@@ -127,7 +129,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
           TextButton(
             child: okText,
             onPressed: () {
-              if (_formKey.currentState.validate()) {
+              if (_formKey.currentState!.validate()) {
                 pop();
               } else if (_autovalidateMode == AutovalidateMode.disabled) {
                 setState(() {

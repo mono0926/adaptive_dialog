@@ -11,18 +11,18 @@ export 'sheet_action.dart';
 
 /// The [isDismissible] parameter only works for material style and it specifies
 /// whether the bottom sheet will be dismissed when user taps on the scrim.
-Future<T> showModalActionSheet<T>({
-  @required BuildContext context,
-  String title,
-  String message,
+Future<T?> showModalActionSheet<T>({
+  required BuildContext context,
+  String? title,
+  String? message,
   List<SheetAction<T>> actions = const [],
-  String cancelLabel,
+  String? cancelLabel,
   AdaptiveStyle style = AdaptiveStyle.adaptive,
   bool isDismissible = true,
   bool useRootNavigator = true,
-  MaterialModalActionSheetConfiguration materialConfiguration,
+  MaterialModalActionSheetConfiguration? materialConfiguration,
 }) {
-  void pop(T key) => Navigator.of(
+  void pop(T? key) => Navigator.of(
         context,
         rootNavigator: useRootNavigator,
       ).pop(key);

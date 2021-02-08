@@ -8,23 +8,25 @@ import 'sheet_action.dart';
 
 class CupertinoModalActionSheet<T> extends StatelessWidget {
   const CupertinoModalActionSheet({
-    Key key,
-    @required this.onPressed,
+    Key? key,
+    required this.onPressed,
+    required this.actions,
     this.title,
     this.message,
-    this.actions,
     this.cancelLabel,
   }) : super(key: key);
 
   final ActionCallback<T> onPressed;
-  final String title;
-  final String message;
   final List<SheetAction<T>> actions;
-  final String cancelLabel;
+  final String? title;
+  final String? message;
+  final String? cancelLabel;
 
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
+    final title = this.title;
+    final message = this.message;
     return MediaQuery(
       data: mediaQuery.copyWith(
         // `CupertinoAlertDialog` overrides textScaleFactor

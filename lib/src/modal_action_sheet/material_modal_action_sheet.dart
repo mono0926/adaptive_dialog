@@ -5,26 +5,29 @@ import 'sheet_action.dart';
 
 class MaterialModalActionSheet<T> extends StatelessWidget {
   const MaterialModalActionSheet({
-    Key key,
-    @required this.onPressed,
+    Key? key,
+    required this.onPressed,
+    required this.actions,
     this.title,
     this.message,
-    this.actions,
     this.cancelLabel,
     this.materialConfiguration,
   }) : super(key: key);
 
   final ActionCallback<T> onPressed;
-  final String title;
-  final String message;
   final List<SheetAction<T>> actions;
-  final String cancelLabel;
-  final MaterialModalActionSheetConfiguration materialConfiguration;
+  final String? title;
+  final String? message;
+  final String? cancelLabel;
+  final MaterialModalActionSheetConfiguration? materialConfiguration;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final title = this.title;
+    final message = this.message;
+    final materialConfiguration = this.materialConfiguration;
     final children = [
       if (title != null && message == null)
         ListTile(
@@ -33,7 +36,7 @@ class MaterialModalActionSheet<T> extends StatelessWidget {
         ),
       if (message != null) ...[
         ListTile(
-          title: Text(title),
+          title: Text(title!),
           subtitle: Text(message),
         ),
         const Divider()

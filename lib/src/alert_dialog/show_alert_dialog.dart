@@ -9,10 +9,10 @@ import 'package:flutter/material.dart';
 /// cupertino style. If it is set to true, [showModalActionSheet] is called
 /// instead.
 /// [actionsOverflowDirection] works only for Material style currently.
-Future<T> showAlertDialog<T>({
-  @required BuildContext context,
-  String title,
-  String message,
+Future<T?> showAlertDialog<T>({
+  required BuildContext context,
+  String? title,
+  String? message,
   List<AlertDialogAction<T>> actions = const [],
   bool barrierDismissible = true,
   AdaptiveStyle style = AdaptiveStyle.adaptive,
@@ -21,7 +21,7 @@ Future<T> showAlertDialog<T>({
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
   bool fullyCapitalizedForMaterial = true,
 }) {
-  void pop(T key) => Navigator.of(
+  void pop(T? key) => Navigator.of(
         context,
         rootNavigator: useRootNavigator,
       ).pop(key);

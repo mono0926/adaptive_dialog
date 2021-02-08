@@ -14,22 +14,22 @@ import 'package:flutter/material.dart';
 /// for performance optimization.
 /// if [initialSelectedActionKey] is set, corresponding action is selected
 /// initially. This works only for Android style.
-Future<T> showConfirmationDialog<T>({
-  @required BuildContext context,
-  @required String title,
-  String message,
-  String okLabel,
-  String cancelLabel,
-  double contentMaxHeight,
+Future<T?> showConfirmationDialog<T>({
+  required BuildContext context,
+  required String title,
+  String? message,
+  String? okLabel,
+  String? cancelLabel,
+  double? contentMaxHeight,
   List<AlertDialogAction<T>> actions = const [],
-  T initialSelectedActionKey,
+  T? initialSelectedActionKey,
   bool barrierDismissible = true,
   AdaptiveStyle style = AdaptiveStyle.adaptive,
   bool useRootNavigator = true,
   bool shrinkWrap = true,
   bool fullyCapitalizedForMaterial = true,
 }) {
-  void pop(T key) => Navigator.of(
+  void pop(T? key) => Navigator.of(
         context,
         rootNavigator: useRootNavigator,
       ).pop(key);
@@ -67,27 +67,27 @@ Future<T> showConfirmationDialog<T>({
 
 class _ConfirmationMaterialDialog<T> extends StatefulWidget {
   const _ConfirmationMaterialDialog({
-    Key key,
-    @required this.title,
-    @required this.onSelect,
+    Key? key,
+    required this.title,
+    required this.onSelect,
     @required this.message,
     @required this.okLabel,
     @required this.cancelLabel,
-    @required this.actions,
+    required this.actions,
     @required this.initialSelectedActionKey,
     @required this.contentMaxHeight,
-    @required this.shrinkWrap,
-    @required this.fullyCapitalized,
+    required this.shrinkWrap,
+    required this.fullyCapitalized,
   }) : super(key: key);
 
   final String title;
-  final ValueChanged<T> onSelect;
-  final String message;
-  final String okLabel;
-  final String cancelLabel;
+  final ValueChanged<T?> onSelect;
+  final String? message;
+  final String? okLabel;
+  final String? cancelLabel;
   final List<AlertDialogAction<T>> actions;
-  final T initialSelectedActionKey;
-  final double contentMaxHeight;
+  final T? initialSelectedActionKey;
+  final double? contentMaxHeight;
   final bool shrinkWrap;
   final bool fullyCapitalized;
 
@@ -98,7 +98,7 @@ class _ConfirmationMaterialDialog<T> extends StatefulWidget {
 
 class _ConfirmationMaterialDialogState<T>
     extends State<_ConfirmationMaterialDialog<T>> {
-  T _selectedKey;
+  T? _selectedKey;
   final _scrollController = ScrollController();
 
   @override
@@ -113,6 +113,7 @@ class _ConfirmationMaterialDialogState<T>
     final theme = Theme.of(context);
     final cancelLabel = widget.cancelLabel;
     final okLabel = widget.okLabel;
+    final message = widget.message;
     return Dialog(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -130,11 +131,11 @@ class _ConfirmationMaterialDialogState<T>
                   widget.title,
                   style: theme.textTheme.headline6,
                 ),
-                if (widget.message != null)
+                if (message != null)
                   Padding(
                     padding: const EdgeInsets.only(top: 4),
                     child: Text(
-                      widget.message,
+                      message,
                       style: theme.textTheme.caption,
                     ),
                   ),
