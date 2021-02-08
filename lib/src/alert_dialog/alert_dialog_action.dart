@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:adaptive_dialog/src/action_callback.dart';
 import 'package:adaptive_dialog/src/modal_action_sheet/sheet_action.dart';
 import 'package:flutter/cupertino.dart';
