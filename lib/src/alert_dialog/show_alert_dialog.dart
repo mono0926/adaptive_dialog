@@ -62,12 +62,16 @@ Future<T?> showAlertDialog<T>({
             barrierDismissible: barrierDismissible,
           ),
           builder: (context) => AlertDialog(
+            backgroundColor: theme.cardColor,
+            titleTextStyle: theme.textTheme.headline6,
             title: titleText,
+            contentTextStyle: theme.textTheme.subtitle1,
             content: messageText,
             actions: actions.convertToMaterialDialogActions(
               onPressed: pop,
               destructiveColor: colorScheme.error,
               fullyCapitalized: fullyCapitalizedForMaterial,
+              theme: theme,
             ),
             actionsOverflowDirection: actionsOverflowDirection,
           ),
