@@ -4,7 +4,7 @@ import 'package:example/util/logger.dart';
 import 'package:flutter/material.dart';
 
 class AlertPage extends StatelessWidget {
-  const AlertPage({Key key}) : super(key: key);
+  const AlertPage({Key? key}) : super(key: key);
 
   static const routeName = '/alert';
 

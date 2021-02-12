@@ -14,7 +14,7 @@ class Router {
     NestedNavigatorPage.routeName: (context) => const NestedNavigatorPage(),
   };
 
-  Route onGenerateRoute(RouteSettings settings) {
+  Route? onGenerateRoute(RouteSettings settings) {
     final name = settings.name;
     final uri = Uri(path: name);
     final segments = uri.pathSegments;
@@ -35,7 +35,7 @@ String pascalCaseFromRouteName(String name) => name.substring(1).pascalCase;
 @immutable
 class PageInfo {
   const PageInfo({
-    @required this.routeName,
+    required this.routeName,
   });
 
   final String routeName;

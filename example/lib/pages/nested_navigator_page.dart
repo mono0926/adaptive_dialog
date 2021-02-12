@@ -3,7 +3,7 @@ import 'package:example/util/util.dart';
 import 'package:flutter/material.dart';
 
 class NestedNavigatorPage extends StatelessWidget {
-  const NestedNavigatorPage({Key key}) : super(key: key);
+  const NestedNavigatorPage({Key? key}) : super(key: key);
 
   static const routeName = '/nested_navigator';
 
@@ -23,7 +23,7 @@ class NestedNavigatorPage extends StatelessWidget {
 }
 
 class _RootPage extends StatelessWidget {
-  const _RootPage({Key key}) : super(key: key);
+  const _RootPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +31,7 @@ class _RootPage extends StatelessWidget {
         leading: BackButton(
           onPressed: () => Navigator.of(
             context,
-            rootNavigator: !ModalRoute.of(context).canPop,
+            rootNavigator: !ModalRoute.of(context)!.canPop,
           ).pop(),
         ),
       ),

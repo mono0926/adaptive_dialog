@@ -4,7 +4,7 @@ import 'package:example/util/util.dart';
 import 'package:flutter/material.dart';
 
 class SheetPage extends StatelessWidget {
-  const SheetPage({Key key}) : super(key: key);
+  const SheetPage({Key? key}) : super(key: key);
 
   static const routeName = '/sheet';
 

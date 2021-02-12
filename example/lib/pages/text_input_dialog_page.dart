@@ -4,7 +4,7 @@ import 'package:example/util/util.dart';
 import 'package:flutter/material.dart';
 
 class TextInputDialogPage extends StatelessWidget {
-  const TextInputDialogPage({Key key}) : super(key: key);
+  const TextInputDialogPage({Key? key}) : super(key: key);
 
   static const routeName = '/text_input_dialog';
 
@@ -67,11 +67,11 @@ class TextInputDialogPage extends StatelessWidget {
                   DialogTextField(
                     hintText: 'hintText',
                     validator: (value) =>
-                        value.isEmpty ? 'Input more than one character' : null,
+                        value!.isEmpty ? 'Input more than one character' : null,
                   ),
                   DialogTextField(
                     hintText: 'hintText',
-                    validator: (value) => value.length < 2
+                    validator: (value) => value!.length < 2
                         ? 'Input more than two characters'
                         : null,
                   ),
