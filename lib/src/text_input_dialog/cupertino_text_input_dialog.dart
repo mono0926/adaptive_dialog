@@ -29,17 +29,15 @@ class CupertinoTextInputDialog extends StatefulWidget {
 }
 
 class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
-  late final List<TextEditingController> _textControllers;
+  late final List<TextEditingController> _textControllers = widget.textFields
+      .map((tf) => TextEditingController(text: tf.initialText))
+      .toList();
   String? _validationMessage;
   bool _autovalidate = false;
 
   @override
   void initState() {
     super.initState();
-
-    _textControllers = widget.textFields
-        .map((tf) => TextEditingController(text: tf.initialText))
-        .toList();
 
     for (final c in _textControllers) {
       c.addListener(() {

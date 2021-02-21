@@ -32,17 +32,15 @@ class MaterialTextInputDialog extends StatefulWidget {
 }
 
 class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
-  late final List<TextEditingController> _textControllers;
+  late final List<TextEditingController> _textControllers = widget.textFields
+      .map((tf) => TextEditingController(text: tf.initialText))
+      .toList();
   final _formKey = GlobalKey<FormState>();
   var _autovalidateMode = AutovalidateMode.disabled;
 
   @override
   void initState() {
     super.initState();
-
-    _textControllers = widget.textFields
-        .map((tf) => TextEditingController(text: tf.initialText))
-        .toList();
   }
 
   @override
