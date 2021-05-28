@@ -10,8 +10,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   mono_kit:
-  provider: '>=5.0.0-0 <6.0.0'
-  recase: '>=4.0.0-0 <5.0.0'
+  provider:
+  recase:
   simple_logger:
 dev_dependencies:
   flutter_test:
