@@ -25,6 +25,7 @@ Future<OkCancelResult> showOkCancelAlertDialog({
   bool useRootNavigator = true,
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
   bool fullyCapitalizedForMaterial = true,
+  WillPopCallback? onWillPop,
 }) async {
   final isCupertinoStyle = Theme.of(context).isCupertinoStyle;
   String defaultCancelLabel() {
@@ -42,6 +43,7 @@ Future<OkCancelResult> showOkCancelAlertDialog({
     useRootNavigator: useRootNavigator,
     actionsOverflowDirection: actionsOverflowDirection,
     fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
+    onWillPop: onWillPop,
     actions: [
       AlertDialogAction(
         label: cancelLabel ?? defaultCancelLabel(),

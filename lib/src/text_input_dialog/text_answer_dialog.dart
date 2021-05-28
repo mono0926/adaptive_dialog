@@ -19,6 +19,7 @@ Future<bool> showTextAnswerDialog({
   bool useRootNavigator = true,
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
   bool fullyCapitalizedForMaterial = true,
+  WillPopCallback? onWillPop,
 }) async {
   final texts = await showTextInputDialog(
     context: context,
@@ -33,6 +34,7 @@ Future<bool> showTextAnswerDialog({
     style: style,
     actionsOverflowDirection: actionsOverflowDirection,
     fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
+    onWillPop: onWillPop,
   );
   final text = texts == null ? null : texts[0];
   if (text == null) {
@@ -52,6 +54,7 @@ Future<bool> showTextAnswerDialog({
     barrierDismissible: barrierDismissible,
     useRootNavigator: useRootNavigator,
     fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
+    onWillPop: onWillPop,
   );
   return result == OkCancelResult.ok
       ? showTextAnswerDialog(
@@ -72,6 +75,7 @@ Future<bool> showTextAnswerDialog({
           useRootNavigator: useRootNavigator,
           actionsOverflowDirection: actionsOverflowDirection,
           fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
+          onWillPop: onWillPop,
         )
       : Future.value(false);
 }

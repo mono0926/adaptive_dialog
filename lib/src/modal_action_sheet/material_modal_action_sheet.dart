@@ -12,6 +12,7 @@ class MaterialModalActionSheet<T> extends StatelessWidget {
     this.message,
     this.cancelLabel,
     this.materialConfiguration,
+    this.onWillPop,
   }) : super(key: key);
 
   final ActionCallback<T> onPressed;
@@ -20,6 +21,7 @@ class MaterialModalActionSheet<T> extends StatelessWidget {
   final String? message;
   final String? cancelLabel;
   final MaterialModalActionSheetConfiguration? materialConfiguration;
+  final WillPopCallback? onWillPop;
 
   @override
   Widget build(BuildContext context) {
@@ -61,23 +63,26 @@ class MaterialModalActionSheet<T> extends StatelessWidget {
         );
       }),
     ];
-    if (materialConfiguration == null) {
-      return SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: children,
-        ),
-      );
-    }
-    return DraggableScrollableSheet(
-      expand: false,
-      initialChildSize: materialConfiguration.initialChildSize,
-      minChildSize: materialConfiguration.minChildSize,
-      maxChildSize: materialConfiguration.maxChildSize,
-      builder: (context, controller) => ListView(
-        controller: controller,
-        children: children,
-      ),
+    final body = materialConfiguration == null
+        ? SafeArea(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: children,
+            ),
+          )
+        : DraggableScrollableSheet(
+            expand: false,
+            initialChildSize: materialConfiguration.initialChildSize,
+            minChildSize: materialConfiguration.minChildSize,
+            maxChildSize: materialConfiguration.maxChildSize,
+            builder: (context, controller) => ListView(
+              controller: controller,
+              children: children,
+            ),
+          );
+    return WillPopScope(
+      onWillPop: onWillPop,
+      child: body,
     );
   }
 }

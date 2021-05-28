@@ -21,6 +21,7 @@ Future<T?> showModalActionSheet<T>({
   bool isDismissible = true,
   bool useRootNavigator = true,
   MaterialModalActionSheetConfiguration? materialConfiguration,
+  WillPopCallback? onWillPop,
 }) {
   void pop(T? key) => Navigator.of(
         context,
@@ -37,6 +38,7 @@ Future<T?> showModalActionSheet<T>({
             message: message,
             actions: actions,
             cancelLabel: cancelLabel,
+            onWillPop: onWillPop,
           ),
         )
       : showModalBottomSheet(
@@ -51,6 +53,7 @@ Future<T?> showModalActionSheet<T>({
             actions: actions,
             cancelLabel: cancelLabel,
             materialConfiguration: materialConfiguration,
+            onWillPop: onWillPop,
           ),
         );
 }

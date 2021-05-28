@@ -28,6 +28,7 @@ Future<T?> showConfirmationDialog<T>({
   bool useRootNavigator = true,
   bool shrinkWrap = true,
   bool fullyCapitalizedForMaterial = true,
+  WillPopCallback? onWillPop,
 }) {
   void pop(T? key) => Navigator.of(
         context,
@@ -43,6 +44,7 @@ Future<T?> showConfirmationDialog<T>({
           actions: actions.convertToSheetActions(),
           style: style,
           useRootNavigator: useRootNavigator,
+          onWillPop: onWillPop,
         )
       : showModal(
           context: context,
@@ -61,6 +63,7 @@ Future<T?> showConfirmationDialog<T>({
             contentMaxHeight: contentMaxHeight,
             shrinkWrap: shrinkWrap,
             fullyCapitalized: fullyCapitalizedForMaterial,
+            onWillPop: onWillPop,
           ),
         );
 }
@@ -78,6 +81,7 @@ class _ConfirmationMaterialDialog<T> extends StatefulWidget {
     @required this.contentMaxHeight,
     required this.shrinkWrap,
     required this.fullyCapitalized,
+    required this.onWillPop,
   }) : super(key: key);
 
   final String title;
@@ -90,6 +94,7 @@ class _ConfirmationMaterialDialog<T> extends StatefulWidget {
   final double? contentMaxHeight;
   final bool shrinkWrap;
   final bool fullyCapitalized;
+  final WillPopCallback? onWillPop;
 
   @override
   _ConfirmationMaterialDialogState<T> createState() =>
@@ -114,86 +119,89 @@ class _ConfirmationMaterialDialogState<T>
     final cancelLabel = widget.cancelLabel;
     final okLabel = widget.okLabel;
     final message = widget.message;
-    return Dialog(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 24,
-              vertical: 16,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.title,
-                  style: theme.textTheme.headline6,
-                ),
-                if (message != null)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 4),
-                    child: Text(
-                      message,
-                      style: theme.textTheme.caption,
-                    ),
+    return WillPopScope(
+      onWillPop: widget.onWillPop,
+      child: Dialog(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24,
+                vertical: 16,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.title,
+                    style: theme.textTheme.headline6,
                   ),
+                  if (message != null)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4),
+                      child: Text(
+                        message,
+                        style: theme.textTheme.caption,
+                      ),
+                    ),
+                ],
+              ),
+            ),
+            const Divider(height: 0),
+            Flexible(
+              child: SizedBox(
+                height: widget.contentMaxHeight,
+                child: ListView(
+                  // This switches physics automatically, so if there is enough
+                  // height, `NeverScrollableScrollPhysics` will be set.
+                  controller: _scrollController,
+                  shrinkWrap: widget.shrinkWrap,
+                  children: widget.actions
+                      .map((action) => RadioListTile<T>(
+                            title: Text(action.label),
+                            value: action.key,
+                            groupValue: _selectedKey,
+                            onChanged: (value) {
+                              setState(() {
+                                _selectedKey = value;
+                              });
+                            },
+                            toggleable: true,
+                          ))
+                      .toList(),
+                ),
+              ),
+            ),
+            const Divider(height: 0),
+            ButtonBar(
+              layoutBehavior: ButtonBarLayoutBehavior.constrained,
+              children: [
+                TextButton(
+                  child: Text(
+                    (widget.fullyCapitalized
+                            ? cancelLabel?.toUpperCase()
+                            : cancelLabel) ??
+                        MaterialLocalizations.of(context).cancelButtonLabel,
+                  ),
+                  onPressed: () => widget.onSelect(null),
+                ),
+                TextButton(
+                  child: Text(
+                    (widget.fullyCapitalized
+                            ? okLabel?.toUpperCase()
+                            : okLabel) ??
+                        MaterialLocalizations.of(context).okButtonLabel,
+                  ),
+                  onPressed: _selectedKey == null
+                      ? null
+                      : () => widget.onSelect(_selectedKey),
+                )
               ],
-            ),
-          ),
-          const Divider(height: 0),
-          Flexible(
-            child: SizedBox(
-              height: widget.contentMaxHeight,
-              child: ListView(
-                // This switches physics automatically, so if there is enough
-                // height, `NeverScrollableScrollPhysics` will be set.
-                controller: _scrollController,
-                shrinkWrap: widget.shrinkWrap,
-                children: widget.actions
-                    .map((action) => RadioListTile<T>(
-                          title: Text(action.label),
-                          value: action.key,
-                          groupValue: _selectedKey,
-                          onChanged: (value) {
-                            setState(() {
-                              _selectedKey = value;
-                            });
-                          },
-                          toggleable: true,
-                        ))
-                    .toList(),
-              ),
-            ),
-          ),
-          const Divider(height: 0),
-          ButtonBar(
-            layoutBehavior: ButtonBarLayoutBehavior.constrained,
-            children: [
-              TextButton(
-                child: Text(
-                  (widget.fullyCapitalized
-                          ? cancelLabel?.toUpperCase()
-                          : cancelLabel) ??
-                      MaterialLocalizations.of(context).cancelButtonLabel,
-                ),
-                onPressed: () => widget.onSelect(null),
-              ),
-              TextButton(
-                child: Text(
-                  (widget.fullyCapitalized
-                          ? okLabel?.toUpperCase()
-                          : okLabel) ??
-                      MaterialLocalizations.of(context).okButtonLabel,
-                ),
-                onPressed: _selectedKey == null
-                    ? null
-                    : () => widget.onSelect(_selectedKey),
-              )
-            ],
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

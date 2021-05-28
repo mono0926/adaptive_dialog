@@ -28,6 +28,18 @@ class AlertPage extends StatelessWidget {
             },
           ),
           ListTile(
+            title: const Text('OK Dialog (onWillPop: false)'),
+            onTap: () async {
+              final result = await showOkAlertDialog(
+                context: context,
+                title: 'Title',
+                message: 'This is message.',
+                onWillPop: () => Future.value(false),
+              );
+              logger.info(result);
+            },
+          ),
+          ListTile(
             title: const Text('OK Dialog (barrierDismissible: false)'),
             onTap: () async {
               final result = await showOkAlertDialog(

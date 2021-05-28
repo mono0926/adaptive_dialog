@@ -14,6 +14,7 @@ class CupertinoModalActionSheet<T> extends StatelessWidget {
     this.title,
     this.message,
     this.cancelLabel,
+    this.onWillPop,
   }) : super(key: key);
 
   final ActionCallback<T> onPressed;
@@ -21,40 +22,44 @@ class CupertinoModalActionSheet<T> extends StatelessWidget {
   final String? title;
   final String? message;
   final String? cancelLabel;
+  final WillPopCallback? onWillPop;
 
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final title = this.title;
     final message = this.message;
-    return MediaQuery(
-      data: mediaQuery.copyWith(
-        // `CupertinoAlertDialog` overrides textScaleFactor
-        // to keep larger than 1, but `CupertinoActionSheet` doesn't.
-        // https://twitter.com/_mono/status/1266997626693509126
-        textScaleFactor: max(1, mediaQuery.textScaleFactor),
-      ),
-      child: CupertinoActionSheet(
-        title: title == null ? null : Text(title),
-        message: message == null ? null : Text(message),
-        cancelButton: CupertinoActionSheetAction(
-          child: Text(
-            cancelLabel ??
-                MaterialLocalizations.of(context)
-                    .cancelButtonLabel
-                    .capitalizedForce,
-          ),
-          isDefaultAction: !actions.any((a) => a.isDefaultAction),
-          onPressed: () => onPressed(null),
+    return WillPopScope(
+      onWillPop: onWillPop,
+      child: MediaQuery(
+        data: mediaQuery.copyWith(
+          // `CupertinoAlertDialog` overrides textScaleFactor
+          // to keep larger than 1, but `CupertinoActionSheet` doesn't.
+          // https://twitter.com/_mono/status/1266997626693509126
+          textScaleFactor: max(1, mediaQuery.textScaleFactor),
         ),
-        actions: actions
-            .map((a) => CupertinoActionSheetAction(
-                  child: Text(a.label),
-                  isDestructiveAction: a.isDestructiveAction,
-                  isDefaultAction: a.isDefaultAction,
-                  onPressed: () => onPressed(a.key),
-                ))
-            .toList(),
+        child: CupertinoActionSheet(
+          title: title == null ? null : Text(title),
+          message: message == null ? null : Text(message),
+          cancelButton: CupertinoActionSheetAction(
+            child: Text(
+              cancelLabel ??
+                  MaterialLocalizations.of(context)
+                      .cancelButtonLabel
+                      .capitalizedForce,
+            ),
+            isDefaultAction: !actions.any((a) => a.isDefaultAction),
+            onPressed: () => onPressed(null),
+          ),
+          actions: actions
+              .map((a) => CupertinoActionSheetAction(
+                    child: Text(a.label),
+                    isDestructiveAction: a.isDestructiveAction,
+                    isDefaultAction: a.isDefaultAction,
+                    onPressed: () => onPressed(a.key),
+                  ))
+              .toList(),
+        ),
       ),
     );
   }

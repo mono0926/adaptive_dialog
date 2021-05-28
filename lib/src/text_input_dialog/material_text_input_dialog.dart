@@ -14,6 +14,7 @@ class MaterialTextInputDialog extends StatefulWidget {
     this.actionsOverflowDirection = VerticalDirection.up,
     this.useRootNavigator = true,
     this.fullyCapitalized = true,
+    this.onWillPop,
   });
   @override
   _MaterialTextInputDialogState createState() =>
@@ -29,6 +30,7 @@ class MaterialTextInputDialog extends StatefulWidget {
   final VerticalDirection actionsOverflowDirection;
   final bool useRootNavigator;
   final bool fullyCapitalized;
+  final WillPopCallback? onWillPop;
 }
 
 class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
@@ -75,69 +77,72 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
         color: widget.isDestructiveAction ? colorScheme.error : null,
       ),
     );
-    return Form(
-      key: _formKey,
-      child: AlertDialog(
-        title: titleText,
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (message != null)
-              Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: Scrollbar(
-                    child: SingleChildScrollView(
-                      child: Text(message),
+    return WillPopScope(
+      onWillPop: widget.onWillPop,
+      child: Form(
+        key: _formKey,
+        child: AlertDialog(
+          title: titleText,
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (message != null)
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Scrollbar(
+                      child: SingleChildScrollView(
+                        child: Text(message),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ..._textControllers.mapWithIndex((c, i) {
-              final textField = widget.textFields[i];
-              return TextFormField(
-                controller: c,
-                autofocus: i == 0,
-                obscureText: textField.obscureText,
-                keyboardType: textField.keyboardType,
-                minLines: textField.minLines,
-                maxLines: textField.maxLines,
-                decoration: InputDecoration(
-                  hintText: textField.hintText,
-                  prefixText: textField.prefixText,
-                  suffixText: textField.suffixText,
-                ),
-                validator: textField.validator,
-                autovalidateMode: _autovalidateMode,
-              );
-            })
-          ],
-        ),
-        actions: [
-          TextButton(
-            child: Text(
-              (widget.fullyCapitalized
-                      ? cancelLabel?.toUpperCase()
-                      : cancelLabel) ??
-                  MaterialLocalizations.of(context).cancelButtonLabel,
-            ),
-            onPressed: cancel,
+              ..._textControllers.mapWithIndex((c, i) {
+                final textField = widget.textFields[i];
+                return TextFormField(
+                  controller: c,
+                  autofocus: i == 0,
+                  obscureText: textField.obscureText,
+                  keyboardType: textField.keyboardType,
+                  minLines: textField.minLines,
+                  maxLines: textField.maxLines,
+                  decoration: InputDecoration(
+                    hintText: textField.hintText,
+                    prefixText: textField.prefixText,
+                    suffixText: textField.suffixText,
+                  ),
+                  validator: textField.validator,
+                  autovalidateMode: _autovalidateMode,
+                );
+              })
+            ],
           ),
-          TextButton(
-            child: okText,
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                pop();
-              } else if (_autovalidateMode == AutovalidateMode.disabled) {
-                setState(() {
-                  _autovalidateMode = AutovalidateMode.always;
-                });
-              }
-            },
-          )
-        ],
-        actionsOverflowDirection: widget.actionsOverflowDirection,
+          actions: [
+            TextButton(
+              child: Text(
+                (widget.fullyCapitalized
+                        ? cancelLabel?.toUpperCase()
+                        : cancelLabel) ??
+                    MaterialLocalizations.of(context).cancelButtonLabel,
+              ),
+              onPressed: cancel,
+            ),
+            TextButton(
+              child: okText,
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  pop();
+                } else if (_autovalidateMode == AutovalidateMode.disabled) {
+                  setState(() {
+                    _autovalidateMode = AutovalidateMode.always;
+                  });
+                }
+              },
+            )
+          ],
+          actionsOverflowDirection: widget.actionsOverflowDirection,
+        ),
       ),
     );
   }

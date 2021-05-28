@@ -13,6 +13,7 @@ class CupertinoTextInputDialog extends StatefulWidget {
     this.isDestructiveAction = false,
     this.style = AdaptiveStyle.adaptive,
     this.useRootNavigator = true,
+    this.onWillPop,
   });
   @override
   _CupertinoTextInputDialogState createState() =>
@@ -26,6 +27,7 @@ class CupertinoTextInputDialog extends StatefulWidget {
   final bool isDestructiveAction;
   final AdaptiveStyle style;
   final bool useRootNavigator;
+  final WillPopCallback? onWillPop;
 }
 
 class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
@@ -109,73 +111,76 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
     }
 
     final validationMessage = _validationMessage;
-    return CupertinoAlertDialog(
-      title: titleText,
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          if (message != null) Text(message),
-          const SizedBox(height: 22),
-          ..._textControllers.mapWithIndex(
-            (c, i) {
-              final field = widget.textFields[i];
-              final prefixText = field.prefixText;
-              final suffixText = field.suffixText;
-              return CupertinoTextField(
-                controller: c,
-                autofocus: i == 0,
-                placeholder: field.hintText,
-                obscureText: field.obscureText,
-                keyboardType: field.keyboardType,
-                minLines: field.minLines,
-                maxLines: field.maxLines,
-                prefix: prefixText == null ? null : Text(prefixText),
-                suffix: suffixText == null ? null : Text(suffixText),
-                decoration: _borderDecoration(
-                  isTopRounded: i == 0,
-                  isBottomRounded: i == _textControllers.length - 1,
+    return WillPopScope(
+      onWillPop: widget.onWillPop,
+      child: CupertinoAlertDialog(
+        title: titleText,
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            if (message != null) Text(message),
+            const SizedBox(height: 22),
+            ..._textControllers.mapWithIndex(
+              (c, i) {
+                final field = widget.textFields[i];
+                final prefixText = field.prefixText;
+                final suffixText = field.suffixText;
+                return CupertinoTextField(
+                  controller: c,
+                  autofocus: i == 0,
+                  placeholder: field.hintText,
+                  obscureText: field.obscureText,
+                  keyboardType: field.keyboardType,
+                  minLines: field.minLines,
+                  maxLines: field.maxLines,
+                  prefix: prefixText == null ? null : Text(prefixText),
+                  suffix: suffixText == null ? null : Text(suffixText),
+                  decoration: _borderDecoration(
+                    isTopRounded: i == 0,
+                    isBottomRounded: i == _textControllers.length - 1,
+                  ),
+                );
+              },
+            ),
+            if (validationMessage != null)
+              Container(
+                alignment: AlignmentDirectional.centerStart,
+                padding: const EdgeInsets.only(
+                  top: 4,
+                  left: 4,
                 ),
-              );
+                child: Text(
+                  validationMessage,
+                  style: TextStyle(
+                    color: CupertinoColors.systemRed.resolveFrom(context),
+                    height: 1.2,
+                  ),
+                  textAlign: TextAlign.start,
+                ),
+              ),
+          ],
+        ),
+        actions: <Widget>[
+          CupertinoDialogAction(
+            child: Text(
+              widget.cancelLabel ??
+                  MaterialLocalizations.of(context)
+                      .cancelButtonLabel
+                      .capitalizedForce,
+            ),
+            onPressed: cancel,
+            isDefaultAction: true,
+          ),
+          CupertinoDialogAction(
+            child: okText,
+            onPressed: () {
+              if (_validate()) {
+                pop();
+              }
             },
           ),
-          if (validationMessage != null)
-            Container(
-              alignment: AlignmentDirectional.centerStart,
-              padding: const EdgeInsets.only(
-                top: 4,
-                left: 4,
-              ),
-              child: Text(
-                validationMessage,
-                style: TextStyle(
-                  color: CupertinoColors.systemRed.resolveFrom(context),
-                  height: 1.2,
-                ),
-                textAlign: TextAlign.start,
-              ),
-            ),
         ],
       ),
-      actions: <Widget>[
-        CupertinoDialogAction(
-          child: Text(
-            widget.cancelLabel ??
-                MaterialLocalizations.of(context)
-                    .cancelButtonLabel
-                    .capitalizedForce,
-          ),
-          onPressed: cancel,
-          isDefaultAction: true,
-        ),
-        CupertinoDialogAction(
-          child: okText,
-          onPressed: () {
-            if (_validate()) {
-              pop();
-            }
-          },
-        ),
-      ],
     );
   }
 
