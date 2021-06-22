@@ -51,7 +51,6 @@ Future<T?> showModalActionSheet<T>({
             title: title,
             message: message,
             actions: actions,
-            cancelLabel: cancelLabel,
             materialConfiguration: materialConfiguration,
             onWillPop: onWillPop,
           ),

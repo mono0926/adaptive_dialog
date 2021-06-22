@@ -10,7 +10,6 @@ class MaterialModalActionSheet<T> extends StatelessWidget {
     required this.actions,
     this.title,
     this.message,
-    this.cancelLabel,
     this.materialConfiguration,
     this.onWillPop,
   }) : super(key: key);
@@ -19,7 +18,6 @@ class MaterialModalActionSheet<T> extends StatelessWidget {
   final List<SheetAction<T>> actions;
   final String? title;
   final String? message;
-  final String? cancelLabel;
   final MaterialModalActionSheetConfiguration? materialConfiguration;
   final WillPopCallback? onWillPop;
 

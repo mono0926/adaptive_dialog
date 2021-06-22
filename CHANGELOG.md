@@ -1,3 +1,7 @@
+## 1.0.1
+
+- Remove unused `cancelLabel` from `MaterialModalActionSheet`
+
 ## 1.0.0
 
 - Add `onWillPop` parameter
