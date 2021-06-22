@@ -1,7 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:adaptive_dialog/src/extensions/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:adaptive_dialog/src/extensions/extensions.dart';
 
 class CupertinoTextInputDialog extends StatefulWidget {
   const CupertinoTextInputDialog({

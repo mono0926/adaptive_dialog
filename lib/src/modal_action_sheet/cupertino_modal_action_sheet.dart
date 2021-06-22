@@ -1,9 +1,10 @@
 import 'dart:math';
 
 import 'package:adaptive_dialog/src/action_callback.dart';
+import 'package:adaptive_dialog/src/extensions/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:adaptive_dialog/src/extensions/extensions.dart';
+
 import 'sheet_action.dart';
 
 class CupertinoModalActionSheet<T> extends StatelessWidget {
