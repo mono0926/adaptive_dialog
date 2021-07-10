@@ -1,4 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:example/result_banner.dart';
 import 'package:example/router.dart';
 import 'package:example/util/logger.dart';
 import 'package:flutter/material.dart';
@@ -10,12 +11,21 @@ class AlertPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final resultKey = GlobalObjectKey<ResultBannerState>(context);
+    void updateResult(dynamic result) {
+      resultKey.currentState.updateText(
+        result.toString(),
+      );
+      logger.info(result);
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(pascalCaseFromRouteName(AlertPage.routeName)),
       ),
       body: ListView(
         children: <Widget>[
+          ResultBanner(key: resultKey),
           ListTile(
             title: const Text('OK Dialog'),
             onTap: () async {
@@ -24,7 +34,7 @@ class AlertPage extends StatelessWidget {
                 title: 'Title',
                 message: 'This is message.',
               );
-              logger.info(result);
+              updateResult(result);
             },
           ),
           ListTile(
@@ -49,7 +59,7 @@ class AlertPage extends StatelessWidget {
                 barrierDismissible: false,
               );
               assert(result == OkCancelResult.ok);
-              logger.info(result);
+              updateResult(result);
             },
           ),
           ListTile(
