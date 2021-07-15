@@ -1,9 +1,10 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:adaptive_dialog/src/extensions/extensions.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
 class MaterialTextInputDialog extends StatefulWidget {
   const MaterialTextInputDialog({
+    Key? key,
     required this.textFields,
     this.title,
     this.message,
@@ -15,7 +16,7 @@ class MaterialTextInputDialog extends StatefulWidget {
     this.useRootNavigator = true,
     this.fullyCapitalized = true,
     this.onWillPop,
-  });
+  }) : super(key: key);
   @override
   _MaterialTextInputDialogState createState() =>
       _MaterialTextInputDialogState();
@@ -98,7 +99,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
                     ),
                   ),
                 ),
-              ..._textControllers.mapWithIndex((c, i) {
+              ..._textControllers.mapIndexed((i, c) {
                 final textField = widget.textFields[i];
                 return TextFormField(
                   controller: c,
@@ -120,13 +121,13 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
           ),
           actions: [
             TextButton(
+              onPressed: cancel,
               child: Text(
                 (widget.fullyCapitalized
                         ? cancelLabel?.toUpperCase()
                         : cancelLabel) ??
                     MaterialLocalizations.of(context).cancelButtonLabel,
               ),
-              onPressed: cancel,
             ),
             TextButton(
               child: okText,

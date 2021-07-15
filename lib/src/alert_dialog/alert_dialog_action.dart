@@ -34,11 +34,11 @@ extension AlertDialogActionEx<T> on AlertDialogAction<T> {
     required ActionCallback<T> onPressed,
   }) {
     return CupertinoDialogAction(
-      child: Text(label),
       isDefaultAction: isDefaultAction,
       isDestructiveAction: isDestructiveAction,
       textStyle: textStyle,
       onPressed: () => onPressed(key),
+      child: Text(label),
     );
   }
 

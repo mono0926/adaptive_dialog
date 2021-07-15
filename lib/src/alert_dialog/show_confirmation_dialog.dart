@@ -188,15 +188,15 @@ class _ConfirmationMaterialDialogState<T>
                   onPressed: () => widget.onSelect(null),
                 ),
                 TextButton(
+                  onPressed: _selectedKey == null
+                      ? null
+                      : () => widget.onSelect(_selectedKey),
                   child: Text(
                     (widget.fullyCapitalized
                             ? okLabel?.toUpperCase()
                             : okLabel) ??
                         MaterialLocalizations.of(context).okButtonLabel,
                   ),
-                  onPressed: _selectedKey == null
-                      ? null
-                      : () => widget.onSelect(_selectedKey),
                 )
               ],
             )

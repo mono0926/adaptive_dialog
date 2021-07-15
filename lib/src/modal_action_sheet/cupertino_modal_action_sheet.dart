@@ -43,21 +43,21 @@ class CupertinoModalActionSheet<T> extends StatelessWidget {
           title: title == null ? null : Text(title),
           message: message == null ? null : Text(message),
           cancelButton: CupertinoActionSheetAction(
+            isDefaultAction: !actions.any((a) => a.isDefaultAction),
+            onPressed: () => onPressed(null),
             child: Text(
               cancelLabel ??
                   MaterialLocalizations.of(context)
                       .cancelButtonLabel
                       .capitalizedForce,
             ),
-            isDefaultAction: !actions.any((a) => a.isDefaultAction),
-            onPressed: () => onPressed(null),
           ),
           actions: actions
               .map((a) => CupertinoActionSheetAction(
-                    child: Text(a.label),
                     isDestructiveAction: a.isDestructiveAction,
                     isDefaultAction: a.isDefaultAction,
                     onPressed: () => onPressed(a.key),
+                    child: Text(a.label),
                   ))
               .toList(),
         ),

@@ -1,10 +1,12 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_dialog/src/extensions/extensions.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CupertinoTextInputDialog extends StatefulWidget {
   const CupertinoTextInputDialog({
+    Key? key,
     required this.textFields,
     this.title,
     this.message,
@@ -14,7 +16,7 @@ class CupertinoTextInputDialog extends StatefulWidget {
     this.style = AdaptiveStyle.adaptive,
     this.useRootNavigator = true,
     this.onWillPop,
-  });
+  }) : super(key: key);
   @override
   _CupertinoTextInputDialogState createState() =>
       _CupertinoTextInputDialogState();
@@ -120,8 +122,8 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
           children: <Widget>[
             if (message != null) Text(message),
             const SizedBox(height: 22),
-            ..._textControllers.mapWithIndex(
-              (c, i) {
+            ..._textControllers.mapIndexed(
+              (i, c) {
                 final field = widget.textFields[i];
                 final prefixText = field.prefixText;
                 final suffixText = field.suffixText;
@@ -162,14 +164,14 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
         ),
         actions: <Widget>[
           CupertinoDialogAction(
+            onPressed: cancel,
+            isDefaultAction: true,
             child: Text(
               widget.cancelLabel ??
                   MaterialLocalizations.of(context)
                       .cancelButtonLabel
                       .capitalizedForce,
             ),
-            onPressed: cancel,
-            isDefaultAction: true,
           ),
           CupertinoDialogAction(
             child: okText,
@@ -186,7 +188,7 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
 
   bool _validate() {
     _autovalidate = true;
-    final validations = widget.textFields.mapWithIndex((tf, i) {
+    final validations = widget.textFields.mapIndexed((i, tf) {
       final validator = tf.validator;
       return validator == null ? null : validator(_textControllers[i].text);
     }).where((result) => result != null);
