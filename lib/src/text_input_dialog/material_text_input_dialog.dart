@@ -16,6 +16,7 @@ class MaterialTextInputDialog extends StatefulWidget {
     this.useRootNavigator = true,
     this.fullyCapitalized = true,
     this.onWillPop,
+    this.autoSubmit = false,
   }) : super(key: key);
   @override
   _MaterialTextInputDialogState createState() =>
@@ -32,6 +33,7 @@ class MaterialTextInputDialog extends StatefulWidget {
   final bool useRootNavigator;
   final bool fullyCapitalized;
   final WillPopCallback? onWillPop;
+  final bool autoSubmit;
 }
 
 class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
@@ -64,9 +66,19 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
       context,
       rootNavigator: widget.useRootNavigator,
     );
-    void pop() => navigator.pop(
+    void submit() => navigator.pop(
           _textControllers.map((c) => c.text).toList(),
         );
+    void submitIfValid() {
+      if (_formKey.currentState!.validate()) {
+        submit();
+      } else if (_autovalidateMode == AutovalidateMode.disabled) {
+        setState(() {
+          _autovalidateMode = AutovalidateMode.always;
+        });
+      }
+    }
+
     void cancel() => navigator.pop();
     final titleText = title == null ? null : Text(title);
     final cancelLabel = widget.cancelLabel;
@@ -100,6 +112,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
                   ),
                 ),
               ..._textControllers.mapIndexed((i, c) {
+                final isLast = widget.textFields.length == i + 1;
                 final textField = widget.textFields[i];
                 return TextFormField(
                   controller: c,
@@ -115,6 +128,10 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
                   ),
                   validator: textField.validator,
                   autovalidateMode: _autovalidateMode,
+                  textInputAction: isLast ? null : TextInputAction.next,
+                  onFieldSubmitted: isLast && widget.autoSubmit
+                      ? (_) => submitIfValid()
+                      : null,
                 );
               })
             ],
@@ -130,16 +147,8 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
               ),
             ),
             TextButton(
+              onPressed: submitIfValid,
               child: okText,
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  pop();
-                } else if (_autovalidateMode == AutovalidateMode.disabled) {
-                  setState(() {
-                    _autovalidateMode = AutovalidateMode.always;
-                  });
-                }
-              },
             )
           ],
           actionsOverflowDirection: widget.actionsOverflowDirection,

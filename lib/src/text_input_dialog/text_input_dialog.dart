@@ -20,6 +20,7 @@ Future<List<String>?> showTextInputDialog({
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
   bool fullyCapitalizedForMaterial = true,
   WillPopCallback? onWillPop,
+  bool autoSubmit = false,
 }) {
   final theme = Theme.of(context);
   return style.isCupertinoStyle(theme)
@@ -36,6 +37,7 @@ Future<List<String>?> showTextInputDialog({
             style: style,
             useRootNavigator: useRootNavigator,
             onWillPop: onWillPop,
+            autoSubmit: autoSubmit,
           ),
         )
       : showModal(
@@ -56,6 +58,7 @@ Future<List<String>?> showTextInputDialog({
             useRootNavigator: useRootNavigator,
             fullyCapitalized: fullyCapitalizedForMaterial,
             onWillPop: onWillPop,
+            autoSubmit: autoSubmit,
           ),
         );
 }

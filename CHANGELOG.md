@@ -1,3 +1,7 @@
+## 1.1.0
+
+- Add optional arg to submit form when user hits enter on last input field to `showTextAnswerDialog()` (#39)
+
 ## 1.0.1
 
 - Remove unused `cancelLabel` from `MaterialModalActionSheet`

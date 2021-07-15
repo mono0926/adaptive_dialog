@@ -16,6 +16,7 @@ class CupertinoTextInputDialog extends StatefulWidget {
     this.style = AdaptiveStyle.adaptive,
     this.useRootNavigator = true,
     this.onWillPop,
+    this.autoSubmit = false,
   }) : super(key: key);
   @override
   _CupertinoTextInputDialogState createState() =>
@@ -30,6 +31,7 @@ class CupertinoTextInputDialog extends StatefulWidget {
   final AdaptiveStyle style;
   final bool useRootNavigator;
   final WillPopCallback? onWillPop;
+  final bool autoSubmit;
 }
 
 class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
@@ -68,9 +70,15 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
     );
     final title = widget.title;
     final message = widget.message;
-    void pop() => navigator.pop(
+    void submit() => navigator.pop(
           _textControllers.map((c) => c.text).toList(),
         );
+    void submitIfValid() {
+      if (_validate()) {
+        submit();
+      }
+    }
+
     void cancel() => navigator.pop();
     final titleText = title == null ? null : Text(title);
     final okText = Text(
@@ -124,6 +132,7 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
             const SizedBox(height: 22),
             ..._textControllers.mapIndexed(
               (i, c) {
+                final isLast = widget.textFields.length == i + 1;
                 final field = widget.textFields[i];
                 final prefixText = field.prefixText;
                 final suffixText = field.suffixText;
@@ -141,6 +150,10 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
                     isTopRounded: i == 0,
                     isBottomRounded: i == _textControllers.length - 1,
                   ),
+                  textInputAction: isLast ? null : TextInputAction.next,
+                  onSubmitted: isLast && widget.autoSubmit
+                      ? (_) => submitIfValid()
+                      : null,
                 );
               },
             ),
@@ -174,12 +187,8 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
             ),
           ),
           CupertinoDialogAction(
+            onPressed: submitIfValid,
             child: okText,
-            onPressed: () {
-              if (_validate()) {
-                pop();
-              }
-            },
           ),
         ],
       ),

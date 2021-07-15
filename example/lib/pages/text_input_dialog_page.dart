@@ -83,6 +83,31 @@ class TextInputDialogPage extends StatelessWidget {
             },
           ),
           ListTile(
+            title: const Text('Title/Message (Validation・autoSubmit)'),
+            onTap: () async {
+              final text = await showTextInputDialog(
+                context: context,
+                textFields: [
+                  DialogTextField(
+                    hintText: 'hintText',
+                    validator: (value) =>
+                        value!.isEmpty ? 'Input more than one character' : null,
+                  ),
+                  DialogTextField(
+                    hintText: 'hintText',
+                    validator: (value) => value!.length < 2
+                        ? 'Input more than two characters'
+                        : null,
+                  ),
+                ],
+                title: 'Hello',
+                message: 'This is a message',
+                autoSubmit: true,
+              );
+              logger.info(text);
+            },
+          ),
+          ListTile(
             title: const Text('Title/Message (Prefix/Suffix)'),
             onTap: () async {
               final text = await showTextInputDialog(
