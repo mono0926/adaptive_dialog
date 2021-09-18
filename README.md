@@ -83,7 +83,7 @@ class App extends StatelessWidget {
 }
 ```
 
-## The input text color same with backgound when use CupertinoTextInputDialog
+## The input text color same with backgound when using CupertinoTextInputDialog
 
 This fixes the problem.
 
