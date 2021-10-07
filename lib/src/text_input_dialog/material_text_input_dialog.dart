@@ -114,24 +114,27 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
               ..._textControllers.mapIndexed((i, c) {
                 final isLast = widget.textFields.length == i + 1;
                 final textField = widget.textFields[i];
-                return TextFormField(
-                  controller: c,
-                  autofocus: i == 0,
-                  obscureText: textField.obscureText,
-                  keyboardType: textField.keyboardType,
-                  minLines: textField.minLines,
-                  maxLines: textField.maxLines,
-                  decoration: InputDecoration(
-                    hintText: textField.hintText,
-                    prefixText: textField.prefixText,
-                    suffixText: textField.suffixText,
+                return Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: TextFormField(
+                    controller: c,
+                    autofocus: i == 0,
+                    obscureText: textField.obscureText,
+                    keyboardType: textField.keyboardType,
+                    minLines: textField.minLines,
+                    maxLines: textField.maxLines,
+                    decoration: InputDecoration(
+                      hintText: textField.hintText,
+                      prefixText: textField.prefixText,
+                      suffixText: textField.suffixText,
+                    ),
+                    validator: textField.validator,
+                    autovalidateMode: _autovalidateMode,
+                    textInputAction: isLast ? null : TextInputAction.next,
+                    onFieldSubmitted: isLast && widget.autoSubmit
+                        ? (_) => submitIfValid()
+                        : null,
                   ),
-                  validator: textField.validator,
-                  autovalidateMode: _autovalidateMode,
-                  textInputAction: isLast ? null : TextInputAction.next,
-                  onFieldSubmitted: isLast && widget.autoSubmit
-                      ? (_) => submitIfValid()
-                      : null,
                 );
               })
             ],
