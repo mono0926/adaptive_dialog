@@ -13,6 +13,7 @@ Future<List<String>?> showTextInputDialog({
   String? message,
   String? okLabel,
   String? cancelLabel,
+  EdgeInsetsGeometry padding = EdgeInsets.zero,
   bool isDestructiveAction = false,
   bool barrierDismissible = true,
   AdaptiveStyle style = AdaptiveStyle.adaptive,

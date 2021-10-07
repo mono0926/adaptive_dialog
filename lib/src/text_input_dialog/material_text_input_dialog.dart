@@ -17,6 +17,7 @@ class MaterialTextInputDialog extends StatefulWidget {
     this.fullyCapitalized = true,
     this.onWillPop,
     this.autoSubmit = false,
+    this.padding = EdgeInsets.zero,
   }) : super(key: key);
   @override
   _MaterialTextInputDialogState createState() =>
@@ -34,6 +35,7 @@ class MaterialTextInputDialog extends StatefulWidget {
   final bool fullyCapitalized;
   final WillPopCallback? onWillPop;
   final bool autoSubmit;
+  final EdgeInsetsGeometry padding;
 }
 
 class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
@@ -115,7 +117,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
                 final isLast = widget.textFields.length == i + 1;
                 final textField = widget.textFields[i];
                 return Padding(
-                  padding: const EdgeInsets.all(8),
+                  padding: widget.padding,
                   child: TextFormField(
                     controller: c,
                     autofocus: i == 0,
