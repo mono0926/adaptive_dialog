@@ -13,7 +13,7 @@ Future<List<String>?> showTextInputDialog({
   String? message,
   String? okLabel,
   String? cancelLabel,
-  EdgeInsetsGeometry padding = EdgeInsets.zero,
+  EdgeInsetsGeometry textFieldPaddingForMaterial = EdgeInsets.zero,
   bool isDestructiveAction = false,
   bool barrierDismissible = true,
   AdaptiveStyle style = AdaptiveStyle.adaptive,
@@ -49,6 +49,7 @@ Future<List<String>?> showTextInputDialog({
           ),
           builder: (context) => MaterialTextInputDialog(
             textFields: textFields,
+            textFieldPaddingForMaterial: textFieldPaddingForMaterial,
             title: title,
             message: message,
             okLabel: okLabel,
