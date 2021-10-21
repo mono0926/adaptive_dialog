@@ -12,6 +12,7 @@ Future<OkCancelResult> showOkAlertDialog({
   String? title,
   String? message,
   String? okLabel,
+  TextStyle okTextStyle = const TextStyle(),
   bool barrierDismissible = true,
   AdaptiveStyle alertStyle = AdaptiveStyle.adaptive,
   bool useActionSheetForCupertino = false,
@@ -35,6 +36,7 @@ Future<OkCancelResult> showOkAlertDialog({
       AlertDialogAction(
         label: okLabel ?? MaterialLocalizations.of(context).okButtonLabel,
         key: OkCancelResult.ok,
+        textStyle: okTextStyle,
       )
     ],
   );
