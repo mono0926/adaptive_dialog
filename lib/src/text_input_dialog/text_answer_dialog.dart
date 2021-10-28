@@ -36,6 +36,7 @@ Future<bool> showTextAnswerDialog({
     retryOkLabel: retryOkLabel,
     retryCancelLabel: retryCancelLabel,
     style: style,
+    useRootNavigator: useRootNavigator,
     actionsOverflowDirection: actionsOverflowDirection,
     fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
     onWillPop: onWillPop,
