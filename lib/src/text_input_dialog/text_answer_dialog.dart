@@ -20,62 +20,25 @@ Future<bool> showTextAnswerDialog({
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
   bool fullyCapitalizedForMaterial = true,
   WillPopCallback? onWillPop,
-}) async {
-  final texts = await showTextInputDialog(
+  FormFieldValidator<String>? validator
+}) async => showTextCallbackDialog(
     context: context,
-    textFields: [
-      DialogTextField(hintText: hintText),
-    ],
+    asyncCallback: (value) async => value == keyword,
     title: title,
     message: message,
     okLabel: okLabel,
     cancelLabel: cancelLabel,
     isDestructiveAction: isDestructiveAction,
+    barrierDismissible: barrierDismissible,
+    hintText: hintText,
+    retryTitle: retryTitle,
+    retryMessage: retryMessage,
+    retryOkLabel: retryOkLabel,
+    retryCancelLabel: retryCancelLabel,
     style: style,
     actionsOverflowDirection: actionsOverflowDirection,
     fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
     onWillPop: onWillPop,
-  );
-  final text = texts == null ? null : texts[0];
-  if (text == null) {
-    return false;
-  }
-  if (text == keyword) {
-    return true;
-  }
-  final result = await showOkCancelAlertDialog(
-    context: context,
-    title: retryTitle,
-    message: retryMessage,
-    okLabel: retryOkLabel,
-    cancelLabel: retryCancelLabel,
-    defaultType: OkCancelAlertDefaultType.ok,
-    actionsOverflowDirection: actionsOverflowDirection,
-    barrierDismissible: barrierDismissible,
-    useRootNavigator: useRootNavigator,
-    fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
-    onWillPop: onWillPop,
-  );
-  return result == OkCancelResult.ok
-      ? showTextAnswerDialog(
-          context: context,
-          keyword: keyword,
-          title: title,
-          message: message,
-          okLabel: okLabel,
-          cancelLabel: cancelLabel,
-          isDestructiveAction: isDestructiveAction,
-          barrierDismissible: barrierDismissible,
-          hintText: hintText,
-          retryTitle: retryTitle,
-          retryMessage: retryMessage,
-          retryOkLabel: retryOkLabel,
-          retryCancelLabel: retryCancelLabel,
-          style: style,
-          useRootNavigator: useRootNavigator,
-          actionsOverflowDirection: actionsOverflowDirection,
-          fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
-          onWillPop: onWillPop,
-        )
-      : Future.value(false);
-}
+    validator: validator
+);
+
