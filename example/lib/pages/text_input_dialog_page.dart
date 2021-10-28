@@ -53,7 +53,7 @@ class TextInputDialogPage extends StatelessWidget {
                   ),
                 ],
                 title: 'Hello',
-                message: 'This is a message',
+                message: const Text('This is a message'),
               );
               logger.info(text);
             },
@@ -77,7 +77,7 @@ class TextInputDialogPage extends StatelessWidget {
                   ),
                 ],
                 title: 'Hello',
-                message: 'This is a message',
+                message: const Text('This is a message'),
               );
               logger.info(text);
             },
@@ -101,7 +101,7 @@ class TextInputDialogPage extends StatelessWidget {
                   ),
                 ],
                 title: 'Hello',
-                message: 'This is a message',
+                message: const Text('This is a message'),
                 autoSubmit: true,
               );
               logger.info(text);
@@ -120,7 +120,7 @@ class TextInputDialogPage extends StatelessWidget {
                   ),
                 ],
                 title: 'Hello',
-                message: 'This is a message',
+                message: const Text('This is a message'),
               );
               logger.info(text);
             },
@@ -141,7 +141,7 @@ class TextInputDialogPage extends StatelessWidget {
                   ),
                 ],
                 title: 'Hello',
-                message: 'This is a message',
+                message: const Text('This is a message'),
               );
               logger.info(text);
             },
@@ -153,7 +153,7 @@ class TextInputDialogPage extends StatelessWidget {
                 context: context,
                 keyword: 'Flutter',
                 title: 'What\'s the best mobile application framework?',
-                message: 'Input answer and press OK',
+                message: const Text('Input answer and press OK'),
                 isDestructiveAction: true,
                 hintText: 'Start with "F"',
                 retryTitle: 'Incorrect',

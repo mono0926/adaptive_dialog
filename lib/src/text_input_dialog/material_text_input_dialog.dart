@@ -24,7 +24,7 @@ class MaterialTextInputDialog extends StatefulWidget {
 
   final List<DialogTextField> textFields;
   final String? title;
-  final String? message;
+  final Text? message;
   final String? okLabel;
   final String? cancelLabel;
   final bool isDestructiveAction;
@@ -106,7 +106,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
                     padding: const EdgeInsets.only(bottom: 8),
                     child: Scrollbar(
                       child: SingleChildScrollView(
-                        child: Text(message),
+                        child: message,
                       ),
                     ),
                   ),

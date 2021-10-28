@@ -24,7 +24,7 @@ class CupertinoTextInputDialog extends StatefulWidget {
 
   final List<DialogTextField> textFields;
   final String? title;
-  final String? message;
+  final Text? message;
   final String? okLabel;
   final String? cancelLabel;
   final bool isDestructiveAction;
@@ -128,7 +128,7 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            if (message != null) Text(message),
+            if (message != null) message,
             const SizedBox(height: 22),
             ..._textControllers.mapIndexed(
               (i, c) {

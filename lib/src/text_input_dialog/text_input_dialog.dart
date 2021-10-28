@@ -10,7 +10,7 @@ Future<List<String>?> showTextInputDialog({
   required BuildContext context,
   required List<DialogTextField> textFields,
   String? title,
-  String? message,
+  Text? message,
   String? okLabel,
   String? cancelLabel,
   bool isDestructiveAction = false,

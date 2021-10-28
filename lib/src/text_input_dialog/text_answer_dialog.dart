@@ -5,7 +5,7 @@ Future<bool> showTextAnswerDialog({
   required BuildContext context,
   required String keyword,
   String? title,
-  String? message,
+  Text? message,
   String? okLabel,
   String? cancelLabel,
   bool isDestructiveAction = false,
