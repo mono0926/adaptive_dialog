@@ -172,6 +172,38 @@ class TextInputDialogPage extends StatelessWidget {
               );
             },
           ),
+          ListTile(
+            title: const Text('TextCallbackDialog'),
+            onTap: () async {
+              final ok = await showTextCallbackDialog(
+                context: context,
+                asyncCallback: (String value) async {
+                  /// Call some async service and get the answer
+                  final answer = await Future.value('Flutter');
+                  return answer == value;
+                },
+                validator: (value) => value!.length <= 2 ?
+                  'Enter more than two characters' : null,
+                title: 'What\'s the best mobile application framework?',
+                message: 'Input answer and press OK',
+                isDestructiveAction: true,
+                hintText: 'Start with "F"',
+                retryTitle: 'Incorrect',
+                retryMessage: 'Retry?',
+                retryOkLabel: AdaptiveStyle.adaptive.isCupertinoStyle(theme)
+                    ? 'Retry'
+                    : 'RETRY',
+              );
+              print('ok: $ok');
+              if (!ok) {
+                return;
+              }
+              await showOkAlertDialog(
+                context: context,
+                title: 'That\'s right👍',
+              );
+            },
+          ),
         ],
       ),
     );
