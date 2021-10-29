@@ -20,6 +20,7 @@ Future<bool> showTextAnswerDialog({
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
   bool fullyCapitalizedForMaterial = true,
   WillPopCallback? onWillPop,
+  bool isCaseSensitive = true,
 }) async {
   final texts = await showTextInputDialog(
     context: context,
@@ -40,7 +41,9 @@ Future<bool> showTextAnswerDialog({
   if (text == null) {
     return false;
   }
-  if (text == keyword) {
+  if (isCaseSensitive
+      ? text == keyword
+      : text.toUpperCase() == keyword.toUpperCase()) {
     return true;
   }
   final result = await showOkCancelAlertDialog(
