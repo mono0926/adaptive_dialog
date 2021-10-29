@@ -1,3 +1,7 @@
+## 1.2.0
+
+- Add `isCaseSensitive` parameter to `showTextAnswerDialog` (#49)
+
 ## 1.1.0
 
 - Add optional arg to submit form when user hits enter on last input field to `showTextAnswerDialog()` (#39)
