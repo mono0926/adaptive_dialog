@@ -162,7 +162,7 @@ class TextInputDialogPage extends StatelessWidget {
                     ? 'Retry'
                     : 'RETRY',
               );
-              print('ok: $ok');
+              logger.info('ok: $ok');
               if (!ok) {
                 return;
               }

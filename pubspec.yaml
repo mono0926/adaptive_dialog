@@ -3,7 +3,7 @@ description: Show alert dialog or modal action sheet adaptively according to pla
 version: 1.2.0
 homepage: https://github.com/mono0926/adaptive_dialog
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.15.0 <3.0.0'
 dependencies:
   animations: '>=2.0.0 <3.0.0'
   collection: '>=1.15.0 <2.0.0'

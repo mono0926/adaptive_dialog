@@ -14,7 +14,7 @@ class Router {
     NestedNavigatorPage.routeName: (context) => const NestedNavigatorPage(),
   };
 
-  Route? onGenerateRoute(RouteSettings settings) {
+  Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     final name = settings.name;
     final uri = Uri(path: name);
     final segments = uri.pathSegments;
