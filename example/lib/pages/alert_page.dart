@@ -36,6 +36,7 @@ class AlertPage extends StatelessWidget {
                 message: 'This is message.',
                 onWillPop: () => Future.value(false),
               );
+              assert(result == OkCancelResult.ok);
               logger.info(result);
             },
           ),
@@ -48,7 +49,6 @@ class AlertPage extends StatelessWidget {
                 message: 'This is message.',
                 barrierDismissible: false,
               );
-              assert(result == OkCancelResult.ok);
               logger.info(result);
             },
           ),
