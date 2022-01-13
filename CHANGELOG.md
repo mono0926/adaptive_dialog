@@ -1,3 +1,7 @@
+## 1.3.0
+
+- Deprecate `alertStyle` of `showOkAlertDialog`/`showOkCancelAlertDialog`, which was mistakenly defined, and add `style` property instead.
+
 ## 1.2.0
 
 - Add `isCaseSensitive` parameter to `showTextAnswerDialog` (#49)
