@@ -77,6 +77,7 @@ Future<T?> showAlertDialog<T>({
                 fullyCapitalized: fullyCapitalizedForMaterial,
               ),
               actionsOverflowDirection: actionsOverflowDirection,
+              scrollable: true,
             ),
           ),
         );

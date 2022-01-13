@@ -1,6 +1,7 @@
 ## 1.3.0
 
 - Deprecate `alertStyle` of `showOkAlertDialog`/`showOkCancelAlertDialog`, which was mistakenly defined, and add `style` property instead.
+- Make Material style `showOkAlertDialog` scrollable (#53)
 
 ## 1.2.0
 
