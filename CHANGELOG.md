@@ -1,3 +1,7 @@
+## 1.4.0
+
+- Change `isCupertinoStyle` to return `true` if TargetPlatform is macOS
+
 ## 1.3.0
 
 - Deprecate `alertStyle` of `showOkAlertDialog`/`showOkCancelAlertDialog`, which was mistakenly defined, and add `style` property instead.
@@ -65,7 +69,7 @@
 ## 0.7.2
 
 - Support validation for showTextInputDialog
-- Fix destructive color of showTextInputDialog for Cupertino 
+- Fix destructive color of showTextInputDialog for Cupertino
 
 ## 0.7.1
 
