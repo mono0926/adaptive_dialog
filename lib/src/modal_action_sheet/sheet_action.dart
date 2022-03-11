@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 class SheetAction<T> {
   const SheetAction({
     required this.label,
+    this.onPressed,
     this.key,
     this.icon,
     this.isDefaultAction = false,
@@ -12,6 +13,9 @@ class SheetAction<T> {
   });
 
   final String label;
+
+  /// Called when the action is pressed.
+  final Future<void> Function()? onPressed;
 
   /// Only works for Material Style
   final IconData? icon;

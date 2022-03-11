@@ -56,7 +56,12 @@ class MaterialModalActionSheet<T> extends StatelessWidget {
               color: color,
             ),
           ),
-          onTap: () => onPressed(a.key),
+          onTap: () async {
+            if (a.onPressed != null) {
+              await a.onPressed!();
+            }
+            onPressed(a.key);
+          },
         );
       }),
     ];

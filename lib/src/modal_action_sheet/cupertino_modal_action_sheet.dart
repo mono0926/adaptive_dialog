@@ -56,7 +56,12 @@ class CupertinoModalActionSheet<T> extends StatelessWidget {
               .map((a) => CupertinoActionSheetAction(
                     isDestructiveAction: a.isDestructiveAction,
                     isDefaultAction: a.isDefaultAction,
-                    onPressed: () => onPressed(a.key),
+                    onPressed: () async {
+                      if (a.onPressed != null) {
+                        await a.onPressed!();
+                      }
+                      onPressed(a.key);
+                    },
                     child: Text(a.label),
                   ))
               .toList(),
