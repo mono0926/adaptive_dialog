@@ -163,17 +163,19 @@ class _ConfirmationMaterialDialogState<T>
                   controller: _scrollController,
                   shrinkWrap: widget.shrinkWrap,
                   children: widget.actions
-                      .map((action) => RadioListTile<T>(
-                            title: Text(action.label),
-                            value: action.key,
-                            groupValue: _selectedKey,
-                            onChanged: (value) {
-                              setState(() {
-                                _selectedKey = value;
-                              });
-                            },
-                            toggleable: true,
-                          ))
+                      .map(
+                        (action) => RadioListTile<T>(
+                          title: Text(action.label),
+                          value: action.key,
+                          groupValue: _selectedKey,
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedKey = value;
+                            });
+                          },
+                          toggleable: true,
+                        ),
+                      )
                       .toList(),
                 ),
               ),
