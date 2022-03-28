@@ -199,7 +199,8 @@ class AlertPage extends StatelessWidget {
           ),
           ListTile(
             title: const Text(
-                'Confirmation Dialog (few selections / default selection)'),
+              'Confirmation Dialog (few selections / default selection)',
+            ),
             onTap: () async {
               final result = await showConfirmationDialog<int>(
                 context: context,
