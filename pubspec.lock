@@ -115,7 +115,7 @@ packages:
       name: pedantic_mono
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.15.0"
+    version: "1.17.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -178,4 +178,4 @@ packages:
     source: hosted
     version: "2.1.1"
 sdks:
-  dart: ">=2.15.0 <3.0.0"
+  dart: ">=2.16.0 <3.0.0"

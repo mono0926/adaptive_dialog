@@ -20,6 +20,7 @@ Future<OkCancelResult> showOkAlertDialog({
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
   bool fullyCapitalizedForMaterial = true,
   WillPopCallback? onWillPop,
+  AdaptiveDialogBuilder? builder,
 }) async {
   final result = await showAlertDialog<OkCancelResult>(
     context: context,
@@ -32,6 +33,7 @@ Future<OkCancelResult> showOkAlertDialog({
     actionsOverflowDirection: actionsOverflowDirection,
     fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
     onWillPop: onWillPop,
+    builder: builder,
     actions: [
       AlertDialogAction(
         label: okLabel ?? MaterialLocalizations.of(context).okButtonLabel,

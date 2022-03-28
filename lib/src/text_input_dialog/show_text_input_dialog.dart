@@ -21,24 +21,28 @@ Future<List<String>?> showTextInputDialog({
   bool fullyCapitalizedForMaterial = true,
   WillPopCallback? onWillPop,
   bool autoSubmit = false,
+  AdaptiveDialogBuilder? builder,
 }) {
   final theme = Theme.of(context);
   return style.isCupertinoStyle(theme)
       ? showCupertinoDialog(
           context: context,
           useRootNavigator: useRootNavigator,
-          builder: (context) => CupertinoTextInputDialog(
-            textFields: textFields,
-            title: title,
-            message: message,
-            okLabel: okLabel,
-            cancelLabel: cancelLabel,
-            isDestructiveAction: isDestructiveAction,
-            style: style,
-            useRootNavigator: useRootNavigator,
-            onWillPop: onWillPop,
-            autoSubmit: autoSubmit,
-          ),
+          builder: (context) {
+            final dialog = CupertinoTextInputDialog(
+              textFields: textFields,
+              title: title,
+              message: message,
+              okLabel: okLabel,
+              cancelLabel: cancelLabel,
+              isDestructiveAction: isDestructiveAction,
+              style: style,
+              useRootNavigator: useRootNavigator,
+              onWillPop: onWillPop,
+              autoSubmit: autoSubmit,
+            );
+            return builder == null ? dialog : builder(context, dialog);
+          },
         )
       : showModal(
           context: context,
@@ -46,20 +50,23 @@ Future<List<String>?> showTextInputDialog({
           configuration: FadeScaleTransitionConfiguration(
             barrierDismissible: barrierDismissible,
           ),
-          builder: (context) => MaterialTextInputDialog(
-            textFields: textFields,
-            title: title,
-            message: message,
-            okLabel: okLabel,
-            cancelLabel: cancelLabel,
-            isDestructiveAction: isDestructiveAction,
-            style: style,
-            actionsOverflowDirection: actionsOverflowDirection,
-            useRootNavigator: useRootNavigator,
-            fullyCapitalized: fullyCapitalizedForMaterial,
-            onWillPop: onWillPop,
-            autoSubmit: autoSubmit,
-          ),
+          builder: (context) {
+            final dialog = MaterialTextInputDialog(
+              textFields: textFields,
+              title: title,
+              message: message,
+              okLabel: okLabel,
+              cancelLabel: cancelLabel,
+              isDestructiveAction: isDestructiveAction,
+              style: style,
+              actionsOverflowDirection: actionsOverflowDirection,
+              useRootNavigator: useRootNavigator,
+              fullyCapitalized: fullyCapitalizedForMaterial,
+              onWillPop: onWillPop,
+              autoSubmit: autoSubmit,
+            );
+            return builder == null ? dialog : builder(context, dialog);
+          },
         );
 }
 

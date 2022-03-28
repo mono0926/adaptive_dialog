@@ -1,3 +1,8 @@
+## 1.5.0
+
+- Add `builder` parameter
+  - This resolved #28, #42 and #56
+
 ## 1.4.0
 
 - Change `isCupertinoStyle` to return `true` if TargetPlatform is macOS

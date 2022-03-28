@@ -53,12 +53,14 @@ class CupertinoModalActionSheet<T> extends StatelessWidget {
             ),
           ),
           actions: actions
-              .map((a) => CupertinoActionSheetAction(
-                    isDestructiveAction: a.isDestructiveAction,
-                    isDefaultAction: a.isDefaultAction,
-                    onPressed: () => onPressed(a.key),
-                    child: Text(a.label),
-                  ))
+              .map(
+                (a) => CupertinoActionSheetAction(
+                  isDestructiveAction: a.isDestructiveAction,
+                  isDefaultAction: a.isDefaultAction,
+                  onPressed: () => onPressed(a.key),
+                  child: Text(a.label),
+                ),
+              )
               .toList(),
         ),
       ),

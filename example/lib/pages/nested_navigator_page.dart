@@ -69,9 +69,11 @@ class _RootPage extends StatelessWidget {
           ElevatedButton(
             child: const Text('Next Page'),
             onPressed: () {
-              Navigator.of(context).push<void>(MaterialPageRoute(
-                builder: (context) => const _RootPage(),
-              ));
+              Navigator.of(context).push<void>(
+                MaterialPageRoute(
+                  builder: (context) => const _RootPage(),
+                ),
+              );
             },
           ),
         ],

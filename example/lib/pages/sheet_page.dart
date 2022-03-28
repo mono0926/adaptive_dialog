@@ -1,6 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:example/router.dart';
 import 'package:example/util/util.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SheetPage extends StatelessWidget {
@@ -80,6 +81,34 @@ class SheetPage extends StatelessWidget {
                     key: 'helloKey',
                   ),
                 ],
+              );
+              logger.info(result);
+            },
+          ),
+          ListTile(
+            title: const Text('Theme builder'),
+            onTap: () async {
+              final result = await showModalActionSheet<String>(
+                context: context,
+                actions: [
+                  const SheetAction(
+                    icon: Icons.info,
+                    label: 'Hello',
+                    key: 'helloKey',
+                  ),
+                ],
+                builder: (context, child) => Theme(
+                  data: ThemeData(
+                    cupertinoOverrideTheme: const CupertinoThemeData(
+                      primaryColor: Colors.orange,
+                    ),
+                    listTileTheme: const ListTileThemeData(
+                      textColor: Colors.orange,
+                      iconColor: Colors.orange,
+                    ),
+                  ),
+                  child: child,
+                ),
               );
               logger.info(result);
             },
