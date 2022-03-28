@@ -28,6 +28,7 @@ Future<T?> showConfirmationDialog<T>({
   bool shrinkWrap = true,
   bool fullyCapitalizedForMaterial = true,
   WillPopCallback? onWillPop,
+  AdaptiveDialogBuilder? builder,
 }) {
   void pop(T? key) => Navigator.of(
         context,
@@ -44,6 +45,7 @@ Future<T?> showConfirmationDialog<T>({
           style: style,
           useRootNavigator: useRootNavigator,
           onWillPop: onWillPop,
+          builder: builder,
         )
       : showModal(
           context: context,
@@ -51,19 +53,22 @@ Future<T?> showConfirmationDialog<T>({
           configuration: FadeScaleTransitionConfiguration(
             barrierDismissible: barrierDismissible,
           ),
-          builder: (context) => _ConfirmationMaterialDialog(
-            title: title,
-            onSelect: pop,
-            message: message,
-            okLabel: okLabel,
-            cancelLabel: cancelLabel,
-            actions: actions,
-            initialSelectedActionKey: initialSelectedActionKey,
-            contentMaxHeight: contentMaxHeight,
-            shrinkWrap: shrinkWrap,
-            fullyCapitalized: fullyCapitalizedForMaterial,
-            onWillPop: onWillPop,
-          ),
+          builder: (context) {
+            final dialog = _ConfirmationMaterialDialog(
+              title: title,
+              onSelect: pop,
+              message: message,
+              okLabel: okLabel,
+              cancelLabel: cancelLabel,
+              actions: actions,
+              initialSelectedActionKey: initialSelectedActionKey,
+              contentMaxHeight: contentMaxHeight,
+              shrinkWrap: shrinkWrap,
+              fullyCapitalized: fullyCapitalizedForMaterial,
+              onWillPop: onWillPop,
+            );
+            return builder == null ? dialog : builder(context, dialog);
+          },
         );
 }
 

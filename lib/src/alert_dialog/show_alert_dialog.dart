@@ -21,6 +21,7 @@ Future<T?> showAlertDialog<T>({
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
   bool fullyCapitalizedForMaterial = true,
   WillPopCallback? onWillPop,
+  AdaptiveDialogBuilder? builder,
 }) {
   void pop(T? key) => Navigator.of(
         context,
@@ -39,6 +40,7 @@ Future<T?> showAlertDialog<T>({
       style: style,
       useRootNavigator: useRootNavigator,
       onWillPop: onWillPop,
+      builder: builder,
     );
   }
   final titleText = title == null ? null : Text(title);
@@ -47,18 +49,21 @@ Future<T?> showAlertDialog<T>({
       ? showCupertinoDialog(
           context: context,
           useRootNavigator: useRootNavigator,
-          builder: (context) => WillPopScope(
-            onWillPop: onWillPop,
-            child: CupertinoAlertDialog(
-              title: titleText,
-              content: messageText,
-              actions: actions.convertToCupertinoDialogActions(
-                onPressed: pop,
+          builder: (context) {
+            final dialog = WillPopScope(
+              onWillPop: onWillPop,
+              child: CupertinoAlertDialog(
+                title: titleText,
+                content: messageText,
+                actions: actions.convertToCupertinoDialogActions(
+                  onPressed: pop,
+                ),
+                // TODO(mono): Set actionsOverflowDirection if available
+                // https://twitter.com/_mono/status/1261122914218160128
               ),
-              // TODO(mono): Set actionsOverflowDirection if available
-              // https://twitter.com/_mono/status/1261122914218160128
-            ),
-          ),
+            );
+            return builder == null ? dialog : builder(context, dialog);
+          },
         )
       : showModal(
           context: context,
@@ -66,20 +71,23 @@ Future<T?> showAlertDialog<T>({
           configuration: FadeScaleTransitionConfiguration(
             barrierDismissible: barrierDismissible,
           ),
-          builder: (context) => WillPopScope(
-            onWillPop: onWillPop,
-            child: AlertDialog(
-              title: titleText,
-              content: messageText,
-              actions: actions.convertToMaterialDialogActions(
-                onPressed: pop,
-                destructiveColor: colorScheme.error,
-                fullyCapitalized: fullyCapitalizedForMaterial,
+          builder: (context) {
+            final dialog = WillPopScope(
+              onWillPop: onWillPop,
+              child: AlertDialog(
+                title: titleText,
+                content: messageText,
+                actions: actions.convertToMaterialDialogActions(
+                  onPressed: pop,
+                  destructiveColor: colorScheme.error,
+                  fullyCapitalized: fullyCapitalizedForMaterial,
+                ),
+                actionsOverflowDirection: actionsOverflowDirection,
+                scrollable: true,
               ),
-              actionsOverflowDirection: actionsOverflowDirection,
-              scrollable: true,
-            ),
-          ),
+            );
+            return builder == null ? dialog : builder(context, dialog);
+          },
         );
 }
 

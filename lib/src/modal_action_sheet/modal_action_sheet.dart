@@ -22,6 +22,7 @@ Future<T?> showModalActionSheet<T>({
   bool useRootNavigator = true,
   MaterialModalActionSheetConfiguration? materialConfiguration,
   WillPopCallback? onWillPop,
+  AdaptiveDialogBuilder? builder,
 }) {
   void pop(T? key) => Navigator.of(
         context,
@@ -32,28 +33,34 @@ Future<T?> showModalActionSheet<T>({
       ? showCupertinoModalPopup(
           context: context,
           useRootNavigator: useRootNavigator,
-          builder: (context) => CupertinoModalActionSheet(
-            onPressed: pop,
-            title: title,
-            message: message,
-            actions: actions,
-            cancelLabel: cancelLabel,
-            onWillPop: onWillPop,
-          ),
+          builder: (context) {
+            final sheet = CupertinoModalActionSheet(
+              onPressed: pop,
+              title: title,
+              message: message,
+              actions: actions,
+              cancelLabel: cancelLabel,
+              onWillPop: onWillPop,
+            );
+            return builder == null ? sheet : builder(context, sheet);
+          },
         )
       : showModalBottomSheet(
           context: context,
           isScrollControlled: materialConfiguration != null,
           isDismissible: isDismissible,
           useRootNavigator: useRootNavigator,
-          builder: (context) => MaterialModalActionSheet(
-            onPressed: pop,
-            title: title,
-            message: message,
-            actions: actions,
-            materialConfiguration: materialConfiguration,
-            onWillPop: onWillPop,
-          ),
+          builder: (context) {
+            final sheet = MaterialModalActionSheet(
+              onPressed: pop,
+              title: title,
+              message: message,
+              actions: actions,
+              materialConfiguration: materialConfiguration,
+              onWillPop: onWillPop,
+            );
+            return builder == null ? sheet : builder(context, sheet);
+          },
         );
 }
 
