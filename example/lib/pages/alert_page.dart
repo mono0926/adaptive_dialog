@@ -85,6 +85,25 @@ class AlertPage extends StatelessWidget {
             },
           ),
           ListTile(
+            title: const Text('OK Dialog (Theme builder)'),
+            onTap: () async {
+              final result = await showOkAlertDialog(
+                context: context,
+                title: 'Title',
+                message: 'This is message.',
+                builder: (context, child) => Theme(
+                  data: ThemeData(
+                    textButtonTheme: TextButtonThemeData(
+                      style: TextButton.styleFrom(primary: Colors.orange),
+                    ),
+                  ),
+                  child: child,
+                ),
+              );
+              logger.info(result);
+            },
+          ),
+          ListTile(
             title: const Text('OK/Cancel Dialog'),
             onTap: () async {
               final result = await showOkCancelAlertDialog(
