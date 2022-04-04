@@ -1,4 +1,4 @@
 cd example
-flutter build web --base-href="/mono0926/adaptive_dialog/"
+flutter build web --base-href="/adaptive_dialog/"
 rm -rf ../docs
 mv build/web ../docs
