@@ -31,13 +31,61 @@
 
   <title>example</title>
   <link rel="manifest" href="manifest.json">
+  <style>
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+
+    .loader {
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border: 15px solid ;
+      border-top: 16px solid blue;
+      border-right: 16px solid white;
+      border-bottom: 16px solid blue;
+      border-left: 16px solid white;
+      width: 120px;
+      height: 120px;
+      -webkit-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+    }
+
+    @-webkit-keyframes spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="loading">
+    <div class="loader"></div>
+  </div>
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
   <script>
-    var serviceWorkerVersion = '3625801160';
+    var serviceWorkerVersion = '66905821';
     var scriptLoaded = false;
     function loadMainDartJs() {
       if (scriptLoaded) {
@@ -51,6 +99,9 @@
     }
 
     if ('serviceWorker' in navigator) {
+        window.addEventListener('flutter-first-frame', function () {
+          document.getElementsByClassName('loading')[0].remove();
+        });
       // Service workers are supported. Use them.
       window.addEventListener('load', function () {
         // Wait for registration to finish before dropping the <script> tag.
