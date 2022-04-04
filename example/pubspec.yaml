@@ -14,6 +14,7 @@ dependencies:
   mono_kit:
   recase:
   simple_logger:
+  url_launcher:
 dev_dependencies:
   flutter_test:
     sdk: flutter

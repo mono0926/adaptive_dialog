@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:recase/recase.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -28,6 +29,23 @@ class HomePage extends StatelessWidget {
               onTap: () => context.go('/$routeName'),
             );
           }),
+          const Divider(),
+          AboutListTile(
+            icon: const Icon(Icons.info),
+            aboutBoxChildren: [
+              TextButton.icon(
+                label: const Text('adaptive_dialog | pub.dev'),
+                onPressed: () =>
+                    launch('https://pub.dev/packages/adaptive_dialog'),
+                icon: const Icon(Icons.open_in_browser),
+              ),
+            ],
+          ),
+          ListTile(
+            title: const Text('adaptive_dialog | pub.dev'),
+            onTap: () => launch('https://pub.dev/packages/adaptive_dialog'),
+            leading: const Icon(Icons.open_in_browser),
+          )
         ],
       ),
     );
