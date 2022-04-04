@@ -1,36 +1,44 @@
+import 'package:example/pages/home_page.dart';
 import 'package:example/pages/text_input_dialog_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:recase/recase.dart';
 
 import 'pages/alert_page.dart';
 import 'pages/nested_navigator_page.dart';
 import 'pages/sheet_page.dart';
 
-class Router {
-  final Map<String, WidgetBuilder> pushRoutes = {
-    AlertPage.routeName: (context) => const AlertPage(),
-    SheetPage.routeName: (context) => const SheetPage(),
-    TextInputDialogPage.routeName: (context) => const TextInputDialogPage(),
-    NestedNavigatorPage.routeName: (context) => const NestedNavigatorPage(),
-  };
+final routerProvider = Provider(
+  (ref) => GoRouter(
+    routes: [
+      GoRoute(
+        path: '/',
+        builder: (_, __) => const HomePage(),
+        routes: [
+          GoRoute(
+            path: AlertPage.routeName,
+            builder: (_, __) => const AlertPage(),
+          ),
+          GoRoute(
+            path: SheetPage.routeName,
+            builder: (_, __) => const SheetPage(),
+          ),
+          GoRoute(
+            path: TextInputDialogPage.routeName,
+            builder: (_, __) => const TextInputDialogPage(),
+          ),
+          GoRoute(
+            path: NestedNavigatorPage.routeName,
+            builder: (_, __) => const NestedNavigatorPage(),
+          ),
+        ],
+      ),
+    ],
+  ),
+);
 
-  Route<dynamic>? onGenerateRoute(RouteSettings settings) {
-    final name = settings.name;
-    final uri = Uri(path: name);
-    final segments = uri.pathSegments;
-    final path = '/${segments.first}';
-    final pushPage = pushRoutes[path];
-    if (pushPage != null) {
-      return MaterialPageRoute<void>(
-        settings: settings,
-        builder: pushPage,
-      );
-    }
-    return null;
-  }
-}
-
-String pascalCaseFromRouteName(String name) => name.substring(1).pascalCase;
+String pascalCaseFromRouteName(String name) => name.pascalCase;
 
 @immutable
 class PageInfo {

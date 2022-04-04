@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class AlertPage extends StatelessWidget {
   const AlertPage({Key? key}) : super(key: key);
 
-  static const routeName = '/alert';
+  static const routeName = 'alert';
 
   @override
   Widget build(BuildContext context) {

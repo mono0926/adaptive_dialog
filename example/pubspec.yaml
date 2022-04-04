@@ -1,16 +1,17 @@
 name: example
-description: Eample application.
+description: Example application.
 version: 1.0.0+1
 environment:
-  sdk: ">=2.16.0 <3.0.0"
+  sdk: '>=2.16.0 <3.0.0'
 dependencies:
   adaptive_dialog:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  flutter_riverpod:
+  go_router:
   mono_kit:
-  provider:
   recase:
   simple_logger:
 dev_dependencies:

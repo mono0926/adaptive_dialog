@@ -1,17 +1,15 @@
-import 'package:example/router.dart';
 import 'package:flutter/material.dart' hide Router;
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import 'app.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  GoRouter.setUrlPathStrategy(UrlPathStrategy.path);
   runApp(
-    MultiProvider(
-      providers: [
-        Provider(create: (context) => Router()),
-      ],
-      child: const App(),
+    const ProviderScope(
+      child: App(),
     ),
   );
 }

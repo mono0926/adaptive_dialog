@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class TextInputDialogPage extends StatelessWidget {
   const TextInputDialogPage({Key? key}) : super(key: key);
 
-  static const routeName = '/text_input_dialog';
+  static const routeName = 'text_input_dialog';
 
   @override
   Widget build(BuildContext context) {

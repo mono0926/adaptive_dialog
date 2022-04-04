@@ -110,7 +110,7 @@ packages:
     source: hosted
     version: "2.0.5"
   flutter_riverpod:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_riverpod
       url: "https://pub.dartlang.org"
@@ -140,6 +140,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  go_router:
+    dependency: "direct main"
+    description:
+      name: go_router
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.6"
   hooks_riverpod:
     dependency: transitive
     description:
@@ -309,7 +316,7 @@ packages:
     source: hosted
     version: "2.1.2"
   provider:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: provider
       url: "https://pub.dartlang.org"

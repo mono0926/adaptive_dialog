@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class NestedNavigatorPage extends StatelessWidget {
   const NestedNavigatorPage({Key? key}) : super(key: key);
 
-  static const routeName = '/nested_navigator';
+  static const routeName = 'nested_navigator';
 
   @override
   Widget build(BuildContext context) {

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class SheetPage extends StatelessWidget {
   const SheetPage({Key? key}) : super(key: key);
 
-  static const routeName = '/sheet';
+  static const routeName = 'sheet';
 
   @override
   Widget build(BuildContext context) {
