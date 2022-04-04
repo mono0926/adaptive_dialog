@@ -2,6 +2,8 @@
 
 Show alert dialog or modal action sheet adaptively according to platform.
 
+Web Demo: https://mono0926.com/adaptive_dialog/
+
 ---
 
 ## [showOkAlertDialog](https://pub.dev/documentation/adaptive_dialog/latest/adaptive_dialog/showOkAlertDialog.html)
