@@ -1,18 +1,23 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:example/router.dart';
+import 'package:example/router/router.dart';
 import 'package:example/util/logger.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+class AlertRoute extends GoRouteData {
+  const AlertRoute();
+  @override
+  Widget build(BuildContext context) => const AlertPage();
+}
 
 class AlertPage extends StatelessWidget {
   const AlertPage({Key? key}) : super(key: key);
-
-  static const routeName = 'alert';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(pascalCaseFromRouteName(AlertPage.routeName)),
+        title: Text(pascalCaseFromRouteName(GoRouter.of(context).location)),
       ),
       body: ListView(
         children: <Widget>[

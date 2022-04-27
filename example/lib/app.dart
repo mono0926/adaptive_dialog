@@ -4,7 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mono_kit/mono_kit.dart';
 
-import 'router.dart';
+import 'router/router.dart';
 
 class App extends ConsumerWidget {
   const App({Key? key}) : super(key: key);

@@ -1,6 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:example/app.dart';
-import 'package:example/router.dart';
+import 'package:example/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -21,12 +21,11 @@ class HomePage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          ...PageInfo.all.map((info) {
-            final routeName = info.routeName;
+          ...allRouteLocations.map((location) {
             return ListTile(
-              title: Text(pascalCaseFromRouteName(routeName)),
+              title: Text(pascalCaseFromRouteName(location)),
               trailing: const Icon(Icons.chevron_right),
-              onTap: () => context.go('/$routeName'),
+              onTap: () => context.go(location),
             );
           }),
           const Divider(),

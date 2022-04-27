@@ -1,19 +1,24 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:example/router.dart';
+import 'package:example/router/router.dart';
 import 'package:example/util/util.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+class TextInputDialogRoute extends GoRouteData {
+  const TextInputDialogRoute();
+  @override
+  Widget build(BuildContext context) => const TextInputDialogPage();
+}
 
 class TextInputDialogPage extends StatelessWidget {
   const TextInputDialogPage({Key? key}) : super(key: key);
-
-  static const routeName = 'text_input_dialog';
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(pascalCaseFromRouteName(routeName)),
+        title: Text(pascalCaseFromRouteName(GoRouter.of(context).location)),
       ),
       body: ListView(
         children: <Widget>[
