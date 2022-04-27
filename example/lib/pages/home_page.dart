@@ -34,21 +34,24 @@ class HomePage extends StatelessWidget {
             aboutBoxChildren: [
               TextButton.icon(
                 label: const Text('adaptive_dialog | pub.dev'),
-                onPressed: () =>
-                    launch('https://pub.dev/packages/adaptive_dialog'),
+                onPressed: _launchPubSite,
                 icon: const Icon(Icons.open_in_browser),
               ),
             ],
           ),
           ListTile(
             title: const Text('adaptive_dialog | pub.dev'),
-            onTap: () => launch('https://pub.dev/packages/adaptive_dialog'),
+            onTap: _launchPubSite,
             leading: const Icon(Icons.open_in_browser),
           )
         ],
       ),
     );
   }
+
+  void _launchPubSite() => launchUrl(
+        Uri.parse('https://pub.dev/packages/adaptive_dialog'),
+      );
 }
 
 class _StyleDropdownButton extends ConsumerWidget {
