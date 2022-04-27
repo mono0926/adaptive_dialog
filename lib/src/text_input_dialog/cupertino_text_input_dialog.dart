@@ -99,7 +99,6 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
           color: Color(0x33000000),
           darkColor: Color(0x33FFFFFF),
         ),
-        style: BorderStyle.solid,
         width: 0,
       );
       return BoxDecoration(
