@@ -1,4 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:adaptive_dialog/src/helper/macos_theme_wrapper.dart';
 import 'package:animations/animations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -84,7 +85,7 @@ Future<T?> showAlertDialog<T>({
         context: context,
         useRootNavigator: useRootNavigator,
         builder: (context) {
-          final Widget dialog = _MacThemeWrapper(
+          final Widget dialog = MacThemeWrapper(
             child: WillPopScope(
               onWillPop: onWillPop,
               child: MacosAlertDialog(
@@ -138,33 +139,4 @@ Future<T?> showAlertDialog<T>({
 enum OkCancelAlertDefaultType {
   ok,
   cancel,
-}
-
-class _MacThemeWrapper extends StatelessWidget {
-  const _MacThemeWrapper({
-    Key? key,
-    required this.child,
-  }) : super(key: key);
-
-  final Widget child;
-  @override
-  Widget build(BuildContext context) {
-    if (MacosTheme.maybeOf(context) != null) {
-      return child;
-    }
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    return MacosTheme(
-      data: (Theme.of(context).brightness == Brightness.light
-              ? MacosThemeData.light()
-              : MacosThemeData.dark())
-          .copyWith(
-        pushButtonTheme: PushButtonThemeData(
-          color:
-              theme.cupertinoOverrideTheme?.primaryColor ?? colorScheme.primary,
-        ),
-      ),
-      child: child,
-    );
-  }
 }
