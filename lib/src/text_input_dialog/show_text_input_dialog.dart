@@ -1,9 +1,12 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:adaptive_dialog/src/text_input_dialog/cupertino_text_input_dialog.dart';
+import 'package:adaptive_dialog/src/helper/macos_theme_wrapper.dart';
+import 'package:adaptive_dialog/src/text_input_dialog/ios_text_input_dialog.dart';
 import 'package:animations/animations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:macos_ui/macos_ui.dart';
 
+import 'macos_text_input_dialog.dart';
 import 'material_text_input_dialog.dart';
 
 Future<List<String>?> showTextInputDialog({
@@ -30,12 +33,11 @@ Future<List<String>?> showTextInputDialog({
     // ignore: deprecated_member_use_from_same_package
     case AdaptiveStyle.cupertino:
     case AdaptiveStyle.iOS:
-    case AdaptiveStyle.macOS:
       return showCupertinoDialog(
         context: context,
         useRootNavigator: useRootNavigator,
         builder: (context) {
-          final dialog = CupertinoTextInputDialog(
+          final dialog = IOSTextInputDialog(
             textFields: textFields,
             title: title,
             message: message,
@@ -46,6 +48,27 @@ Future<List<String>?> showTextInputDialog({
             useRootNavigator: useRootNavigator,
             onWillPop: onWillPop,
             autoSubmit: autoSubmit,
+          );
+          return builder == null ? dialog : builder(context, dialog);
+        },
+      );
+    case AdaptiveStyle.macOS:
+      return showMacosAlertDialog(
+        context: context,
+        builder: (context) {
+          final dialog = MacThemeWrapper(
+            child: MacOSTextInputDialog(
+              textFields: textFields,
+              title: title,
+              message: message,
+              okLabel: okLabel,
+              cancelLabel: cancelLabel,
+              isDestructiveAction: isDestructiveAction,
+              style: adaptiveStyle,
+              useRootNavigator: useRootNavigator,
+              onWillPop: onWillPop,
+              autoSubmit: autoSubmit,
+            ),
           );
           return builder == null ? dialog : builder(context, dialog);
         },
