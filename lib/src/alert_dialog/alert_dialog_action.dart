@@ -2,6 +2,7 @@ import 'package:adaptive_dialog/src/action_callback.dart';
 import 'package:adaptive_dialog/src/modal_action_sheet/sheet_action.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intersperse/intersperse.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 /// Used for specifying showAlertDialog's actions.
@@ -43,6 +44,24 @@ extension AlertDialogActionEx<T> on AlertDialogAction<T> {
     );
   }
 
+  Widget convertToMacOSDialogAction({
+    required ActionCallback<T> onPressed,
+  }) {
+    return PushButton(
+      buttonSize: ButtonSize.large,
+      isSecondary: isDestructiveAction || !isDefaultAction,
+      onPressed: () => onPressed(key),
+      child: Text(
+        label,
+        style: isDestructiveAction
+            ? const TextStyle(
+                color: CupertinoColors.destructiveRed,
+              )
+            : null,
+      ),
+    );
+  }
+
   Widget convertToMaterialDialogAction({
     required ActionCallback<T> onPressed,
     required Color destructiveColor,
@@ -73,27 +92,12 @@ extension AlertDialogActionListEx<T> on List<AlertDialogAction<T>> {
   List<Widget> convertToMacOSDialogActions({
     required ActionCallback<T> onPressed,
     required ColorScheme colorScheme,
-  }) {
-    assert(isNotEmpty && length <= 2);
-    return map(
-      (a) {
-        return PushButton(
-          buttonSize: ButtonSize.large,
-          isSecondary: a.isDestructiveAction || !a.isDefaultAction,
-          onPressed: () => onPressed(a.key),
-          child: Text(
-            a.label,
-            style: a.isDestructiveAction
-                ? const TextStyle(
-                    color: CupertinoColors.destructiveRed,
-                  )
-                : null,
-          ),
-        );
-      },
-    ).toList()
-      ..sort((a, b) => a.isSecondary == true ? 1 : -1);
-  }
+  }) =>
+      map(
+        (a) => a.convertToMacOSDialogAction(
+          onPressed: onPressed,
+        ),
+      ).intersperse(const SizedBox(height: 8)).toList().reversed.toList();
 
   List<Widget> convertToMaterialDialogActions({
     required ActionCallback<T> onPressed,

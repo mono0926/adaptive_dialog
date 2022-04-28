@@ -26,7 +26,6 @@ Future<T?> showAlertDialog<T>({
   WillPopCallback? onWillPop,
   AdaptiveDialogBuilder? builder,
   Widget? macOSApplicationIcon,
-  bool enableMacOSStyle = false,
 }) {
   void pop(T? key) => Navigator.of(
         context,
@@ -57,37 +56,6 @@ Future<T?> showAlertDialog<T>({
     // ignore: deprecated_member_use_from_same_package
     case AdaptiveStyle.cupertino:
     case AdaptiveStyle.iOS:
-    case AdaptiveStyle.macOS:
-      if (effectiveStyle == AdaptiveStyle.macOS &&
-          enableMacOSStyle &&
-          actions.isNotEmpty &&
-          actions.length <= 2) {
-        final buttons = actions.convertToMacOSDialogActions(
-          onPressed: pop,
-          colorScheme: colorScheme,
-        );
-        return showMacosAlertDialog(
-          context: context,
-          useRootNavigator: useRootNavigator,
-          builder: (context) {
-            final Widget dialog = _MacThemeWrapper(
-              child: WillPopScope(
-                onWillPop: onWillPop,
-                child: MacosAlertDialog(
-                  title: titleText ?? const SizedBox.shrink(),
-                  message: messageText ?? const SizedBox.shrink(),
-                  primaryButton: buttons.first,
-                  secondaryButton: buttons.length == 2 ? buttons[1] : null,
-                  appIcon: macOSApplicationIcon ??
-                      AdaptiveDialog.instance.macOS.applicationIcon ??
-                      const Icon(Icons.info),
-                ),
-              ),
-            );
-            return builder == null ? dialog : builder(context, dialog);
-          },
-        );
-      }
       return showCupertinoDialog(
         context: context,
         useRootNavigator: useRootNavigator,
@@ -102,6 +70,34 @@ Future<T?> showAlertDialog<T>({
               ),
               // TODO(mono): Set actionsOverflowDirection if available
               // https://twitter.com/_mono/status/1261122914218160128
+            ),
+          );
+          return builder == null ? dialog : builder(context, dialog);
+        },
+      );
+    case AdaptiveStyle.macOS:
+      final buttons = actions.convertToMacOSDialogActions(
+        onPressed: pop,
+        colorScheme: colorScheme,
+      );
+      return showMacosAlertDialog(
+        context: context,
+        useRootNavigator: useRootNavigator,
+        builder: (context) {
+          final Widget dialog = _MacThemeWrapper(
+            child: WillPopScope(
+              onWillPop: onWillPop,
+              child: MacosAlertDialog(
+                title: titleText ?? const SizedBox.shrink(),
+                message: messageText ?? const SizedBox.shrink(),
+                primaryButton: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: buttons,
+                ),
+                appIcon: macOSApplicationIcon ??
+                    AdaptiveDialog.instance.macOS.applicationIcon ??
+                    const Icon(Icons.info),
+              ),
             ),
           );
           return builder == null ? dialog : builder(context, dialog);

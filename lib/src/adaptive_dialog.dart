@@ -25,10 +25,8 @@ class AdaptiveDialog {
 
 class AdaptiveDialogMacOSConfiguration {
   AdaptiveDialogMacOSConfiguration({
-    this.enabled = true,
     this.applicationIcon,
   });
 
-  final bool enabled;
   final Widget? applicationIcon;
 }
