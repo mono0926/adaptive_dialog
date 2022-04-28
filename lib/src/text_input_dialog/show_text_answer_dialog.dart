@@ -15,7 +15,7 @@ Future<bool> showTextAnswerDialog({
   String? retryMessage,
   String? retryOkLabel,
   String? retryCancelLabel,
-  AdaptiveStyle style = AdaptiveStyle.adaptive,
+  AdaptiveStyle? style,
   bool useRootNavigator = true,
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
   bool fullyCapitalizedForMaterial = true,
@@ -23,6 +23,7 @@ Future<bool> showTextAnswerDialog({
   bool isCaseSensitive = true,
   AdaptiveDialogBuilder? builder,
 }) async {
+  final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
   final texts = await showTextInputDialog(
     context: context,
     textFields: [
@@ -33,7 +34,7 @@ Future<bool> showTextAnswerDialog({
     okLabel: okLabel,
     cancelLabel: cancelLabel,
     isDestructiveAction: isDestructiveAction,
-    style: style,
+    style: adaptiveStyle,
     actionsOverflowDirection: actionsOverflowDirection,
     fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
     onWillPop: onWillPop,

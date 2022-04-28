@@ -23,7 +23,7 @@ Future<T?> showConfirmationDialog<T>({
   List<AlertDialogAction<T>> actions = const [],
   T? initialSelectedActionKey,
   bool barrierDismissible = true,
-  AdaptiveStyle style = AdaptiveStyle.adaptive,
+  AdaptiveStyle? style,
   bool useRootNavigator = true,
   bool shrinkWrap = true,
   bool fullyCapitalizedForMaterial = true,
@@ -35,7 +35,8 @@ Future<T?> showConfirmationDialog<T>({
         rootNavigator: useRootNavigator,
       ).pop(key);
   final theme = Theme.of(context);
-  return style.isCupertinoStyle(theme)
+  final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
+  return adaptiveStyle.isCupertinoStyle(theme)
       ? showModalActionSheet(
           context: context,
           title: title,

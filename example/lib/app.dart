@@ -13,13 +13,10 @@ class App extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
-    final platform = ref.watch(
-      adaptiveStyleProvider.select((s) => s.platform),
-    );
     return MaterialApp.router(
       title: title,
-      theme: lightTheme().copyWith(platform: platform),
-      darkTheme: darkTheme().copyWith(platform: platform),
+      theme: lightTheme(),
+      darkTheme: darkTheme(),
       routeInformationParser: router.routeInformationParser,
       routerDelegate: router.routerDelegate,
       localizationsDelegates: const [

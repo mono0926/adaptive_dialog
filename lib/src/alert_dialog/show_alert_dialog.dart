@@ -16,7 +16,7 @@ Future<T?> showAlertDialog<T>({
   String? message,
   List<AlertDialogAction<T>> actions = const [],
   bool barrierDismissible = true,
-  AdaptiveStyle style = AdaptiveStyle.adaptive,
+  AdaptiveStyle? style,
   @Deprecated('Use `useActionSheetForIOS` instead. Will be removed in v2.')
       bool useActionSheetForCupertino = false,
   bool useActionSheetForIOS = false,
@@ -34,7 +34,8 @@ Future<T?> showAlertDialog<T>({
       ).pop(key);
   final theme = Theme.of(context);
   final colorScheme = theme.colorScheme;
-  final isIOSStyle = style.effectiveStyle(theme) == AdaptiveStyle.iOS;
+  final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
+  final isIOSStyle = adaptiveStyle.effectiveStyle(theme) == AdaptiveStyle.iOS;
   if (isIOSStyle && useActionSheetForCupertino || useActionSheetForIOS) {
     return showModalActionSheet(
       context: context,
@@ -50,7 +51,8 @@ Future<T?> showAlertDialog<T>({
   }
   final titleText = title == null ? null : Text(title);
   final messageText = message == null ? null : Text(message);
-  final effectiveStyle = style.effectiveStyle(theme);
+
+  final effectiveStyle = adaptiveStyle.effectiveStyle(theme);
   switch (effectiveStyle) {
     // ignore: deprecated_member_use_from_same_package
     case AdaptiveStyle.cupertino:

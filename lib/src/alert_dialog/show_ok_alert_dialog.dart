@@ -14,7 +14,7 @@ Future<OkCancelResult> showOkAlertDialog({
   String? okLabel,
   bool barrierDismissible = true,
   @Deprecated('Use `style` instead.') AdaptiveStyle? alertStyle,
-  AdaptiveStyle style = AdaptiveStyle.adaptive,
+  AdaptiveStyle? style,
   @Deprecated('Use `ios` instead. Will be removed in v2.')
       bool useActionSheetForCupertino = false,
   bool useActionSheetForIOS = false,
@@ -25,7 +25,8 @@ Future<OkCancelResult> showOkAlertDialog({
   AdaptiveDialogBuilder? builder,
 }) async {
   final theme = Theme.of(context);
-  final isMacOS = style.effectiveStyle(theme) == AdaptiveStyle.macOS;
+  final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
+  final isMacOS = adaptiveStyle.effectiveStyle(theme) == AdaptiveStyle.macOS;
   final result = await showAlertDialog<OkCancelResult>(
     context: context,
     title: title,

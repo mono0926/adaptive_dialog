@@ -21,7 +21,7 @@ Future<OkCancelResult> showOkCancelAlertDialog({
   bool isDestructiveAction = false,
   bool barrierDismissible = true,
   @Deprecated('Use `style` instead.') AdaptiveStyle? alertStyle,
-  AdaptiveStyle style = AdaptiveStyle.adaptive,
+  AdaptiveStyle? style,
   @Deprecated('Use `ios` instead. Will be removed in v2.')
       bool useActionSheetForCupertino = false,
   bool useActionSheetForIOS = false,
@@ -32,8 +32,9 @@ Future<OkCancelResult> showOkCancelAlertDialog({
   AdaptiveDialogBuilder? builder,
 }) async {
   final theme = Theme.of(context);
-  final isMaterial = style.isMaterial(theme);
-  final isMacOS = style.effectiveStyle(theme) == AdaptiveStyle.macOS;
+  final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
+  final isMaterial = adaptiveStyle.isMaterial(theme);
+  final isMacOS = adaptiveStyle.effectiveStyle(theme) == AdaptiveStyle.macOS;
   String defaultCancelLabel() {
     final label = MaterialLocalizations.of(context).cancelButtonLabel;
     return isMaterial ? label : label.capitalizedForce;

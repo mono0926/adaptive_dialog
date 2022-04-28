@@ -17,7 +17,7 @@ Future<T?> showModalActionSheet<T>({
   String? message,
   List<SheetAction<T>> actions = const [],
   String? cancelLabel,
-  AdaptiveStyle style = AdaptiveStyle.adaptive,
+  AdaptiveStyle? style,
   bool isDismissible = true,
   bool useRootNavigator = true,
   MaterialModalActionSheetConfiguration? materialConfiguration,
@@ -29,7 +29,8 @@ Future<T?> showModalActionSheet<T>({
         rootNavigator: useRootNavigator,
       ).pop(key);
   final theme = Theme.of(context);
-  return style.isCupertinoStyle(theme)
+  final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
+  return adaptiveStyle.isCupertinoStyle(theme)
       ? showCupertinoModalPopup(
           context: context,
           useRootNavigator: useRootNavigator,

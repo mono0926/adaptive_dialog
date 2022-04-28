@@ -43,4 +43,20 @@ extension AdaptiveStyleEx on AdaptiveStyle {
         }
     }
   }
+
+  String get label {
+    switch (this) {
+      case AdaptiveStyle.adaptive:
+        return 'Adaptive';
+      // ignore: deprecated_member_use_from_same_package
+      case AdaptiveStyle.cupertino:
+        return 'Cupertino';
+      case AdaptiveStyle.iOS:
+        return 'iOS';
+      case AdaptiveStyle.macOS:
+        return 'macOS';
+      case AdaptiveStyle.material:
+        return 'Material';
+    }
+  }
 }
