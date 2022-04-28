@@ -215,6 +215,7 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
                             PushButton(
                               buttonSize: ButtonSize.large,
                               onPressed: submitIfValid,
+                              isSecondary: widget.isDestructiveAction,
                               child: Text(
                                 widget.okLabel ??
                                     MaterialLocalizations.of(context)
