@@ -143,6 +143,7 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
                   keyboardType: field.keyboardType,
                   minLines: field.minLines,
                   maxLines: field.maxLines,
+                  autocorrect: field.autocorrect,
                   prefix: prefixText == null ? null : Text(prefixText),
                   suffix: suffixText == null ? null : Text(suffixText),
                   decoration: _borderDecoration(
