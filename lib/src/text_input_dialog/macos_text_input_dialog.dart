@@ -140,7 +140,7 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 8),
                             child: Text(
-                              title * 2,
+                              title,
                               style: theme.textTheme.titleMedium!.copyWith(
                                 fontWeight: FontWeight.bold,
                               ),
@@ -149,7 +149,7 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
                         if (message != null)
                           Padding(
                             padding: const EdgeInsets.only(bottom: 8),
-                            child: Text(message * 10),
+                            child: Text(message),
                           ),
                         const SizedBox(height: 8),
                         ..._textControllers.mapIndexed<Widget>(
