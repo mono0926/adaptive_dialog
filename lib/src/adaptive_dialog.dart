@@ -1,6 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter/material.dart';
 
+/// Manage common adaptive_dialog settings, etc.
 class AdaptiveDialog {
   AdaptiveDialog._();
   static AdaptiveDialog? _instance;
@@ -13,6 +14,7 @@ class AdaptiveDialog {
   AdaptiveStyle get defaultStyle => _defaultStyle;
   AdaptiveDialogMacOSConfiguration get macOS => _macOs;
 
+  /// Update default configuration
   // ignore: use_setters_to_change_properties
   void updateConfiguration({
     AdaptiveStyle? defaultStyle,
@@ -23,10 +25,12 @@ class AdaptiveDialog {
   }
 }
 
+/// Manage common macOS settings
 class AdaptiveDialogMacOSConfiguration {
   AdaptiveDialogMacOSConfiguration({
     this.applicationIcon,
   });
 
+  /// Used for macOS style dialog
   final Widget? applicationIcon;
 }
