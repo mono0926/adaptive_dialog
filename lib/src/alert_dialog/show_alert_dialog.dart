@@ -25,7 +25,7 @@ Future<T?> showAlertDialog<T>({
   bool fullyCapitalizedForMaterial = true,
   WillPopCallback? onWillPop,
   AdaptiveDialogBuilder? builder,
-  Widget? applicationIcon,
+  Widget? macOSApplicationIcon,
   bool useMacOSStyle = false,
 }) {
   void pop(T? key) => Navigator.of(
@@ -76,7 +76,10 @@ Future<T?> showAlertDialog<T>({
                   message: messageText ?? const SizedBox.shrink(),
                   primaryButton: buttons.first,
                   secondaryButton: buttons.length == 2 ? buttons[1] : null,
-                  appIcon: applicationIcon ?? const Icon(Icons.info),
+                  appIcon: macOSApplicationIcon ??
+                      AdaptiveDialog
+                          .instance.macOSConfiguration.applicationIcon ??
+                      const Icon(Icons.info),
                 ),
               ),
             );
