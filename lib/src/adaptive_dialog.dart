@@ -9,10 +9,10 @@ class AdaptiveDialog {
   static AdaptiveDialog get instance => _instance ??= AdaptiveDialog._();
 
   var _defaultStyle = AdaptiveStyle.adaptive;
-  var _macOs = AdaptiveDialogMacOSConfiguration();
+  var _macOS = AdaptiveDialogMacOSConfiguration();
 
   AdaptiveStyle get defaultStyle => _defaultStyle;
-  AdaptiveDialogMacOSConfiguration get macOS => _macOs;
+  AdaptiveDialogMacOSConfiguration get macOS => _macOS;
 
   /// Update default configuration
   // ignore: use_setters_to_change_properties
@@ -21,7 +21,7 @@ class AdaptiveDialog {
     AdaptiveDialogMacOSConfiguration? macOS,
   }) {
     _defaultStyle = defaultStyle ?? _defaultStyle;
-    _macOs = macOS ?? _macOs;
+    _macOS = macOS ?? _macOS;
   }
 }
 
