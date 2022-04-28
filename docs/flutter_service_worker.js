@@ -4,9 +4,10 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "ff966ab969ba381b900e61629bfb9789",
-"index.html": "8e85ae8f2d33107895dce79d22388653",
-"/": "8e85ae8f2d33107895dce79d22388653",
-"main.dart.js": "d6783a0e73dfd4cbb736ffd56504e708",
+"index.html": "4ee3662a42b289e5367dc705396496a6",
+"/": "4ee3662a42b289e5367dc705396496a6",
+"main.dart.js": "7df2b8d49418abc20962a399dfabfaae",
+"flutter.js": "0816e65a103ba8ba51b174eeeeb2cb67",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
@@ -17,7 +18,11 @@ const RESOURCES = {
 "assets/NOTICES": "6d47424a9d1809dad4d21442d42d7c62",
 "assets/FontManifest.json": "7b2a36307916a9721811788013e65289",
 "assets/fonts/MaterialIcons-Regular.otf": "95db9098c58fd6db106f1116bae85a0b",
-"assets/assets/images/love.png": "3091c01fc119a68bd7f1d20f9e1e92d8"
+"assets/assets/images/love.png": "3091c01fc119a68bd7f1d20f9e1e92d8",
+"canvaskit/canvaskit.js": "c2b4e5f3d7a3d82aed024e7249a78487",
+"canvaskit/profiling/canvaskit.js": "ae2949af4efc61d28a4a80fffa1db900",
+"canvaskit/profiling/canvaskit.wasm": "95e736ab31147d1b2c7b25f11d4c32cd",
+"canvaskit/canvaskit.wasm": "4b83d89d9fecbea8ca46f2f760c5a9ba"
 };
 
 // The application shell files that are downloaded before a service worker can
