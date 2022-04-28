@@ -11,6 +11,7 @@ dependencies:
     sdk: flutter
   flutter_riverpod:
   go_router:
+  macos_ui:
   mono_kit:
   recase:
   simple_logger:

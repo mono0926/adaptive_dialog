@@ -15,29 +15,35 @@ Future<OkCancelResult> showOkAlertDialog({
   bool barrierDismissible = true,
   @Deprecated('Use `style` instead.') AdaptiveStyle? alertStyle,
   AdaptiveStyle style = AdaptiveStyle.adaptive,
-  bool useActionSheetForCupertino = false,
+  @Deprecated('Use `ios` instead. Will be removed in v2.')
+      bool useActionSheetForCupertino = false,
+  bool useActionSheetForIOS = false,
   bool useRootNavigator = true,
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
   bool fullyCapitalizedForMaterial = true,
   WillPopCallback? onWillPop,
   AdaptiveDialogBuilder? builder,
 }) async {
+  final theme = Theme.of(context);
+  final isMacOS = style.effectiveStyle(theme) == AdaptiveStyle.macOS;
   final result = await showAlertDialog<OkCancelResult>(
     context: context,
     title: title,
     message: message,
     barrierDismissible: barrierDismissible,
     style: alertStyle ?? style,
-    useActionSheetForCupertino: useActionSheetForCupertino,
+    useActionSheetForIOS: useActionSheetForCupertino || useActionSheetForIOS,
     useRootNavigator: useRootNavigator,
     actionsOverflowDirection: actionsOverflowDirection,
     fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
     onWillPop: onWillPop,
     builder: builder,
+    useMacOSStyle: true,
     actions: [
       AlertDialogAction(
         label: okLabel ?? MaterialLocalizations.of(context).okButtonLabel,
         key: OkCancelResult.ok,
+        isDefaultAction: isMacOS,
       )
     ],
   );

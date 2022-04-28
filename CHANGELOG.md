@@ -1,3 +1,7 @@
+## 1.6.0
+
+- Support for macOS dialogs
+
 ## 1.5.1
 
 - Add `autocorrect` to `DialogTextField` (#63)

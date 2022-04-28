@@ -1,7 +1,9 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:example/pages/home_page.dart';
 import 'package:example/router/router.dart';
 import 'package:example/util/util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class TextInputDialogRoute extends GoRouteData {
@@ -10,11 +12,11 @@ class TextInputDialogRoute extends GoRouteData {
   Widget build(BuildContext context) => const TextInputDialogPage();
 }
 
-class TextInputDialogPage extends StatelessWidget {
+class TextInputDialogPage extends ConsumerWidget {
   const TextInputDialogPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
@@ -163,9 +165,12 @@ class TextInputDialogPage extends StatelessWidget {
                 hintText: 'Start with "F"',
                 retryTitle: 'Incorrect',
                 retryMessage: 'Retry?',
-                retryOkLabel: AdaptiveStyle.adaptive.isCupertinoStyle(theme)
-                    ? 'Retry'
-                    : 'RETRY',
+                retryOkLabel: ref
+                        .watch(adaptiveStyleProvider)
+                        .effectiveStyle(theme)
+                        .isMaterial(theme)
+                    ? 'RETRY'
+                    : 'Retry',
               );
               logger.info('ok: $ok');
               if (!ok) {

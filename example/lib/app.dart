@@ -14,7 +14,7 @@ class App extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
     final platform = ref.watch(
-      adaptiveStyleNotifier.select((s) => s.platform),
+      adaptiveStyleProvider.select((s) => s.platform),
     );
     return MaterialApp.router(
       title: title,

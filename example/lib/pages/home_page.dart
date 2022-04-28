@@ -62,7 +62,7 @@ class _StyleDropdownButton extends ConsumerWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 4),
         child: DropdownButton<AdaptiveStyle>(
-          value: ref.watch(adaptiveStyleNotifier),
+          value: ref.watch(adaptiveStyleProvider),
           items: AdaptiveStyle.values
               .map(
                 (style) => DropdownMenuItem(
@@ -74,22 +74,26 @@ class _StyleDropdownButton extends ConsumerWidget {
               )
               .toList(),
           onChanged: (style) =>
-              ref.read(adaptiveStyleNotifier.notifier).update((_) => style!),
+              ref.read(adaptiveStyleProvider.notifier).update((_) => style!),
         ),
       ),
     );
   }
 }
 
-final adaptiveStyleNotifier = StateProvider((ref) => AdaptiveStyle.adaptive);
+final adaptiveStyleProvider = StateProvider((ref) => AdaptiveStyle.adaptive);
 
 extension AdaptiveStyleX on AdaptiveStyle {
   TargetPlatform? get platform {
     switch (this) {
       case AdaptiveStyle.material:
         return TargetPlatform.android;
+      // ignore: deprecated_member_use
       case AdaptiveStyle.cupertino:
+      case AdaptiveStyle.iOS:
         return TargetPlatform.iOS;
+      case AdaptiveStyle.macOS:
+        return TargetPlatform.macOS;
       case AdaptiveStyle.adaptive:
         return null;
     }
