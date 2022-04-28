@@ -158,6 +158,7 @@ class TextInputDialogPage extends ConsumerWidget {
             onTap: () async {
               final ok = await showTextAnswerDialog(
                 context: context,
+                autoSubmit: true,
                 keyword: 'Flutter',
                 title: 'What\'s the best mobile application framework?',
                 message: 'Input answer and press OK',

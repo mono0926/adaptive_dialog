@@ -20,6 +20,7 @@ Future<bool> showTextAnswerDialog({
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
   bool fullyCapitalizedForMaterial = true,
   WillPopCallback? onWillPop,
+  bool autoSubmit = false,
   bool isCaseSensitive = true,
   AdaptiveDialogBuilder? builder,
 }) async {
@@ -38,6 +39,7 @@ Future<bool> showTextAnswerDialog({
     actionsOverflowDirection: actionsOverflowDirection,
     fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
     onWillPop: onWillPop,
+    autoSubmit: autoSubmit,
     builder: builder,
   );
   final text = texts == null ? null : texts[0];
@@ -83,6 +85,7 @@ Future<bool> showTextAnswerDialog({
           actionsOverflowDirection: actionsOverflowDirection,
           fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
           onWillPop: onWillPop,
+          autoSubmit: autoSubmit,
           builder: builder,
         )
       : Future.value(false);
