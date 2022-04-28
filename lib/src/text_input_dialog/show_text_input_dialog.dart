@@ -25,50 +25,60 @@ Future<List<String>?> showTextInputDialog({
 }) {
   final theme = Theme.of(context);
   final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
-  return adaptiveStyle.isMaterial(theme)
-      ? showModal(
-          context: context,
-          useRootNavigator: useRootNavigator,
-          configuration: FadeScaleTransitionConfiguration(
-            barrierDismissible: barrierDismissible,
-          ),
-          builder: (context) {
-            final dialog = MaterialTextInputDialog(
-              textFields: textFields,
-              title: title,
-              message: message,
-              okLabel: okLabel,
-              cancelLabel: cancelLabel,
-              isDestructiveAction: isDestructiveAction,
-              style: style,
-              actionsOverflowDirection: actionsOverflowDirection,
-              useRootNavigator: useRootNavigator,
-              fullyCapitalized: fullyCapitalizedForMaterial,
-              onWillPop: onWillPop,
-              autoSubmit: autoSubmit,
-            );
-            return builder == null ? dialog : builder(context, dialog);
-          },
-        )
-      : showCupertinoDialog(
-          context: context,
-          useRootNavigator: useRootNavigator,
-          builder: (context) {
-            final dialog = CupertinoTextInputDialog(
-              textFields: textFields,
-              title: title,
-              message: message,
-              okLabel: okLabel,
-              cancelLabel: cancelLabel,
-              isDestructiveAction: isDestructiveAction,
-              style: style,
-              useRootNavigator: useRootNavigator,
-              onWillPop: onWillPop,
-              autoSubmit: autoSubmit,
-            );
-            return builder == null ? dialog : builder(context, dialog);
-          },
-        );
+  final effectiveStyle = adaptiveStyle.effectiveStyle(theme);
+  switch (effectiveStyle) {
+    // ignore: deprecated_member_use_from_same_package
+    case AdaptiveStyle.cupertino:
+    case AdaptiveStyle.iOS:
+    case AdaptiveStyle.macOS:
+      return showCupertinoDialog(
+        context: context,
+        useRootNavigator: useRootNavigator,
+        builder: (context) {
+          final dialog = CupertinoTextInputDialog(
+            textFields: textFields,
+            title: title,
+            message: message,
+            okLabel: okLabel,
+            cancelLabel: cancelLabel,
+            isDestructiveAction: isDestructiveAction,
+            style: adaptiveStyle,
+            useRootNavigator: useRootNavigator,
+            onWillPop: onWillPop,
+            autoSubmit: autoSubmit,
+          );
+          return builder == null ? dialog : builder(context, dialog);
+        },
+      );
+    case AdaptiveStyle.material:
+      return showModal(
+        context: context,
+        useRootNavigator: useRootNavigator,
+        configuration: FadeScaleTransitionConfiguration(
+          barrierDismissible: barrierDismissible,
+        ),
+        builder: (context) {
+          final dialog = MaterialTextInputDialog(
+            textFields: textFields,
+            title: title,
+            message: message,
+            okLabel: okLabel,
+            cancelLabel: cancelLabel,
+            isDestructiveAction: isDestructiveAction,
+            style: adaptiveStyle,
+            actionsOverflowDirection: actionsOverflowDirection,
+            useRootNavigator: useRootNavigator,
+            fullyCapitalized: fullyCapitalizedForMaterial,
+            onWillPop: onWillPop,
+            autoSubmit: autoSubmit,
+          );
+          return builder == null ? dialog : builder(context, dialog);
+        },
+      );
+    case AdaptiveStyle.adaptive:
+      assert(false);
+      return Future.value(null);
+  }
 }
 
 // TODO(mono): Add more options
