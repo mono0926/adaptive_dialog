@@ -1,5 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_dialog/src/extensions/extensions.dart';
+import 'package:adaptive_dialog/src/helper/macos_draggable_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -83,182 +84,124 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
     final title = widget.title;
     final message = widget.message;
     void cancel() => navigator.pop();
-    final brightness = theme.brightness;
-
-    final color = brightness.resolve(
-      CupertinoColors.extraLightBackgroundGray,
-      CupertinoColors.darkBackgroundGray,
-    );
-    final innerBorderColor = brightness.resolve(
-      Colors.white.withOpacity(0.45),
-      Colors.white.withOpacity(0.15),
-    );
-    final borderRadius = BorderRadius.circular(12);
     final icon = AdaptiveDialog.instance.macOS.applicationIcon;
-    return Dialog(
-      clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(
-        borderRadius: borderRadius,
-      ),
-      backgroundColor: color,
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-            width: 2,
-            color: innerBorderColor,
-          ),
-          borderRadius: borderRadius,
-        ),
-        foregroundDecoration: BoxDecoration(
-          border: Border.all(
-            color: brightness.resolve(
-              Colors.black.withOpacity(0.23),
-              Colors.black.withOpacity(0.76),
-            ),
-          ),
-          borderRadius: borderRadius,
-        ),
-        child: SizedBox(
-          width: 500,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                height: 28,
-                decoration: BoxDecoration(
-                  color: Color.lerp(color, Colors.white, 0.12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      blurRadius: 1,
-                    ),
-                  ],
-                ),
-              ),
+    return MacosDraggableDialog(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (icon != null)
               Padding(
-                padding: const EdgeInsets.all(20),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (icon != null)
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 8,
-                          right: 20,
-                        ),
-                        child: SizedBox(
-                          width: 52,
-                          height: 52,
-                          child: icon,
-                        ),
-                      ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          if (title != null)
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              child: Text(
-                                title,
-                                style: theme.textTheme.titleMedium!.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          if (message != null)
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              child: Text(message),
-                            ),
-                          const SizedBox(height: 8),
-                          ..._textControllers.mapIndexed<Widget>(
-                            (i, c) {
-                              final isLast = widget.textFields.length == i + 1;
-                              final field = widget.textFields[i];
-                              final prefixText = field.prefixText;
-                              final suffixText = field.suffixText;
-                              return Center(
-                                child: FractionallySizedBox(
-                                  widthFactor: 0.7,
-                                  child: MacosTextField(
-                                    controller: c,
-                                    autofocus: i == 0,
-                                    placeholder: field.hintText,
-                                    obscureText: field.obscureText,
-                                    keyboardType: field.keyboardType,
-                                    minLines: field.minLines,
-                                    maxLines: field.maxLines,
-                                    autocorrect: field.autocorrect,
-                                    prefix: prefixText == null
-                                        ? null
-                                        : Text(prefixText),
-                                    suffix: suffixText == null
-                                        ? null
-                                        : Text(suffixText),
-                                    textInputAction:
-                                        isLast ? null : TextInputAction.next,
-                                    onSubmitted: isLast && widget.autoSubmit
-                                        ? (_) => submitIfValid()
-                                        : null,
-                                  ),
-                                ),
-                              );
-                            },
-                          ).intersperse(const SizedBox(height: 4)),
-                          if (validationMessage != null)
-                            Padding(
-                              padding: const EdgeInsets.only(top: 18),
-                              child: Text(
-                                validationMessage,
-                                style: const TextStyle(
-                                  color: CupertinoColors.destructiveRed,
-                                ),
-                              ),
-                            ),
-                          const SizedBox(height: 12),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              PushButton(
-                                buttonSize: ButtonSize.large,
-                                isSecondary: true,
-                                onPressed: cancel,
-                                child: Text(
-                                  widget.cancelLabel ??
-                                      MaterialLocalizations.of(context)
-                                          .cancelButtonLabel
-                                          .capitalizedForce,
-                                ),
-                              ),
-                              const SizedBox(width: 14),
-                              PushButton(
-                                buttonSize: ButtonSize.large,
-                                onPressed: submitIfValid,
-                                isSecondary: widget.isDestructiveAction,
-                                child: Text(
-                                  widget.okLabel ??
-                                      MaterialLocalizations.of(context)
-                                          .okButtonLabel,
-                                  style: TextStyle(
-                                    color: widget.isDestructiveAction
-                                        ? CupertinoColors.systemRed
-                                            .resolveFrom(context)
-                                        : null,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    )
-                  ],
+                padding: const EdgeInsets.only(
+                  top: 8,
+                  right: 20,
+                ),
+                child: SizedBox(
+                  width: 52,
+                  height: 52,
+                  child: icon,
                 ),
               ),
-            ],
-          ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (title != null)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: Text(
+                        title,
+                        style: theme.textTheme.titleMedium!.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  if (message != null)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: Text(message),
+                    ),
+                  const SizedBox(height: 8),
+                  ..._textControllers.mapIndexed<Widget>(
+                    (i, c) {
+                      final isLast = widget.textFields.length == i + 1;
+                      final field = widget.textFields[i];
+                      final prefixText = field.prefixText;
+                      final suffixText = field.suffixText;
+                      return Center(
+                        child: FractionallySizedBox(
+                          widthFactor: 0.7,
+                          child: MacosTextField(
+                            controller: c,
+                            autofocus: i == 0,
+                            placeholder: field.hintText,
+                            obscureText: field.obscureText,
+                            keyboardType: field.keyboardType,
+                            minLines: field.minLines,
+                            maxLines: field.maxLines,
+                            autocorrect: field.autocorrect,
+                            prefix:
+                                prefixText == null ? null : Text(prefixText),
+                            suffix:
+                                suffixText == null ? null : Text(suffixText),
+                            textInputAction:
+                                isLast ? null : TextInputAction.next,
+                            onSubmitted: isLast && widget.autoSubmit
+                                ? (_) => submitIfValid()
+                                : null,
+                          ),
+                        ),
+                      );
+                    },
+                  ).intersperse(const SizedBox(height: 4)),
+                  if (validationMessage != null)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 18),
+                      child: Text(
+                        validationMessage,
+                        style: const TextStyle(
+                          color: CupertinoColors.destructiveRed,
+                        ),
+                      ),
+                    ),
+                  const SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      PushButton(
+                        buttonSize: ButtonSize.large,
+                        isSecondary: true,
+                        onPressed: cancel,
+                        child: Text(
+                          widget.cancelLabel ??
+                              MaterialLocalizations.of(context)
+                                  .cancelButtonLabel
+                                  .capitalizedForce,
+                        ),
+                      ),
+                      const SizedBox(width: 14),
+                      PushButton(
+                        buttonSize: ButtonSize.large,
+                        onPressed: submitIfValid,
+                        isSecondary: widget.isDestructiveAction,
+                        child: Text(
+                          widget.okLabel ??
+                              MaterialLocalizations.of(context).okButtonLabel,
+                          style: TextStyle(
+                            color: widget.isDestructiveAction
+                                ? CupertinoColors.systemRed.resolveFrom(context)
+                                : null,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );
