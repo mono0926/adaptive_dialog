@@ -4,8 +4,8 @@ import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CupertinoTextInputDialog extends StatefulWidget {
-  const CupertinoTextInputDialog({
+class IOSTextInputDialog extends StatefulWidget {
+  const IOSTextInputDialog({
     Key? key,
     required this.textFields,
     this.title,
@@ -19,8 +19,7 @@ class CupertinoTextInputDialog extends StatefulWidget {
     this.autoSubmit = false,
   }) : super(key: key);
   @override
-  _CupertinoTextInputDialogState createState() =>
-      _CupertinoTextInputDialogState();
+  _IOSTextInputDialogState createState() => _IOSTextInputDialogState();
 
   final List<DialogTextField> textFields;
   final String? title;
@@ -34,7 +33,7 @@ class CupertinoTextInputDialog extends StatefulWidget {
   final bool autoSubmit;
 }
 
-class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
+class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
   late final List<TextEditingController> _textControllers = widget.textFields
       .map((tf) => TextEditingController(text: tf.initialText))
       .toList();
@@ -80,15 +79,6 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
     }
 
     void cancel() => navigator.pop();
-    final titleText = title == null ? null : Text(title);
-    final okText = Text(
-      widget.okLabel ?? MaterialLocalizations.of(context).okButtonLabel,
-      style: TextStyle(
-        color: widget.isDestructiveAction
-            ? CupertinoColors.systemRed.resolveFrom(context)
-            : null,
-      ),
-    );
     BoxDecoration _borderDecoration({
       required bool isTopRounded,
       required bool isBottomRounded,
@@ -123,7 +113,7 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
     return WillPopScope(
       onWillPop: widget.onWillPop,
       child: CupertinoAlertDialog(
-        title: titleText,
+        title: title == null ? null : Text(title),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -188,7 +178,14 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
           ),
           CupertinoDialogAction(
             onPressed: submitIfValid,
-            child: okText,
+            child: Text(
+              widget.okLabel ?? MaterialLocalizations.of(context).okButtonLabel,
+              style: TextStyle(
+                color: widget.isDestructiveAction
+                    ? CupertinoColors.systemRed.resolveFrom(context)
+                    : null,
+              ),
+            ),
           ),
         ],
       ),
