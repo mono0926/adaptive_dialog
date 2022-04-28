@@ -36,19 +36,8 @@ Future<T?> showConfirmationDialog<T>({
       ).pop(key);
   final theme = Theme.of(context);
   final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
-  return adaptiveStyle.isCupertinoStyle(theme)
-      ? showModalActionSheet(
-          context: context,
-          title: title,
-          message: message,
-          cancelLabel: cancelLabel,
-          actions: actions.convertToSheetActions(),
-          style: style,
-          useRootNavigator: useRootNavigator,
-          onWillPop: onWillPop,
-          builder: builder,
-        )
-      : showModal(
+  return adaptiveStyle.isMaterial(theme)
+      ? showModal(
           context: context,
           useRootNavigator: useRootNavigator,
           configuration: FadeScaleTransitionConfiguration(
@@ -70,6 +59,17 @@ Future<T?> showConfirmationDialog<T>({
             );
             return builder == null ? dialog : builder(context, dialog);
           },
+        )
+      : showModalActionSheet(
+          context: context,
+          title: title,
+          message: message,
+          cancelLabel: cancelLabel,
+          actions: actions.convertToSheetActions(),
+          style: style,
+          useRootNavigator: useRootNavigator,
+          onWillPop: onWillPop,
+          builder: builder,
         );
 }
 

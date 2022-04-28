@@ -34,7 +34,6 @@ Future<OkCancelResult> showOkCancelAlertDialog({
   final theme = Theme.of(context);
   final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
   final isMaterial = adaptiveStyle.isMaterial(theme);
-  final isMacOS = adaptiveStyle.effectiveStyle(theme) == AdaptiveStyle.macOS;
   String defaultCancelLabel() {
     final label = MaterialLocalizations.of(context).cancelButtonLabel;
     return isMaterial ? label : label.capitalizedForce;

@@ -30,23 +30,8 @@ Future<T?> showModalActionSheet<T>({
       ).pop(key);
   final theme = Theme.of(context);
   final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
-  return adaptiveStyle.isCupertinoStyle(theme)
-      ? showCupertinoModalPopup(
-          context: context,
-          useRootNavigator: useRootNavigator,
-          builder: (context) {
-            final sheet = CupertinoModalActionSheet(
-              onPressed: pop,
-              title: title,
-              message: message,
-              actions: actions,
-              cancelLabel: cancelLabel,
-              onWillPop: onWillPop,
-            );
-            return builder == null ? sheet : builder(context, sheet);
-          },
-        )
-      : showModalBottomSheet(
+  return adaptiveStyle.isMaterial(theme)
+      ? showModalBottomSheet(
           context: context,
           isScrollControlled: materialConfiguration != null,
           isDismissible: isDismissible,
@@ -58,6 +43,21 @@ Future<T?> showModalActionSheet<T>({
               message: message,
               actions: actions,
               materialConfiguration: materialConfiguration,
+              onWillPop: onWillPop,
+            );
+            return builder == null ? sheet : builder(context, sheet);
+          },
+        )
+      : showCupertinoModalPopup(
+          context: context,
+          useRootNavigator: useRootNavigator,
+          builder: (context) {
+            final sheet = CupertinoModalActionSheet(
+              onPressed: pop,
+              title: title,
+              message: message,
+              actions: actions,
+              cancelLabel: cancelLabel,
               onWillPop: onWillPop,
             );
             return builder == null ? sheet : builder(context, sheet);
