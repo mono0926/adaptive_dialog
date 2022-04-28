@@ -12,13 +12,22 @@ void main() {
     macOS: AdaptiveDialogMacOSConfiguration(
       applicationIcon: ClipRRect(
         borderRadius: BorderRadius.circular(16),
-        child: Image.asset('assets/images/love.png'),
+        child: _applicationIconImage,
       ),
     ),
   );
   runApp(
-    const ProviderScope(
-      child: App(),
+    Builder(
+      builder: (context) {
+        precacheImage(_applicationIconImage.image, context);
+        return const ProviderScope(
+          child: App(),
+        );
+      },
     ),
   );
 }
+
+final _applicationIconImage = Image.asset(
+  'assets/images/love.png',
+);
