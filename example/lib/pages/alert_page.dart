@@ -165,7 +165,7 @@ class AlertPage extends StatelessWidget {
                 message: 'This is message.',
                 isDestructiveAction: true,
                 cancelLabel: 'No!',
-                useActionSheetForCupertino: true,
+                useActionSheetForIOS: true,
               );
               logger.info(result);
             },

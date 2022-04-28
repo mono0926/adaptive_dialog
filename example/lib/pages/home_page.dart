@@ -4,7 +4,6 @@ import 'package:example/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:recase/recase.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
@@ -62,36 +61,34 @@ class _StyleDropdownButton extends ConsumerWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 4),
         child: DropdownButton<AdaptiveStyle>(
-          value: ref.watch(adaptiveStyleNotifier),
+          value: ref.watch(adaptiveStyleProvider),
           items: AdaptiveStyle.values
+              // ignore: deprecated_member_use
+              .where((style) => style != AdaptiveStyle.cupertino)
               .map(
                 (style) => DropdownMenuItem(
                   value: style,
-                  child: Text(
-                    style.name.pascalCase,
-                  ),
+                  child: Text(style.label),
                 ),
               )
               .toList(),
           onChanged: (style) =>
-              ref.read(adaptiveStyleNotifier.notifier).update((_) => style!),
+              ref.read(adaptiveStyleProvider.notifier).update(style!),
         ),
       ),
     );
   }
 }
 
-final adaptiveStyleNotifier = StateProvider((ref) => AdaptiveStyle.adaptive);
+final adaptiveStyleProvider =
+    StateNotifierProvider<AdaptiveStyleNotifier, AdaptiveStyle>(
+  (ref) => AdaptiveStyleNotifier(),
+);
 
-extension AdaptiveStyleX on AdaptiveStyle {
-  TargetPlatform? get platform {
-    switch (this) {
-      case AdaptiveStyle.material:
-        return TargetPlatform.android;
-      case AdaptiveStyle.cupertino:
-        return TargetPlatform.iOS;
-      case AdaptiveStyle.adaptive:
-        return null;
-    }
+class AdaptiveStyleNotifier extends StateNotifier<AdaptiveStyle> {
+  AdaptiveStyleNotifier() : super(AdaptiveStyle.adaptive);
+  void update(AdaptiveStyle style) {
+    AdaptiveDialog.instance.updateConfiguration(defaultStyle: style);
+    state = style;
   }
 }

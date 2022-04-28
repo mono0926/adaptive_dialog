@@ -1,3 +1,8 @@
+## 1.6.0
+
+- Support for macOS dialogs
+- Add `AdaptiveDialog.instance.updateConfiguration`, a method used for changing default configuration
+
 ## 1.5.1
 
 - Add `autocorrect` to `DialogTextField` (#63)

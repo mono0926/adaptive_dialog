@@ -24,27 +24,8 @@ Future<List<String>?> showTextInputDialog({
   AdaptiveDialogBuilder? builder,
 }) {
   final theme = Theme.of(context);
-  return style.isCupertinoStyle(theme)
-      ? showCupertinoDialog(
-          context: context,
-          useRootNavigator: useRootNavigator,
-          builder: (context) {
-            final dialog = CupertinoTextInputDialog(
-              textFields: textFields,
-              title: title,
-              message: message,
-              okLabel: okLabel,
-              cancelLabel: cancelLabel,
-              isDestructiveAction: isDestructiveAction,
-              style: style,
-              useRootNavigator: useRootNavigator,
-              onWillPop: onWillPop,
-              autoSubmit: autoSubmit,
-            );
-            return builder == null ? dialog : builder(context, dialog);
-          },
-        )
-      : showModal(
+  return style.isMaterial(theme)
+      ? showModal(
           context: context,
           useRootNavigator: useRootNavigator,
           configuration: FadeScaleTransitionConfiguration(
@@ -62,6 +43,25 @@ Future<List<String>?> showTextInputDialog({
               actionsOverflowDirection: actionsOverflowDirection,
               useRootNavigator: useRootNavigator,
               fullyCapitalized: fullyCapitalizedForMaterial,
+              onWillPop: onWillPop,
+              autoSubmit: autoSubmit,
+            );
+            return builder == null ? dialog : builder(context, dialog);
+          },
+        )
+      : showCupertinoDialog(
+          context: context,
+          useRootNavigator: useRootNavigator,
+          builder: (context) {
+            final dialog = CupertinoTextInputDialog(
+              textFields: textFields,
+              title: title,
+              message: message,
+              okLabel: okLabel,
+              cancelLabel: cancelLabel,
+              isDestructiveAction: isDestructiveAction,
+              style: style,
+              useRootNavigator: useRootNavigator,
               onWillPop: onWillPop,
               autoSubmit: autoSubmit,
             );

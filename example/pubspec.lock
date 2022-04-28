@@ -14,7 +14,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.5.0+1"
+    version: "1.6.0"
   analyzer:
     dependency: transitive
     description:
@@ -364,6 +364,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.4"
+  intersperse:
+    dependency: transitive
+    description:
+      name: intersperse
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   intl:
     dependency: transitive
     description:
@@ -413,6 +420,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
+  macos_ui:
+    dependency: "direct main"
+    description:
+      name: macos_ui
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.13.1"
   matcher:
     dependency: transitive
     description:
