@@ -39,7 +39,7 @@ Future<OkCancelResult> showOkAlertDialog({
     fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
     onWillPop: onWillPop,
     builder: builder,
-    useMacOSStyle: true,
+    enableMacOSStyle: AdaptiveDialog.instance.macOS.enabled,
     actions: [
       AlertDialogAction(
         label: okLabel ?? MaterialLocalizations.of(context).okButtonLabel,

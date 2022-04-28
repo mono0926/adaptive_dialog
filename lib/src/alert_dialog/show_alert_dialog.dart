@@ -26,7 +26,7 @@ Future<T?> showAlertDialog<T>({
   WillPopCallback? onWillPop,
   AdaptiveDialogBuilder? builder,
   Widget? macOSApplicationIcon,
-  bool useMacOSStyle = false,
+  bool enableMacOSStyle = false,
 }) {
   void pop(T? key) => Navigator.of(
         context,
@@ -59,7 +59,7 @@ Future<T?> showAlertDialog<T>({
     case AdaptiveStyle.iOS:
     case AdaptiveStyle.macOS:
       if (effectiveStyle == AdaptiveStyle.macOS &&
-          useMacOSStyle &&
+          enableMacOSStyle &&
           actions.isNotEmpty &&
           actions.length <= 2) {
         final buttons = actions.convertToMacOSDialogActions(
@@ -79,8 +79,7 @@ Future<T?> showAlertDialog<T>({
                   primaryButton: buttons.first,
                   secondaryButton: buttons.length == 2 ? buttons[1] : null,
                   appIcon: macOSApplicationIcon ??
-                      AdaptiveDialog
-                          .instance.macOSConfiguration.applicationIcon ??
+                      AdaptiveDialog.instance.macOS.applicationIcon ??
                       const Icon(Icons.info),
                 ),
               ),

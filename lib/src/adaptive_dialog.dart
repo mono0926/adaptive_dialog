@@ -8,10 +8,10 @@ class AdaptiveDialog {
   static AdaptiveDialog get instance => _instance ??= AdaptiveDialog._();
 
   var _defaultStyle = AdaptiveStyle.adaptive;
-  var _macOsConfiguration = AdaptiveDialogMacOSConfiguration();
-  AdaptiveDialogMacOSConfiguration get macOSConfiguration =>
-      _macOsConfiguration;
+  var _macOs = AdaptiveDialogMacOSConfiguration();
+
   AdaptiveStyle get defaultStyle => _defaultStyle;
+  AdaptiveDialogMacOSConfiguration get macOS => _macOs;
 
   // ignore: use_setters_to_change_properties
   void updateConfiguration({
@@ -19,14 +19,16 @@ class AdaptiveDialog {
     AdaptiveDialogMacOSConfiguration? macOS,
   }) {
     _defaultStyle = defaultStyle ?? _defaultStyle;
-    _macOsConfiguration = macOS ?? _macOsConfiguration;
+    _macOs = macOS ?? _macOs;
   }
 }
 
 class AdaptiveDialogMacOSConfiguration {
   AdaptiveDialogMacOSConfiguration({
+    this.enabled = true,
     this.applicationIcon,
   });
 
+  final bool enabled;
   final Widget? applicationIcon;
 }

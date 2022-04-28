@@ -51,7 +51,7 @@ Future<OkCancelResult> showOkCancelAlertDialog({
     fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
     onWillPop: onWillPop,
     builder: builder,
-    useMacOSStyle: true,
+    enableMacOSStyle: AdaptiveDialog.instance.macOS.enabled,
     actions: [
       AlertDialogAction(
         label: cancelLabel ?? defaultCancelLabel(),
