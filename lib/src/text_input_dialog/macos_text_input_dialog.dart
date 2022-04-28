@@ -3,6 +3,7 @@ import 'package:adaptive_dialog/src/extensions/extensions.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intersperse/intersperse.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 class MacOSTextInputDialog extends StatefulWidget {
@@ -65,7 +66,6 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
     final navigator = Navigator.of(
       context,
       rootNavigator: widget.useRootNavigator,
@@ -79,9 +79,16 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
       }
     }
 
+    final validationMessage = _validationMessage;
     final title = widget.title;
     final message = widget.message;
     void cancel() => navigator.pop();
+    final brightness = theme.brightness;
+
+    final color = brightness.resolve(
+      CupertinoColors.extraLightBackgroundGray,
+      CupertinoColors.darkBackgroundGray,
+    );
 
     final icon = AdaptiveDialog.instance.macOS.applicationIcon;
     return Dialog(
@@ -89,21 +96,20 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
+      backgroundColor: color,
       child: SizedBox(
         width: 500,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              // TODO(mono):
               height: 28,
               decoration: BoxDecoration(
-                color: colorScheme.surface,
+                color: Color.lerp(color, Colors.white, 0.12),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.2),
                     blurRadius: 1,
-                    // offset: Offset(4, 8), // Shadow position
                   ),
                 ],
               ),
@@ -146,7 +152,7 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
                             child: Text(message * 10),
                           ),
                         const SizedBox(height: 8),
-                        ..._textControllers.mapIndexed(
+                        ..._textControllers.mapIndexed<Widget>(
                           (i, c) {
                             final isLast = widget.textFields.length == i + 1;
                             final field = widget.textFields[i];
@@ -170,10 +176,6 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
                                   suffix: suffixText == null
                                       ? null
                                       : Text(suffixText),
-                                  // decoration: _borderDecoration(
-                                  //   isTopRounded: i == 0,
-                                  //   isBottomRounded: i == _textControllers.length - 1,
-                                  // ),
                                   textInputAction:
                                       isLast ? null : TextInputAction.next,
                                   onSubmitted: isLast && widget.autoSubmit
@@ -183,12 +185,21 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
                               ),
                             );
                           },
-                        ),
+                        ).intersperse(const SizedBox(height: 4)),
+                        if (validationMessage != null)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 18),
+                            child: Text(
+                              validationMessage,
+                              style: const TextStyle(
+                                color: CupertinoColors.destructiveRed,
+                              ),
+                            ),
+                          ),
                         const SizedBox(height: 12),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            // TODO(mono): 色を改善
                             PushButton(
                               buttonSize: ButtonSize.large,
                               isSecondary: true,
@@ -203,7 +214,6 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
                             const SizedBox(width: 14),
                             PushButton(
                               buttonSize: ButtonSize.large,
-                              isSecondary: true,
                               onPressed: submitIfValid,
                               child: Text(
                                 widget.okLabel ??
