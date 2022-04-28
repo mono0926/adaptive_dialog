@@ -1,3 +1,8 @@
+# 1.6.1
+
+- Add outer edge to showTextInputDialog for macOS
+- Support dragging text input dialog for macOS
+
 ## 1.6.0
 
 - Support for macOS dialogs
