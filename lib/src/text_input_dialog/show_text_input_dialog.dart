@@ -15,7 +15,7 @@ Future<List<String>?> showTextInputDialog({
   String? cancelLabel,
   bool isDestructiveAction = false,
   bool barrierDismissible = true,
-  AdaptiveStyle style = AdaptiveStyle.adaptive,
+  AdaptiveStyle? style,
   bool useRootNavigator = true,
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
   bool fullyCapitalizedForMaterial = true,
@@ -24,7 +24,8 @@ Future<List<String>?> showTextInputDialog({
   AdaptiveDialogBuilder? builder,
 }) {
   final theme = Theme.of(context);
-  return style.isMaterial(theme)
+  final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
+  return adaptiveStyle.isMaterial(theme)
       ? showModal(
           context: context,
           useRootNavigator: useRootNavigator,
