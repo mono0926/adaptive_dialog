@@ -1,4 +1,4 @@
-## 1.6.0
+## Unreleased
 
 - Support for macOS dialogs
 - Add `AdaptiveDialog.instance.updateConfiguration`, a method used for changing default configuration
