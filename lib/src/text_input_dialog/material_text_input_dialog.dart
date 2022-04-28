@@ -121,6 +121,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
                   keyboardType: textField.keyboardType,
                   minLines: textField.minLines,
                   maxLines: textField.maxLines,
+                  autocorrect: textField.autocorrect,
                   decoration: InputDecoration(
                     hintText: textField.hintText,
                     prefixText: textField.prefixText,

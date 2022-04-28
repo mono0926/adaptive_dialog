@@ -1,3 +1,7 @@
+## 1.5.1
+
+- Add `autocorrect` to `DialogTextField` (#63)
+
 ## 1.5.0
 
 - Add `builder` parameter
