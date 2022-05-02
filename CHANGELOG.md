@@ -1,8 +1,8 @@
-# 1.6.2
+## 1.6.2
 
 - Fix `useActionSheetForIOS` was mistakenly worked
 
-# 1.6.1
+## 1.6.1
 
 - Add outer edge to showTextInputDialog for macOS
 - Support dragging text input dialog for macOS
