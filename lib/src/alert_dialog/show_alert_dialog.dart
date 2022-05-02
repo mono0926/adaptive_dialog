@@ -36,7 +36,7 @@ Future<T?> showAlertDialog<T>({
   final colorScheme = theme.colorScheme;
   final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
   final isIOSStyle = adaptiveStyle.effectiveStyle(theme) == AdaptiveStyle.iOS;
-  if (isIOSStyle && useActionSheetForCupertino || useActionSheetForIOS) {
+  if (isIOSStyle && (useActionSheetForCupertino || useActionSheetForIOS)) {
     return showModalActionSheet(
       context: context,
       title: title,
