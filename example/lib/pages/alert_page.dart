@@ -1,18 +1,23 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:example/router.dart';
+import 'package:example/router/router.dart';
 import 'package:example/util/logger.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+class AlertRoute extends GoRouteData {
+  const AlertRoute();
+  @override
+  Widget build(BuildContext context) => const AlertPage();
+}
 
 class AlertPage extends StatelessWidget {
   const AlertPage({Key? key}) : super(key: key);
-
-  static const routeName = '/alert';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(pascalCaseFromRouteName(AlertPage.routeName)),
+        title: Text(pascalCaseFromRouteName(GoRouter.of(context).location)),
       ),
       body: ListView(
         children: <Widget>[
@@ -36,6 +41,7 @@ class AlertPage extends StatelessWidget {
                 message: 'This is message.',
                 onWillPop: () => Future.value(false),
               );
+              assert(result == OkCancelResult.ok);
               logger.info(result);
             },
           ),
@@ -48,7 +54,6 @@ class AlertPage extends StatelessWidget {
                 message: 'This is message.',
                 barrierDismissible: false,
               );
-              assert(result == OkCancelResult.ok);
               logger.info(result);
             },
           ),
@@ -80,6 +85,25 @@ class AlertPage extends StatelessWidget {
               final result = await showOkAlertDialog(
                 context: context,
                 title: 'Title',
+              );
+              logger.info(result);
+            },
+          ),
+          ListTile(
+            title: const Text('OK Dialog (Theme builder)'),
+            onTap: () async {
+              final result = await showOkAlertDialog(
+                context: context,
+                title: 'Title',
+                message: 'This is message.',
+                builder: (context, child) => Theme(
+                  data: ThemeData(
+                    textButtonTheme: TextButtonThemeData(
+                      style: TextButton.styleFrom(primary: Colors.orange),
+                    ),
+                  ),
+                  child: child,
+                ),
               );
               logger.info(result);
             },
@@ -141,7 +165,7 @@ class AlertPage extends StatelessWidget {
                 message: 'This is message.',
                 isDestructiveAction: true,
                 cancelLabel: 'No!',
-                useActionSheetForCupertino: true,
+                useActionSheetForIOS: true,
               );
               logger.info(result);
             },
@@ -199,7 +223,8 @@ class AlertPage extends StatelessWidget {
           ),
           ListTile(
             title: const Text(
-                'Confirmation Dialog (few selections / default selection)'),
+              'Confirmation Dialog (few selections / default selection)',
+            ),
             onTap: () async {
               final result = await showConfirmationDialog<int>(
                 context: context,

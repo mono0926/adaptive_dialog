@@ -22,17 +22,23 @@ Future<OkCancelResult> showOkCancelAlertDialog({
   OkCancelAlertDefaultType? defaultType,
   bool isDestructiveAction = false,
   bool barrierDismissible = true,
-  AdaptiveStyle alertStyle = AdaptiveStyle.adaptive,
-  bool useActionSheetForCupertino = false,
+  @Deprecated('Use `style` instead.') AdaptiveStyle? alertStyle,
+  AdaptiveStyle? style,
+  @Deprecated('Use `ios` instead. Will be removed in v2.')
+      bool useActionSheetForCupertino = false,
+  bool useActionSheetForIOS = false,
   bool useRootNavigator = true,
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
   bool fullyCapitalizedForMaterial = true,
   WillPopCallback? onWillPop,
+  AdaptiveDialogBuilder? builder,
 }) async {
-  final isCupertinoStyle = Theme.of(context).isCupertinoStyle;
+  final theme = Theme.of(context);
+  final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
+  final isMaterial = adaptiveStyle.isMaterial(theme);
   String defaultCancelLabel() {
     final label = MaterialLocalizations.of(context).cancelButtonLabel;
-    return isCupertinoStyle ? label.capitalizedForce : label;
+    return isMaterial ? label : label.capitalizedForce;
   }
 
   final result = await showAlertDialog<OkCancelResult>(
@@ -40,12 +46,13 @@ Future<OkCancelResult> showOkCancelAlertDialog({
     title: title,
     message: message,
     barrierDismissible: barrierDismissible,
-    style: alertStyle,
-    useActionSheetForCupertino: useActionSheetForCupertino,
+    style: alertStyle ?? style,
+    useActionSheetForIOS: useActionSheetForCupertino || useActionSheetForIOS,
     useRootNavigator: useRootNavigator,
     actionsOverflowDirection: actionsOverflowDirection,
     fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
     onWillPop: onWillPop,
+    builder: builder,
     actions: [
       AlertDialogAction(
         label: cancelLabel ?? defaultCancelLabel(),
@@ -56,7 +63,8 @@ Future<OkCancelResult> showOkCancelAlertDialog({
       AlertDialogAction(
         label: okLabel ?? MaterialLocalizations.of(context).okButtonLabel,
         key: OkCancelResult.ok,
-        isDefaultAction: defaultType == OkCancelAlertDefaultType.ok,
+        isDefaultAction:
+            defaultType == null || defaultType == OkCancelAlertDefaultType.ok,
         isDestructiveAction: isDestructiveAction,
         textStyle: okTextStyle,
       ),

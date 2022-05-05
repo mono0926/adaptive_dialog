@@ -1,23 +1,23 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:example/util/util.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+class NestedNavigatorRoute extends GoRouteData {
+  const NestedNavigatorRoute();
+  @override
+  Widget build(BuildContext context) => const NestedNavigatorPage();
+}
 
 class NestedNavigatorPage extends StatelessWidget {
   const NestedNavigatorPage({Key? key}) : super(key: key);
 
-  static const routeName = '/nested_navigator';
-
   @override
   Widget build(BuildContext context) {
-    final initialRoute = routeName.replaceFirst('/', '');
     return Navigator(
-      initialRoute: initialRoute,
-      onGenerateRoute: (settings) {
-        assert(settings.name == initialRoute);
-        return MaterialPageRoute<void>(
-          builder: (context) => const _RootPage(),
-        );
-      },
+      onGenerateRoute: (settings) => MaterialPageRoute<void>(
+        builder: (context) => const _RootPage(),
+      ),
     );
   }
 }
@@ -69,9 +69,11 @@ class _RootPage extends StatelessWidget {
           ElevatedButton(
             child: const Text('Next Page'),
             onPressed: () {
-              Navigator.of(context).push<void>(MaterialPageRoute(
-                builder: (context) => const _RootPage(),
-              ));
+              Navigator.of(context).push<void>(
+                MaterialPageRoute(
+                  builder: (context) => const _RootPage(),
+                ),
+              );
             },
           ),
         ],

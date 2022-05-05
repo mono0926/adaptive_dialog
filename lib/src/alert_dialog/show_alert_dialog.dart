@@ -1,12 +1,14 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:adaptive_dialog/src/helper/macos_theme_wrapper.dart';
 import 'package:animations/animations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:macos_ui/macos_ui.dart';
 
 /// Show alert dialog, whose appearance is adaptive according to platform
 ///
-/// [useActionSheetForCupertino] (default: false) only works for
-/// cupertino style. If it is set to true, [showModalActionSheet] is called
+/// [useActionSheetForIOS] (default: false) only works for
+/// iOS style. If it is set to true, [showModalActionSheet] is called
 /// instead.
 /// [actionsOverflowDirection] works only for Material style currently.
 Future<T?> showAlertDialog<T>({
@@ -15,12 +17,16 @@ Future<T?> showAlertDialog<T>({
   String? message,
   List<AlertDialogAction<T>> actions = const [],
   bool barrierDismissible = true,
-  AdaptiveStyle style = AdaptiveStyle.adaptive,
-  bool useActionSheetForCupertino = false,
+  AdaptiveStyle? style,
+  @Deprecated('Use `useActionSheetForIOS` instead. Will be removed in v2.')
+      bool useActionSheetForCupertino = false,
+  bool useActionSheetForIOS = false,
   bool useRootNavigator = true,
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
   bool fullyCapitalizedForMaterial = true,
   WillPopCallback? onWillPop,
+  AdaptiveDialogBuilder? builder,
+  Widget? macOSApplicationIcon,
 }) {
   void pop(T? key) => Navigator.of(
         context,
@@ -28,8 +34,9 @@ Future<T?> showAlertDialog<T>({
       ).pop(key);
   final theme = Theme.of(context);
   final colorScheme = theme.colorScheme;
-  final isCupertinoStyle = style.isCupertinoStyle(theme);
-  if (isCupertinoStyle && useActionSheetForCupertino) {
+  final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
+  final isIOSStyle = adaptiveStyle.effectiveStyle(theme) == AdaptiveStyle.iOS;
+  if (isIOSStyle && (useActionSheetForCupertino || useActionSheetForIOS)) {
     return showModalActionSheet(
       context: context,
       title: title,
@@ -39,34 +46,73 @@ Future<T?> showAlertDialog<T>({
       style: style,
       useRootNavigator: useRootNavigator,
       onWillPop: onWillPop,
+      builder: builder,
     );
   }
   final titleText = title == null ? null : Text(title);
   final messageText = message == null ? null : Text(message);
-  return style.isCupertinoStyle(theme)
-      ? showCupertinoDialog(
-          context: context,
-          useRootNavigator: useRootNavigator,
-          builder: (context) => WillPopScope(
+
+  final effectiveStyle = adaptiveStyle.effectiveStyle(theme);
+  switch (effectiveStyle) {
+    // ignore: deprecated_member_use_from_same_package
+    case AdaptiveStyle.cupertino:
+    case AdaptiveStyle.iOS:
+      return showCupertinoDialog(
+        context: context,
+        useRootNavigator: useRootNavigator,
+        builder: (context) {
+          final dialog = WillPopScope(
             onWillPop: onWillPop,
             child: CupertinoAlertDialog(
               title: titleText,
               content: messageText,
-              actions: actions.convertToCupertinoDialogActions(
+              actions: actions.convertToIOSDialogActions(
                 onPressed: pop,
               ),
               // TODO(mono): Set actionsOverflowDirection if available
               // https://twitter.com/_mono/status/1261122914218160128
             ),
-          ),
-        )
-      : showModal(
-          context: context,
-          useRootNavigator: useRootNavigator,
-          configuration: FadeScaleTransitionConfiguration(
-            barrierDismissible: barrierDismissible,
-          ),
-          builder: (context) => WillPopScope(
+          );
+          return builder == null ? dialog : builder(context, dialog);
+        },
+      );
+    case AdaptiveStyle.macOS:
+      final buttons = actions.convertToMacOSDialogActions(
+        onPressed: pop,
+        colorScheme: colorScheme,
+      );
+      return showMacosAlertDialog(
+        context: context,
+        useRootNavigator: useRootNavigator,
+        builder: (context) {
+          final Widget dialog = MacThemeWrapper(
+            child: WillPopScope(
+              onWillPop: onWillPop,
+              child: MacosAlertDialog(
+                title: titleText ?? const SizedBox.shrink(),
+                message: messageText ?? const SizedBox.shrink(),
+                primaryButton: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: buttons,
+                ),
+                appIcon: macOSApplicationIcon ??
+                    AdaptiveDialog.instance.macOS.applicationIcon ??
+                    const Icon(Icons.info),
+              ),
+            ),
+          );
+          return builder == null ? dialog : builder(context, dialog);
+        },
+      );
+    case AdaptiveStyle.material:
+      return showModal(
+        context: context,
+        useRootNavigator: useRootNavigator,
+        configuration: FadeScaleTransitionConfiguration(
+          barrierDismissible: barrierDismissible,
+        ),
+        builder: (context) {
+          final dialog = WillPopScope(
             onWillPop: onWillPop,
             child: AlertDialog(
               title: titleText,
@@ -77,9 +123,16 @@ Future<T?> showAlertDialog<T>({
                 fullyCapitalized: fullyCapitalizedForMaterial,
               ),
               actionsOverflowDirection: actionsOverflowDirection,
+              scrollable: true,
             ),
-          ),
-        );
+          );
+          return builder == null ? dialog : builder(context, dialog);
+        },
+      );
+    case AdaptiveStyle.adaptive:
+      assert(false);
+      return Future.value(null);
+  }
 }
 
 // Used to specify [showOkCancelAlertDialog]'s [defaultType]

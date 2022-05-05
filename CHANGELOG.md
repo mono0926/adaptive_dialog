@@ -1,3 +1,39 @@
+## 1.6.2
+
+- Fix `useActionSheetForIOS` was mistakenly worked
+
+## 1.6.1
+
+- Add outer edge to showTextInputDialog for macOS
+- Support dragging text input dialog for macOS
+
+## 1.6.0
+
+- Support for macOS dialogs
+- Add `AdaptiveDialog.instance.updateConfiguration`, a method used for changing default configuration
+
+## 1.5.1
+
+- Add `autocorrect` to `DialogTextField` (#63)
+
+## 1.5.0
+
+- Add `builder` parameter
+  - This resolved #28, #42 and #56
+
+## 1.4.0
+
+- Change `isCupertinoStyle` to return `true` if TargetPlatform is macOS
+
+## 1.3.0
+
+- Deprecate `alertStyle` of `showOkAlertDialog`/`showOkCancelAlertDialog`, which was mistakenly defined, and add `style` property instead.
+- Make Material style `showOkAlertDialog` scrollable (#53)
+
+## 1.2.0
+
+- Add `isCaseSensitive` parameter to `showTextAnswerDialog` (#49)
+
 ## 1.1.0
 
 - Add optional arg to submit form when user hits enter on last input field to `showTextAnswerDialog()` (#39)
@@ -56,7 +92,7 @@
 ## 0.7.2
 
 - Support validation for showTextInputDialog
-- Fix destructive color of showTextInputDialog for Cupertino 
+- Fix destructive color of showTextInputDialog for Cupertino
 
 ## 0.7.1
 

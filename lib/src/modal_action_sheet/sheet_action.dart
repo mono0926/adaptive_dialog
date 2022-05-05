@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:meta/meta.dart';
 
 /// Used for specifying showModalActionSheet's actions.
 @immutable

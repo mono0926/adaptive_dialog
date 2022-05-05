@@ -1,6 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:animations/animations.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /// Show [confirmation dialog](https://material.io/components/dialogs#confirmation-dialog),
@@ -24,19 +23,44 @@ Future<T?> showConfirmationDialog<T>({
   List<AlertDialogAction<T>> actions = const [],
   T? initialSelectedActionKey,
   bool barrierDismissible = true,
-  AdaptiveStyle style = AdaptiveStyle.adaptive,
+  AdaptiveStyle? style,
   bool useRootNavigator = true,
   bool shrinkWrap = true,
   bool fullyCapitalizedForMaterial = true,
   WillPopCallback? onWillPop,
+  AdaptiveDialogBuilder? builder,
 }) {
   void pop(T? key) => Navigator.of(
         context,
         rootNavigator: useRootNavigator,
       ).pop(key);
   final theme = Theme.of(context);
-  return style.isCupertinoStyle(theme)
-      ? showModalActionSheet(
+  final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
+  return adaptiveStyle.isMaterial(theme)
+      ? showModal(
+          context: context,
+          useRootNavigator: useRootNavigator,
+          configuration: FadeScaleTransitionConfiguration(
+            barrierDismissible: barrierDismissible,
+          ),
+          builder: (context) {
+            final dialog = _ConfirmationMaterialDialog(
+              title: title,
+              onSelect: pop,
+              message: message,
+              okLabel: okLabel,
+              cancelLabel: cancelLabel,
+              actions: actions,
+              initialSelectedActionKey: initialSelectedActionKey,
+              contentMaxHeight: contentMaxHeight,
+              shrinkWrap: shrinkWrap,
+              fullyCapitalized: fullyCapitalizedForMaterial,
+              onWillPop: onWillPop,
+            );
+            return builder == null ? dialog : builder(context, dialog);
+          },
+        )
+      : showModalActionSheet(
           context: context,
           title: title,
           message: message,
@@ -45,26 +69,7 @@ Future<T?> showConfirmationDialog<T>({
           style: style,
           useRootNavigator: useRootNavigator,
           onWillPop: onWillPop,
-        )
-      : showModal(
-          context: context,
-          useRootNavigator: useRootNavigator,
-          configuration: FadeScaleTransitionConfiguration(
-            barrierDismissible: barrierDismissible,
-          ),
-          builder: (context) => _ConfirmationMaterialDialog(
-            title: title,
-            onSelect: pop,
-            message: message,
-            okLabel: okLabel,
-            cancelLabel: cancelLabel,
-            actions: actions,
-            initialSelectedActionKey: initialSelectedActionKey,
-            contentMaxHeight: contentMaxHeight,
-            shrinkWrap: shrinkWrap,
-            fullyCapitalized: fullyCapitalizedForMaterial,
-            onWillPop: onWillPop,
-          ),
+          builder: builder,
         );
 }
 
@@ -159,17 +164,19 @@ class _ConfirmationMaterialDialogState<T>
                   controller: _scrollController,
                   shrinkWrap: widget.shrinkWrap,
                   children: widget.actions
-                      .map((action) => RadioListTile<T>(
-                            title: Text(action.label),
-                            value: action.key,
-                            groupValue: _selectedKey,
-                            onChanged: (value) {
-                              setState(() {
-                                _selectedKey = value;
-                              });
-                            },
-                            toggleable: true,
-                          ))
+                      .map(
+                        (action) => RadioListTile<T>(
+                          title: Text(action.label),
+                          value: action.key,
+                          groupValue: _selectedKey,
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedKey = value;
+                            });
+                          },
+                          toggleable: true,
+                        ),
+                      )
                       .toList(),
                 ),
               ),

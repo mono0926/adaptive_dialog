@@ -15,12 +15,16 @@ Future<bool> showTextAnswerDialog({
   String? retryMessage,
   String? retryOkLabel,
   String? retryCancelLabel,
-  AdaptiveStyle style = AdaptiveStyle.adaptive,
+  AdaptiveStyle? style,
   bool useRootNavigator = true,
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
   bool fullyCapitalizedForMaterial = true,
   WillPopCallback? onWillPop,
+  bool autoSubmit = false,
+  bool isCaseSensitive = true,
+  AdaptiveDialogBuilder? builder,
 }) async {
+  final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
   final texts = await showTextInputDialog(
     context: context,
     textFields: [
@@ -31,16 +35,20 @@ Future<bool> showTextAnswerDialog({
     okLabel: okLabel,
     cancelLabel: cancelLabel,
     isDestructiveAction: isDestructiveAction,
-    style: style,
+    style: adaptiveStyle,
     actionsOverflowDirection: actionsOverflowDirection,
     fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
     onWillPop: onWillPop,
+    autoSubmit: autoSubmit,
+    builder: builder,
   );
   final text = texts == null ? null : texts[0];
   if (text == null) {
     return false;
   }
-  if (text == keyword) {
+  if (isCaseSensitive
+      ? text == keyword
+      : text.toUpperCase() == keyword.toUpperCase()) {
     return true;
   }
   final result = await showOkCancelAlertDialog(
@@ -55,6 +63,7 @@ Future<bool> showTextAnswerDialog({
     useRootNavigator: useRootNavigator,
     fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
     onWillPop: onWillPop,
+    builder: builder,
   );
   return result == OkCancelResult.ok
       ? showTextAnswerDialog(
@@ -76,6 +85,8 @@ Future<bool> showTextAnswerDialog({
           actionsOverflowDirection: actionsOverflowDirection,
           fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
           onWillPop: onWillPop,
+          autoSubmit: autoSubmit,
+          builder: builder,
         )
       : Future.value(false);
 }

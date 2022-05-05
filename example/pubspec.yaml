@@ -1,24 +1,31 @@
 name: example
-description: Eample application.
+description: Example application.
 version: 1.0.0+1
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: '>=2.16.0 <3.0.0'
 dependencies:
   adaptive_dialog:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  flutter_riverpod:
+  go_router:
+  macos_ui:
   mono_kit:
-  provider:
   recase:
   simple_logger:
+  url_launcher:
 dev_dependencies:
+  build_runner:
   flutter_test:
     sdk: flutter
+  go_router_builder:
   pedantic_mono:
 dependency_overrides:
   adaptive_dialog:
     path: ..
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/

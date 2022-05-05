@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart' hide Router;
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mono_kit/mono_kit.dart';
-import 'package:provider/provider.dart';
 
-import 'pages/home_page.dart';
-import 'router.dart';
+import 'router/router.dart';
 
-class App extends StatelessWidget {
+class App extends ConsumerWidget {
   const App({Key? key}) : super(key: key);
+  static const title = 'adaptive_dialog Demo';
 
   @override
-  Widget build(BuildContext context) {
-    const title = 'adaptive_dialog Demo';
-    return MaterialApp(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(routerProvider);
+    return MaterialApp.router(
       title: title,
-      home: const HomePage(title: title),
       theme: lightTheme(),
       darkTheme: darkTheme(),
-      onGenerateRoute: context.watch<Router>().onGenerateRoute,
+      routeInformationParser: router.routeInformationParser,
+      routerDelegate: router.routerDelegate,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

@@ -2,6 +2,7 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
+// TODO(mono): 3ファイルでコピペ実装になっているのを良い感じにまとめたい
 class MaterialTextInputDialog extends StatefulWidget {
   const MaterialTextInputDialog({
     Key? key,
@@ -121,6 +122,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
                   keyboardType: textField.keyboardType,
                   minLines: textField.minLines,
                   maxLines: textField.maxLines,
+                  autocorrect: textField.autocorrect,
                   decoration: InputDecoration(
                     hintText: textField.hintText,
                     prefixText: textField.prefixText,

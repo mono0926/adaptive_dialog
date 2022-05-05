@@ -1,7 +1,6 @@
 import 'package:adaptive_dialog/src/action_callback.dart';
 import 'package:flutter/material.dart';
 import 'modal_action_sheet.dart';
-import 'sheet_action.dart';
 
 class MaterialModalActionSheet<T> extends StatelessWidget {
   const MaterialModalActionSheet({
