@@ -100,7 +100,7 @@ Future<List<String>?> showTextInputDialog({
       );
     case AdaptiveStyle.adaptive:
       assert(false);
-      return Future.value(null);
+      return Future.value();
   }
 }
 

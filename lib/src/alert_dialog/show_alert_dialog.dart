@@ -131,7 +131,7 @@ Future<T?> showAlertDialog<T>({
       );
     case AdaptiveStyle.adaptive:
       assert(false);
-      return Future.value(null);
+      return Future.value();
   }
 }
 
