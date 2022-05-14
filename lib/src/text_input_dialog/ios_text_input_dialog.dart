@@ -11,7 +11,9 @@ class IOSTextInputDialog extends StatefulWidget {
     this.title,
     this.message,
     this.okLabel,
+    this.okTextStyle = const TextStyle(),
     this.cancelLabel,
+    this.cancelTextStyle = const TextStyle(),
     this.isDestructiveAction = false,
     this.style = AdaptiveStyle.adaptive,
     this.useRootNavigator = true,
@@ -25,7 +27,9 @@ class IOSTextInputDialog extends StatefulWidget {
   final String? title;
   final String? message;
   final String? okLabel;
+  final TextStyle okTextStyle;
   final String? cancelLabel;
+  final TextStyle cancelTextStyle;
   final bool isDestructiveAction;
   final AdaptiveStyle style;
   final bool useRootNavigator;
@@ -174,13 +178,14 @@ class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
                   MaterialLocalizations.of(context)
                       .cancelButtonLabel
                       .capitalizedForce,
+              style: widget.cancelTextStyle,
             ),
           ),
           CupertinoDialogAction(
             onPressed: submitIfValid,
             child: Text(
               widget.okLabel ?? MaterialLocalizations.of(context).okButtonLabel,
-              style: TextStyle(
+              style: widget.okTextStyle.copyWith(
                 color: widget.isDestructiveAction
                     ? CupertinoColors.systemRed.resolveFrom(context)
                     : null,

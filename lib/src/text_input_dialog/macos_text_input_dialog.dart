@@ -14,7 +14,9 @@ class MacOSTextInputDialog extends StatefulWidget {
     this.title,
     this.message,
     this.okLabel,
+    this.okTextStyle = const TextStyle(),
     this.cancelLabel,
+    this.cancelTextStyle = const TextStyle(),
     this.isDestructiveAction = false,
     this.style = AdaptiveStyle.adaptive,
     this.useRootNavigator = true,
@@ -28,7 +30,9 @@ class MacOSTextInputDialog extends StatefulWidget {
   final String? title;
   final String? message;
   final String? okLabel;
+  final TextStyle okTextStyle;
   final String? cancelLabel;
+  final TextStyle cancelTextStyle;
   final bool isDestructiveAction;
   final AdaptiveStyle style;
   final bool useRootNavigator;
@@ -179,6 +183,7 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
                               MaterialLocalizations.of(context)
                                   .cancelButtonLabel
                                   .capitalizedForce,
+                          style: widget.cancelTextStyle,
                         ),
                       ),
                       const SizedBox(width: 14),
@@ -189,7 +194,7 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
                         child: Text(
                           widget.okLabel ??
                               MaterialLocalizations.of(context).okButtonLabel,
-                          style: TextStyle(
+                          style: widget.okTextStyle.copyWith(
                             color: widget.isDestructiveAction
                                 ? CupertinoColors.systemRed.resolveFrom(context)
                                 : null,

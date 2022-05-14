@@ -10,7 +10,9 @@ class MaterialTextInputDialog extends StatefulWidget {
     this.title,
     this.message,
     this.okLabel,
+    this.okTextStyle = const TextStyle(),
     this.cancelLabel,
+    this.cancelTextStyle = const TextStyle(),
     this.isDestructiveAction = false,
     this.style = AdaptiveStyle.adaptive,
     this.actionsOverflowDirection = VerticalDirection.up,
@@ -27,7 +29,9 @@ class MaterialTextInputDialog extends StatefulWidget {
   final String? title;
   final String? message;
   final String? okLabel;
+  final TextStyle okTextStyle;
   final String? cancelLabel;
+  final TextStyle cancelTextStyle;
   final bool isDestructiveAction;
   final AdaptiveStyle style;
   final VerticalDirection actionsOverflowDirection;
@@ -87,7 +91,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
     final okText = Text(
       (widget.fullyCapitalized ? okLabel?.toUpperCase() : okLabel) ??
           MaterialLocalizations.of(context).okButtonLabel,
-      style: TextStyle(
+      style: widget.okTextStyle.copyWith(
         color: widget.isDestructiveAction ? colorScheme.error : null,
       ),
     );
@@ -146,6 +150,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
                         ? cancelLabel?.toUpperCase()
                         : cancelLabel) ??
                     MaterialLocalizations.of(context).cancelButtonLabel,
+                style: widget.cancelTextStyle,
               ),
             ),
             TextButton(
