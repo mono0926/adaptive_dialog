@@ -2,7 +2,6 @@ import 'package:adaptive_dialog/src/action_callback.dart';
 import 'package:adaptive_dialog/src/modal_action_sheet/sheet_action.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intersperse/intersperse.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 /// Used for specifying showAlertDialog's actions.
@@ -80,38 +79,6 @@ extension AlertDialogActionEx<T> on AlertDialogAction<T> {
 }
 
 extension AlertDialogActionListEx<T> on List<AlertDialogAction<T>> {
-  List<Widget> convertToIOSDialogActions({
-    required ActionCallback<T> onPressed,
-  }) =>
-      map(
-        (a) => a.convertToIOSDialogAction(
-          onPressed: onPressed,
-        ),
-      ).toList();
-
-  List<Widget> convertToMacOSDialogActions({
-    required ActionCallback<T> onPressed,
-    required ColorScheme colorScheme,
-  }) =>
-      map(
-        (a) => a.convertToMacOSDialogAction(
-          onPressed: onPressed,
-        ),
-      ).intersperse(const SizedBox(height: 8)).toList().reversed.toList();
-
-  List<Widget> convertToMaterialDialogActions({
-    required ActionCallback<T> onPressed,
-    required Color destructiveColor,
-    required bool fullyCapitalized,
-  }) =>
-      map(
-        (a) => a.convertToMaterialDialogAction(
-          onPressed: onPressed,
-          destructiveColor: destructiveColor,
-          fullyCapitalized: fullyCapitalized,
-        ),
-      ).toList();
-
   List<SheetAction<T>> convertToSheetActions() =>
       where((a) => a.key != OkCancelResult.cancel)
           .map(

@@ -1,3 +1,7 @@
+## 1.6.4
+
+- Update min SDK version to 2.17.0
+
 ## 1.6.3
 
 - Use macos_ui v1

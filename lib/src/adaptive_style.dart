@@ -7,10 +7,8 @@ enum AdaptiveStyle {
   @Deprecated('Use `ios` instead. Will be removed in v2.')
   cupertino,
   iOS,
-  macOS,
-}
+  macOS;
 
-extension AdaptiveStyleEx on AdaptiveStyle {
   @Deprecated('Will be removed in v2.')
   bool isCupertinoStyle(ThemeData theme) =>
       this == AdaptiveStyle.cupertino ||
