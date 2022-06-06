@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class IOSTextInputDialog extends StatefulWidget {
   const IOSTextInputDialog({
-    Key? key,
+    super.key,
     required this.textFields,
     this.title,
     this.message,
@@ -17,7 +17,7 @@ class IOSTextInputDialog extends StatefulWidget {
     this.useRootNavigator = true,
     this.onWillPop,
     this.autoSubmit = false,
-  }) : super(key: key);
+  });
   @override
   _IOSTextInputDialogState createState() => _IOSTextInputDialogState();
 

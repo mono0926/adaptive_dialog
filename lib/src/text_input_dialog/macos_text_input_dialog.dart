@@ -9,7 +9,7 @@ import 'package:macos_ui/macos_ui.dart';
 
 class MacOSTextInputDialog extends StatefulWidget {
   const MacOSTextInputDialog({
-    Key? key,
+    super.key,
     required this.textFields,
     this.title,
     this.message,
@@ -20,7 +20,7 @@ class MacOSTextInputDialog extends StatefulWidget {
     this.useRootNavigator = true,
     this.onWillPop,
     this.autoSubmit = false,
-  }) : super(key: key);
+  });
   @override
   _MacOSTextInputDialogState createState() => _MacOSTextInputDialogState();
 

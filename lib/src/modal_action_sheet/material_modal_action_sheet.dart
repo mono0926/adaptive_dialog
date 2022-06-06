@@ -4,14 +4,14 @@ import 'modal_action_sheet.dart';
 
 class MaterialModalActionSheet<T> extends StatelessWidget {
   const MaterialModalActionSheet({
-    Key? key,
+    super.key,
     required this.onPressed,
     required this.actions,
     this.title,
     this.message,
     this.materialConfiguration,
     this.onWillPop,
-  }) : super(key: key);
+  });
 
   final ActionCallback<T> onPressed;
   final List<SheetAction<T>> actions;

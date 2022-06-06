@@ -3,9 +3,9 @@ import 'package:macos_ui/macos_ui.dart';
 
 class MacThemeWrapper extends StatelessWidget {
   const MacThemeWrapper({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
 
   final Widget child;
   @override

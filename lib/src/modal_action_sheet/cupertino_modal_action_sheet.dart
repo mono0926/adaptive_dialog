@@ -9,14 +9,14 @@ import 'sheet_action.dart';
 
 class CupertinoModalActionSheet<T> extends StatelessWidget {
   const CupertinoModalActionSheet({
-    Key? key,
+    super.key,
     required this.onPressed,
     required this.actions,
     this.title,
     this.message,
     this.cancelLabel,
     this.onWillPop,
-  }) : super(key: key);
+  });
 
   final ActionCallback<T> onPressed;
   final List<SheetAction<T>> actions;

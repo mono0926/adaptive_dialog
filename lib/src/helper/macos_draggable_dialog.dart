@@ -4,9 +4,9 @@ import 'package:macos_ui/macos_ui.dart';
 
 class MacosDraggableDialog extends StatefulWidget {
   const MacosDraggableDialog({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
 
   final Widget child;
 
