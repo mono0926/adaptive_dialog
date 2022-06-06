@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 // TODO(mono): 3ファイルでコピペ実装になっているのを良い感じにまとめたい
 class MaterialTextInputDialog extends StatefulWidget {
   const MaterialTextInputDialog({
-    Key? key,
+    super.key,
     required this.textFields,
     this.title,
     this.message,
@@ -18,7 +18,7 @@ class MaterialTextInputDialog extends StatefulWidget {
     this.fullyCapitalized = true,
     this.onWillPop,
     this.autoSubmit = false,
-  }) : super(key: key);
+  });
   @override
   _MaterialTextInputDialogState createState() =>
       _MaterialTextInputDialogState();

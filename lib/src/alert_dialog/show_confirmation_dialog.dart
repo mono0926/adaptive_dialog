@@ -75,7 +75,7 @@ Future<T?> showConfirmationDialog<T>({
 
 class _ConfirmationMaterialDialog<T> extends StatefulWidget {
   const _ConfirmationMaterialDialog({
-    Key? key,
+    super.key,
     required this.title,
     required this.onSelect,
     @required this.message,
@@ -87,7 +87,7 @@ class _ConfirmationMaterialDialog<T> extends StatefulWidget {
     required this.shrinkWrap,
     required this.fullyCapitalized,
     required this.onWillPop,
-  }) : super(key: key);
+  });
 
   final String title;
   final ValueChanged<T?> onSelect;

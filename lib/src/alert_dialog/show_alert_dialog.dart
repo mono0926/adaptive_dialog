@@ -3,6 +3,7 @@ import 'package:adaptive_dialog/src/helper/macos_theme_wrapper.dart';
 import 'package:animations/animations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intersperse/intersperse.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 /// Show alert dialog, whose appearance is adaptive according to platform
@@ -66,9 +67,13 @@ Future<T?> showAlertDialog<T>({
             child: CupertinoAlertDialog(
               title: titleText,
               content: messageText,
-              actions: actions.convertToIOSDialogActions(
-                onPressed: pop,
-              ),
+              actions: actions
+                  .map(
+                    (a) => a.convertToIOSDialogAction(
+                      onPressed: pop,
+                    ),
+                  )
+                  .toList(),
               // TODO(mono): Set actionsOverflowDirection if available
               // https://twitter.com/_mono/status/1261122914218160128
             ),
@@ -77,10 +82,16 @@ Future<T?> showAlertDialog<T>({
         },
       );
     case AdaptiveStyle.macOS:
-      final buttons = actions.convertToMacOSDialogActions(
-        onPressed: pop,
-        colorScheme: colorScheme,
-      );
+      final buttons = actions
+          .map(
+            (a) => a.convertToMacOSDialogAction(
+              onPressed: pop,
+            ),
+          )
+          .intersperse(const SizedBox(height: 8))
+          .toList()
+          .reversed
+          .toList();
       return showMacosAlertDialog(
         context: context,
         useRootNavigator: useRootNavigator,
@@ -117,11 +128,15 @@ Future<T?> showAlertDialog<T>({
             child: AlertDialog(
               title: titleText,
               content: messageText,
-              actions: actions.convertToMaterialDialogActions(
-                onPressed: pop,
-                destructiveColor: colorScheme.error,
-                fullyCapitalized: fullyCapitalizedForMaterial,
-              ),
+              actions: actions
+                  .map(
+                    (a) => a.convertToMaterialDialogAction(
+                      onPressed: pop,
+                      destructiveColor: colorScheme.error,
+                      fullyCapitalized: fullyCapitalizedForMaterial,
+                    ),
+                  )
+                  .toList(),
               actionsOverflowDirection: actionsOverflowDirection,
               scrollable: true,
             ),
