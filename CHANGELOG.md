@@ -1,5 +1,6 @@
 ## 1.6.4
 
+- Use accentColor for macOS by using dynamic_color
 - Update min SDK version to 2.17.0
 
 ## 1.6.3
