@@ -57,6 +57,7 @@ class TextInputDialogPage extends ConsumerWidget {
                 textFields: const [
                   DialogTextField(
                     hintText: 'hintText',
+                    maxLenght: 24,
                   ),
                 ],
                 title: 'Hello',
@@ -73,14 +74,11 @@ class TextInputDialogPage extends ConsumerWidget {
                 textFields: [
                   DialogTextField(
                     hintText: 'hintText',
-                    validator: (value) =>
-                        value!.isEmpty ? 'Input more than one character' : null,
+                    validator: (value) => value!.isEmpty ? 'Input more than one character' : null,
                   ),
                   DialogTextField(
                     hintText: 'hintText',
-                    validator: (value) => value!.length < 2
-                        ? 'Input more than two characters'
-                        : null,
+                    validator: (value) => value!.length < 2 ? 'Input more than two characters' : null,
                   ),
                 ],
                 title: 'Hello',
@@ -97,14 +95,11 @@ class TextInputDialogPage extends ConsumerWidget {
                 textFields: [
                   DialogTextField(
                     hintText: 'hintText',
-                    validator: (value) =>
-                        value!.isEmpty ? 'Input more than one character' : null,
+                    validator: (value) => value!.isEmpty ? 'Input more than one character' : null,
                   ),
                   DialogTextField(
                     hintText: 'hintText',
-                    validator: (value) => value!.length < 2
-                        ? 'Input more than two characters'
-                        : null,
+                    validator: (value) => value!.length < 2 ? 'Input more than two characters' : null,
                   ),
                 ],
                 title: 'Hello',
@@ -166,12 +161,8 @@ class TextInputDialogPage extends ConsumerWidget {
                 hintText: 'Start with "F"',
                 retryTitle: 'Incorrect',
                 retryMessage: 'Retry?',
-                retryOkLabel: ref
-                        .watch(adaptiveStyleProvider)
-                        .effectiveStyle(theme)
-                        .isMaterial(theme)
-                    ? 'RETRY'
-                    : 'Retry',
+                retryOkLabel:
+                    ref.watch(adaptiveStyleProvider).effectiveStyle(theme).isMaterial(theme) ? 'RETRY' : 'Retry',
               );
               logger.info('ok: $ok');
               if (!ok) {

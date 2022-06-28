@@ -34,9 +34,8 @@ class IOSTextInputDialog extends StatefulWidget {
 }
 
 class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
-  late final List<TextEditingController> _textControllers = widget.textFields
-      .map((tf) => TextEditingController(text: tf.initialText))
-      .toList();
+  late final List<TextEditingController> _textControllers =
+      widget.textFields.map((tf) => TextEditingController(text: tf.initialText)).toList();
   String? _validationMessage;
   bool _autovalidate = false;
 
@@ -131,6 +130,7 @@ class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
                   placeholder: field.hintText,
                   obscureText: field.obscureText,
                   keyboardType: field.keyboardType,
+                  maxLength: field.maxLenght,
                   minLines: field.minLines,
                   maxLines: field.maxLines,
                   autocorrect: field.autocorrect,
@@ -141,9 +141,7 @@ class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
                     isBottomRounded: i == _textControllers.length - 1,
                   ),
                   textInputAction: isLast ? null : TextInputAction.next,
-                  onSubmitted: isLast && widget.autoSubmit
-                      ? (_) => submitIfValid()
-                      : null,
+                  onSubmitted: isLast && widget.autoSubmit ? (_) => submitIfValid() : null,
                 );
               },
             ),
@@ -170,10 +168,7 @@ class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
             onPressed: cancel,
             isDefaultAction: true,
             child: Text(
-              widget.cancelLabel ??
-                  MaterialLocalizations.of(context)
-                      .cancelButtonLabel
-                      .capitalizedForce,
+              widget.cancelLabel ?? MaterialLocalizations.of(context).cancelButtonLabel.capitalizedForce,
             ),
           ),
           CupertinoDialogAction(
@@ -181,9 +176,7 @@ class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
             child: Text(
               widget.okLabel ?? MaterialLocalizations.of(context).okButtonLabel,
               style: TextStyle(
-                color: widget.isDestructiveAction
-                    ? CupertinoColors.systemRed.resolveFrom(context)
-                    : null,
+                color: widget.isDestructiveAction ? CupertinoColors.systemRed.resolveFrom(context) : null,
               ),
             ),
           ),

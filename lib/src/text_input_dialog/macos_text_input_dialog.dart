@@ -37,9 +37,8 @@ class MacOSTextInputDialog extends StatefulWidget {
 }
 
 class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
-  late final List<TextEditingController> _textControllers = widget.textFields
-      .map((tf) => TextEditingController(text: tf.initialText))
-      .toList();
+  late final List<TextEditingController> _textControllers =
+      widget.textFields.map((tf) => TextEditingController(text: tf.initialText)).toList();
   String? _validationMessage;
   bool _autovalidate = false;
 
@@ -141,16 +140,12 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
                             keyboardType: field.keyboardType,
                             minLines: field.minLines,
                             maxLines: field.maxLines,
+                            maxLength: field.maxLenght,
                             autocorrect: field.autocorrect,
-                            prefix:
-                                prefixText == null ? null : Text(prefixText),
-                            suffix:
-                                suffixText == null ? null : Text(suffixText),
-                            textInputAction:
-                                isLast ? null : TextInputAction.next,
-                            onSubmitted: isLast && widget.autoSubmit
-                                ? (_) => submitIfValid()
-                                : null,
+                            prefix: prefixText == null ? null : Text(prefixText),
+                            suffix: suffixText == null ? null : Text(suffixText),
+                            textInputAction: isLast ? null : TextInputAction.next,
+                            onSubmitted: isLast && widget.autoSubmit ? (_) => submitIfValid() : null,
                           ),
                         ),
                       );
@@ -175,10 +170,7 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
                         isSecondary: true,
                         onPressed: cancel,
                         child: Text(
-                          widget.cancelLabel ??
-                              MaterialLocalizations.of(context)
-                                  .cancelButtonLabel
-                                  .capitalizedForce,
+                          widget.cancelLabel ?? MaterialLocalizations.of(context).cancelButtonLabel.capitalizedForce,
                         ),
                       ),
                       const SizedBox(width: 14),
@@ -187,12 +179,9 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
                         onPressed: submitIfValid,
                         isSecondary: widget.isDestructiveAction,
                         child: Text(
-                          widget.okLabel ??
-                              MaterialLocalizations.of(context).okButtonLabel,
+                          widget.okLabel ?? MaterialLocalizations.of(context).okButtonLabel,
                           style: TextStyle(
-                            color: widget.isDestructiveAction
-                                ? CupertinoColors.systemRed.resolveFrom(context)
-                                : null,
+                            color: widget.isDestructiveAction ? CupertinoColors.systemRed.resolveFrom(context) : null,
                           ),
                         ),
                       ),

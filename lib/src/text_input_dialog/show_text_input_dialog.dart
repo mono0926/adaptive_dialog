@@ -117,6 +117,7 @@ class DialogTextField {
     this.suffixText,
     this.minLines,
     this.maxLines = 1,
+    this.maxLenght,
     this.autocorrect = true,
   });
   final String? initialText;
@@ -128,5 +129,6 @@ class DialogTextField {
   final String? suffixText;
   final int? minLines;
   final int maxLines;
+  final int? maxLenght;
   final bool autocorrect;
 }

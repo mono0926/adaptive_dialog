@@ -20,8 +20,7 @@ class MaterialTextInputDialog extends StatefulWidget {
     this.autoSubmit = false,
   });
   @override
-  _MaterialTextInputDialogState createState() =>
-      _MaterialTextInputDialogState();
+  _MaterialTextInputDialogState createState() => _MaterialTextInputDialogState();
 
   final List<DialogTextField> textFields;
   final String? title;
@@ -38,9 +37,8 @@ class MaterialTextInputDialog extends StatefulWidget {
 }
 
 class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
-  late final List<TextEditingController> _textControllers = widget.textFields
-      .map((tf) => TextEditingController(text: tf.initialText))
-      .toList();
+  late final List<TextEditingController> _textControllers =
+      widget.textFields.map((tf) => TextEditingController(text: tf.initialText)).toList();
   final _formKey = GlobalKey<FormState>();
   var _autovalidateMode = AutovalidateMode.disabled;
 
@@ -85,8 +83,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
     final cancelLabel = widget.cancelLabel;
     final okLabel = widget.okLabel;
     final okText = Text(
-      (widget.fullyCapitalized ? okLabel?.toUpperCase() : okLabel) ??
-          MaterialLocalizations.of(context).okButtonLabel,
+      (widget.fullyCapitalized ? okLabel?.toUpperCase() : okLabel) ?? MaterialLocalizations.of(context).okButtonLabel,
       style: TextStyle(
         color: widget.isDestructiveAction ? colorScheme.error : null,
       ),
@@ -122,6 +119,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
                   keyboardType: textField.keyboardType,
                   minLines: textField.minLines,
                   maxLines: textField.maxLines,
+                  maxLength: textField.maxLenght,
                   autocorrect: textField.autocorrect,
                   decoration: InputDecoration(
                     hintText: textField.hintText,
@@ -131,9 +129,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
                   validator: textField.validator,
                   autovalidateMode: _autovalidateMode,
                   textInputAction: isLast ? null : TextInputAction.next,
-                  onFieldSubmitted: isLast && widget.autoSubmit
-                      ? (_) => submitIfValid()
-                      : null,
+                  onFieldSubmitted: isLast && widget.autoSubmit ? (_) => submitIfValid() : null,
                 );
               })
             ],
@@ -142,9 +138,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
             TextButton(
               onPressed: cancel,
               child: Text(
-                (widget.fullyCapitalized
-                        ? cancelLabel?.toUpperCase()
-                        : cancelLabel) ??
+                (widget.fullyCapitalized ? cancelLabel?.toUpperCase() : cancelLabel) ??
                     MaterialLocalizations.of(context).cancelButtonLabel,
               ),
             ),
