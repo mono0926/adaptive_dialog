@@ -29,6 +29,7 @@ Future<T?> showConfirmationDialog<T>({
   bool fullyCapitalizedForMaterial = true,
   WillPopCallback? onWillPop,
   AdaptiveDialogBuilder? builder,
+  RouteSettings? routeSettings,
 }) {
   void pop(T? key) => Navigator.of(
         context,
@@ -40,6 +41,7 @@ Future<T?> showConfirmationDialog<T>({
       ? showModal(
           context: context,
           useRootNavigator: useRootNavigator,
+          routeSettings: routeSettings,
           configuration: FadeScaleTransitionConfiguration(
             barrierDismissible: barrierDismissible,
           ),
@@ -70,6 +72,7 @@ Future<T?> showConfirmationDialog<T>({
           useRootNavigator: useRootNavigator,
           onWillPop: onWillPop,
           builder: builder,
+          routeSettings: routeSettings,
         );
 }
 

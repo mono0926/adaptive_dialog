@@ -23,6 +23,7 @@ Future<T?> showModalActionSheet<T>({
   MaterialModalActionSheetConfiguration? materialConfiguration,
   WillPopCallback? onWillPop,
   AdaptiveDialogBuilder? builder,
+  RouteSettings? routeSettings,
 }) {
   void pop(T? key) => Navigator.of(
         context,
@@ -36,6 +37,7 @@ Future<T?> showModalActionSheet<T>({
           isScrollControlled: materialConfiguration != null,
           isDismissible: isDismissible,
           useRootNavigator: useRootNavigator,
+          routeSettings: routeSettings,
           builder: (context) {
             final sheet = MaterialModalActionSheet(
               onPressed: pop,
@@ -51,6 +53,7 @@ Future<T?> showModalActionSheet<T>({
       : showCupertinoModalPopup(
           context: context,
           useRootNavigator: useRootNavigator,
+          routeSettings: routeSettings,
           builder: (context) {
             final sheet = CupertinoModalActionSheet(
               onPressed: pop,

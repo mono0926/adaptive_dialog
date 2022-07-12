@@ -30,6 +30,7 @@ Future<OkCancelResult> showOkCancelAlertDialog({
   bool fullyCapitalizedForMaterial = true,
   WillPopCallback? onWillPop,
   AdaptiveDialogBuilder? builder,
+  RouteSettings? routeSettings,
 }) async {
   final theme = Theme.of(context);
   final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
@@ -40,6 +41,7 @@ Future<OkCancelResult> showOkCancelAlertDialog({
   }
 
   final result = await showAlertDialog<OkCancelResult>(
+    routeSettings: routeSettings,
     context: context,
     title: title,
     message: message,
