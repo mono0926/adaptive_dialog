@@ -18,6 +18,7 @@ class App extends ConsumerWidget {
       darkTheme: darkTheme(),
       routeInformationParser: router.routeInformationParser,
       routerDelegate: router.routerDelegate,
+      routeInformationProvider: router.routeInformationProvider,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
