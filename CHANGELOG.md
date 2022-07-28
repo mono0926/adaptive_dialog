@@ -1,3 +1,7 @@
+## 1.7.0
+
+- Adde maxLength to fields (#84)
+- Expose route settings on all apis (#88)
 ## 1.6.4
 
 - Use accentColor for macOS by using dynamic_color
