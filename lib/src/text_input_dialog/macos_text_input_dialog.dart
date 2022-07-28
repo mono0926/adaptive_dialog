@@ -141,6 +141,7 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
                             keyboardType: field.keyboardType,
                             minLines: field.minLines,
                             maxLines: field.maxLines,
+                            maxLength: field.maxLenght,
                             autocorrect: field.autocorrect,
                             prefix:
                                 prefixText == null ? null : Text(prefixText),
