@@ -28,6 +28,7 @@ Future<T?> showAlertDialog<T>({
   WillPopCallback? onWillPop,
   AdaptiveDialogBuilder? builder,
   Widget? macOSApplicationIcon,
+  RouteSettings? routeSettings,
 }) {
   void pop(T? key) => Navigator.of(
         context,
@@ -48,6 +49,7 @@ Future<T?> showAlertDialog<T>({
       useRootNavigator: useRootNavigator,
       onWillPop: onWillPop,
       builder: builder,
+      routeSettings: routeSettings,
     );
   }
   final titleText = title == null ? null : Text(title);
@@ -61,6 +63,7 @@ Future<T?> showAlertDialog<T>({
       return showCupertinoDialog(
         context: context,
         useRootNavigator: useRootNavigator,
+        routeSettings: routeSettings,
         builder: (context) {
           final dialog = WillPopScope(
             onWillPop: onWillPop,
@@ -95,6 +98,7 @@ Future<T?> showAlertDialog<T>({
       return showMacosAlertDialog(
         context: context,
         useRootNavigator: useRootNavigator,
+        routeSettings: routeSettings,
         builder: (context) {
           final Widget dialog = MacThemeWrapper(
             child: WillPopScope(
@@ -119,6 +123,7 @@ Future<T?> showAlertDialog<T>({
       return showModal(
         context: context,
         useRootNavigator: useRootNavigator,
+        routeSettings: routeSettings,
         configuration: FadeScaleTransitionConfiguration(
           barrierDismissible: barrierDismissible,
         ),

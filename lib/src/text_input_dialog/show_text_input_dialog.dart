@@ -25,6 +25,7 @@ Future<List<String>?> showTextInputDialog({
   WillPopCallback? onWillPop,
   bool autoSubmit = false,
   AdaptiveDialogBuilder? builder,
+  RouteSettings? routeSettings,
 }) {
   final theme = Theme.of(context);
   final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
@@ -36,6 +37,7 @@ Future<List<String>?> showTextInputDialog({
       return showCupertinoDialog(
         context: context,
         useRootNavigator: useRootNavigator,
+        routeSettings: routeSettings,
         builder: (context) {
           final dialog = IOSTextInputDialog(
             textFields: textFields,
@@ -54,6 +56,8 @@ Future<List<String>?> showTextInputDialog({
       );
     case AdaptiveStyle.macOS:
       return showMacosAlertDialog(
+        routeSettings: routeSettings,
+        useRootNavigator: useRootNavigator,
         context: context,
         builder: (context) {
           final dialog = MacThemeWrapper(
@@ -77,6 +81,7 @@ Future<List<String>?> showTextInputDialog({
       return showModal(
         context: context,
         useRootNavigator: useRootNavigator,
+        routeSettings: routeSettings,
         configuration: FadeScaleTransitionConfiguration(
           barrierDismissible: barrierDismissible,
         ),
