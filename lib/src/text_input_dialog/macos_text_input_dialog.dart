@@ -139,6 +139,7 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
                             placeholder: field.hintText,
                             obscureText: field.obscureText,
                             keyboardType: field.keyboardType,
+                            textCapitalization: field.textCapitalization,
                             minLines: field.minLines,
                             maxLines: field.maxLines,
                             maxLength: field.maxLenght,
