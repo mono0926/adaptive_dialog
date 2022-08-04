@@ -117,6 +117,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
                   autofocus: i == 0,
                   obscureText: field.obscureText,
                   keyboardType: field.keyboardType,
+                  textCapitalization: field.textCapitalization,
                   minLines: field.minLines,
                   maxLines: field.maxLines,
                   maxLength: field.maxLenght,
