@@ -20,7 +20,7 @@ class MaterialTextInputDialog extends StatefulWidget {
     this.autoSubmit = false,
   });
   @override
-  _MaterialTextInputDialogState createState() =>
+  State<MaterialTextInputDialog> createState() =>
       _MaterialTextInputDialogState();
 
   final List<DialogTextField> textFields;

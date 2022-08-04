@@ -19,7 +19,7 @@ class IOSTextInputDialog extends StatefulWidget {
     this.autoSubmit = false,
   });
   @override
-  _IOSTextInputDialogState createState() => _IOSTextInputDialogState();
+  State<IOSTextInputDialog> createState() => _IOSTextInputDialogState();
 
   final List<DialogTextField> textFields;
   final String? title;

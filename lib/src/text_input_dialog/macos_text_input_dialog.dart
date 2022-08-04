@@ -22,7 +22,7 @@ class MacOSTextInputDialog extends StatefulWidget {
     this.autoSubmit = false,
   });
   @override
-  _MacOSTextInputDialogState createState() => _MacOSTextInputDialogState();
+  State<MacOSTextInputDialog> createState() => _MacOSTextInputDialogState();
 
   final List<DialogTextField> textFields;
   final String? title;
