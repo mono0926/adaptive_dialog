@@ -132,7 +132,7 @@ class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
                   obscureText: field.obscureText,
                   keyboardType: field.keyboardType,
                   textCapitalization: field.textCapitalization,
-                  maxLength: field.maxLenght,
+                  maxLength: field.maxLength,
                   minLines: field.minLines,
                   maxLines: field.maxLines,
                   autocorrect: field.autocorrect,

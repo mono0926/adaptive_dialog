@@ -142,7 +142,7 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
                             textCapitalization: field.textCapitalization,
                             minLines: field.minLines,
                             maxLines: field.maxLines,
-                            maxLength: field.maxLenght,
+                            maxLength: field.maxLength,
                             autocorrect: field.autocorrect,
                             prefix:
                                 prefixText == null ? null : Text(prefixText),
