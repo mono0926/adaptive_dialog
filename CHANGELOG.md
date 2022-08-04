@@ -1,3 +1,8 @@
+## 1.8.0
+
+- Support textCapitalization in DialogTextField (#91)
+- Fix typo (`maxLenght` → `maxLength`)
+
 ## 1.7.0
 
 - Adde maxLength to fields (#84)
