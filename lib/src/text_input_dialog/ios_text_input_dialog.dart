@@ -3,6 +3,7 @@ import 'package:adaptive_dialog/src/extensions/extensions.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class IOSTextInputDialog extends StatefulWidget {
   const IOSTextInputDialog({
@@ -17,6 +18,7 @@ class IOSTextInputDialog extends StatefulWidget {
     this.useRootNavigator = true,
     this.onWillPop,
     this.autoSubmit = false,
+    this.textInputBuilder,
   });
   @override
   State<IOSTextInputDialog> createState() => _IOSTextInputDialogState();
@@ -31,6 +33,7 @@ class IOSTextInputDialog extends StatefulWidget {
   final bool useRootNavigator;
   final WillPopCallback? onWillPop;
   final bool autoSubmit;
+  final Widget Function(Widget)? textInputBuilder;
 }
 
 class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
@@ -125,7 +128,7 @@ class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
                 final field = widget.textFields[i];
                 final prefixText = field.prefixText;
                 final suffixText = field.suffixText;
-                return CupertinoTextField(
+                final input = CupertinoTextField(
                   controller: c,
                   autofocus: i == 0,
                   placeholder: field.hintText,
@@ -147,6 +150,9 @@ class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
                       ? (_) => submitIfValid()
                       : null,
                 );
+                return widget.textInputBuilder == null
+                    ? input
+                    : widget.textInputBuilder!(input);
               },
             ),
             if (validationMessage != null)

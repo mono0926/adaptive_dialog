@@ -18,6 +18,7 @@ class MaterialTextInputDialog extends StatefulWidget {
     this.fullyCapitalized = true,
     this.onWillPop,
     this.autoSubmit = false,
+    this.textInputBuilder,
   });
   @override
   State<MaterialTextInputDialog> createState() =>
@@ -35,6 +36,7 @@ class MaterialTextInputDialog extends StatefulWidget {
   final bool fullyCapitalized;
   final WillPopCallback? onWillPop;
   final bool autoSubmit;
+  final Widget Function(Widget)? textInputBuilder;
 }
 
 class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
@@ -115,7 +117,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
               ..._textControllers.mapIndexed((i, c) {
                 final isLast = widget.textFields.length == i + 1;
                 final field = widget.textFields[i];
-                return TextFormField(
+                final input = TextFormField(
                   controller: c,
                   autofocus: i == 0,
                   obscureText: field.obscureText,
@@ -137,6 +139,9 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
                       ? (_) => submitIfValid()
                       : null,
                 );
+                return widget.textInputBuilder != null
+                    ? widget.textInputBuilder!(input)
+                    : input;
               })
             ],
           ),

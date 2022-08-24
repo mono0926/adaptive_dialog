@@ -20,6 +20,7 @@ class MacOSTextInputDialog extends StatefulWidget {
     this.useRootNavigator = true,
     this.onWillPop,
     this.autoSubmit = false,
+    this.textInputBuilder,
   });
   @override
   State<MacOSTextInputDialog> createState() => _MacOSTextInputDialogState();
@@ -34,6 +35,7 @@ class MacOSTextInputDialog extends StatefulWidget {
   final bool useRootNavigator;
   final WillPopCallback? onWillPop;
   final bool autoSubmit;
+  final Widget Function(Widget)? textInputBuilder;
 }
 
 class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
@@ -130,30 +132,31 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
                       final field = widget.textFields[i];
                       final prefixText = field.prefixText;
                       final suffixText = field.suffixText;
+                      final input = MacosTextField(
+                        controller: c,
+                        autofocus: i == 0,
+                        placeholder: field.hintText,
+                        obscureText: field.obscureText,
+                        keyboardType: field.keyboardType,
+                        textCapitalization: field.textCapitalization,
+                        minLines: field.minLines,
+                        maxLines: field.maxLines,
+                        maxLength: field.maxLength,
+                        autocorrect: field.autocorrect,
+                        prefix: prefixText == null ? null : Text(prefixText),
+                        suffix: suffixText == null ? null : Text(suffixText),
+                        textInputAction: isLast ? null : TextInputAction.next,
+                        onSubmitted: isLast && widget.autoSubmit
+                            ? (_) => submitIfValid()
+                            : null,
+                      );
+                      final w = widget.textInputBuilder != null
+                          ? widget.textInputBuilder!(input)
+                          : input;
                       return Center(
                         child: FractionallySizedBox(
                           widthFactor: 0.7,
-                          child: MacosTextField(
-                            controller: c,
-                            autofocus: i == 0,
-                            placeholder: field.hintText,
-                            obscureText: field.obscureText,
-                            keyboardType: field.keyboardType,
-                            textCapitalization: field.textCapitalization,
-                            minLines: field.minLines,
-                            maxLines: field.maxLines,
-                            maxLength: field.maxLength,
-                            autocorrect: field.autocorrect,
-                            prefix:
-                                prefixText == null ? null : Text(prefixText),
-                            suffix:
-                                suffixText == null ? null : Text(suffixText),
-                            textInputAction:
-                                isLast ? null : TextInputAction.next,
-                            onSubmitted: isLast && widget.autoSubmit
-                                ? (_) => submitIfValid()
-                                : null,
-                          ),
+                          child: w,
                         ),
                       );
                     },

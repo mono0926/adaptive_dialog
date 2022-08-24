@@ -26,6 +26,7 @@ Future<List<String>?> showTextInputDialog({
   bool autoSubmit = false,
   AdaptiveDialogBuilder? builder,
   RouteSettings? routeSettings,
+  Widget Function(Widget)? textInputBuilder,
 }) {
   final theme = Theme.of(context);
   final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
@@ -50,6 +51,7 @@ Future<List<String>?> showTextInputDialog({
             useRootNavigator: useRootNavigator,
             onWillPop: onWillPop,
             autoSubmit: autoSubmit,
+            textInputBuilder: textInputBuilder,
           );
           return builder == null ? dialog : builder(context, dialog);
         },
@@ -60,6 +62,7 @@ Future<List<String>?> showTextInputDialog({
         useRootNavigator: useRootNavigator,
         context: context,
         builder: (context) {
+          https: //github.com/nimr77/adaptive_dialog.git
           final dialog = MacThemeWrapper(
             child: MacOSTextInputDialog(
               textFields: textFields,
@@ -72,6 +75,7 @@ Future<List<String>?> showTextInputDialog({
               useRootNavigator: useRootNavigator,
               onWillPop: onWillPop,
               autoSubmit: autoSubmit,
+              textInputBuilder: textInputBuilder,
             ),
           );
           return builder == null ? dialog : builder(context, dialog);
@@ -99,6 +103,7 @@ Future<List<String>?> showTextInputDialog({
             fullyCapitalized: fullyCapitalizedForMaterial,
             onWillPop: onWillPop,
             autoSubmit: autoSubmit,
+            textInputBuilder: textInputBuilder,
           );
           return builder == null ? dialog : builder(context, dialog);
         },
