@@ -1,13 +1,13 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter/material.dart' hide Router;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 import 'app.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  GoRouter.setUrlPathStrategy(UrlPathStrategy.path);
+  setUrlStrategy(PathUrlStrategy());
   AdaptiveDialog.instance.updateConfiguration(
     macOS: AdaptiveDialogMacOSConfiguration(
       applicationIcon: ClipRRect(

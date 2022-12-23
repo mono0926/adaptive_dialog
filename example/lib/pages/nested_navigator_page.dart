@@ -6,11 +6,12 @@ import 'package:go_router/go_router.dart';
 class NestedNavigatorRoute extends GoRouteData {
   const NestedNavigatorRoute();
   @override
-  Widget build(BuildContext context) => const NestedNavigatorPage();
+  Widget build(BuildContext context, GoRouterState state) =>
+      const NestedNavigatorPage();
 }
 
 class NestedNavigatorPage extends StatelessWidget {
-  const NestedNavigatorPage({Key? key}) : super(key: key);
+  const NestedNavigatorPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class NestedNavigatorPage extends StatelessWidget {
 }
 
 class _RootPage extends StatelessWidget {
-  const _RootPage({Key? key}) : super(key: key);
+  const _RootPage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

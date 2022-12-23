@@ -31,7 +31,7 @@ final routerProvider = Provider(
 class HomeRoute extends GoRouteData {
   const HomeRoute();
   @override
-  Widget build(BuildContext context) => const HomePage();
+  Widget build(BuildContext context, GoRouterState state) => const HomePage();
 }
 
 String pascalCaseFromRouteName(String name) => name.pascalCase;

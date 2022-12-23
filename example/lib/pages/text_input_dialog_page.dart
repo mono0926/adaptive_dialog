@@ -9,11 +9,12 @@ import 'package:go_router/go_router.dart';
 class TextInputDialogRoute extends GoRouteData {
   const TextInputDialogRoute();
   @override
-  Widget build(BuildContext context) => const TextInputDialogPage();
+  Widget build(BuildContext context, GoRouterState state) =>
+      const TextInputDialogPage();
 }
 
 class TextInputDialogPage extends ConsumerWidget {
-  const TextInputDialogPage({Key? key}) : super(key: key);
+  const TextInputDialogPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

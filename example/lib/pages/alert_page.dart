@@ -7,11 +7,11 @@ import 'package:go_router/go_router.dart';
 class AlertRoute extends GoRouteData {
   const AlertRoute();
   @override
-  Widget build(BuildContext context) => const AlertPage();
+  Widget build(BuildContext context, GoRouterState state) => const AlertPage();
 }
 
 class AlertPage extends StatelessWidget {
-  const AlertPage({Key? key}) : super(key: key);
+  const AlertPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +99,9 @@ class AlertPage extends StatelessWidget {
                 builder: (context, child) => Theme(
                   data: ThemeData(
                     textButtonTheme: TextButtonThemeData(
-                      style: TextButton.styleFrom(primary: Colors.orange),
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.orange,
+                      ),
                     ),
                   ),
                   child: child,

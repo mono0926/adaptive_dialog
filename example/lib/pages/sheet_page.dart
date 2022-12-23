@@ -8,11 +8,11 @@ import 'package:go_router/go_router.dart';
 class SheetRoute extends GoRouteData {
   const SheetRoute();
   @override
-  Widget build(BuildContext context) => const SheetPage();
+  Widget build(BuildContext context, GoRouterState state) => const SheetPage();
 }
 
 class SheetPage extends StatelessWidget {
-  const SheetPage({Key? key}) : super(key: key);
+  const SheetPage({super.key});
 
   @override
   Widget build(BuildContext context) {

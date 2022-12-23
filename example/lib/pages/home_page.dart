@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class HomePage extends StatelessWidget {
 }
 
 class _StyleDropdownButton extends ConsumerWidget {
-  const _StyleDropdownButton({Key? key}) : super(key: key);
+  const _StyleDropdownButton();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Card(

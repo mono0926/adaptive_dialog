@@ -79,7 +79,7 @@ class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
     }
 
     void cancel() => navigator.pop();
-    BoxDecoration _borderDecoration({
+    BoxDecoration borderDecoration({
       required bool isTopRounded,
       required bool isBottomRounded,
     }) {
@@ -138,7 +138,7 @@ class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
                   autocorrect: field.autocorrect,
                   prefix: prefixText == null ? null : Text(prefixText),
                   suffix: suffixText == null ? null : Text(suffixText),
-                  decoration: _borderDecoration(
+                  decoration: borderDecoration(
                     isTopRounded: i == 0,
                     isBottomRounded: i == _textControllers.length - 1,
                   ),

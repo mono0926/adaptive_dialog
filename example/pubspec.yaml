@@ -2,7 +2,7 @@ name: example
 description: Example application.
 version: 1.0.0+1
 environment:
-  sdk: '>=2.16.0 <3.0.0'
+  sdk: '>=2.18.0'
 dependencies:
   adaptive_dialog:
   flutter:
@@ -10,6 +10,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_riverpod:
+  flutter_web_plugins:
+    sdk: flutter
   go_router:
   macos_ui:
   mono_kit:
