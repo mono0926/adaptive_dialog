@@ -2,6 +2,7 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_dialog/src/modal_action_sheet/material_modal_action_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
 
 import 'cupertino_modal_action_sheet.dart';
 
@@ -11,6 +12,7 @@ export 'sheet_action.dart';
 
 /// The [isDismissible] parameter only works for material style and it specifies
 /// whether the bottom sheet will be dismissed when user taps on the scrim.
+@useResult
 Future<T?> showModalActionSheet<T>({
   required BuildContext context,
   String? title,

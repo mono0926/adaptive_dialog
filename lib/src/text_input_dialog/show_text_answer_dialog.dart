@@ -1,6 +1,8 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
 
+@useResult
 Future<bool> showTextAnswerDialog({
   required BuildContext context,
   required String keyword,

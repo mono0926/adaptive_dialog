@@ -5,10 +5,12 @@ import 'package:animations/animations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:macos_ui/macos_ui.dart';
+import 'package:meta/meta.dart';
 
 import 'macos_text_input_dialog.dart';
 import 'material_text_input_dialog.dart';
 
+@useResult
 Future<List<String>?> showTextInputDialog({
   required BuildContext context,
   required List<DialogTextField> textFields,

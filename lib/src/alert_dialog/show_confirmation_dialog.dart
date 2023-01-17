@@ -1,6 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
 
 /// Show [confirmation dialog](https://material.io/components/dialogs#confirmation-dialog),
 /// whose appearance is adaptive according to platform
@@ -13,6 +14,7 @@ import 'package:flutter/material.dart';
 /// for performance optimization.
 /// if [initialSelectedActionKey] is set, corresponding action is selected
 /// initially. This works only for Android style.
+@useResult
 Future<T?> showConfirmationDialog<T>({
   required BuildContext context,
   required String title,

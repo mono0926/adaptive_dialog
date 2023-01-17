@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intersperse/intersperse.dart';
 import 'package:macos_ui/macos_ui.dart';
+import 'package:meta/meta.dart';
 
 /// Show alert dialog, whose appearance is adaptive according to platform
 ///
@@ -12,6 +13,7 @@ import 'package:macos_ui/macos_ui.dart';
 /// iOS style. If it is set to true, [showModalActionSheet] is called
 /// instead.
 /// [actionsOverflowDirection] works only for Material style currently.
+@useResult
 Future<T?> showAlertDialog<T>({
   required BuildContext context,
   String? title,

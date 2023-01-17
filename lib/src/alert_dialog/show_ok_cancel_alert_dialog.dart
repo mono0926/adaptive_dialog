@@ -1,6 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_dialog/src/extensions/extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
 
 /// Show OK/Cancel alert dialog, whose appearance is adaptive according to platform
 ///
@@ -11,6 +12,7 @@ import 'package:flutter/material.dart';
 /// [defaultType] only works for cupertino style and if it is specified
 /// OK or Cancel button label will be changed to bold.
 /// [actionsOverflowDirection] works only for Material style currently.
+@useResult
 Future<OkCancelResult> showOkCancelAlertDialog({
   required BuildContext context,
   String? title,
