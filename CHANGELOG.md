@@ -1,3 +1,7 @@
+## 1.8.1+1
+
+- Add documentation about `barrierDismissible`
+
 ## 1.8.1
 
 - Add `@useResult` to each functions
