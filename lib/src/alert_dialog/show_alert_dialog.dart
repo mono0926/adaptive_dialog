@@ -9,6 +9,7 @@ import 'package:meta/meta.dart';
 
 /// Show alert dialog, whose appearance is adaptive according to platform
 ///
+/// [barrierDismissible] (default: true) only works for Material style.
 /// [useActionSheetForIOS] (default: false) only works for
 /// iOS style. If it is set to true, [showModalActionSheet] is called
 /// instead.
