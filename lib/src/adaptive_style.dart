@@ -26,6 +26,7 @@ enum AdaptiveStyle {
       case AdaptiveStyle.cupertino:
       case AdaptiveStyle.iOS:
       case AdaptiveStyle.macOS:
+        // ignore: avoid_returning_this
         return this;
       case AdaptiveStyle.adaptive:
         switch (data.platform) {

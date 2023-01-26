@@ -146,14 +146,14 @@ class _ConfirmationMaterialDialogState<T>
                 children: [
                   Text(
                     widget.title,
-                    style: theme.textTheme.headline6,
+                    style: theme.textTheme.titleLarge,
                   ),
                   if (message != null)
                     Padding(
                       padding: const EdgeInsets.only(top: 4),
                       child: Text(
                         message,
-                        style: theme.textTheme.caption,
+                        style: theme.textTheme.bodySmall,
                       ),
                     ),
                 ],
