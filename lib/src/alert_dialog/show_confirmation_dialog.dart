@@ -33,10 +33,11 @@ Future<T?> showConfirmationDialog<T>({
   AdaptiveDialogBuilder? builder,
   RouteSettings? routeSettings,
 }) {
-  void pop(T? key) => Navigator.of(
-        context,
-        rootNavigator: useRootNavigator,
-      ).pop(key);
+  final navigator = Navigator.of(
+    context,
+    rootNavigator: useRootNavigator,
+  );
+  void pop(T? key) => navigator.pop(key);
   final theme = Theme.of(context);
   final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
   return adaptiveStyle.isMaterial(theme)

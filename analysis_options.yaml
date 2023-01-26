@@ -3,3 +3,6 @@ include: package:pedantic_mono/analysis_options.yaml
 analyzer:
   exclude:
     - '**/generated_plugin_registrant.dart'
+linter:
+  rules:
+    use_build_context_synchronously: false

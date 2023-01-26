@@ -1,3 +1,7 @@
+## 1.8.2
+
+- Fix the error with `pop` when `BuildContext` is disposed
+
 ## 1.8.1+1
 
 - Add documentation about `barrierDismissible`

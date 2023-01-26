@@ -33,10 +33,11 @@ Future<T?> showAlertDialog<T>({
   Widget? macOSApplicationIcon,
   RouteSettings? routeSettings,
 }) {
-  void pop(T? key) => Navigator.of(
-        context,
-        rootNavigator: useRootNavigator,
-      ).pop(key);
+  final navigator = Navigator.of(
+    context,
+    rootNavigator: useRootNavigator,
+  );
+  void pop(T? key) => navigator.pop(key);
   final theme = Theme.of(context);
   final colorScheme = theme.colorScheme;
   final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
