@@ -33,9 +33,17 @@ class MaterialModalActionSheet<T> extends StatelessWidget {
           title: Text(title),
           dense: true,
         ),
-      if (message != null) ...[
+      if (title == null && message != null)
         ListTile(
-          title: Text(title!),
+          title: Text(
+            message,
+            style: theme.textTheme.bodySmall,
+          ),
+          dense: true,
+        ),
+      if (title != null && message != null) ...[
+        ListTile(
+          title: Text(title),
           subtitle: Text(message),
         ),
         const Divider()
