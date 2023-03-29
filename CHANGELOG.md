@@ -1,3 +1,7 @@
+## 1.8.3
+
+- Fix no title `showModalActionSheet` for Material style
+
 ## 1.8.2
 
 - Fix the error with `pop` when `BuildContext` is disposed
