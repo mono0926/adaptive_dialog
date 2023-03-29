@@ -56,6 +56,23 @@ class SheetPage extends StatelessWidget {
             },
           ),
           ListTile(
+            title: const Text('No Title'),
+            onTap: () async {
+              final result = await showModalActionSheet<String>(
+                context: context,
+                message: 'Message',
+                actions: [
+                  const SheetAction(
+                    icon: Icons.info,
+                    label: 'Hello',
+                    key: 'helloKey',
+                  ),
+                ],
+              );
+              logger.info(result);
+            },
+          ),
+          ListTile(
             title: const Text('Title/Message'),
             onTap: () async {
               final result = await showModalActionSheet<String>(
