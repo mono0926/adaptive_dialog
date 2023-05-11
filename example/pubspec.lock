@@ -15,7 +15,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.8.3"
+    version: "1.9.0-no-macos.0"
   analyzer:
     dependency: transitive
     description:
@@ -898,5 +898,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.0.0-417 <4.0.0"
-  flutter: ">=3.7.0-0"
+  dart: ">=3.0.0 <4.0.0"
+  flutter: ">=3.10.0"

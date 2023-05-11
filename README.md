@@ -4,6 +4,36 @@ Show alert dialog or modal action sheet adaptively according to platform.
 
 Web Demo: https://mono0926.com/adaptive_dialog/
 
+## Compatibility with Flutter 3.10
+
+Due to the fact that the dependent macos_ui package has not yet been updated for compatibility with Flutter 3.10, adaptive_dialog package is affected and results in compilation errors with version 1.8.3.
+
+- https://github.com/macosui/macos_ui/issues/423
+- https://github.com/mono0926/adaptive_dialog/issues/110
+
+### Solution 1
+
+In your pubspec.yaml file, specify the following forked version that has been addressed:
+
+```yaml
+dependency_overrides:
+  macos_ui:
+    git:
+      url: https://github.com/Mayb3Nots/macos_ui
+      ref: ef51bfe
+```
+
+### Solution 2
+
+In pubspec.yaml, indicate to resolve dependencies with 1.9 prerelease version:
+
+```yaml
+dependencies:
+  adaptive_dialog: '>=1.9.0-0'
+```
+
+In this case, a version without macos_ui dependency will be temporarily used, resulting in a UI on macOS is same as iOS. Upon stable release, the UI that uses the original macos_ui will be restored.
+
 ---
 
 ## [showOkAlertDialog](https://pub.dev/documentation/adaptive_dialog/latest/adaptive_dialog/showOkAlertDialog.html)
