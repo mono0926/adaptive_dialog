@@ -1,4 +1,4 @@
-## 1.9.0-no-macos.1
+## 1.9.0-no-macos.2
 
 - Fix Flutter 3.10 compile error caused by macos_ui package
   - Remove [macos_ui](https://pub.dev/packages/macos_ui) dependency temporarily and show same UI as iOS instead

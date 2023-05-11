@@ -4,7 +4,7 @@ Show alert dialog or modal action sheet adaptively according to platform.
 
 Web Demo: https://mono0926.com/adaptive_dialog/
 
-## Compatibility with Flutter 3.10
+## ⚠️ Compatibility with Flutter 3.10
 
 Due to the fact that the dependent macos_ui package has not yet been updated for compatibility with Flutter 3.10, adaptive_dialog package is affected and results in compilation errors with version 1.8.3.
 
