@@ -23,7 +23,7 @@ dependency_overrides:
       ref: ef51bfe
 ```
 
-### Solution 2
+### Solution 2 (recommended)
 
 In pubspec.yaml, indicate to resolve dependencies with 1.9 prerelease version:
 
