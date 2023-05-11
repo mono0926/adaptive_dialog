@@ -1,10 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:adaptive_dialog/src/helper/macos_theme_wrapper.dart';
 import 'package:animations/animations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intersperse/intersperse.dart';
-import 'package:macos_ui/macos_ui.dart';
 import 'package:meta/meta.dart';
 
 /// Show alert dialog, whose appearance is adaptive according to platform
@@ -64,6 +61,7 @@ Future<T?> showAlertDialog<T>({
     // ignore: deprecated_member_use_from_same_package
     case AdaptiveStyle.cupertino:
     case AdaptiveStyle.iOS:
+    case AdaptiveStyle.macOS:
       return showCupertinoDialog(
         context: context,
         useRootNavigator: useRootNavigator,
@@ -83,41 +81,6 @@ Future<T?> showAlertDialog<T>({
                   .toList(),
               // TODO(mono): Set actionsOverflowDirection if available
               // https://twitter.com/_mono/status/1261122914218160128
-            ),
-          );
-          return builder == null ? dialog : builder(context, dialog);
-        },
-      );
-    case AdaptiveStyle.macOS:
-      final buttons = actions
-          .map(
-            (a) => a.convertToMacOSDialogAction(
-              onPressed: pop,
-            ),
-          )
-          .intersperse(const SizedBox(height: 8))
-          .toList()
-          .reversed
-          .toList();
-      return showMacosAlertDialog(
-        context: context,
-        useRootNavigator: useRootNavigator,
-        routeSettings: routeSettings,
-        builder: (context) {
-          final Widget dialog = MacThemeWrapper(
-            child: WillPopScope(
-              onWillPop: onWillPop,
-              child: MacosAlertDialog(
-                title: titleText ?? const SizedBox.shrink(),
-                message: messageText ?? const SizedBox.shrink(),
-                primaryButton: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: buttons,
-                ),
-                appIcon: macOSApplicationIcon ??
-                    AdaptiveDialog.instance.macOS.applicationIcon ??
-                    const Icon(Icons.info),
-              ),
             ),
           );
           return builder == null ? dialog : builder(context, dialog);
