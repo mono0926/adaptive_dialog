@@ -24,7 +24,7 @@ In this case, a version without macos_ui dependency will be temporarily used, re
 
 ### Solution 2
 
-In your pubspec.yaml file, specify the following forked version that has been addressed:
+In pubspec.yaml, specify the following forked version that fixed the issue:
 
 ```yaml
 dependency_overrides:
