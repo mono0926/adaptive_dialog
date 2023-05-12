@@ -17,7 +17,7 @@ In pubspec.yaml, indicate to resolve dependencies with 1.9 prerelease version:
 
 ```yaml
 dependencies:
-  adaptive_dialog: '>=1.9.0-0'
+  adaptive_dialog: ^1.9.0-0
 ```
 
 In this case, a version without macos_ui dependency will be temporarily used, resulting in a UI on macOS is same as iOS. Upon stable release, the UI that uses the original macos_ui will be restored.
