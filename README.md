@@ -34,6 +34,8 @@ dependency_overrides:
       ref: ef51bfe
 ```
 
+This is pull requested at https://github.com/macosui/macos_ui/pull/422 and waiting for review and merge.
+
 ---
 
 ## [showOkAlertDialog](https://pub.dev/documentation/adaptive_dialog/latest/adaptive_dialog/showOkAlertDialog.html)
