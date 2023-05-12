@@ -6,7 +6,7 @@ Web Demo: https://mono0926.com/adaptive_dialog/
 
 ## ⚠️ Compatibility with Flutter 3.10
 
-Due to the fact that the dependent macos_ui package has not yet been updated for compatibility with Flutter 3.10, adaptive_dialog package is affected and results in compilation errors with version 1.8.3.
+Due to the fact that the dependent [macos_ui](https://pub.dev/packages/macos_ui) package has not yet been updated for compatibility with Flutter 3.10, adaptive_dialog package is affected and results in compilation errors with version 1.8.3.
 
 - https://github.com/macosui/macos_ui/issues/423
 - https://github.com/mono0926/adaptive_dialog/issues/110
