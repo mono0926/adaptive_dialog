@@ -1,3 +1,7 @@
+## 1.9.1-no-macos.2
+
+- fix: pop with dialog context (#115)
+
 ## 1.9.0-no-macos.2
 
 - Fix Flutter 3.10 compile error caused by macos_ui package
