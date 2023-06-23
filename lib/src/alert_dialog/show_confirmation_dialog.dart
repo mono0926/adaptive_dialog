@@ -33,11 +33,11 @@ Future<T?> showConfirmationDialog<T>({
   AdaptiveDialogBuilder? builder,
   RouteSettings? routeSettings,
 }) {
-  final navigator = Navigator.of(
-    context,
-    rootNavigator: useRootNavigator,
-  );
-  void pop(T? key) => navigator.pop(key);
+  void pop({required BuildContext context, required T? key}) => Navigator.of(
+        context,
+        rootNavigator: useRootNavigator,
+      ).pop(key);
+
   final theme = Theme.of(context);
   final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
   return adaptiveStyle.isMaterial(theme)
@@ -51,7 +51,7 @@ Future<T?> showConfirmationDialog<T>({
           builder: (context) {
             final dialog = _ConfirmationMaterialDialog(
               title: title,
-              onSelect: pop,
+              onSelect: (key) => pop(context: context, key: key),
               message: message,
               okLabel: okLabel,
               cancelLabel: cancelLabel,

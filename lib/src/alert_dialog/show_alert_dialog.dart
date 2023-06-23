@@ -30,11 +30,11 @@ Future<T?> showAlertDialog<T>({
   Widget? macOSApplicationIcon,
   RouteSettings? routeSettings,
 }) {
-  final navigator = Navigator.of(
-    context,
-    rootNavigator: useRootNavigator,
-  );
-  void pop(T? key) => navigator.pop(key);
+  void pop({required BuildContext context, required T? key}) => Navigator.of(
+        context,
+        rootNavigator: useRootNavigator,
+      ).pop(key);
+
   final theme = Theme.of(context);
   final colorScheme = theme.colorScheme;
   final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
@@ -53,6 +53,7 @@ Future<T?> showAlertDialog<T>({
       routeSettings: routeSettings,
     );
   }
+
   final titleText = title == null ? null : Text(title);
   final messageText = message == null ? null : Text(message);
 
@@ -75,7 +76,7 @@ Future<T?> showAlertDialog<T>({
               actions: actions
                   .map(
                     (a) => a.convertToIOSDialogAction(
-                      onPressed: pop,
+                      onPressed: (key) => pop(context: context, key: key),
                     ),
                   )
                   .toList(),
@@ -103,7 +104,7 @@ Future<T?> showAlertDialog<T>({
               actions: actions
                   .map(
                     (a) => a.convertToMaterialDialogAction(
-                      onPressed: pop,
+                      onPressed: (key) => pop(context: context, key: key),
                       destructiveColor: colorScheme.error,
                       fullyCapitalized: fullyCapitalizedForMaterial,
                     ),
