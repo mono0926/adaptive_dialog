@@ -508,6 +508,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  macos_ui:
+    dependency: "direct main"
+    description:
+      name: macos_ui
+      sha256: ebb5917d35d5a40d08bc051ecda36c4a79aed642c822f98b22ab4f494b87d890
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0-beta.3"
+  macos_window_utils:
+    dependency: transitive
+    description:
+      name: macos_window_utils
+      sha256: b78a210aa70ca7ccad6e7b7b810fb4689c507f4a46e299214900b2a1eb70ea23
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.3"
   matcher:
     dependency: transitive
     description:

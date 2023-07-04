@@ -23,7 +23,7 @@ Future<T?> showAlertDialog<T>({
   bool barrierDismissible = true,
   AdaptiveStyle? style,
   @Deprecated('Use `useActionSheetForIOS` instead. Will be removed in v2.')
-      bool useActionSheetForCupertino = false,
+  bool useActionSheetForCupertino = false,
   bool useActionSheetForIOS = false,
   bool useRootNavigator = true,
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
@@ -93,7 +93,7 @@ Future<T?> showAlertDialog<T>({
       final buttons = actions
           .map(
             (a) => a.convertToMacOSDialogAction(
-              onPressed: pop,
+              onPressed: (key) => pop(context: context, key: key),
             ),
           )
           .intersperse(const SizedBox(height: 8))
