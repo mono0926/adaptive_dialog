@@ -15,7 +15,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.9.0-no-macos.3"
+    version: "1.9.0-x-macos-beta.0"
   analyzer:
     dependency: transitive
     description:

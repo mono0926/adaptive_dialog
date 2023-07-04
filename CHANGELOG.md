@@ -1,3 +1,7 @@
+## 1.9.0-x-macos-beta.0
+
+- Depends on macos_ui again
+
 ## 1.9.0-no-macos.3
 
 - fix: pop with dialog context (#115)
