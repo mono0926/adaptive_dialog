@@ -1,3 +1,7 @@
+## 1.9.0-x-macos-beta.1
+
+- Follow changes of macos_ui 2.0.0-beta.7
+
 ## 1.9.0-x-macos-beta.0
 
 - Depends on macos_ui again

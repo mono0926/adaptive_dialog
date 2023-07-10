@@ -173,8 +173,8 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       PushButton(
-                        buttonSize: ButtonSize.large,
-                        isSecondary: true,
+                        controlSize: ControlSize.large,
+                        secondary: true,
                         onPressed: cancel,
                         child: Text(
                           widget.cancelLabel ??
@@ -185,9 +185,9 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
                       ),
                       const SizedBox(width: 14),
                       PushButton(
-                        buttonSize: ButtonSize.large,
+                        controlSize: ControlSize.large,
                         onPressed: submitIfValid,
-                        isSecondary: widget.isDestructiveAction,
+                        secondary: widget.isDestructiveAction,
                         child: Text(
                           widget.okLabel ??
                               MaterialLocalizations.of(context).okButtonLabel,

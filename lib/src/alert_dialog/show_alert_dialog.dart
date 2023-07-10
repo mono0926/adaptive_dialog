@@ -111,7 +111,8 @@ Future<T?> showAlertDialog<T>({
               child: MacosAlertDialog(
                 title: titleText ?? const SizedBox.shrink(),
                 message: messageText ?? const SizedBox.shrink(),
-                primaryButton: Column(
+                primaryButton: const _DummyEmptyMacosPushButton(),
+                suppress: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: buttons,
                 ),
@@ -164,4 +165,21 @@ Future<T?> showAlertDialog<T>({
 enum OkCancelAlertDefaultType {
   ok,
   cancel,
+}
+
+class _DummyEmptyMacosPushButton extends PushButton {
+  const _DummyEmptyMacosPushButton()
+      : super(
+          child: const SizedBox.shrink(),
+          controlSize: ControlSize.large,
+        );
+  @override
+  PushButtonState createState() => _DummyEmptyMacosPushButtonState();
+}
+
+class _DummyEmptyMacosPushButtonState extends PushButtonState {
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox.shrink();
+  }
 }

@@ -47,8 +47,8 @@ extension AlertDialogActionEx<T> on AlertDialogAction<T> {
     required ActionCallback<T> onPressed,
   }) {
     return PushButton(
-      buttonSize: ButtonSize.large,
-      isSecondary: isDestructiveAction || !isDefaultAction,
+      controlSize: ControlSize.large,
+      secondary: isDestructiveAction || !isDefaultAction,
       onPressed: () => onPressed(key),
       child: Text(
         label,
