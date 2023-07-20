@@ -180,6 +180,7 @@ class TextInputDialogPage extends ConsumerWidget {
               if (!ok) {
                 return;
               }
+              // ignore: use_build_context_synchronously
               await showOkAlertDialog(
                 context: context,
                 title: 'That\'s right👍',

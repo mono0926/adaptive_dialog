@@ -1,3 +1,16 @@
+## 1.9.0
+
+- Support Flutter 3.10
+- Upgrade macos_ui to 2.0.0
+
+## 1.9.0-x-macos-beta.1
+
+- Follow changes of macos_ui 2.0.0-beta.7
+
+## 1.9.0-x-macos-beta.0
+
+- Depends on macos_ui again
+
 ## 1.9.0-no-macos.3
 
 - fix: pop with dialog context (#115)

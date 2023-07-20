@@ -2,6 +2,7 @@ import 'package:adaptive_dialog/src/action_callback.dart';
 import 'package:adaptive_dialog/src/modal_action_sheet/sheet_action.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:macos_ui/macos_ui.dart';
 
 /// Used for specifying showAlertDialog's actions.
 @immutable
@@ -39,6 +40,24 @@ extension AlertDialogActionEx<T> on AlertDialogAction<T> {
       textStyle: textStyle,
       onPressed: () => onPressed(key),
       child: Text(label),
+    );
+  }
+
+  Widget convertToMacOSDialogAction({
+    required ActionCallback<T> onPressed,
+  }) {
+    return PushButton(
+      controlSize: ControlSize.large,
+      secondary: isDestructiveAction || !isDefaultAction,
+      onPressed: () => onPressed(key),
+      child: Text(
+        label,
+        style: isDestructiveAction
+            ? const TextStyle(
+                color: CupertinoColors.destructiveRed,
+              )
+            : null,
+      ),
     );
   }
 
