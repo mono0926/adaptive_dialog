@@ -15,7 +15,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.9.0-x-macos-beta.1"
+    version: "1.9.0"
   analyzer:
     dependency: transitive
     description:
@@ -236,10 +236,10 @@ packages:
     dependency: transitive
     description:
       name: file_selector_macos
-      sha256: "7a6f1ae6107265664f3f7f89a66074882c4d506aef1441c9af313c1f7e6f41ce"
+      sha256: "4ada532862917bf16e3adb3891fe3a5917a58bae03293e497082203a80909412"
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.3"
+    version: "0.9.3+1"
   file_selector_platform_interface:
     dependency: transitive
     description:
@@ -320,10 +320,10 @@ packages:
     dependency: transitive
     description:
       name: freezed_annotation
-      sha256: aeac15850ef1b38ee368d4c53ba9a847e900bb2c53a4db3f6881cbb3cb684338
+      sha256: c3fd9336eb55a38cc1bbd79ab17573113a8deccd0ecbbf926cca3c62803b5c2d
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0"
+    version: "2.4.1"
   frontend_server_client:
     dependency: transitive
     description:
@@ -344,18 +344,18 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: b33a88c67816312597e5e0f5906c5139a0b9bd9bb137346e872c788da7af8ea0
+      sha256: "5927202c23bec18ba93f662b5e1f81f2caa2e0cfa472d857d6229f63d59f1730"
       url: "https://pub.dev"
     source: hosted
-    version: "9.0.3"
+    version: "9.1.0"
   go_router_builder:
     dependency: "direct dev"
     description:
       name: go_router_builder
-      sha256: dbd5028908e5e1409ffc3da02257a489f6ac1caa509a0e03f126b1c2e451bb65
+      sha256: "6b5626b7cb259e9335bb766ab6aeeaf6534eb9076f0472060029c5f3d17461de"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0"
+    version: "2.2.2"
   graphs:
     dependency: transitive
     description:
@@ -392,18 +392,18 @@ packages:
     dependency: transitive
     description:
       name: image_picker
-      sha256: b9603755b35253ccfad4be0762bb74d5e8bf9ff75edebf0ac3beec24fac1c5b5
+      sha256: "6296e98782726d37f59663f0727d0e978eee1ced1ffed45ccaba591786a7f7b3"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.1"
   image_picker_android:
     dependency: transitive
     description:
       name: image_picker_android
-      sha256: d2bab152deb2547ea6f53d82ebca9b7e77386bb706e5789e815d37e08ea475bb
+      sha256: "8179b54039b50eee561676232304f487602e2950ffb3e8995ed9034d6505ca34"
       url: "https://pub.dev"
     source: hosted
-    version: "0.8.7+3"
+    version: "0.8.7+4"
   image_picker_for_web:
     dependency: transitive
     description:
@@ -440,10 +440,10 @@ packages:
     dependency: transitive
     description:
       name: image_picker_platform_interface
-      sha256: "7c7b96bb9413a9c28229e717e6fd1e3edd1cc5569c1778fcca060ecf729b65ee"
+      sha256: c1134543ae2187e85299996d21c526b2f403854994026d575ae4cf30d7bb2a32
       url: "https://pub.dev"
     source: hosted
-    version: "2.8.0"
+    version: "2.9.0"
   image_picker_windows:
     dependency: transitive
     description:
@@ -512,10 +512,10 @@ packages:
     dependency: "direct main"
     description:
       name: macos_ui
-      sha256: "34ad1327e7ca10886b695c4451a872e7a103ff58ed23394997380d82b0335354"
+      sha256: b739149b812c47e5ff10a00c9fdf7315f22ac5cd1fdbd447a6b7ffee31472717
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0-beta.7"
+    version: "2.0.0"
   macos_window_utils:
     dependency: transitive
     description:
@@ -877,10 +877,10 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_macos
-      sha256: "91ee3e75ea9dadf38036200c5d3743518f4a5eb77a8d13fda1ee5764373f185e"
+      sha256: "1c4fdc0bfea61a70792ce97157e5cc17260f61abbe4f39354513f39ec6fd73b1"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.5"
+    version: "3.0.6"
   url_launcher_platform_interface:
     dependency: transitive
     description:
