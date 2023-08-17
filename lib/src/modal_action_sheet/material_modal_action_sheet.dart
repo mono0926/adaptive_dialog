@@ -46,7 +46,7 @@ class MaterialModalActionSheet<T> extends StatelessWidget {
           title: Text(title),
           subtitle: Text(message),
         ),
-        const Divider()
+        const Divider(),
       ],
       ...actions.map((a) {
         final icon = a.icon;

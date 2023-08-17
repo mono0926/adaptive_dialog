@@ -16,7 +16,7 @@ Future<OkCancelResult> showOkAlertDialog({
   @Deprecated('Use `style` instead.') AdaptiveStyle? alertStyle,
   AdaptiveStyle? style,
   @Deprecated('Use `ios` instead. Will be removed in v2.')
-      bool useActionSheetForCupertino = false,
+  bool useActionSheetForCupertino = false,
   bool useActionSheetForIOS = false,
   bool useRootNavigator = true,
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
@@ -46,7 +46,7 @@ Future<OkCancelResult> showOkAlertDialog({
         label: okLabel ?? MaterialLocalizations.of(context).okButtonLabel,
         key: OkCancelResult.ok,
         isDefaultAction: isMacOS,
-      )
+      ),
     ],
   );
   return result ?? OkCancelResult.cancel;

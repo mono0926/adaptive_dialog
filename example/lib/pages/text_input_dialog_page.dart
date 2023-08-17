@@ -21,8 +21,7 @@ class TextInputDialogPage extends ConsumerWidget {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text(pascalCaseFromRouteName(GoRouterState.of(context).location)),
+        title: Text(pascalCaseFromRouteUri(GoRouterState.of(context).uri)),
       ),
       body: ListView(
         children: <Widget>[

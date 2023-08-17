@@ -210,9 +210,9 @@ class _ConfirmationMaterialDialogState<T>
                             : okLabel) ??
                         MaterialLocalizations.of(context).okButtonLabel,
                   ),
-                )
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),

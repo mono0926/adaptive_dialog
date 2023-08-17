@@ -17,8 +17,7 @@ class AlertPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text(pascalCaseFromRouteName(GoRouterState.of(context).location)),
+        title: Text(pascalCaseFromRouteUri(GoRouterState.of(context).uri)),
       ),
       body: ListView(
         children: <Widget>[

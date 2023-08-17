@@ -137,7 +137,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
                       ? (_) => submitIfValid()
                       : null,
                 );
-              })
+              }),
             ],
           ),
           actions: [
@@ -153,7 +153,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
             TextButton(
               onPressed: submitIfValid,
               child: okText,
-            )
+            ),
           ],
           actionsOverflowDirection: widget.actionsOverflowDirection,
         ),

@@ -199,10 +199,10 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
