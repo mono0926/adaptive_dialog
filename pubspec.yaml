@@ -1,6 +1,6 @@
 name: adaptive_dialog
 description: Show alert dialog or modal action sheet adaptively according to platform.
-version: 1.9.0
+version: 1.9.0+1
 repository: https://github.com/mono0926/adaptive_dialog
 funding:
   - https://github.com/sponsors/mono0926
@@ -27,3 +27,14 @@ platforms:
   macos:
   web:
   windows:
+screenshots:
+  - description: "Adaptive dialog image"
+    path: assets/showOkAlertDialog.png
+  - description: "Adaptive dialog sample code"
+    path: assets/showOkAlertDialog-code.png
+topics:
+  - dialog
+  - ui
+  - adaptive
+  - alert
+  - popup

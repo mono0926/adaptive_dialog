@@ -1,3 +1,7 @@
+## 1.9.0+1
+
+- Adds pub topics and screenshots to package metadata.
+
 ## 1.9.0
 
 - Support Flutter 3.10
