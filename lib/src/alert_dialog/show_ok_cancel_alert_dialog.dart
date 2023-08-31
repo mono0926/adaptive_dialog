@@ -25,7 +25,7 @@ Future<OkCancelResult> showOkCancelAlertDialog({
   @Deprecated('Use `style` instead.') AdaptiveStyle? alertStyle,
   AdaptiveStyle? style,
   @Deprecated('Use `ios` instead. Will be removed in v2.')
-      bool useActionSheetForCupertino = false,
+  bool useActionSheetForCupertino = false,
   bool useActionSheetForIOS = false,
   bool useRootNavigator = true,
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
