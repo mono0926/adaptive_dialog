@@ -14,6 +14,9 @@ import 'package:meta/meta.dart';
 /// for performance optimization.
 /// if [initialSelectedActionKey] is set, corresponding action is selected
 /// initially. This works only for Android style.
+/// [toggleable] option is only supported in material dialog.
+/// When set to `false`, the selected action cannot be unselected by tapping.
+/// The default value is `true`.
 @useResult
 Future<T?> showConfirmationDialog<T>({
   required BuildContext context,
@@ -32,6 +35,7 @@ Future<T?> showConfirmationDialog<T>({
   WillPopCallback? onWillPop,
   AdaptiveDialogBuilder? builder,
   RouteSettings? routeSettings,
+  bool toggleable = true,
 }) {
   void pop({required BuildContext context, required T? key}) => Navigator.of(
         context,
@@ -61,6 +65,7 @@ Future<T?> showConfirmationDialog<T>({
               shrinkWrap: shrinkWrap,
               fullyCapitalized: fullyCapitalizedForMaterial,
               onWillPop: onWillPop,
+              toggleable: toggleable,
             );
             return builder == null ? dialog : builder(context, dialog);
           },
@@ -93,6 +98,7 @@ class _ConfirmationMaterialDialog<T> extends StatefulWidget {
     required this.shrinkWrap,
     required this.fullyCapitalized,
     required this.onWillPop,
+    required this.toggleable,
   });
 
   final String title;
@@ -106,6 +112,7 @@ class _ConfirmationMaterialDialog<T> extends StatefulWidget {
   final bool shrinkWrap;
   final bool fullyCapitalized;
   final WillPopCallback? onWillPop;
+  final bool toggleable;
 
   @override
   _ConfirmationMaterialDialogState<T> createState() =>
@@ -180,7 +187,7 @@ class _ConfirmationMaterialDialogState<T>
                               _selectedKey = value;
                             });
                           },
-                          toggleable: true,
+                          toggleable: widget.toggleable,
                         ),
                       )
                       .toList(),
