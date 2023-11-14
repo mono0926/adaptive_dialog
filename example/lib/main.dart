@@ -7,7 +7,7 @@ import 'app.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  setUrlStrategy(const PathUrlStrategy());
+  usePathUrlStrategy();
   AdaptiveDialog.instance.updateConfiguration(
     macOS: AdaptiveDialogMacOSConfiguration(
       applicationIcon: ClipRRect(
