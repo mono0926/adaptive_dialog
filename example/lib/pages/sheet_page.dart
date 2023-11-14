@@ -204,6 +204,29 @@ class SheetPage extends StatelessWidget {
               logger.info(result);
             },
           ),
+          ListTile(
+            title: const Text(
+              'showModalActionSheet (custom TextStyle)',
+            ),
+            onTap: () async {
+              final result = await showModalActionSheet(
+                context: context,
+                title: 'Title',
+                message: 'This is message.',
+                actions: [
+                  const SheetAction(
+                    key: 'a',
+                    label: 'A',
+                    textStyle: TextStyle(
+                      color: Colors.yellow,
+                      fontSize: 50,
+                    ),
+                  ),
+                ],
+              );
+              logger.info(result);
+            },
+          ),
         ],
       ),
     );

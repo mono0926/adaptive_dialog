@@ -1,5 +1,6 @@
 import 'package:adaptive_dialog/src/action_callback.dart';
 import 'package:flutter/material.dart';
+
 import 'modal_action_sheet.dart';
 
 class MaterialModalActionSheet<T> extends StatelessWidget {
@@ -62,7 +63,7 @@ class MaterialModalActionSheet<T> extends StatelessWidget {
             a.label,
             style: TextStyle(
               color: color,
-            ),
+            ).merge(a.textStyle),
           ),
           onTap: () => onPressed(a.key),
         );

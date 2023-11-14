@@ -87,6 +87,7 @@ extension AlertDialogActionListEx<T> on List<AlertDialogAction<T>> {
               label: a.label,
               isDefaultAction: a.isDefaultAction,
               isDestructiveAction: a.isDestructiveAction,
+              textStyle: a.textStyle,
             ),
           )
           .toList();
