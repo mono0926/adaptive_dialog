@@ -179,7 +179,10 @@ class _ConfirmationMaterialDialogState<T>
                   children: widget.actions
                       .map(
                         (action) => RadioListTile<T>(
-                          title: Text(action.label),
+                          title: Text(
+                            action.label,
+                            style: action.textStyle,
+                          ),
                           value: action.key,
                           groupValue: _selectedKey,
                           onChanged: (value) {

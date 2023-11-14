@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 class SheetAction<T> {
   const SheetAction({
     required this.label,
+    this.textStyle = const TextStyle(),
     this.key,
     this.icon,
     this.isDefaultAction = false,
@@ -24,4 +25,6 @@ class SheetAction<T> {
 
   /// Make font color to destructive/error color(red).
   final bool isDestructiveAction;
+
+  final TextStyle textStyle;
 }
