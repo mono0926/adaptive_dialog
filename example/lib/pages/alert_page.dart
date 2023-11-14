@@ -1,6 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:example/router/router.dart';
 import 'package:example/util/logger.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -90,27 +91,6 @@ class AlertPage extends StatelessWidget {
             },
           ),
           ListTile(
-            title: const Text('OK Dialog (Theme builder)'),
-            onTap: () async {
-              final result = await showOkAlertDialog(
-                context: context,
-                title: 'Title',
-                message: 'This is message.',
-                builder: (context, child) => Theme(
-                  data: ThemeData(
-                    textButtonTheme: TextButtonThemeData(
-                      style: TextButton.styleFrom(
-                        foregroundColor: Colors.orange,
-                      ),
-                    ),
-                  ),
-                  child: child,
-                ),
-              );
-              logger.info(result);
-            },
-          ),
-          ListTile(
             title: const Text('OK/Cancel Dialog'),
             onTap: () async {
               final result = await showOkCancelAlertDialog(
@@ -133,14 +113,31 @@ class AlertPage extends StatelessWidget {
               logger.info(result);
             },
           ),
+          const ListTile(
+            title: Text('OK/Cancel Dialog (Destructive)'),
+          ),
           ListTile(
-            title: const Text('OK/Cancel Dialog (Destructive)'),
+            title: const Text('OK/Cancel Dialog (Theme builder)'),
             onTap: () async {
               final result = await showOkCancelAlertDialog(
                 context: context,
                 title: 'Title',
                 message: 'This is message.',
                 isDestructiveAction: true,
+                builder: (context, child) => Theme(
+                  data: ThemeData(
+                    textButtonTheme: TextButtonThemeData(
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.orange,
+                      ),
+                    ),
+                    // If this is commented out, the color for cupertino will be default blue/red.
+                    cupertinoOverrideTheme: const CupertinoThemeData(
+                      primaryColor: Colors.purple,
+                    ),
+                  ),
+                  child: child,
+                ),
               );
               logger.info(result);
             },
