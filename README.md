@@ -57,6 +57,15 @@ This is useful for preventing very destructive action is executed mistakenly.
 
 # FAQ
 
+## How can I customize it flexibly?
+
+This packages keeps usage and UI simple like iOS official alert dialog.
+Therefore, if you need more flexibility than this package provides, I recommend that you build your own directly using standard APIs to meet your requirements without using this package.
+
+- https://github.com/mono0926/adaptive_dialog/issues/19#issuecomment-754476937
+- https://github.com/mono0926/adaptive_dialog/issues/76#issuecomment-1120686982
+- https://github.com/mono0926/adaptive_dialog/issues/108#issuecomment-1543068734
+
 ## The getter `modalBarrierDismissLabel` was called on null
 
 `adaptive_dialog` uses Cupertino-style widgets internally on iOS, so `GlobalCupertinoLocalizations.delegate` is required under certain conditions.
