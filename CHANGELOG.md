@@ -1,3 +1,7 @@
+## 1.10.1
+
+- Fix TextStyle of showConfirmationDialog/showModalActionSheet (#124)
+
 ## 1.10.0
 
 - feat: Add option to set toggleable for showConfirmDialog (#123)

@@ -15,7 +15,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.10.0"
+    version: "1.10.1"
   analyzer:
     dependency: transitive
     description:
