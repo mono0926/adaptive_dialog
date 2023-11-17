@@ -28,7 +28,8 @@ Future<T?> showAlertDialog<T>({
   bool useRootNavigator = true,
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
   bool fullyCapitalizedForMaterial = true,
-  WillPopCallback? onWillPop,
+  bool canPop = true,
+  PopInvokedCallback? onPopInvoked,
   AdaptiveDialogBuilder? builder,
   Widget? macOSApplicationIcon,
   RouteSettings? routeSettings,
@@ -51,7 +52,8 @@ Future<T?> showAlertDialog<T>({
       actions: actions.convertToSheetActions(),
       style: style,
       useRootNavigator: useRootNavigator,
-      onWillPop: onWillPop,
+      canPop: canPop,
+      onPopInvoked: onPopInvoked,
       builder: builder,
       routeSettings: routeSettings,
     );
@@ -70,8 +72,9 @@ Future<T?> showAlertDialog<T>({
         useRootNavigator: useRootNavigator,
         routeSettings: routeSettings,
         builder: (context) {
-          final dialog = WillPopScope(
-            onWillPop: onWillPop,
+          final dialog = PopScope(
+            canPop: canPop,
+            onPopInvoked: onPopInvoked,
             child: CupertinoAlertDialog(
               title: titleText,
               content: messageText,
@@ -106,8 +109,9 @@ Future<T?> showAlertDialog<T>({
         routeSettings: routeSettings,
         builder: (context) {
           final Widget dialog = MacThemeWrapper(
-            child: WillPopScope(
-              onWillPop: onWillPop,
+            child: PopScope(
+              canPop: canPop,
+              onPopInvoked: onPopInvoked,
               child: MacosAlertDialog(
                 title: titleText ?? const SizedBox.shrink(),
                 message: messageText ?? const SizedBox.shrink(),
@@ -134,8 +138,9 @@ Future<T?> showAlertDialog<T>({
           barrierDismissible: barrierDismissible,
         ),
         builder: (context) {
-          final dialog = WillPopScope(
-            onWillPop: onWillPop,
+          final dialog = PopScope(
+            canPop: canPop,
+            onPopInvoked: onPopInvoked,
             child: AlertDialog(
               title: titleText,
               content: messageText,

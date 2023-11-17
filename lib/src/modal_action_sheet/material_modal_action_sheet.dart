@@ -11,7 +11,8 @@ class MaterialModalActionSheet<T> extends StatelessWidget {
     this.title,
     this.message,
     this.materialConfiguration,
-    this.onWillPop,
+    required this.canPop,
+    required this.onPopInvoked,
   });
 
   final ActionCallback<T> onPressed;
@@ -19,7 +20,8 @@ class MaterialModalActionSheet<T> extends StatelessWidget {
   final String? title;
   final String? message;
   final MaterialModalActionSheetConfiguration? materialConfiguration;
-  final WillPopCallback? onWillPop;
+  final bool canPop;
+  final PopInvokedCallback? onPopInvoked;
 
   @override
   Widget build(BuildContext context) {
@@ -86,8 +88,9 @@ class MaterialModalActionSheet<T> extends StatelessWidget {
               children: children,
             ),
           );
-    return WillPopScope(
-      onWillPop: onWillPop,
+    return PopScope(
+      canPop: canPop,
+      onPopInvoked: onPopInvoked,
       child: body,
     );
   }

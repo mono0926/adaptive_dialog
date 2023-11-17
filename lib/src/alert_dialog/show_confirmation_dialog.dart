@@ -32,7 +32,8 @@ Future<T?> showConfirmationDialog<T>({
   bool useRootNavigator = true,
   bool shrinkWrap = true,
   bool fullyCapitalizedForMaterial = true,
-  WillPopCallback? onWillPop,
+  bool canPop = true,
+  PopInvokedCallback? onPopInvoked,
   AdaptiveDialogBuilder? builder,
   RouteSettings? routeSettings,
   bool toggleable = true,
@@ -64,7 +65,8 @@ Future<T?> showConfirmationDialog<T>({
               contentMaxHeight: contentMaxHeight,
               shrinkWrap: shrinkWrap,
               fullyCapitalized: fullyCapitalizedForMaterial,
-              onWillPop: onWillPop,
+              canPop: canPop,
+              onPopInvoked: onPopInvoked,
               toggleable: toggleable,
             );
             return builder == null ? dialog : builder(context, dialog);
@@ -78,7 +80,8 @@ Future<T?> showConfirmationDialog<T>({
           actions: actions.convertToSheetActions(),
           style: style,
           useRootNavigator: useRootNavigator,
-          onWillPop: onWillPop,
+          canPop: canPop,
+          onPopInvoked: onPopInvoked,
           builder: builder,
           routeSettings: routeSettings,
         );
@@ -97,7 +100,8 @@ class _ConfirmationMaterialDialog<T> extends StatefulWidget {
     @required this.contentMaxHeight,
     required this.shrinkWrap,
     required this.fullyCapitalized,
-    required this.onWillPop,
+    required this.canPop,
+    required this.onPopInvoked,
     required this.toggleable,
   });
 
@@ -111,7 +115,8 @@ class _ConfirmationMaterialDialog<T> extends StatefulWidget {
   final double? contentMaxHeight;
   final bool shrinkWrap;
   final bool fullyCapitalized;
-  final WillPopCallback? onWillPop;
+  final bool canPop;
+  final PopInvokedCallback? onPopInvoked;
   final bool toggleable;
 
   @override
@@ -137,8 +142,8 @@ class _ConfirmationMaterialDialogState<T>
     final cancelLabel = widget.cancelLabel;
     final okLabel = widget.okLabel;
     final message = widget.message;
-    return WillPopScope(
-      onWillPop: widget.onWillPop,
+    return PopScope(
+      canPop: widget.canPop,
       child: Dialog(
         child: Column(
           mainAxisSize: MainAxisSize.min,

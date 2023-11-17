@@ -30,7 +30,8 @@ Future<OkCancelResult> showOkCancelAlertDialog({
   bool useRootNavigator = true,
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
   bool fullyCapitalizedForMaterial = true,
-  WillPopCallback? onWillPop,
+  bool canPop = true,
+  PopInvokedCallback? onPopInvoked,
   AdaptiveDialogBuilder? builder,
   RouteSettings? routeSettings,
 }) async {
@@ -53,7 +54,8 @@ Future<OkCancelResult> showOkCancelAlertDialog({
     useRootNavigator: useRootNavigator,
     actionsOverflowDirection: actionsOverflowDirection,
     fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
-    onWillPop: onWillPop,
+    canPop: canPop,
+    onPopInvoked: onPopInvoked,
     builder: builder,
     actions: [
       AlertDialogAction(
