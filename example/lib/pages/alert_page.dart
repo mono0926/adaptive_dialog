@@ -34,13 +34,13 @@ class AlertPage extends StatelessWidget {
             },
           ),
           ListTile(
-            title: const Text('OK Dialog (onWillPop: false)'),
+            title: const Text('OK Dialog (canPop: false)'),
             onTap: () async {
               final result = await showOkAlertDialog(
                 context: context,
                 title: 'Title',
                 message: 'This is message.',
-                onWillPop: () => Future.value(false),
+                canPop: false,
               );
               assert(result == OkCancelResult.ok);
               logger.info(result);
