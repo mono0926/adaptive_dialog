@@ -138,6 +138,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
                   onFieldSubmitted: isLast && widget.autoSubmit
                       ? (_) => submitIfValid()
                       : null,
+                  spellCheckConfiguration: field.spellCheckConfiguration,
                 );
               }),
             ],

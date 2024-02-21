@@ -148,6 +148,7 @@ class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
                   onSubmitted: isLast && widget.autoSubmit
                       ? (_) => submitIfValid()
                       : null,
+                  spellCheckConfiguration: field.spellCheckConfiguration,
                 );
               },
             ),

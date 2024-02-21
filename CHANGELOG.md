@@ -1,3 +1,7 @@
+## 2.1.0
+
+- Add `spellCheckConfiguration` to `DialogTextField`
+
 ## 2.0.0
 
 - Support Flutter 3.16

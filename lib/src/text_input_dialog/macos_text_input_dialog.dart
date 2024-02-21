@@ -155,6 +155,7 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
                             onSubmitted: isLast && widget.autoSubmit
                                 ? (_) => submitIfValid()
                                 : null,
+                            // No spellCheckConfiguration for macos_ui
                           ),
                         ),
                       );
