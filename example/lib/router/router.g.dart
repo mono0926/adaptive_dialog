@@ -27,6 +27,10 @@ GoRoute get $homeRoute => GoRouteData.$route(
           factory: $TextInputDialogRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'general',
+          factory: $GeneralDialogRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'nested-navigator',
           factory: $NestedNavigatorRouteExtension._fromState,
         ),
@@ -40,7 +44,9 @@ extension $HomeRouteExtension on HomeRoute {
         '/',
       );
 
-  void go(BuildContext buildContext) => buildContext.go(location, extra: this);
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
 }
 
 extension $AlertRouteExtension on AlertRoute {
@@ -50,7 +56,9 @@ extension $AlertRouteExtension on AlertRoute {
         '/alert',
       );
 
-  void go(BuildContext buildContext) => buildContext.go(location, extra: this);
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
 }
 
 extension $SheetRouteExtension on SheetRoute {
@@ -60,7 +68,9 @@ extension $SheetRouteExtension on SheetRoute {
         '/sheet',
       );
 
-  void go(BuildContext buildContext) => buildContext.go(location, extra: this);
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
 }
 
 extension $TextInputDialogRouteExtension on TextInputDialogRoute {
@@ -71,7 +81,22 @@ extension $TextInputDialogRouteExtension on TextInputDialogRoute {
         '/text-input',
       );
 
-  void go(BuildContext buildContext) => buildContext.go(location, extra: this);
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $GeneralDialogRouteExtension on GeneralDialogRoute {
+  static GeneralDialogRoute _fromState(GoRouterState state) =>
+      const GeneralDialogRoute();
+
+  String get location => GoRouteData.$location(
+        '/general',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
 }
 
 extension $NestedNavigatorRouteExtension on NestedNavigatorRoute {
@@ -82,5 +107,7 @@ extension $NestedNavigatorRouteExtension on NestedNavigatorRoute {
         '/nested-navigator',
       );
 
-  void go(BuildContext buildContext) => buildContext.go(location, extra: this);
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
 }
