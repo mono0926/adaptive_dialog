@@ -5,4 +5,5 @@ final SimpleLogger logger = SimpleLogger()
   ..setLevel(
     Level.FINEST,
     includeCallerInfo: true,
+    callerInfoFrameLevelOffset: 2,
   );
