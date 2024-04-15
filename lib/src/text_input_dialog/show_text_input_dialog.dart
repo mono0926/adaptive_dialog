@@ -4,6 +4,7 @@ import 'package:adaptive_dialog/src/text_input_dialog/ios_text_input_dialog.dart
 import 'package:animations/animations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:macos_ui/macos_ui.dart';
 import 'package:meta/meta.dart';
 
@@ -132,6 +133,7 @@ class DialogTextField {
     this.maxLength,
     this.autocorrect = true,
     this.spellCheckConfiguration,
+    this.inputFormatters,
   });
   final String? initialText;
   final String? hintText;
@@ -146,4 +148,5 @@ class DialogTextField {
   final int? maxLength;
   final bool autocorrect;
   final SpellCheckConfiguration? spellCheckConfiguration;
+  final List<TextInputFormatter>? inputFormatters;
 }

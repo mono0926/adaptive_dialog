@@ -6,16 +6,16 @@ funding:
   - https://github.com/sponsors/mono0926
 environment:
   sdk: ^3.2.0
-  flutter: '>=3.16.0'
+  flutter: ">=3.16.0"
 dependencies:
-  animations: ^2.0.3
-  collection: ^1.15.0
-  dynamic_color: ^1.4.0
+  animations: ^2.0.11
+  collection: ^1.18.0
+  dynamic_color: ^1.7.0
   flutter:
     sdk: flutter
   intersperse: ^2.0.0
-  macos_ui: ^2.0.0
-  meta: ^1.3.0
+  macos_ui: ^2.0.5
+  meta: 1.11.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

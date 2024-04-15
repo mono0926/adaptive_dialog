@@ -139,6 +139,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
                       ? (_) => submitIfValid()
                       : null,
                   spellCheckConfiguration: field.spellCheckConfiguration,
+                  inputFormatters: field.inputFormatters,
                 );
               }),
             ],
