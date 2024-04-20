@@ -37,7 +37,7 @@ Future<T?> showConfirmationDialog<T>({
   AdaptiveDialogBuilder? builder,
   RouteSettings? routeSettings,
   bool toggleable = true,
-  TextStyle? materialOkCancelTextStyle,
+  TextStyle? textStyle,
   Color? materialSelectedColor,
 }) {
   void pop({required BuildContext context, required T? key}) => Navigator.of(
@@ -70,7 +70,7 @@ Future<T?> showConfirmationDialog<T>({
               canPop: canPop,
               onPopInvoked: onPopInvoked,
               toggleable: toggleable,
-              okCancelTextStyle: materialOkCancelTextStyle,
+              okCancelTextStyle: textStyle,
               selectedColor: materialSelectedColor,
             );
             return builder == null ? dialog : builder(context, dialog);
@@ -88,6 +88,7 @@ Future<T?> showConfirmationDialog<T>({
           onPopInvoked: onPopInvoked,
           builder: builder,
           routeSettings: routeSettings,
+          textStyle: textStyle,
         );
 }
 

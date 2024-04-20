@@ -33,6 +33,7 @@ Future<T?> showAlertDialog<T>({
   AdaptiveDialogBuilder? builder,
   Widget? macOSApplicationIcon,
   RouteSettings? routeSettings,
+  TextStyle? textStyle,
 }) {
   void pop({required BuildContext context, required T? key}) => Navigator.of(
         context,
@@ -56,6 +57,7 @@ Future<T?> showAlertDialog<T>({
       onPopInvoked: onPopInvoked,
       builder: builder,
       routeSettings: routeSettings,
+      textStyle: textStyle,
     );
   }
 

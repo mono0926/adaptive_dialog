@@ -1,3 +1,6 @@
+import 'dart:html';
+import 'dart:ui';
+
 import 'package:adaptive_dialog/src/action_callback.dart';
 import 'package:adaptive_dialog/src/extensions/extensions.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,6 +18,7 @@ class CupertinoModalActionSheet<T> extends StatelessWidget {
     this.cancelLabel,
     required this.canPop,
     required this.onPopInvoked,
+    this.textStyle,
   });
 
   final ActionCallback<T> onPressed;
@@ -24,6 +28,7 @@ class CupertinoModalActionSheet<T> extends StatelessWidget {
   final String? cancelLabel;
   final bool canPop;
   final PopInvokedCallback? onPopInvoked;
+  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +50,7 @@ class CupertinoModalActionSheet<T> extends StatelessWidget {
                   MaterialLocalizations.of(context)
                       .cancelButtonLabel
                       .capitalizedForce,
+              style: textStyle,
             ),
           ),
           actions: actions
