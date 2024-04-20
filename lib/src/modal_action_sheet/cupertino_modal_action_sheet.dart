@@ -1,6 +1,3 @@
-import 'dart:html';
-import 'dart:ui';
-
 import 'package:adaptive_dialog/src/action_callback.dart';
 import 'package:adaptive_dialog/src/extensions/extensions.dart';
 import 'package:flutter/cupertino.dart';
