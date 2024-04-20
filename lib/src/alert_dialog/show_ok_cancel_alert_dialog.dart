@@ -34,6 +34,7 @@ Future<OkCancelResult> showOkCancelAlertDialog({
   PopInvokedCallback? onPopInvoked,
   AdaptiveDialogBuilder? builder,
   RouteSettings? routeSettings,
+  TextStyle? textStyle,
 }) async {
   final theme = Theme.of(context);
   final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
@@ -62,6 +63,7 @@ Future<OkCancelResult> showOkCancelAlertDialog({
         label: cancelLabel ?? defaultCancelLabel(),
         key: OkCancelResult.cancel,
         isDefaultAction: defaultType == OkCancelAlertDefaultType.cancel,
+        textStyle: textStyle ?? const TextStyle(),
       ),
       AlertDialogAction(
         label: okLabel ?? MaterialLocalizations.of(context).okButtonLabel,
@@ -69,6 +71,7 @@ Future<OkCancelResult> showOkCancelAlertDialog({
         isDefaultAction:
             defaultType == null || defaultType == OkCancelAlertDefaultType.ok,
         isDestructiveAction: isDestructiveAction,
+        textStyle: textStyle ?? const TextStyle(),
       ),
     ],
   );
