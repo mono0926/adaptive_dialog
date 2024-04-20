@@ -37,6 +37,8 @@ Future<T?> showConfirmationDialog<T>({
   AdaptiveDialogBuilder? builder,
   RouteSettings? routeSettings,
   bool toggleable = true,
+  TextStyle? materialOkCancelTextStyle,
+  Color? materialSelectedColor,
 }) {
   void pop({required BuildContext context, required T? key}) => Navigator.of(
         context,
@@ -68,6 +70,8 @@ Future<T?> showConfirmationDialog<T>({
               canPop: canPop,
               onPopInvoked: onPopInvoked,
               toggleable: toggleable,
+              okCancelTextStyle: materialOkCancelTextStyle,
+              selectedColor: materialSelectedColor,
             );
             return builder == null ? dialog : builder(context, dialog);
           },
@@ -103,6 +107,8 @@ class _ConfirmationMaterialDialog<T> extends StatefulWidget {
     required this.canPop,
     required this.onPopInvoked,
     required this.toggleable,
+    this.okCancelTextStyle,
+    this.selectedColor,
   });
 
   final String title;
@@ -118,6 +124,8 @@ class _ConfirmationMaterialDialog<T> extends StatefulWidget {
   final bool canPop;
   final PopInvokedCallback? onPopInvoked;
   final bool toggleable;
+  final TextStyle? okCancelTextStyle;
+  final Color? selectedColor;
 
   @override
   _ConfirmationMaterialDialogState<T> createState() =>
@@ -190,6 +198,7 @@ class _ConfirmationMaterialDialogState<T>
                           ),
                           value: action.key,
                           groupValue: _selectedKey,
+                          activeColor: widget.selectedColor,
                           onChanged: (value) {
                             setState(() {
                               _selectedKey = value;
@@ -212,6 +221,7 @@ class _ConfirmationMaterialDialogState<T>
                             ? cancelLabel?.toUpperCase()
                             : cancelLabel) ??
                         MaterialLocalizations.of(context).cancelButtonLabel,
+                    style: widget.okCancelTextStyle,
                   ),
                   onPressed: () => widget.onSelect(null),
                 ),
@@ -224,6 +234,8 @@ class _ConfirmationMaterialDialogState<T>
                             ? okLabel?.toUpperCase()
                             : okLabel) ??
                         MaterialLocalizations.of(context).okButtonLabel,
+                    style:
+                        _selectedKey == null ? null : widget.okCancelTextStyle,
                   ),
                 ),
               ],
