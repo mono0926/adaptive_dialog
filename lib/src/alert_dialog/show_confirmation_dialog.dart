@@ -203,30 +203,35 @@ class _ConfirmationMaterialDialogState<T>
               ),
             ),
             const Divider(height: 0),
-            ButtonBar(
-              layoutBehavior: ButtonBarLayoutBehavior.constrained,
-              children: [
-                TextButton(
-                  child: Text(
-                    (widget.fullyCapitalized
-                            ? cancelLabel?.toUpperCase()
-                            : cancelLabel) ??
-                        MaterialLocalizations.of(context).cancelButtonLabel,
+            Padding(
+              padding: const EdgeInsets.all(4),
+              child: OverflowBar(
+                alignment: MainAxisAlignment.end,
+                overflowAlignment: OverflowBarAlignment.end,
+                spacing: 8,
+                children: [
+                  TextButton(
+                    child: Text(
+                      (widget.fullyCapitalized
+                              ? cancelLabel?.toUpperCase()
+                              : cancelLabel) ??
+                          MaterialLocalizations.of(context).cancelButtonLabel,
+                    ),
+                    onPressed: () => widget.onSelect(null),
                   ),
-                  onPressed: () => widget.onSelect(null),
-                ),
-                TextButton(
-                  onPressed: _selectedKey == null
-                      ? null
-                      : () => widget.onSelect(_selectedKey),
-                  child: Text(
-                    (widget.fullyCapitalized
-                            ? okLabel?.toUpperCase()
-                            : okLabel) ??
-                        MaterialLocalizations.of(context).okButtonLabel,
+                  TextButton(
+                    onPressed: _selectedKey == null
+                        ? null
+                        : () => widget.onSelect(_selectedKey),
+                    child: Text(
+                      (widget.fullyCapitalized
+                              ? okLabel?.toUpperCase()
+                              : okLabel) ??
+                          MaterialLocalizations.of(context).okButtonLabel,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
