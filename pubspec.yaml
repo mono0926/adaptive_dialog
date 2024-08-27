@@ -5,8 +5,8 @@ repository: https://github.com/mono0926/adaptive_dialog
 funding:
   - https://github.com/sponsors/mono0926
 environment:
-  sdk: ^3.2.0
-  flutter: '>=3.16.0'
+  sdk: ^3.4.0
+  flutter: '>=3.22.0'
 dependencies:
   animations: ^2.0.3
   collection: ^1.15.0
@@ -34,7 +34,6 @@ screenshots:
     path: assets/showOkAlertDialog-code.png
 topics:
   - dialog
-  - ui
   - adaptive
   - alert
   - popup
