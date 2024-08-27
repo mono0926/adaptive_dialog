@@ -15,6 +15,7 @@ class CupertinoModalActionSheet<T> extends StatelessWidget {
     this.cancelLabel,
     required this.canPop,
     required this.onPopInvoked,
+    this.textStyle,
   });
 
   final ActionCallback<T> onPressed;
@@ -24,6 +25,7 @@ class CupertinoModalActionSheet<T> extends StatelessWidget {
   final String? cancelLabel;
   final bool canPop;
   final PopInvokedCallback? onPopInvoked;
+  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +47,7 @@ class CupertinoModalActionSheet<T> extends StatelessWidget {
                   MaterialLocalizations.of(context)
                       .cancelButtonLabel
                       .capitalizedForce,
+              style: textStyle,
             ),
           ),
           actions: actions

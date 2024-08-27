@@ -27,6 +27,7 @@ Future<T?> showModalActionSheet<T>({
   PopInvokedCallback? onPopInvoked,
   AdaptiveDialogBuilder? builder,
   RouteSettings? routeSettings,
+  TextStyle? textStyle,
 }) {
   void pop({required BuildContext context, required T? key}) => Navigator.of(
         context,
@@ -68,6 +69,7 @@ Future<T?> showModalActionSheet<T>({
               cancelLabel: cancelLabel,
               canPop: canPop,
               onPopInvoked: onPopInvoked,
+              textStyle: textStyle,
             );
             return builder == null ? sheet : builder(context, sheet);
           },
