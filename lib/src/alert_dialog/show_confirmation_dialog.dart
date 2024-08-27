@@ -33,7 +33,7 @@ Future<T?> showConfirmationDialog<T>({
   bool shrinkWrap = true,
   bool fullyCapitalizedForMaterial = true,
   bool canPop = true,
-  PopInvokedCallback? onPopInvoked,
+  PopInvokedWithResultCallback<T>? onPopInvokedWithResult,
   AdaptiveDialogBuilder? builder,
   RouteSettings? routeSettings,
   bool toggleable = true,
@@ -66,7 +66,7 @@ Future<T?> showConfirmationDialog<T>({
               shrinkWrap: shrinkWrap,
               fullyCapitalized: fullyCapitalizedForMaterial,
               canPop: canPop,
-              onPopInvoked: onPopInvoked,
+              onPopInvokedWithResult: onPopInvokedWithResult,
               toggleable: toggleable,
             );
             return builder == null ? dialog : builder(context, dialog);
@@ -81,7 +81,7 @@ Future<T?> showConfirmationDialog<T>({
           style: style,
           useRootNavigator: useRootNavigator,
           canPop: canPop,
-          onPopInvoked: onPopInvoked,
+          onPopInvokedWithResult: onPopInvokedWithResult,
           builder: builder,
           routeSettings: routeSettings,
         );
@@ -101,7 +101,7 @@ class _ConfirmationMaterialDialog<T> extends StatefulWidget {
     required this.shrinkWrap,
     required this.fullyCapitalized,
     required this.canPop,
-    required this.onPopInvoked,
+    required this.onPopInvokedWithResult,
     required this.toggleable,
   });
 
@@ -116,7 +116,7 @@ class _ConfirmationMaterialDialog<T> extends StatefulWidget {
   final bool shrinkWrap;
   final bool fullyCapitalized;
   final bool canPop;
-  final PopInvokedCallback? onPopInvoked;
+  final PopInvokedWithResultCallback<T>? onPopInvokedWithResult;
   final bool toggleable;
 
   @override
@@ -144,6 +144,7 @@ class _ConfirmationMaterialDialogState<T>
     final message = widget.message;
     return PopScope(
       canPop: widget.canPop,
+      onPopInvokedWithResult: widget.onPopInvokedWithResult,
       child: Dialog(
         child: Column(
           mainAxisSize: MainAxisSize.min,

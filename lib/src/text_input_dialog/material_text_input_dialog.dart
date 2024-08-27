@@ -17,7 +17,7 @@ class MaterialTextInputDialog extends StatefulWidget {
     this.useRootNavigator = true,
     this.fullyCapitalized = true,
     required this.canPop,
-    required this.onPopInvoked,
+    required this.onPopInvokedWithResult,
     this.autoSubmit = false,
   });
   @override
@@ -35,7 +35,7 @@ class MaterialTextInputDialog extends StatefulWidget {
   final bool useRootNavigator;
   final bool fullyCapitalized;
   final bool canPop;
-  final PopInvokedCallback? onPopInvoked;
+  final PopInvokedWithResultCallback<List<String>?>? onPopInvokedWithResult;
   final bool autoSubmit;
 }
 
@@ -95,6 +95,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
     );
     return PopScope(
       canPop: widget.canPop,
+      onPopInvokedWithResult: widget.onPopInvokedWithResult,
       child: Form(
         key: _formKey,
         child: AlertDialog(

@@ -1,3 +1,9 @@
+## 2.2.0
+
+- Fix deprecated API use (ButtonBar, PopInvokedCallback)
+  - `onPopInvoked` should be migrated to `onPopInvokedWithResult`
+  - https://docs.flutter.dev/release/breaking-changes/popscope-with-result
+
 ## 2.1.0
 
 - Add `spellCheckConfiguration` to `DialogTextField`

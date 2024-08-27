@@ -16,7 +16,7 @@ class IOSTextInputDialog extends StatefulWidget {
     this.style = AdaptiveStyle.adaptive,
     this.useRootNavigator = true,
     required this.canPop,
-    required this.onPopInvoked,
+    required this.onPopInvokedWithResult,
     this.autoSubmit = false,
   });
   @override
@@ -31,7 +31,7 @@ class IOSTextInputDialog extends StatefulWidget {
   final AdaptiveStyle style;
   final bool useRootNavigator;
   final bool canPop;
-  final PopInvokedCallback? onPopInvoked;
+  final PopInvokedWithResultCallback<List<String>?>? onPopInvokedWithResult;
   final bool autoSubmit;
 }
 
@@ -114,6 +114,7 @@ class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
     final validationMessage = _validationMessage;
     return PopScope(
       canPop: widget.canPop,
+      onPopInvokedWithResult: widget.onPopInvokedWithResult,
       child: CupertinoAlertDialog(
         title: title == null ? null : Text(title),
         content: Column(

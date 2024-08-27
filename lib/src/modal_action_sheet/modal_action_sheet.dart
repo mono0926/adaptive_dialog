@@ -24,7 +24,7 @@ Future<T?> showModalActionSheet<T>({
   bool useRootNavigator = true,
   MaterialModalActionSheetConfiguration? materialConfiguration,
   bool canPop = true,
-  PopInvokedCallback? onPopInvoked,
+  PopInvokedWithResultCallback<T>? onPopInvokedWithResult,
   AdaptiveDialogBuilder? builder,
   RouteSettings? routeSettings,
 }) {
@@ -50,7 +50,7 @@ Future<T?> showModalActionSheet<T>({
               actions: actions,
               materialConfiguration: materialConfiguration,
               canPop: canPop,
-              onPopInvoked: onPopInvoked,
+              onPopInvokedWithResult: onPopInvokedWithResult,
             );
             return builder == null ? sheet : builder(context, sheet);
           },
@@ -67,7 +67,7 @@ Future<T?> showModalActionSheet<T>({
               actions: actions,
               cancelLabel: cancelLabel,
               canPop: canPop,
-              onPopInvoked: onPopInvoked,
+              onPopInvokedWithResult: onPopInvokedWithResult,
             );
             return builder == null ? sheet : builder(context, sheet);
           },

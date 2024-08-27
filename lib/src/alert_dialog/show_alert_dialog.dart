@@ -29,7 +29,7 @@ Future<T?> showAlertDialog<T>({
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
   bool fullyCapitalizedForMaterial = true,
   bool canPop = true,
-  PopInvokedCallback? onPopInvoked,
+  PopInvokedWithResultCallback<T>? onPopInvokedWithResult,
   AdaptiveDialogBuilder? builder,
   Widget? macOSApplicationIcon,
   RouteSettings? routeSettings,
@@ -53,7 +53,7 @@ Future<T?> showAlertDialog<T>({
       style: style,
       useRootNavigator: useRootNavigator,
       canPop: canPop,
-      onPopInvoked: onPopInvoked,
+      onPopInvokedWithResult: onPopInvokedWithResult,
       builder: builder,
       routeSettings: routeSettings,
     );
@@ -74,7 +74,7 @@ Future<T?> showAlertDialog<T>({
         builder: (context) {
           final dialog = PopScope(
             canPop: canPop,
-            onPopInvoked: onPopInvoked,
+            onPopInvokedWithResult: onPopInvokedWithResult,
             child: CupertinoAlertDialog(
               title: titleText,
               content: messageText,
@@ -111,7 +111,7 @@ Future<T?> showAlertDialog<T>({
           final Widget dialog = MacThemeWrapper(
             child: PopScope(
               canPop: canPop,
-              onPopInvoked: onPopInvoked,
+              onPopInvokedWithResult: onPopInvokedWithResult,
               child: MacosAlertDialog(
                 title: titleText ?? const SizedBox.shrink(),
                 message: messageText ?? const SizedBox.shrink(),
@@ -140,7 +140,7 @@ Future<T?> showAlertDialog<T>({
         builder: (context) {
           final dialog = PopScope(
             canPop: canPop,
-            onPopInvoked: onPopInvoked,
+            onPopInvokedWithResult: onPopInvokedWithResult,
             child: AlertDialog(
               title: titleText,
               content: messageText,
