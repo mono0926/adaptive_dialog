@@ -1,3 +1,8 @@
+## 2.2.1
+
+- Changed to Flutter 3.24.0 and Dart 3.5 or higher
+  - This should have been done at version 2.2.0.
+
 ## 2.2.0
 
 - Fix deprecated API use (ButtonBar, PopInvokedCallback)
