@@ -1,3 +1,7 @@
+## 2.3.0
+
+- Use SystemContextMenu for iOS
+
 ## 2.2.1
 
 - Changed to Flutter 3.24.0 and Dart 3.5 or higher

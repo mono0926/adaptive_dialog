@@ -129,6 +129,7 @@ class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
                 final prefixText = field.prefixText;
                 final suffixText = field.suffixText;
                 return CupertinoTextField(
+                  contextMenuBuilder: _contextMenuBuilder,
                   controller: c,
                   autofocus: i == 0,
                   placeholder: field.hintText,
@@ -210,3 +211,19 @@ class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
     return validations.isEmpty;
   }
 }
+
+/// SystemContextMenu対応のcontextMenuBuilder
+///
+/// SystemContextMenuがサポートされている場合はそれを利用したネイティブUIで、
+/// それ以外の時は無指定の時と同じ挙動
+Widget _contextMenuBuilder(
+  BuildContext context,
+  EditableTextState editableTextState,
+) =>
+    SystemContextMenu.isSupported(context)
+        ? SystemContextMenu.editableText(
+            editableTextState: editableTextState,
+          )
+        : AdaptiveTextSelectionToolbar.editableText(
+            editableTextState: editableTextState,
+          );
