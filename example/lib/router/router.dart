@@ -1,3 +1,4 @@
+import 'package:example/pages/general_dialog_page.dart';
 import 'package:example/pages/home_page.dart';
 import 'package:example/pages/text_input_dialog_page.dart';
 import 'package:flutter/foundation.dart';
@@ -25,6 +26,7 @@ final routerProvider = Provider(
     TypedGoRoute<AlertRoute>(path: 'alert'),
     TypedGoRoute<SheetRoute>(path: 'sheet'),
     TypedGoRoute<TextInputDialogRoute>(path: 'text-input'),
+    TypedGoRoute<GeneralDialogRoute>(path: 'general'),
     TypedGoRoute<NestedNavigatorRoute>(path: 'nested-navigator'),
   ],
 )
@@ -42,5 +44,6 @@ List<String> get allRouteLocations => [
       const AlertRoute().location,
       const SheetRoute().location,
       const TextInputDialogRoute().location,
+      const GeneralDialogRoute().location,
       const NestedNavigatorRoute().location,
     ];
