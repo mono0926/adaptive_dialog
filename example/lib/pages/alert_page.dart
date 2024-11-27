@@ -1,8 +1,10 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:example/result_provider.dart';
 import 'package:example/router/router.dart';
 import 'package:example/util/logger.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class AlertRoute extends GoRouteData {
@@ -11,11 +13,11 @@ class AlertRoute extends GoRouteData {
   Widget build(BuildContext context, GoRouterState state) => const AlertPage();
 }
 
-class AlertPage extends StatelessWidget {
+class AlertPage extends ConsumerWidget {
   const AlertPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text(pascalCaseFromRouteUri(GoRouterState.of(context).uri)),
@@ -30,7 +32,7 @@ class AlertPage extends StatelessWidget {
                 title: 'Title',
                 message: 'This is message.',
               );
-              logger.info(result);
+              ref.read(resultProvider.notifier).set(result);
             },
           ),
           ListTile(
@@ -46,7 +48,7 @@ class AlertPage extends StatelessWidget {
                 },
               );
               assert(result == OkCancelResult.ok);
-              logger.info(result);
+              ref.read(resultProvider.notifier).set(result);
             },
           ),
           ListTile(
@@ -58,7 +60,7 @@ class AlertPage extends StatelessWidget {
                 message: 'This is message.',
                 barrierDismissible: false,
               );
-              logger.info(result);
+              ref.read(resultProvider.notifier).set(result);
             },
           ),
           ListTile(
