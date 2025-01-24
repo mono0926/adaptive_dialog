@@ -19,7 +19,7 @@ class MacOSTextInputDialog extends StatefulWidget {
     this.style = AdaptiveStyle.adaptive,
     this.useRootNavigator = true,
     required this.canPop,
-    required this.onPopInvoked,
+    required this.onPopInvokedWithResult,
     this.autoSubmit = false,
   });
   @override
@@ -34,7 +34,7 @@ class MacOSTextInputDialog extends StatefulWidget {
   final AdaptiveStyle style;
   final bool useRootNavigator;
   final bool canPop;
-  final PopInvokedCallback? onPopInvoked;
+  final PopInvokedWithResultCallback<List<String>?>? onPopInvokedWithResult;
   final bool autoSubmit;
 }
 

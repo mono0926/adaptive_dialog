@@ -22,7 +22,7 @@ Future<bool> showTextAnswerDialog({
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
   bool fullyCapitalizedForMaterial = true,
   bool canPop = true,
-  PopInvokedCallback? onPopInvoked,
+  PopInvokedWithResultCallback<List<String>?>? onPopInvokedWithResult,
   bool autoSubmit = false,
   bool isCaseSensitive = true,
   AdaptiveDialogBuilder? builder,
@@ -42,7 +42,7 @@ Future<bool> showTextAnswerDialog({
     actionsOverflowDirection: actionsOverflowDirection,
     fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
     canPop: canPop,
-    onPopInvoked: onPopInvoked,
+    onPopInvokedWithResult: onPopInvokedWithResult,
     autoSubmit: autoSubmit,
     builder: builder,
   );
@@ -66,8 +66,6 @@ Future<bool> showTextAnswerDialog({
     barrierDismissible: barrierDismissible,
     useRootNavigator: useRootNavigator,
     fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
-    canPop: canPop,
-    onPopInvoked: onPopInvoked,
     builder: builder,
   );
   return result == OkCancelResult.ok
@@ -90,7 +88,7 @@ Future<bool> showTextAnswerDialog({
           actionsOverflowDirection: actionsOverflowDirection,
           fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
           canPop: canPop,
-          onPopInvoked: onPopInvoked,
+          onPopInvokedWithResult: onPopInvokedWithResult,
           autoSubmit: autoSubmit,
           builder: builder,
         )

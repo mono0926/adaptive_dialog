@@ -1,3 +1,24 @@
+## 2.4.0
+
+- Changed to Flutter 3.27.0 and Dart 3.6.0 or higher
+
+## 2.3.0
+
+- Use SystemContextMenu for iOS
+
+## 2.2.1
+
+- Changed to Flutter 3.24.0 and Dart 3.5 or higher
+  - This should have been done at version 2.2.0.
+
+## 2.2.0
+
+- Fix deprecated API use (ButtonBar, PopInvokedCallback)
+  - `onPopInvoked` should be migrated to `onPopInvokedWithResult`
+  - https://docs.flutter.dev/release/breaking-changes/popscope-with-result
+- If you are using Flutter version below 3.24, please specify `adaptive_dialog: 2.1.0` as this version will cause a compilation error.
+  - Corrected the dependency specification in version 2.2.1, but cannot be fixed the already released versions
+
 ## 2.1.0
 
 - Add `spellCheckConfiguration` to `DialogTextField`

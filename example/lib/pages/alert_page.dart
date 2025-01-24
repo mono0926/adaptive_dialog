@@ -41,6 +41,9 @@ class AlertPage extends StatelessWidget {
                 title: 'Title',
                 message: 'This is message.',
                 canPop: false,
+                onPopInvokedWithResult: (didPop, result) {
+                  logger.info('didPop: $didPop, result: $result');
+                },
               );
               assert(result == OkCancelResult.ok);
               logger.info(result);

@@ -26,8 +26,8 @@ class _MacosDraggableDialogState extends State<MacosDraggableDialog> {
       CupertinoColors.darkBackgroundGray,
     );
     final innerBorderColor = brightness.resolve(
-      Colors.white.withOpacity(0.45),
-      Colors.white.withOpacity(0.15),
+      Colors.white.withValues(alpha: 0.45),
+      Colors.white.withValues(alpha: 0.15),
     );
     return Transform.translate(
       offset: _offset,
@@ -48,8 +48,8 @@ class _MacosDraggableDialogState extends State<MacosDraggableDialog> {
           foregroundDecoration: BoxDecoration(
             border: Border.all(
               color: brightness.resolve(
-                Colors.black.withOpacity(0.23),
-                Colors.black.withOpacity(0.76),
+                Colors.black.withValues(alpha: 0.23),
+                Colors.black.withValues(alpha: 0.76),
               ),
             ),
             borderRadius: borderRadius,
@@ -69,7 +69,7 @@ class _MacosDraggableDialogState extends State<MacosDraggableDialog> {
                       color: Color.lerp(color, Colors.white, 0.12),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
+                          color: Colors.black.withValues(alpha: 0.2),
                           blurRadius: 1,
                         ),
                       ],

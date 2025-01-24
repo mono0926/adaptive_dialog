@@ -14,7 +14,7 @@ class CupertinoModalActionSheet<T> extends StatelessWidget {
     this.message,
     this.cancelLabel,
     required this.canPop,
-    required this.onPopInvoked,
+    required this.onPopInvokedWithResult,
   });
 
   final ActionCallback<T> onPressed;
@@ -23,7 +23,7 @@ class CupertinoModalActionSheet<T> extends StatelessWidget {
   final String? message;
   final String? cancelLabel;
   final bool canPop;
-  final PopInvokedCallback? onPopInvoked;
+  final PopInvokedWithResultCallback<T>? onPopInvokedWithResult;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class CupertinoModalActionSheet<T> extends StatelessWidget {
     final message = this.message;
     return PopScope(
       canPop: canPop,
-      onPopInvoked: onPopInvoked,
+      onPopInvokedWithResult: onPopInvokedWithResult,
       child: MediaQuery.withClampedTextScaling(
         minScaleFactor: 1,
         child: CupertinoActionSheet(

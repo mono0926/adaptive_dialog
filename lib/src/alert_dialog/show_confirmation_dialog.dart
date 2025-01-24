@@ -33,7 +33,7 @@ Future<T?> showConfirmationDialog<T>({
   bool shrinkWrap = true,
   bool fullyCapitalizedForMaterial = true,
   bool canPop = true,
-  PopInvokedCallback? onPopInvoked,
+  PopInvokedWithResultCallback<T>? onPopInvokedWithResult,
   AdaptiveDialogBuilder? builder,
   RouteSettings? routeSettings,
   bool toggleable = true,
@@ -66,7 +66,7 @@ Future<T?> showConfirmationDialog<T>({
               shrinkWrap: shrinkWrap,
               fullyCapitalized: fullyCapitalizedForMaterial,
               canPop: canPop,
-              onPopInvoked: onPopInvoked,
+              onPopInvokedWithResult: onPopInvokedWithResult,
               toggleable: toggleable,
             );
             return builder == null ? dialog : builder(context, dialog);
@@ -81,7 +81,7 @@ Future<T?> showConfirmationDialog<T>({
           style: style,
           useRootNavigator: useRootNavigator,
           canPop: canPop,
-          onPopInvoked: onPopInvoked,
+          onPopInvokedWithResult: onPopInvokedWithResult,
           builder: builder,
           routeSettings: routeSettings,
         );
@@ -101,7 +101,7 @@ class _ConfirmationMaterialDialog<T> extends StatefulWidget {
     required this.shrinkWrap,
     required this.fullyCapitalized,
     required this.canPop,
-    required this.onPopInvoked,
+    required this.onPopInvokedWithResult,
     required this.toggleable,
   });
 
@@ -116,7 +116,7 @@ class _ConfirmationMaterialDialog<T> extends StatefulWidget {
   final bool shrinkWrap;
   final bool fullyCapitalized;
   final bool canPop;
-  final PopInvokedCallback? onPopInvoked;
+  final PopInvokedWithResultCallback<T>? onPopInvokedWithResult;
   final bool toggleable;
 
   @override
@@ -144,6 +144,7 @@ class _ConfirmationMaterialDialogState<T>
     final message = widget.message;
     return PopScope(
       canPop: widget.canPop,
+      onPopInvokedWithResult: widget.onPopInvokedWithResult,
       child: Dialog(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -203,30 +204,35 @@ class _ConfirmationMaterialDialogState<T>
               ),
             ),
             const Divider(height: 0),
-            ButtonBar(
-              layoutBehavior: ButtonBarLayoutBehavior.constrained,
-              children: [
-                TextButton(
-                  child: Text(
-                    (widget.fullyCapitalized
-                            ? cancelLabel?.toUpperCase()
-                            : cancelLabel) ??
-                        MaterialLocalizations.of(context).cancelButtonLabel,
+            Padding(
+              padding: const EdgeInsets.all(4),
+              child: OverflowBar(
+                alignment: MainAxisAlignment.end,
+                overflowAlignment: OverflowBarAlignment.end,
+                spacing: 8,
+                children: [
+                  TextButton(
+                    child: Text(
+                      (widget.fullyCapitalized
+                              ? cancelLabel?.toUpperCase()
+                              : cancelLabel) ??
+                          MaterialLocalizations.of(context).cancelButtonLabel,
+                    ),
+                    onPressed: () => widget.onSelect(null),
                   ),
-                  onPressed: () => widget.onSelect(null),
-                ),
-                TextButton(
-                  onPressed: _selectedKey == null
-                      ? null
-                      : () => widget.onSelect(_selectedKey),
-                  child: Text(
-                    (widget.fullyCapitalized
-                            ? okLabel?.toUpperCase()
-                            : okLabel) ??
-                        MaterialLocalizations.of(context).okButtonLabel,
+                  TextButton(
+                    onPressed: _selectedKey == null
+                        ? null
+                        : () => widget.onSelect(_selectedKey),
+                    child: Text(
+                      (widget.fullyCapitalized
+                              ? okLabel?.toUpperCase()
+                              : okLabel) ??
+                          MaterialLocalizations.of(context).okButtonLabel,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
