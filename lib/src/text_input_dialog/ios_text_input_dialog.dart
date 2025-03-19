@@ -206,7 +206,7 @@ class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
       return validator == null ? null : validator(_textControllers[i].text);
     }).where((result) => result != null);
     setState(() {
-      _validationMessage = validations.join('\n');
+      _validationMessage = validations.isEmpty ? null : validations.join('\n');
     });
     return validations.isEmpty;
   }
