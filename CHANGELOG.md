@@ -1,3 +1,7 @@
+## 2.4.1
+
+- Trim empty newline when there are no validation message on iOS
+
 ## 2.4.0
 
 - Changed to Flutter 3.27.0 and Dart 3.6.0 or higher
