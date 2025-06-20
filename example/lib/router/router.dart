@@ -28,10 +28,36 @@ final routerProvider = Provider(
     TypedGoRoute<NestedNavigatorRoute>(path: 'nested-navigator'),
   ],
 )
-class HomeRoute extends GoRouteData {
+class HomeRoute extends GoRouteData with _$HomeRoute {
   const HomeRoute();
   @override
   Widget build(BuildContext context, GoRouterState state) => const HomePage();
+}
+
+class AlertRoute extends GoRouteData with _$AlertRoute {
+  const AlertRoute();
+  @override
+  Widget build(BuildContext context, GoRouterState state) => const AlertPage();
+}
+
+class NestedNavigatorRoute extends GoRouteData with _$NestedNavigatorRoute {
+  const NestedNavigatorRoute();
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const NestedNavigatorPage();
+}
+
+class SheetRoute extends GoRouteData with _$SheetRoute {
+  const SheetRoute();
+  @override
+  Widget build(BuildContext context, GoRouterState state) => const SheetPage();
+}
+
+class TextInputDialogRoute extends GoRouteData with _$TextInputDialogRoute {
+  const TextInputDialogRoute();
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const TextInputDialogPage();
 }
 
 String pascalCaseFromRouteName(String name) => name.pascalCase;

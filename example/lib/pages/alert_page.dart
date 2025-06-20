@@ -5,12 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class AlertRoute extends GoRouteData {
-  const AlertRoute();
-  @override
-  Widget build(BuildContext context, GoRouterState state) => const AlertPage();
-}
-
 class AlertPage extends StatelessWidget {
   const AlertPage({super.key});
 

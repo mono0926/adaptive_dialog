@@ -3,13 +3,6 @@ import 'package:example/util/util.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class NestedNavigatorRoute extends GoRouteData {
-  const NestedNavigatorRoute();
-  @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const NestedNavigatorPage();
-}
-
 class NestedNavigatorPage extends StatelessWidget {
   const NestedNavigatorPage({super.key});
 

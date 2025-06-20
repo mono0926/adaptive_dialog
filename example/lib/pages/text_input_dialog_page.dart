@@ -6,13 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class TextInputDialogRoute extends GoRouteData {
-  const TextInputDialogRoute();
-  @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const TextInputDialogPage();
-}
-
 class TextInputDialogPage extends ConsumerWidget {
   const TextInputDialogPage({super.key});
 

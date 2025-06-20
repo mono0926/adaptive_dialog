@@ -6,81 +6,141 @@ part of 'router.dart';
 // GoRouterGenerator
 // **************************************************************************
 
-List<GoRoute> get $appRoutes => [
+List<RouteBase> get $appRoutes => [
       $homeRoute,
     ];
 
-GoRoute get $homeRoute => GoRouteData.$route(
+RouteBase get $homeRoute => GoRouteData.$route(
       path: '/',
-      factory: $HomeRouteExtension._fromState,
+      factory: _$HomeRoute._fromState,
       routes: [
         GoRouteData.$route(
           path: 'alert',
-          factory: $AlertRouteExtension._fromState,
+          factory: _$AlertRoute._fromState,
         ),
         GoRouteData.$route(
           path: 'sheet',
-          factory: $SheetRouteExtension._fromState,
+          factory: _$SheetRoute._fromState,
         ),
         GoRouteData.$route(
           path: 'text-input',
-          factory: $TextInputDialogRouteExtension._fromState,
+          factory: _$TextInputDialogRoute._fromState,
         ),
         GoRouteData.$route(
           path: 'nested-navigator',
-          factory: $NestedNavigatorRouteExtension._fromState,
+          factory: _$NestedNavigatorRoute._fromState,
         ),
       ],
     );
 
-extension $HomeRouteExtension on HomeRoute {
+mixin _$HomeRoute on GoRouteData {
   static HomeRoute _fromState(GoRouterState state) => const HomeRoute();
 
+  @override
   String get location => GoRouteData.$location(
         '/',
       );
 
-  void go(BuildContext buildContext) => buildContext.go(location, extra: this);
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
 }
 
-extension $AlertRouteExtension on AlertRoute {
+mixin _$AlertRoute on GoRouteData {
   static AlertRoute _fromState(GoRouterState state) => const AlertRoute();
 
+  @override
   String get location => GoRouteData.$location(
         '/alert',
       );
 
-  void go(BuildContext buildContext) => buildContext.go(location, extra: this);
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
 }
 
-extension $SheetRouteExtension on SheetRoute {
+mixin _$SheetRoute on GoRouteData {
   static SheetRoute _fromState(GoRouterState state) => const SheetRoute();
 
+  @override
   String get location => GoRouteData.$location(
         '/sheet',
       );
 
-  void go(BuildContext buildContext) => buildContext.go(location, extra: this);
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
 }
 
-extension $TextInputDialogRouteExtension on TextInputDialogRoute {
+mixin _$TextInputDialogRoute on GoRouteData {
   static TextInputDialogRoute _fromState(GoRouterState state) =>
       const TextInputDialogRoute();
 
+  @override
   String get location => GoRouteData.$location(
         '/text-input',
       );
 
-  void go(BuildContext buildContext) => buildContext.go(location, extra: this);
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
 }
 
-extension $NestedNavigatorRouteExtension on NestedNavigatorRoute {
+mixin _$NestedNavigatorRoute on GoRouteData {
   static NestedNavigatorRoute _fromState(GoRouterState state) =>
       const NestedNavigatorRoute();
 
+  @override
   String get location => GoRouteData.$location(
         '/nested-navigator',
       );
 
-  void go(BuildContext buildContext) => buildContext.go(location, extra: this);
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
 }
