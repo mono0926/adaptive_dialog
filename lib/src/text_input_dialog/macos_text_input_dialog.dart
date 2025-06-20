@@ -43,7 +43,7 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
       .map((tf) => TextEditingController(text: tf.initialText))
       .toList();
   String? _validationMessage;
-  bool _autovalidate = false;
+  var _autovalidate = false;
 
   @override
   void initState() {

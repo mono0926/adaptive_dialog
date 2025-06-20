@@ -22,7 +22,6 @@ class AdaptiveDialog {
   Color? get cachedAccentColor => _cachedAccentColor;
 
   /// Update default configuration
-  // ignore: use_setters_to_change_properties
   void updateConfiguration({
     AdaptiveStyle? defaultStyle,
     AdaptiveDialogMacOSConfiguration? macOS,

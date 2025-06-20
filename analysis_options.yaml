@@ -6,3 +6,4 @@ analyzer:
 linter:
   rules:
     use_build_context_synchronously: false
+    specify_nonobvious_property_types: false
