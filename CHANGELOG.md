@@ -1,3 +1,7 @@
+## 2.4.2
+
+- Set `scrollable: true` to MaterialTextInputDialog (#143, #144)
+
 ## 2.4.1
 
 - Trim empty newline when there are no validation message on iOS
