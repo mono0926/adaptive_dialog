@@ -100,6 +100,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
         key: _formKey,
         child: AlertDialog(
           title: titleText,
+          scrollable: true,
           content: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
