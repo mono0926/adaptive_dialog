@@ -1,3 +1,7 @@
+## 2.5.0
+
+- Changed to Flutter 3.35.0 and Dart 3.9.0 or higher
+
 ## 2.4.2
 
 - Set `scrollable: true` to MaterialTextInputDialog (#143, #144)

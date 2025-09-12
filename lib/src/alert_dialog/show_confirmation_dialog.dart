@@ -177,29 +177,31 @@ class _ConfirmationMaterialDialogState<T>
             Flexible(
               child: SizedBox(
                 height: widget.contentMaxHeight,
-                child: ListView(
-                  // This switches physics automatically, so if there is enough
-                  // height, `NeverScrollableScrollPhysics` will be set.
-                  controller: _scrollController,
-                  shrinkWrap: widget.shrinkWrap,
-                  children: widget.actions
-                      .map(
-                        (action) => RadioListTile<T>(
-                          title: Text(
-                            action.label,
-                            style: action.textStyle,
+                child: RadioGroup(
+                  groupValue: _selectedKey,
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedKey = value;
+                    });
+                  },
+                  child: ListView(
+                    // This switches physics automatically, so if there is enough
+                    // height, `NeverScrollableScrollPhysics` will be set.
+                    controller: _scrollController,
+                    shrinkWrap: widget.shrinkWrap,
+                    children: widget.actions
+                        .map(
+                          (action) => RadioListTile<T>(
+                            title: Text(
+                              action.label,
+                              style: action.textStyle,
+                            ),
+                            value: action.key,
+                            toggleable: widget.toggleable,
                           ),
-                          value: action.key,
-                          groupValue: _selectedKey,
-                          onChanged: (value) {
-                            setState(() {
-                              _selectedKey = value;
-                            });
-                          },
-                          toggleable: widget.toggleable,
-                        ),
-                      )
-                      .toList(),
+                        )
+                        .toList(),
+                  ),
                 ),
               ),
             ),

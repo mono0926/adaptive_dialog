@@ -81,14 +81,16 @@ class _StyleDropdownButton extends ConsumerWidget {
 }
 
 final adaptiveStyleProvider =
-    StateNotifierProvider<AdaptiveStyleNotifier, AdaptiveStyle>(
-  (ref) => AdaptiveStyleNotifier(),
+    NotifierProvider<AdaptiveStyleNotifier, AdaptiveStyle>(
+  () => AdaptiveStyleNotifier(),
 );
 
-class AdaptiveStyleNotifier extends StateNotifier<AdaptiveStyle> {
-  AdaptiveStyleNotifier() : super(AdaptiveStyle.adaptive);
+class AdaptiveStyleNotifier extends Notifier<AdaptiveStyle> {
   void update(AdaptiveStyle style) {
     AdaptiveDialog.instance.updateConfiguration(defaultStyle: style);
     state = style;
   }
+
+  @override
+  AdaptiveStyle build() => AdaptiveStyle.adaptive;
 }

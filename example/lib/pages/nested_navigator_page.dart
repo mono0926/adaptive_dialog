@@ -1,7 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:example/util/util.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class NestedNavigatorPage extends StatelessWidget {
   const NestedNavigatorPage({super.key});
