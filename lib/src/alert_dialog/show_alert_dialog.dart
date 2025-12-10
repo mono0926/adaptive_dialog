@@ -27,7 +27,7 @@ Future<T?> showAlertDialog<T>({
   bool useActionSheetForIOS = false,
   bool useRootNavigator = true,
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
-  bool fullyCapitalizedForMaterial = true,
+  @Deprecated('Will be removed in v3') bool fullyCapitalizedForMaterial = false,
   bool canPop = true,
   PopInvokedWithResultCallback<T>? onPopInvokedWithResult,
   AdaptiveDialogBuilder? builder,
@@ -35,9 +35,9 @@ Future<T?> showAlertDialog<T>({
   RouteSettings? routeSettings,
 }) {
   void pop({required BuildContext context, required T? key}) => Navigator.of(
-        context,
-        rootNavigator: useRootNavigator,
-      ).pop(key);
+    context,
+    rootNavigator: useRootNavigator,
+  ).pop(key);
 
   final theme = Theme.of(context);
   final colorScheme = theme.colorScheme;
@@ -120,7 +120,8 @@ Future<T?> showAlertDialog<T>({
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: buttons,
                 ),
-                appIcon: macOSApplicationIcon ??
+                appIcon:
+                    macOSApplicationIcon ??
                     AdaptiveDialog.instance.macOS.applicationIcon ??
                     const Icon(Icons.info),
               ),
@@ -174,10 +175,10 @@ enum OkCancelAlertDefaultType {
 
 class _DummyEmptyMacosPushButton extends PushButton {
   const _DummyEmptyMacosPushButton()
-      : super(
-          child: const SizedBox.shrink(),
-          controlSize: ControlSize.large,
-        );
+    : super(
+        child: const SizedBox.shrink(),
+        controlSize: ControlSize.large,
+      );
   @override
   PushButtonState createState() => _DummyEmptyMacosPushButtonState();
 }

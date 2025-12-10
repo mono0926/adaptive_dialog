@@ -31,7 +31,7 @@ Future<T?> showConfirmationDialog<T>({
   AdaptiveStyle? style,
   bool useRootNavigator = true,
   bool shrinkWrap = true,
-  bool fullyCapitalizedForMaterial = true,
+  @Deprecated('Will be removed in v3') bool fullyCapitalizedForMaterial = false,
   bool canPop = true,
   PopInvokedWithResultCallback<T>? onPopInvokedWithResult,
   AdaptiveDialogBuilder? builder,
@@ -39,9 +39,9 @@ Future<T?> showConfirmationDialog<T>({
   bool toggleable = true,
 }) {
   void pop({required BuildContext context, required T? key}) => Navigator.of(
-        context,
-        rootNavigator: useRootNavigator,
-      ).pop(key);
+    context,
+    rootNavigator: useRootNavigator,
+  ).pop(key);
 
   final theme = Theme.of(context);
   final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;

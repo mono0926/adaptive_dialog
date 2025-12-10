@@ -177,6 +177,8 @@ class AlertPage extends StatelessWidget {
                 message: 'This is message.',
                 okLabel: 'Yes',
                 cancelLabel: 'Decline It',
+                // ignore: deprecated_member_use
+                fullyCapitalizedForMaterial: true,
               );
               logger.info(result);
             },
@@ -192,7 +194,6 @@ class AlertPage extends StatelessWidget {
                 message: 'This is message.',
                 okLabel: 'Yes',
                 cancelLabel: 'Decline It',
-                fullyCapitalizedForMaterial: false,
               );
               logger.info(result);
             },
