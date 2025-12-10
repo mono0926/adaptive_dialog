@@ -92,12 +92,12 @@ class _ConfirmationMaterialDialog<T> extends StatefulWidget {
     super.key,
     required this.title,
     required this.onSelect,
-    @required this.message,
-    @required this.okLabel,
-    @required this.cancelLabel,
+    required this.message,
+    required this.okLabel,
+    required this.cancelLabel,
     required this.actions,
-    @required this.initialSelectedActionKey,
-    @required this.contentMaxHeight,
+    required this.initialSelectedActionKey,
+    required this.contentMaxHeight,
     required this.shrinkWrap,
     required this.fullyCapitalized,
     required this.canPop,
@@ -185,8 +185,9 @@ class _ConfirmationMaterialDialogState<T>
                     });
                   },
                   child: ListView(
-                    // This switches physics automatically, so if there is enough
-                    // height, `NeverScrollableScrollPhysics` will be set.
+                    // This switches physics automatically, so if there is
+                    // enough height,
+                    // `NeverScrollableScrollPhysics` will be set.
                     controller: _scrollController,
                     shrinkWrap: widget.shrinkWrap,
                     children: widget.actions
