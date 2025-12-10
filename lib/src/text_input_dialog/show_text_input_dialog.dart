@@ -23,7 +23,7 @@ Future<List<String>?> showTextInputDialog({
   AdaptiveStyle? style,
   bool useRootNavigator = true,
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
-  bool fullyCapitalizedForMaterial = true,
+  @Deprecated('Will be removed in v3') bool fullyCapitalizedForMaterial = false,
   bool canPop = true,
   PopInvokedWithResultCallback<List<String>?>? onPopInvokedWithResult,
   bool autoSubmit = false,
