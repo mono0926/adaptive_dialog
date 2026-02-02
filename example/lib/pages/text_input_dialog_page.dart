@@ -31,6 +31,22 @@ class TextInputDialogPage extends ConsumerWidget {
             },
           ),
           ListTile(
+            title: const Text('Japanese Greeting (こんにちは)'),
+            onTap: () async {
+              final text = await showTextInputDialog(
+                context: context,
+                textFields: const [
+                  DialogTextField(
+                    hintText: 'お名前を入力してください',
+                  ),
+                ],
+                title: 'こんにちは',
+                message: 'あなたの名前を教えてください。',
+              );
+              logger.info(text);
+            },
+          ),
+          ListTile(
             title: const Text(
                 'No Title/Message(spellCheckConfiguration disabled)'),
             onTap: () async {

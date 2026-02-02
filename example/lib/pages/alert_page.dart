@@ -28,6 +28,17 @@ class AlertPage extends StatelessWidget {
             },
           ),
           ListTile(
+            title: const Text('Japanese Greeting Dialog (こんにちは)'),
+            onTap: () async {
+              final result = await showOkAlertDialog(
+                context: context,
+                title: 'こんにちは',
+                message: 'これは日本語のメッセージです。',
+              );
+              logger.info(result);
+            },
+          ),
+          ListTile(
             title: const Text('OK Dialog (canPop: false)'),
             onTap: () async {
               final result = await showOkAlertDialog(

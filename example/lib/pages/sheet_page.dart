@@ -33,6 +33,29 @@ class SheetPage extends StatelessWidget {
             },
           ),
           ListTile(
+            title: const Text('Japanese Greeting (こんにちは)'),
+            onTap: () async {
+              final result = await showModalActionSheet<String>(
+                context: context,
+                title: 'こんにちは',
+                message: 'アクションを選択してください',
+                actions: [
+                  const SheetAction(
+                    icon: Icons.waving_hand,
+                    label: '挨拶する',
+                    key: 'greetKey',
+                  ),
+                  const SheetAction(
+                    icon: Icons.cancel,
+                    label: 'キャンセル',
+                    key: 'cancelKey',
+                  ),
+                ],
+              );
+              logger.info(result);
+            },
+          ),
+          ListTile(
             title: const Text('No Message'),
             onTap: () async {
               final result = await showModalActionSheet<String>(
