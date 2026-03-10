@@ -1,3 +1,7 @@
+## 2.7.1 - 2026-03-10
+
+- Restore CHANGELOG.md history that was accidentally removed in 2.7.0
+
 ## 2.7.0 - 2026-03-10
 
 - Support text selection for dialogs (#65)
