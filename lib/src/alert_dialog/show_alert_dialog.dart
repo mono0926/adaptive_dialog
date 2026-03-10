@@ -1,8 +1,10 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_dialog/src/helper/macos_theme_wrapper.dart';
 import 'package:animations/animations.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intersperse/intersperse.dart';
 import 'package:macos_ui/macos_ui.dart';
 import 'package:meta/meta.dart';
@@ -71,21 +73,43 @@ Future<T?> showAlertDialog<T>({
         useRootNavigator: useRootNavigator,
         routeSettings: routeSettings,
         builder: (context) {
-          final dialog = PopScope(
-            canPop: canPop,
-            onPopInvokedWithResult: onPopInvokedWithResult,
-            child: CupertinoAlertDialog(
-              title: titleText,
-              content: messageText,
-              actions: actions
-                  .map(
-                    (a) => a.convertToIOSDialogAction(
-                      onPressed: (key) => pop(context: context, key: key),
-                    ),
-                  )
-                  .toList(),
-              // TODO(mono): Set actionsOverflowDirection if available
-              // https://twitter.com/_mono/status/1261122914218160128
+          final dialog = CallbackShortcuts(
+            bindings: {
+              const SingleActivator(LogicalKeyboardKey.enter): () {
+                final defaultAction = actions.firstWhereOrNull(
+                  (a) => a.isDefaultAction,
+                );
+                if (defaultAction != null) {
+                  pop(context: context, key: defaultAction.key);
+                }
+              },
+              const SingleActivator(LogicalKeyboardKey.escape): () {
+                final cancelAction = actions.firstWhereOrNull(
+                  (a) => a.key == OkCancelResult.cancel,
+                );
+                if (cancelAction != null) {
+                  pop(context: context, key: cancelAction.key);
+                } else if (canPop) {
+                  pop(context: context, key: null);
+                }
+              },
+            },
+            child: PopScope(
+              canPop: canPop,
+              onPopInvokedWithResult: onPopInvokedWithResult,
+              child: CupertinoAlertDialog(
+                title: titleText,
+                content: messageText,
+                actions: actions
+                    .map(
+                      (a) => a.convertToIOSDialogAction(
+                        onPressed: (key) => pop(context: context, key: key),
+                      ),
+                    )
+                    .toList(),
+                // TODO(mono): Set actionsOverflowDirection if available
+                // https://twitter.com/_mono/status/1261122914218160128
+              ),
             ),
           );
           return builder == null ? dialog : builder(context, dialog);
@@ -108,21 +132,43 @@ Future<T?> showAlertDialog<T>({
         routeSettings: routeSettings,
         builder: (context) {
           final Widget dialog = MacThemeWrapper(
-            child: PopScope(
-              canPop: canPop,
-              onPopInvokedWithResult: onPopInvokedWithResult,
-              child: MacosAlertDialog(
-                title: titleText ?? const SizedBox.shrink(),
-                message: messageText ?? const SizedBox.shrink(),
-                primaryButton: const _DummyEmptyMacosPushButton(),
-                suppress: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: buttons,
+            child: CallbackShortcuts(
+              bindings: {
+                const SingleActivator(LogicalKeyboardKey.enter): () {
+                  final defaultAction = actions.firstWhereOrNull(
+                    (a) => a.isDefaultAction,
+                  );
+                  if (defaultAction != null) {
+                    pop(context: context, key: defaultAction.key);
+                  }
+                },
+                const SingleActivator(LogicalKeyboardKey.escape): () {
+                  final cancelAction = actions.firstWhereOrNull(
+                    (a) => a.key == OkCancelResult.cancel,
+                  );
+                  if (cancelAction != null) {
+                    pop(context: context, key: cancelAction.key);
+                  } else if (canPop) {
+                    pop(context: context, key: null);
+                  }
+                },
+              },
+              child: PopScope(
+                canPop: canPop,
+                onPopInvokedWithResult: onPopInvokedWithResult,
+                child: MacosAlertDialog(
+                  title: titleText ?? const SizedBox.shrink(),
+                  message: messageText ?? const SizedBox.shrink(),
+                  primaryButton: const _DummyEmptyMacosPushButton(),
+                  suppress: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: buttons,
+                  ),
+                  appIcon:
+                      macOSApplicationIcon ??
+                      AdaptiveDialog.instance.macOS.applicationIcon ??
+                      const Icon(Icons.info),
                 ),
-                appIcon:
-                    macOSApplicationIcon ??
-                    AdaptiveDialog.instance.macOS.applicationIcon ??
-                    const Icon(Icons.info),
               ),
             ),
           );
@@ -138,23 +184,45 @@ Future<T?> showAlertDialog<T>({
           barrierDismissible: barrierDismissible,
         ),
         builder: (context) {
-          final dialog = PopScope(
-            canPop: canPop,
-            onPopInvokedWithResult: onPopInvokedWithResult,
-            child: AlertDialog(
-              title: titleText,
-              content: messageText,
-              actions: actions
-                  .map(
-                    (a) => a.convertToMaterialDialogAction(
-                      onPressed: (key) => pop(context: context, key: key),
-                      destructiveColor: colorScheme.error,
-                      fullyCapitalized: fullyCapitalizedForMaterial,
-                    ),
-                  )
-                  .toList(),
-              actionsOverflowDirection: actionsOverflowDirection,
-              scrollable: true,
+          final dialog = CallbackShortcuts(
+            bindings: {
+              const SingleActivator(LogicalKeyboardKey.enter): () {
+                final defaultAction = actions.firstWhereOrNull(
+                  (a) => a.isDefaultAction,
+                );
+                if (defaultAction != null) {
+                  pop(context: context, key: defaultAction.key);
+                }
+              },
+              const SingleActivator(LogicalKeyboardKey.escape): () {
+                final cancelAction = actions.firstWhereOrNull(
+                  (a) => a.key == OkCancelResult.cancel,
+                );
+                if (cancelAction != null) {
+                  pop(context: context, key: cancelAction.key);
+                } else if (barrierDismissible || canPop) {
+                  pop(context: context, key: null);
+                }
+              },
+            },
+            child: PopScope(
+              canPop: canPop,
+              onPopInvokedWithResult: onPopInvokedWithResult,
+              child: AlertDialog(
+                title: titleText,
+                content: messageText,
+                actions: actions
+                    .map(
+                      (a) => a.convertToMaterialDialogAction(
+                        onPressed: (key) => pop(context: context, key: key),
+                        destructiveColor: colorScheme.error,
+                        fullyCapitalized: fullyCapitalizedForMaterial,
+                      ),
+                    )
+                    .toList(),
+                actionsOverflowDirection: actionsOverflowDirection,
+                scrollable: true,
+              ),
             ),
           );
           return builder == null ? dialog : builder(context, dialog);
