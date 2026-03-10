@@ -1,3 +1,10 @@
+## 2.8.0
+
+- Support text selection for dialogs (#65)
+  - Added `AdaptiveSelectionMode` to control text selection behavior.
+  - Text is now selectable by default on Web and Desktop platforms.
+  - Supported in all dialog functions.
+
 ## 2.7.0
 
 - Support keyboard shortcuts (Enter and Escape) for dialogs (#61)

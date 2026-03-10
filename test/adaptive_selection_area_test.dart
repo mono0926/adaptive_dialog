@@ -7,6 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  // Ensure AdaptiveDialog is initialized and its timer is handled
+  setUp(() async {
+    // Initializing the instance can trigger a timer
+    AdaptiveDialog.instance;
+  });
+
   group('AdaptiveSelectionArea', () {
     testWidgets('selectionMode: none - SelectionArea is not present', (
       tester,
@@ -87,12 +93,9 @@ void main() {
     testWidgets(
       'selectionMode: null (default) - uses AdaptiveDialog.instance.selectionMode',
       (tester) async {
-        // Need to runAsync because AdaptiveDialog instance initialization has a Future
-        await tester.runAsync(() async {
-          AdaptiveDialog.instance.updateConfiguration(
-            selectionMode: AdaptiveSelectionMode.all,
-          );
-        });
+        AdaptiveDialog.instance.updateConfiguration(
+          selectionMode: AdaptiveSelectionMode.all,
+        );
 
         await tester.pumpWidget(
           const MaterialApp(
@@ -106,12 +109,9 @@ void main() {
 
         expect(find.byType(SelectionArea), findsOneWidget);
 
-        // Reset configuration
-        await tester.runAsync(() async {
-          AdaptiveDialog.instance.updateConfiguration(
-            selectionMode: AdaptiveSelectionMode.desktop,
-          );
-        });
+        AdaptiveDialog.instance.updateConfiguration(
+          selectionMode: AdaptiveSelectionMode.desktop,
+        );
       },
     );
   });
@@ -139,11 +139,16 @@ void main() {
         );
 
         await tester.tap(find.text('Show'));
+        // Dialog animations usually take some time
         await tester.pumpAndSettle();
 
         expect(find.byType(SelectionArea), findsAtLeastNWidgets(1));
         expect(find.text('Title'), findsOneWidget);
         expect(find.text('Message'), findsOneWidget);
+
+        // Close and wait for it to be fully gone to avoid timer issues
+        await tester.tap(find.text('OK'));
+        await tester.pumpAndSettle();
       },
     );
   });
