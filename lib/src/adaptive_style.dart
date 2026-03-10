@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'extensions/theme_data.dart';
 
 enum AdaptiveStyle {
@@ -22,7 +23,6 @@ enum AdaptiveStyle {
   AdaptiveStyle effectiveStyle(ThemeData data) {
     switch (this) {
       case AdaptiveStyle.material:
-      // ignore: deprecated_member_use_from_same_package
       case AdaptiveStyle.cupertino:
       case AdaptiveStyle.iOS:
       case AdaptiveStyle.macOS:
@@ -46,7 +46,6 @@ enum AdaptiveStyle {
     switch (this) {
       case AdaptiveStyle.adaptive:
         return 'Adaptive';
-      // ignore: deprecated_member_use_from_same_package
       case AdaptiveStyle.cupertino:
         return 'Cupertino';
       case AdaptiveStyle.iOS:

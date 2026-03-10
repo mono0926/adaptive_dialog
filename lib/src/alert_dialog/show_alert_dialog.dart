@@ -64,7 +64,6 @@ Future<T?> showAlertDialog<T>({
 
   final effectiveStyle = adaptiveStyle.effectiveStyle(theme);
   switch (effectiveStyle) {
-    // ignore: deprecated_member_use_from_same_package
     case AdaptiveStyle.cupertino:
     case AdaptiveStyle.iOS:
       return showCupertinoDialog(

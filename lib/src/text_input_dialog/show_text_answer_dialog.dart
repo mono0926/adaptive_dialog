@@ -40,7 +40,6 @@ Future<bool> showTextAnswerDialog({
     isDestructiveAction: isDestructiveAction,
     style: adaptiveStyle,
     actionsOverflowDirection: actionsOverflowDirection,
-    // ignore: deprecated_member_use_from_same_package
     fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
     canPop: canPop,
     onPopInvokedWithResult: onPopInvokedWithResult,
@@ -66,7 +65,6 @@ Future<bool> showTextAnswerDialog({
     actionsOverflowDirection: actionsOverflowDirection,
     barrierDismissible: barrierDismissible,
     useRootNavigator: useRootNavigator,
-    // ignore: deprecated_member_use_from_same_package
     fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
     builder: builder,
   );

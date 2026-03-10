@@ -39,7 +39,6 @@ Future<OkCancelResult> showOkAlertDialog({
     useActionSheetForIOS: useActionSheetForCupertino || useActionSheetForIOS,
     useRootNavigator: useRootNavigator,
     actionsOverflowDirection: actionsOverflowDirection,
-    // ignore: deprecated_member_use_from_same_package
     fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
     canPop: canPop,
     onPopInvokedWithResult: onPopInvokedWithResult,
