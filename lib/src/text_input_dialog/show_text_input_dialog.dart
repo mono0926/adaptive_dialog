@@ -34,7 +34,6 @@ Future<List<String>?> showTextInputDialog({
   final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
   final effectiveStyle = adaptiveStyle.effectiveStyle(theme);
   switch (effectiveStyle) {
-    // ignore: deprecated_member_use_from_same_package
     case AdaptiveStyle.cupertino:
     case AdaptiveStyle.iOS:
       return showCupertinoDialog(
