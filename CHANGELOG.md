@@ -1,16 +1,12 @@
-## 2.8.0
+## 2.7.0
 
 - Support text selection for dialogs (#65)
   - Added `AdaptiveSelectionMode` to control text selection behavior.
   - Text is now selectable by default on Web and Desktop platforms.
   - Supported in all dialog functions.
-
-## 2.7.0
-
 - Support keyboard shortcuts (Enter and Escape) for dialogs (#61)
   - Enter: Trigger default action or submit text input
   - Escape: Cancel or close dialog
-
 ## 2.6.0
 
 - fullyCapitalizedForMaterial is deprecated and change default to false
