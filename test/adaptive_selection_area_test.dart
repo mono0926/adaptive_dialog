@@ -4,9 +4,17 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_dialog/src/helper/adaptive_selection_area.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  setUpAll(() {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    const channel = MethodChannel('io.material.plugins/dynamic_color');
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, (methodCall) async => null);
+  });
+
   group('AdaptiveSelectionArea', () {
     testWidgets('selectionMode: none - SelectionArea is not present', (
       tester,
@@ -114,35 +122,41 @@ void main() {
     testWidgets(
       'showOkAlertDialog includes SelectionArea when selectionMode is all',
       (tester) async {
-        await tester.pumpWidget(
-          MaterialApp(
-            home: Scaffold(
-              body: Builder(
-                builder: (context) => ElevatedButton(
-                  onPressed: () => showOkAlertDialog(
-                    context: context,
-                    title: 'Title',
-                    message: 'Message',
-                    selectionMode: AdaptiveSelectionMode.all,
+        await tester.runAsync(() async {
+          await tester.pumpWidget(
+            MaterialApp(
+              home: Scaffold(
+                body: Builder(
+                  builder: (context) => ElevatedButton(
+                    onPressed: () => showOkAlertDialog(
+                      context: context,
+                      title: 'Title',
+                      message: 'Message',
+                      selectionMode: AdaptiveSelectionMode.all,
+                    ),
+                    child: const Text('Show'),
                   ),
-                  child: const Text('Show'),
                 ),
               ),
             ),
-          ),
-        );
+          );
 
-        await tester.tap(find.text('Show'));
-        // Dialog animations usually take some time
-        await tester.pumpAndSettle();
+          await tester.tap(find.text('Show'));
+          // Wait for dialog animation
+          for (var i = 0; i < 10; i++) {
+            await tester.pump(const Duration(milliseconds: 100));
+          }
 
-        expect(find.byType(SelectionArea), findsAtLeastNWidgets(1));
-        expect(find.text('Title'), findsOneWidget);
-        expect(find.text('Message'), findsOneWidget);
+          expect(find.byType(SelectionArea), findsAtLeastNWidgets(1));
+          expect(find.text('Title'), findsOneWidget);
+          expect(find.text('Message'), findsOneWidget);
 
-        // Close and wait for it to be fully gone to avoid timer issues
-        await tester.tap(find.text('OK'));
-        await tester.pumpAndSettle();
+          await tester.tap(find.text('OK'));
+          // Wait for closing animation
+          for (var i = 0; i < 10; i++) {
+            await tester.pump(const Duration(milliseconds: 100));
+          }
+        });
       },
     );
   });

@@ -33,16 +33,18 @@ class _MacThemeWrapperState extends State<MacThemeWrapper> {
           AdaptiveDialog.instance.cacheAccentColor(accentColor);
         }
         return MacosTheme(
-          data: (Theme.of(context).brightness == Brightness.light
-                  ? MacosThemeData.light()
-                  : MacosThemeData.dark())
-              .copyWith(
-            pushButtonTheme: PushButtonThemeData(
-              color: AdaptiveDialog.instance.cachedAccentColor ??
-                  theme.cupertinoOverrideTheme?.primaryColor ??
-                  colorScheme.primary,
-            ),
-          ),
+          data:
+              (Theme.of(context).brightness == Brightness.light
+                      ? MacosThemeData.light()
+                      : MacosThemeData.dark())
+                  .copyWith(
+                    pushButtonTheme: PushButtonThemeData(
+                      color:
+                          AdaptiveDialog.instance.cachedAccentColor ??
+                          theme.cupertinoOverrideTheme?.primaryColor ??
+                          colorScheme.primary,
+                    ),
+                  ),
           child: widget.child,
         );
       },
