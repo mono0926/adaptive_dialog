@@ -3,6 +3,7 @@ import 'package:adaptive_dialog/src/extensions/extensions.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class IOSTextInputDialog extends StatefulWidget {
   const IOSTextInputDialog({
@@ -72,8 +73,8 @@ class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
     final title = widget.title;
     final message = widget.message;
     void submit() => navigator.pop(
-          _textControllers.map((c) => c.text).toList(),
-        );
+      _textControllers.map((c) => c.text).toList(),
+    );
     void submitIfValid() {
       if (_validate()) {
         submit();
@@ -112,99 +113,108 @@ class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
     }
 
     final validationMessage = _validationMessage;
-    return PopScope(
-      canPop: widget.canPop,
-      onPopInvokedWithResult: widget.onPopInvokedWithResult,
-      child: CupertinoAlertDialog(
-        title: title == null ? null : Text(title),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            if (message != null) Text(message),
-            const SizedBox(height: 22),
-            ..._textControllers.mapIndexed(
-              (i, c) {
-                final isLast = widget.textFields.length == i + 1;
-                final field = widget.textFields[i];
-                final prefixText = field.prefixText;
-                final suffixText = field.suffixText;
-                return CupertinoTextField(
-                  contextMenuBuilder: _contextMenuBuilder,
-                  controller: c,
-                  autofocus: i == 0,
-                  placeholder: field.hintText,
-                  obscureText: field.obscureText,
-                  keyboardType: field.keyboardType,
-                  textCapitalization: field.textCapitalization,
-                  maxLength: field.maxLength,
-                  minLines: field.minLines,
-                  maxLines: field.maxLines,
-                  autocorrect: field.autocorrect,
-                  prefix: prefixText == null ? null : Text(prefixText),
-                  suffix: suffixText == null ? null : Text(suffixText),
-                  decoration: borderDecoration(
-                    isTopRounded: i == 0,
-                    isBottomRounded: i == _textControllers.length - 1,
+    return CallbackShortcuts(
+      bindings: {
+        const SingleActivator(LogicalKeyboardKey.enter): submitIfValid,
+        const SingleActivator(LogicalKeyboardKey.escape): cancel,
+      },
+      child: PopScope(
+        canPop: widget.canPop,
+        onPopInvokedWithResult: widget.onPopInvokedWithResult,
+        child: CupertinoAlertDialog(
+          title: title == null ? null : Text(title),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              if (message != null) Text(message),
+              const SizedBox(height: 22),
+              ..._textControllers.mapIndexed(
+                (i, c) {
+                  final isLast = widget.textFields.length == i + 1;
+                  final field = widget.textFields[i];
+                  final prefixText = field.prefixText;
+                  final suffixText = field.suffixText;
+                  return CupertinoTextField(
+                    contextMenuBuilder: _contextMenuBuilder,
+                    controller: c,
+                    autofocus: i == 0,
+                    placeholder: field.hintText,
+                    obscureText: field.obscureText,
+                    keyboardType: field.keyboardType,
+                    textCapitalization: field.textCapitalization,
+                    maxLength: field.maxLength,
+                    minLines: field.minLines,
+                    maxLines: field.maxLines,
+                    autocorrect: field.autocorrect,
+                    prefix: prefixText == null ? null : Text(prefixText),
+                    suffix: suffixText == null ? null : Text(suffixText),
+                    decoration: borderDecoration(
+                      isTopRounded: i == 0,
+                      isBottomRounded: i == _textControllers.length - 1,
+                    ),
+                    textInputAction: isLast ? null : TextInputAction.next,
+                    onSubmitted: isLast && widget.autoSubmit
+                        ? (_) => submitIfValid()
+                        : null,
+                    spellCheckConfiguration: field.spellCheckConfiguration,
+                  );
+                },
+              ),
+              if (validationMessage != null)
+                Container(
+                  alignment: AlignmentDirectional.centerStart,
+                  padding: const EdgeInsets.only(
+                    top: 4,
+                    left: 4,
                   ),
-                  textInputAction: isLast ? null : TextInputAction.next,
-                  onSubmitted: isLast && widget.autoSubmit
-                      ? (_) => submitIfValid()
-                      : null,
-                  spellCheckConfiguration: field.spellCheckConfiguration,
-                );
-              },
-            ),
-            if (validationMessage != null)
-              Container(
-                alignment: AlignmentDirectional.centerStart,
-                padding: const EdgeInsets.only(
-                  top: 4,
-                  left: 4,
+                  child: Text(
+                    validationMessage,
+                    style: TextStyle(
+                      color: CupertinoColors.systemRed.resolveFrom(context),
+                      height: 1.2,
+                    ),
+                    textAlign: TextAlign.start,
+                  ),
                 ),
-                child: Text(
-                  validationMessage,
-                  style: TextStyle(
-                    color: CupertinoColors.systemRed.resolveFrom(context),
-                    height: 1.2,
-                  ),
-                  textAlign: TextAlign.start,
+            ],
+          ),
+          actions: <Widget>[
+            CupertinoDialogAction(
+              onPressed: cancel,
+              isDefaultAction: true,
+              child: Text(
+                widget.cancelLabel ??
+                    MaterialLocalizations.of(
+                      context,
+                    ).cancelButtonLabel.capitalizedForce,
+              ),
+            ),
+            CupertinoDialogAction(
+              onPressed: submitIfValid,
+              child: Text(
+                widget.okLabel ??
+                    MaterialLocalizations.of(context).okButtonLabel,
+                style: TextStyle(
+                  color: widget.isDestructiveAction
+                      ? CupertinoColors.systemRed.resolveFrom(context)
+                      : null,
                 ),
               ),
+            ),
           ],
         ),
-        actions: <Widget>[
-          CupertinoDialogAction(
-            onPressed: cancel,
-            isDefaultAction: true,
-            child: Text(
-              widget.cancelLabel ??
-                  MaterialLocalizations.of(context)
-                      .cancelButtonLabel
-                      .capitalizedForce,
-            ),
-          ),
-          CupertinoDialogAction(
-            onPressed: submitIfValid,
-            child: Text(
-              widget.okLabel ?? MaterialLocalizations.of(context).okButtonLabel,
-              style: TextStyle(
-                color: widget.isDestructiveAction
-                    ? CupertinoColors.systemRed.resolveFrom(context)
-                    : null,
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
 
   bool _validate() {
     _autovalidate = true;
-    final validations = widget.textFields.mapIndexed((i, tf) {
-      final validator = tf.validator;
-      return validator == null ? null : validator(_textControllers[i].text);
-    }).where((result) => result != null);
+    final validations = widget.textFields
+        .mapIndexed((i, tf) {
+          final validator = tf.validator;
+          return validator == null ? null : validator(_textControllers[i].text);
+        })
+        .where((result) => result != null);
     setState(() {
       _validationMessage = validations.isEmpty ? null : validations.join('\n');
     });
@@ -219,11 +229,10 @@ class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
 Widget _contextMenuBuilder(
   BuildContext context,
   EditableTextState editableTextState,
-) =>
-    SystemContextMenu.isSupported(context)
-        ? SystemContextMenu.editableText(
-            editableTextState: editableTextState,
-          )
-        : AdaptiveTextSelectionToolbar.editableText(
-            editableTextState: editableTextState,
-          );
+) => SystemContextMenu.isSupported(context)
+    ? SystemContextMenu.editableText(
+        editableTextState: editableTextState,
+      )
+    : AdaptiveTextSelectionToolbar.editableText(
+        editableTextState: editableTextState,
+      );

@@ -1,6 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 // TODO(mono): 3ファイルでコピペ実装になっているのを良い感じにまとめたい
 class MaterialTextInputDialog extends StatefulWidget {
@@ -70,8 +71,8 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
       rootNavigator: widget.useRootNavigator,
     );
     void submit() => navigator.pop(
-          _textControllers.map((c) => c.text).toList(),
-        );
+      _textControllers.map((c) => c.text).toList(),
+    );
     void submitIfValid() {
       if (_formKey.currentState!.validate()) {
         submit();
@@ -93,74 +94,80 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
         color: widget.isDestructiveAction ? colorScheme.error : null,
       ),
     );
-    return PopScope(
-      canPop: widget.canPop,
-      onPopInvokedWithResult: widget.onPopInvokedWithResult,
-      child: Form(
-        key: _formKey,
-        child: AlertDialog(
-          title: titleText,
-          scrollable: true,
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (message != null)
-                Flexible(
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: Scrollbar(
-                      child: SingleChildScrollView(
-                        child: Text(message),
+    return CallbackShortcuts(
+      bindings: {
+        const SingleActivator(LogicalKeyboardKey.enter): submitIfValid,
+        const SingleActivator(LogicalKeyboardKey.escape): cancel,
+      },
+      child: PopScope(
+        canPop: widget.canPop,
+        onPopInvokedWithResult: widget.onPopInvokedWithResult,
+        child: Form(
+          key: _formKey,
+          child: AlertDialog(
+            title: titleText,
+            scrollable: true,
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (message != null)
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: Scrollbar(
+                        child: SingleChildScrollView(
+                          child: Text(message),
+                        ),
                       ),
                     ),
                   ),
+                ..._textControllers.mapIndexed((i, c) {
+                  final isLast = widget.textFields.length == i + 1;
+                  final field = widget.textFields[i];
+                  return TextFormField(
+                    controller: c,
+                    autofocus: i == 0,
+                    obscureText: field.obscureText,
+                    keyboardType: field.keyboardType,
+                    textCapitalization: field.textCapitalization,
+                    minLines: field.minLines,
+                    maxLines: field.maxLines,
+                    maxLength: field.maxLength,
+                    autocorrect: field.autocorrect,
+                    decoration: InputDecoration(
+                      hintText: field.hintText,
+                      prefixText: field.prefixText,
+                      suffixText: field.suffixText,
+                    ),
+                    validator: field.validator,
+                    autovalidateMode: _autovalidateMode,
+                    textInputAction: isLast ? null : TextInputAction.next,
+                    onFieldSubmitted: isLast && widget.autoSubmit
+                        ? (_) => submitIfValid()
+                        : null,
+                    spellCheckConfiguration: field.spellCheckConfiguration,
+                  );
+                }),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: cancel,
+                child: Text(
+                  (widget.fullyCapitalized
+                          ? cancelLabel?.toUpperCase()
+                          : cancelLabel) ??
+                      MaterialLocalizations.of(context).cancelButtonLabel,
                 ),
-              ..._textControllers.mapIndexed((i, c) {
-                final isLast = widget.textFields.length == i + 1;
-                final field = widget.textFields[i];
-                return TextFormField(
-                  controller: c,
-                  autofocus: i == 0,
-                  obscureText: field.obscureText,
-                  keyboardType: field.keyboardType,
-                  textCapitalization: field.textCapitalization,
-                  minLines: field.minLines,
-                  maxLines: field.maxLines,
-                  maxLength: field.maxLength,
-                  autocorrect: field.autocorrect,
-                  decoration: InputDecoration(
-                    hintText: field.hintText,
-                    prefixText: field.prefixText,
-                    suffixText: field.suffixText,
-                  ),
-                  validator: field.validator,
-                  autovalidateMode: _autovalidateMode,
-                  textInputAction: isLast ? null : TextInputAction.next,
-                  onFieldSubmitted: isLast && widget.autoSubmit
-                      ? (_) => submitIfValid()
-                      : null,
-                  spellCheckConfiguration: field.spellCheckConfiguration,
-                );
-              }),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: cancel,
-              child: Text(
-                (widget.fullyCapitalized
-                        ? cancelLabel?.toUpperCase()
-                        : cancelLabel) ??
-                    MaterialLocalizations.of(context).cancelButtonLabel,
               ),
-            ),
-            TextButton(
-              onPressed: submitIfValid,
-              child: okText,
-            ),
-          ],
-          actionsOverflowDirection: widget.actionsOverflowDirection,
+              TextButton(
+                onPressed: submitIfValid,
+                child: okText,
+              ),
+            ],
+            actionsOverflowDirection: widget.actionsOverflowDirection,
+          ),
         ),
       ),
     );
