@@ -1,3 +1,9 @@
+## 2.7.0
+
+- Support keyboard shortcuts (Enter and Escape) for dialogs (#61)
+  - Enter: Trigger default action or submit text input
+  - Escape: Cancel or close dialog
+
 ## 2.6.0
 
 - fullyCapitalizedForMaterial is deprecated and change default to false
