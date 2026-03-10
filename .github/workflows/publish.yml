@@ -9,12 +9,4 @@ jobs:
     publish:
         permissions:
             id-token: write # Required for OIDC authentication
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
-            - uses: subosito/flutter-action@v2
-              with:
-                  channel: stable
-                  cache: true
-            - name: Publish to pub.dev
-              run: dart pub publish --force
+        uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
