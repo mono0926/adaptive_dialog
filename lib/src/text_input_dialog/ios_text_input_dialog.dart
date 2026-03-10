@@ -1,5 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_dialog/src/extensions/extensions.dart';
+import 'package:adaptive_dialog/src/helper/adaptive_selection_area.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class IOSTextInputDialog extends StatefulWidget {
     required this.canPop,
     required this.onPopInvokedWithResult,
     this.autoSubmit = false,
+    this.selectionMode,
   });
   @override
   State<IOSTextInputDialog> createState() => _IOSTextInputDialogState();
@@ -34,6 +36,7 @@ class IOSTextInputDialog extends StatefulWidget {
   final bool canPop;
   final PopInvokedWithResultCallback<List<String>?>? onPopInvokedWithResult;
   final bool autoSubmit;
+  final AdaptiveSelectionMode? selectionMode;
 }
 
 class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
@@ -122,11 +125,20 @@ class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
         canPop: widget.canPop,
         onPopInvokedWithResult: widget.onPopInvokedWithResult,
         child: CupertinoAlertDialog(
-          title: title == null ? null : Text(title),
+          title: title == null
+              ? null
+              : AdaptiveSelectionArea(
+                  mode: widget.selectionMode,
+                  child: Text(title),
+                ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              if (message != null) Text(message),
+              if (message != null)
+                AdaptiveSelectionArea(
+                  mode: widget.selectionMode,
+                  child: Text(message),
+                ),
               const SizedBox(height: 22),
               ..._textControllers.mapIndexed(
                 (i, c) {

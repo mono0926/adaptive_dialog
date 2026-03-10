@@ -26,6 +26,7 @@ Future<bool> showTextAnswerDialog({
   bool autoSubmit = false,
   bool isCaseSensitive = true,
   AdaptiveDialogBuilder? builder,
+  AdaptiveSelectionMode? selectionMode,
 }) async {
   final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
   final texts = await showTextInputDialog(
@@ -45,6 +46,7 @@ Future<bool> showTextAnswerDialog({
     onPopInvokedWithResult: onPopInvokedWithResult,
     autoSubmit: autoSubmit,
     builder: builder,
+    selectionMode: selectionMode,
   );
   final text = texts == null ? null : texts[0];
   if (text == null) {
@@ -67,6 +69,7 @@ Future<bool> showTextAnswerDialog({
     useRootNavigator: useRootNavigator,
     fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
     builder: builder,
+    selectionMode: selectionMode,
   );
   return result == OkCancelResult.ok
       ? showTextAnswerDialog(
@@ -91,6 +94,7 @@ Future<bool> showTextAnswerDialog({
           onPopInvokedWithResult: onPopInvokedWithResult,
           autoSubmit: autoSubmit,
           builder: builder,
+          selectionMode: selectionMode,
         )
       : Future.value(false);
 }

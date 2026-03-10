@@ -29,6 +29,7 @@ Future<List<String>?> showTextInputDialog({
   bool autoSubmit = false,
   AdaptiveDialogBuilder? builder,
   RouteSettings? routeSettings,
+  AdaptiveSelectionMode? selectionMode,
 }) {
   final theme = Theme.of(context);
   final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
@@ -53,6 +54,7 @@ Future<List<String>?> showTextInputDialog({
             canPop: canPop,
             onPopInvokedWithResult: onPopInvokedWithResult,
             autoSubmit: autoSubmit,
+            selectionMode: selectionMode,
           );
           return builder == null ? dialog : builder(context, dialog);
         },
@@ -76,6 +78,7 @@ Future<List<String>?> showTextInputDialog({
               canPop: canPop,
               onPopInvokedWithResult: onPopInvokedWithResult,
               autoSubmit: autoSubmit,
+              selectionMode: selectionMode,
             ),
           );
           return builder == null ? dialog : builder(context, dialog);
@@ -104,6 +107,7 @@ Future<List<String>?> showTextInputDialog({
             canPop: canPop,
             onPopInvokedWithResult: onPopInvokedWithResult,
             autoSubmit: autoSubmit,
+            selectionMode: selectionMode,
           );
           return builder == null ? dialog : builder(context, dialog);
         },

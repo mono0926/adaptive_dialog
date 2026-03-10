@@ -1,5 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_dialog/src/extensions/extensions.dart';
+import 'package:adaptive_dialog/src/helper/adaptive_selection_area.dart';
 import 'package:adaptive_dialog/src/helper/macos_draggable_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
@@ -22,6 +23,7 @@ class MacOSTextInputDialog extends StatefulWidget {
     required this.canPop,
     required this.onPopInvokedWithResult,
     this.autoSubmit = false,
+    this.selectionMode,
   });
   @override
   State<MacOSTextInputDialog> createState() => _MacOSTextInputDialogState();
@@ -37,6 +39,7 @@ class MacOSTextInputDialog extends StatefulWidget {
   final bool canPop;
   final PopInvokedWithResultCallback<List<String>?>? onPopInvokedWithResult;
   final bool autoSubmit;
+  final AdaptiveSelectionMode? selectionMode;
 }
 
 class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
@@ -119,17 +122,23 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
                     if (title != null)
                       Padding(
                         padding: const EdgeInsets.only(bottom: 8),
-                        child: Text(
-                          title,
-                          style: theme.textTheme.titleMedium!.copyWith(
-                            fontWeight: FontWeight.bold,
+                        child: AdaptiveSelectionArea(
+                          mode: widget.selectionMode,
+                          child: Text(
+                            title,
+                            style: theme.textTheme.titleMedium!.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
                     if (message != null)
                       Padding(
                         padding: const EdgeInsets.only(bottom: 8),
-                        child: Text(message),
+                        child: AdaptiveSelectionArea(
+                          mode: widget.selectionMode,
+                          child: Text(message),
+                        ),
                       ),
                     const SizedBox(height: 8),
                     ..._textControllers

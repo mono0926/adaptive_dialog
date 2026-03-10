@@ -1,4 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:adaptive_dialog/src/helper/adaptive_selection_area.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,6 +21,7 @@ class MaterialTextInputDialog extends StatefulWidget {
     required this.canPop,
     required this.onPopInvokedWithResult,
     this.autoSubmit = false,
+    this.selectionMode,
   });
   @override
   State<MaterialTextInputDialog> createState() =>
@@ -38,6 +40,7 @@ class MaterialTextInputDialog extends StatefulWidget {
   final bool canPop;
   final PopInvokedWithResultCallback<List<String>?>? onPopInvokedWithResult;
   final bool autoSubmit;
+  final AdaptiveSelectionMode? selectionMode;
 }
 
 class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
@@ -84,7 +87,12 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
     }
 
     void cancel() => navigator.pop();
-    final titleText = title == null ? null : Text(title);
+    final titleText = title == null
+        ? null
+        : AdaptiveSelectionArea(
+            mode: widget.selectionMode,
+            child: Text(title),
+          );
     final cancelLabel = widget.cancelLabel;
     final okLabel = widget.okLabel;
     final okText = Text(
@@ -117,7 +125,10 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
                       padding: const EdgeInsets.only(bottom: 8),
                       child: Scrollbar(
                         child: SingleChildScrollView(
-                          child: Text(message),
+                          child: AdaptiveSelectionArea(
+                            mode: widget.selectionMode,
+                            child: Text(message),
+                          ),
                         ),
                       ),
                     ),

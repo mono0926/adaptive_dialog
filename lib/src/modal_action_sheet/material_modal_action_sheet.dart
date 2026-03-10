@@ -1,7 +1,7 @@
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_dialog/src/action_callback.dart';
+import 'package:adaptive_dialog/src/helper/adaptive_selection_area.dart';
 import 'package:flutter/material.dart';
-
-import 'modal_action_sheet.dart';
 
 class MaterialModalActionSheet<T> extends StatelessWidget {
   const MaterialModalActionSheet({
@@ -13,6 +13,7 @@ class MaterialModalActionSheet<T> extends StatelessWidget {
     this.materialConfiguration,
     required this.canPop,
     required this.onPopInvokedWithResult,
+    this.selectionMode,
   });
 
   final ActionCallback<T> onPressed;
@@ -22,6 +23,7 @@ class MaterialModalActionSheet<T> extends StatelessWidget {
   final MaterialModalActionSheetConfiguration? materialConfiguration;
   final bool canPop;
   final PopInvokedWithResultCallback<T>? onPopInvokedWithResult;
+  final AdaptiveSelectionMode? selectionMode;
 
   @override
   Widget build(BuildContext context) {
@@ -33,21 +35,33 @@ class MaterialModalActionSheet<T> extends StatelessWidget {
     final children = [
       if (title != null && message == null)
         ListTile(
-          title: Text(title),
+          title: AdaptiveSelectionArea(
+            mode: selectionMode,
+            child: Text(title),
+          ),
           dense: true,
         ),
       if (title == null && message != null)
         ListTile(
-          title: Text(
-            message,
-            style: theme.textTheme.bodySmall,
+          title: AdaptiveSelectionArea(
+            mode: selectionMode,
+            child: Text(
+              message,
+              style: theme.textTheme.bodySmall,
+            ),
           ),
           dense: true,
         ),
       if (title != null && message != null) ...[
         ListTile(
-          title: Text(title),
-          subtitle: Text(message),
+          title: AdaptiveSelectionArea(
+            mode: selectionMode,
+            child: Text(title),
+          ),
+          subtitle: AdaptiveSelectionArea(
+            mode: selectionMode,
+            child: Text(message),
+          ),
         ),
         const Divider(),
       ],

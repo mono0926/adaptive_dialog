@@ -25,6 +25,7 @@ Future<OkCancelResult> showOkAlertDialog({
   PopInvokedWithResultCallback<OkCancelResult>? onPopInvokedWithResult,
   AdaptiveDialogBuilder? builder,
   RouteSettings? routeSettings,
+  AdaptiveSelectionMode? selectionMode,
 }) async {
   final theme = Theme.of(context);
   final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
@@ -43,6 +44,7 @@ Future<OkCancelResult> showOkAlertDialog({
     canPop: canPop,
     onPopInvokedWithResult: onPopInvokedWithResult,
     builder: builder,
+    selectionMode: selectionMode,
     actions: [
       AlertDialogAction(
         label: okLabel ?? MaterialLocalizations.of(context).okButtonLabel,
@@ -51,5 +53,5 @@ Future<OkCancelResult> showOkAlertDialog({
       ),
     ],
   );
-  return result ?? OkCancelResult.cancel;
+  return result ?? OkCancelResult.ok;
 }

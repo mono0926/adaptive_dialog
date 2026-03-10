@@ -1,4 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:adaptive_dialog/src/helper/adaptive_selection_area.dart';
 import 'package:adaptive_dialog/src/helper/macos_theme_wrapper.dart';
 import 'package:animations/animations.dart';
 import 'package:collection/collection.dart';
@@ -35,6 +36,7 @@ Future<T?> showAlertDialog<T>({
   AdaptiveDialogBuilder? builder,
   Widget? macOSApplicationIcon,
   RouteSettings? routeSettings,
+  AdaptiveSelectionMode? selectionMode,
 }) {
   void pop({required BuildContext context, required T? key}) => Navigator.of(
     context,
@@ -58,11 +60,22 @@ Future<T?> showAlertDialog<T>({
       onPopInvokedWithResult: onPopInvokedWithResult,
       builder: builder,
       routeSettings: routeSettings,
+      selectionMode: selectionMode,
     );
   }
 
-  final titleText = title == null ? null : Text(title);
-  final messageText = message == null ? null : Text(message);
+  final titleText = title == null
+      ? null
+      : AdaptiveSelectionArea(
+          mode: selectionMode,
+          child: Text(title),
+        );
+  final messageText = message == null
+      ? null
+      : AdaptiveSelectionArea(
+          mode: selectionMode,
+          child: Text(message),
+        );
 
   final effectiveStyle = adaptiveStyle.effectiveStyle(theme);
   switch (effectiveStyle) {

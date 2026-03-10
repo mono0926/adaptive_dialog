@@ -1,4 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:adaptive_dialog/src/helper/adaptive_selection_area.dart';
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
@@ -37,6 +38,7 @@ Future<T?> showConfirmationDialog<T>({
   AdaptiveDialogBuilder? builder,
   RouteSettings? routeSettings,
   bool toggleable = true,
+  AdaptiveSelectionMode? selectionMode,
 }) {
   void pop({required BuildContext context, required T? key}) => Navigator.of(
     context,
@@ -68,6 +70,7 @@ Future<T?> showConfirmationDialog<T>({
               canPop: canPop,
               onPopInvokedWithResult: onPopInvokedWithResult,
               toggleable: toggleable,
+              selectionMode: selectionMode,
             );
             return builder == null ? dialog : builder(context, dialog);
           },
@@ -84,6 +87,7 @@ Future<T?> showConfirmationDialog<T>({
           onPopInvokedWithResult: onPopInvokedWithResult,
           builder: builder,
           routeSettings: routeSettings,
+          selectionMode: selectionMode,
         );
 }
 
@@ -103,6 +107,7 @@ class _ConfirmationMaterialDialog<T> extends StatefulWidget {
     required this.canPop,
     required this.onPopInvokedWithResult,
     required this.toggleable,
+    this.selectionMode,
   });
 
   final String title;
@@ -118,6 +123,7 @@ class _ConfirmationMaterialDialog<T> extends StatefulWidget {
   final bool canPop;
   final PopInvokedWithResultCallback<T>? onPopInvokedWithResult;
   final bool toggleable;
+  final AdaptiveSelectionMode? selectionMode;
 
   @override
   _ConfirmationMaterialDialogState<T> createState() =>
@@ -158,16 +164,22 @@ class _ConfirmationMaterialDialogState<T>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    widget.title,
-                    style: theme.textTheme.titleLarge,
+                  AdaptiveSelectionArea(
+                    mode: widget.selectionMode,
+                    child: Text(
+                      widget.title,
+                      style: theme.textTheme.titleLarge,
+                    ),
                   ),
                   if (message != null)
                     Padding(
                       padding: const EdgeInsets.only(top: 4),
-                      child: Text(
-                        message,
-                        style: theme.textTheme.bodySmall,
+                      child: AdaptiveSelectionArea(
+                        mode: widget.selectionMode,
+                        child: Text(
+                          message,
+                          style: theme.textTheme.bodySmall,
+                        ),
                       ),
                     ),
                 ],

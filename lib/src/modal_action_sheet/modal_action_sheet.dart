@@ -22,16 +22,17 @@ Future<T?> showModalActionSheet<T>({
   AdaptiveStyle? style,
   bool isDismissible = true,
   bool useRootNavigator = true,
-  MaterialModalActionSheetConfiguration? materialConfiguration,
   bool canPop = true,
+  MaterialModalActionSheetConfiguration? materialConfiguration,
   PopInvokedWithResultCallback<T>? onPopInvokedWithResult,
   AdaptiveDialogBuilder? builder,
   RouteSettings? routeSettings,
+  AdaptiveSelectionMode? selectionMode,
 }) {
   void pop({required BuildContext context, required T? key}) => Navigator.of(
-        context,
-        rootNavigator: useRootNavigator,
-      ).pop(key);
+    context,
+    rootNavigator: useRootNavigator,
+  ).pop(key);
 
   final theme = Theme.of(context);
   final adaptiveStyle = style ?? AdaptiveDialog.instance.defaultStyle;
@@ -51,6 +52,7 @@ Future<T?> showModalActionSheet<T>({
               materialConfiguration: materialConfiguration,
               canPop: canPop,
               onPopInvokedWithResult: onPopInvokedWithResult,
+              selectionMode: selectionMode,
             );
             return builder == null ? sheet : builder(context, sheet);
           },
@@ -68,6 +70,7 @@ Future<T?> showModalActionSheet<T>({
               cancelLabel: cancelLabel,
               canPop: canPop,
               onPopInvokedWithResult: onPopInvokedWithResult,
+              selectionMode: selectionMode,
             );
             return builder == null ? sheet : builder(context, sheet);
           },
