@@ -7,12 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  // Ensure AdaptiveDialog is initialized and its timer is handled
-  setUp(() async {
-    // Initializing the instance can trigger a timer
-    AdaptiveDialog.instance;
-  });
-
   group('AdaptiveSelectionArea', () {
     testWidgets('selectionMode: none - SelectionArea is not present', (
       tester,
