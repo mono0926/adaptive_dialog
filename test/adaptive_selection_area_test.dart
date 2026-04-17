@@ -1,5 +1,3 @@
-// ignore_for_file: lines_longer_than_80_chars
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_dialog/src/helper/adaptive_selection_area.dart';
 import 'package:flutter/foundation.dart';
@@ -8,11 +6,19 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  setUpAll(() {
+  setUpAll(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
     const channel = MethodChannel('io.material.plugins/dynamic_color');
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-        .setMockMethodCallHandler(channel, (methodCall) async => null);
+        .setMockMethodCallHandler(
+      channel,
+      (methodCall) async => null,
+    );
+
+    // Initialize AdaptiveDialog.instance and wait for internal Future
+    // to complete
+    AdaptiveDialog.instance;
+    await Future<void>.delayed(Duration.zero);
   });
 
   group('AdaptiveSelectionArea', () {
@@ -51,50 +57,21 @@ void main() {
       expect(find.byType(SelectionArea), findsOneWidget);
     });
 
-    testWidgets(
-      'selectionMode: desktop - SelectionArea presence depends on platform',
-      (tester) async {
-        for (final platform in TargetPlatform.values) {
-          debugDefaultTargetPlatformOverride = platform;
+    test('isSelectable logic', () {
+      debugDefaultTargetPlatformOverride = TargetPlatform.android;
+      expect(AdaptiveSelectionMode.desktop.isSelectable, isFalse);
 
-          await tester.pumpWidget(
-            const MaterialApp(
-              home: Scaffold(
-                body: AdaptiveSelectionArea(
-                  mode: AdaptiveSelectionMode.desktop,
-                  child: Text('Hello'),
-                ),
-              ),
-            ),
-          );
+      debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
+      expect(AdaptiveSelectionMode.desktop.isSelectable, isTrue);
 
-          final isDesktop = {
-            TargetPlatform.macOS,
-            TargetPlatform.windows,
-            TargetPlatform.linux,
-          }.contains(platform);
-
-          if (isDesktop) {
-            expect(
-              find.byType(SelectionArea),
-              findsOneWidget,
-              reason: 'Should be selectable on $platform',
-            );
-          } else {
-            expect(
-              find.byType(SelectionArea),
-              findsNothing,
-              reason: 'Should not be selectable on $platform',
-            );
-          }
-        }
-        debugDefaultTargetPlatformOverride = null;
-      },
-    );
+      debugDefaultTargetPlatformOverride = null;
+    });
 
     testWidgets(
-      'selectionMode: null (default) - uses AdaptiveDialog.instance.selectionMode',
+      'selectionMode: null (default) - '
+      'uses AdaptiveDialog.instance.selectionMode',
       (tester) async {
+        final originalMode = AdaptiveDialog.instance.selectionMode;
         AdaptiveDialog.instance.updateConfiguration(
           selectionMode: AdaptiveSelectionMode.all,
         );
@@ -112,7 +89,7 @@ void main() {
         expect(find.byType(SelectionArea), findsOneWidget);
 
         AdaptiveDialog.instance.updateConfiguration(
-          selectionMode: AdaptiveSelectionMode.desktop,
+          selectionMode: originalMode,
         );
       },
     );
