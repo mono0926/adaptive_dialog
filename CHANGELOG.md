@@ -1,3 +1,13 @@
+## 2.8.0 - 2026-04-17
+
+### Features
+- Introduce `ImeAwareSingleActivator` to prevent shortcut execution during IME composition.
+- Improve keyboard navigation by adding autofocus to dialogs.
+
+### Others
+- Refactor shortcut bindings and focus management.
+- Improve test stability and clean up global state in tests.
+
 ## 2.7.1 - 2026-03-10
 
 - Restore CHANGELOG.md history that was accidentally removed in 2.7.0
