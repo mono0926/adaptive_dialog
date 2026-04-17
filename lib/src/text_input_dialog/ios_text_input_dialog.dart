@@ -1,6 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_dialog/src/extensions/extensions.dart';
 import 'package:adaptive_dialog/src/helper/adaptive_selection_area.dart';
+import 'package:adaptive_dialog/src/helper/ime_aware_single_activator.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -118,8 +119,14 @@ class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
     final validationMessage = _validationMessage;
     return CallbackShortcuts(
       bindings: {
-        const SingleActivator(LogicalKeyboardKey.enter): submitIfValid,
-        const SingleActivator(LogicalKeyboardKey.escape): cancel,
+        ImeAwareSingleActivator(
+          LogicalKeyboardKey.enter,
+          textControllers: _textControllers,
+        ): submitIfValid,
+        ImeAwareSingleActivator(
+          LogicalKeyboardKey.escape,
+          textControllers: _textControllers,
+        ): cancel,
       },
       child: PopScope(
         canPop: widget.canPop,

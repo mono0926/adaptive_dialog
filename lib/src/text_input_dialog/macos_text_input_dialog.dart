@@ -1,6 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_dialog/src/extensions/extensions.dart';
 import 'package:adaptive_dialog/src/helper/adaptive_selection_area.dart';
+import 'package:adaptive_dialog/src/helper/ime_aware_single_activator.dart';
 import 'package:adaptive_dialog/src/helper/macos_draggable_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
@@ -93,8 +94,14 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
     final icon = AdaptiveDialog.instance.macOS.applicationIcon;
     return CallbackShortcuts(
       bindings: {
-        const SingleActivator(LogicalKeyboardKey.enter): submitIfValid,
-        const SingleActivator(LogicalKeyboardKey.escape): cancel,
+        ImeAwareSingleActivator(
+          LogicalKeyboardKey.enter,
+          textControllers: _textControllers,
+        ): submitIfValid,
+        ImeAwareSingleActivator(
+          LogicalKeyboardKey.escape,
+          textControllers: _textControllers,
+        ): cancel,
       },
       child: MacosDraggableDialog(
         child: Padding(
