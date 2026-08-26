@@ -10,7 +10,7 @@ environment:
 dependencies:
   animations: ^2.0.3
   collection: ^1.15.0
-  dynamic_color: ^1.4.0
+  dynamic_color: ">=1.4.0 <3.0.0"
   flutter:
     sdk: flutter
   intersperse: ^2.0.0
