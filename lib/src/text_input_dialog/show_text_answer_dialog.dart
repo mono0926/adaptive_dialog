@@ -72,7 +72,7 @@ Future<bool> showTextAnswerDialog({
     selectionMode: selectionMode,
   );
   return result == OkCancelResult.ok
-      ? showTextAnswerDialog(
+      ? await showTextAnswerDialog(
           context: context,
           keyword: keyword,
           title: title,
