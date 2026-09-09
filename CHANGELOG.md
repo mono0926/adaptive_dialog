@@ -1,3 +1,11 @@
+## 2.8.1
+
+### Features
+- Add AI Agent Skill (`adaptive_dialog-dialogs`)
+
+### Bug Fixes
+- Await recursive `showTextAnswerDialog` call and resolve analyzer issues
+
 ## 2.8.0 - 2026-04-17
 
 ### Features
