@@ -11,9 +11,9 @@ void main() {
     const channel = MethodChannel('io.material.plugins/dynamic_color');
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(
-      channel,
-      (methodCall) async => null,
-    );
+          channel,
+          (methodCall) async => null,
+        );
 
     // Initialize AdaptiveDialog.instance and wait for internal Future
     // to complete

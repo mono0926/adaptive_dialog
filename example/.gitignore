@@ -47,4 +47,3 @@ vendor/
 **/fastlane/report.xml
 .fvm/flutter_sdk
 
-!pubspec.lock

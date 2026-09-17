@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:macos_ui/macos_ui.dart';
 
 class MacosDraggableDialog extends StatefulWidget {
   const MacosDraggableDialog({
@@ -20,15 +19,13 @@ class _MacosDraggableDialogState extends State<MacosDraggableDialog> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final borderRadius = BorderRadius.circular(12);
-    final brightness = theme.brightness;
-    final color = brightness.resolve(
-      CupertinoColors.extraLightBackgroundGray,
-      CupertinoColors.darkBackgroundGray,
-    );
-    final innerBorderColor = brightness.resolve(
-      Colors.white.withValues(alpha: 0.45),
-      Colors.white.withValues(alpha: 0.15),
-    );
+    final isLight = theme.brightness == Brightness.light;
+    final color = isLight
+        ? CupertinoColors.extraLightBackgroundGray
+        : CupertinoColors.darkBackgroundGray;
+    final innerBorderColor = isLight
+        ? Colors.white.withValues(alpha: 0.45)
+        : Colors.white.withValues(alpha: 0.15);
     return Transform.translate(
       offset: _offset,
       child: Dialog(
@@ -47,10 +44,9 @@ class _MacosDraggableDialogState extends State<MacosDraggableDialog> {
           ),
           foregroundDecoration: BoxDecoration(
             border: Border.all(
-              color: brightness.resolve(
-                Colors.black.withValues(alpha: 0.23),
-                Colors.black.withValues(alpha: 0.76),
-              ),
+              color: isLight
+                  ? Colors.black.withValues(alpha: 0.23)
+                  : Colors.black.withValues(alpha: 0.76),
             ),
             borderRadius: borderRadius,
           ),
