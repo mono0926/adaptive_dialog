@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 /// Show OK alert dialog, whose appearance is adaptive according to platform
 ///
 /// This is convenient wrapper of [showAlertDialog].
+/// [style] specifies the dialog style. Note that [AdaptiveStyle.macOS]
+/// falls back to Cupertino (iOS-style) dialogs on Web platforms.
 /// [barrierDismissible] (default: true) only works for material style,
 /// and if it is set to false, pressing OK button is only way to close alert.
 /// [actionsOverflowDirection] works only for Material style currently.

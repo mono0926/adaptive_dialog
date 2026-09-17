@@ -1,6 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:example/app.dart';
 import 'package:example/router/router.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -68,7 +69,11 @@ class _StyleDropdownButton extends ConsumerWidget {
               .map(
                 (style) => DropdownMenuItem(
                   value: style,
-                  child: Text(style.label),
+                  child: Text(
+                    kIsWeb && style == AdaptiveStyle.macOS
+                        ? '${style.label} (iOS fallback on Web)'
+                        : style.label,
+                  ),
                 ),
               )
               .toList(),

@@ -2,12 +2,31 @@ import 'package:flutter/material.dart';
 
 import 'extensions/theme_data.dart';
 
+/// The visual style of dialogs and sheets.
 enum AdaptiveStyle {
+  /// Automatically adapt the dialog style based on the current platform.
+  ///
+  /// - iOS: [AdaptiveStyle.iOS] (Cupertino)
+  /// - macOS: [AdaptiveStyle.macOS] (using `macos_ui` on native macOS,
+  ///   or falling back to Cupertino on Web platforms)
+  /// - Other platforms: [AdaptiveStyle.material]
   adaptive,
+
+  /// Material Design style dialog.
   material,
+
   @Deprecated('Use `ios` instead. Will be removed in v2.')
   cupertino,
+
+  /// iOS style dialog (Cupertino).
   iOS,
+
+  /// macOS style dialog.
+  ///
+  /// Uses `macos_ui` widgets on native macOS.
+  ///
+  /// Note: On Web platforms (both JS and WASM), this falls back to
+  /// Cupertino (iOS-style) dialogs to maintain full Web and WASM compatibility.
   macOS;
 
   @Deprecated('Will be removed in v2.')
