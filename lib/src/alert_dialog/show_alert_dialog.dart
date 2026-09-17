@@ -1,13 +1,11 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:adaptive_dialog/src/alert_dialog/macos_alert_dialog.dart';
 import 'package:adaptive_dialog/src/helper/adaptive_selection_area.dart';
-import 'package:adaptive_dialog/src/helper/macos_theme_wrapper.dart';
 import 'package:animations/animations.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intersperse/intersperse.dart';
-import 'package:macos_ui/macos_ui.dart';
 import 'package:meta/meta.dart';
 
 /// Show alert dialog, whose appearance is adaptive according to platform
@@ -134,48 +132,24 @@ Future<T?> showAlertDialog<T>({
         },
       );
     case AdaptiveStyle.macOS:
-      final buttons = actions
-          .map(
-            (a) => a.convertToMacOSDialogAction(
-              onPressed: (key) => pop(context: context, key: key),
-            ),
-          )
-          .intersperse(const SizedBox(height: 8))
-          .toList()
-          .reversed
-          .toList();
-      return showMacosAlertDialog(
+      return showMacOSAlertDialog(
         context: context,
+        titleText: titleText,
+        messageText: messageText,
+        actions: actions,
+        barrierDismissible: barrierDismissible,
+        adaptiveStyle: adaptiveStyle,
         useRootNavigator: useRootNavigator,
+        actionsOverflowDirection: actionsOverflowDirection,
+        fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
+        canPop: canPop,
+        onPopInvokedWithResult: onPopInvokedWithResult,
+        builder: builder,
+        macOSApplicationIcon: macOSApplicationIcon,
         routeSettings: routeSettings,
-        builder: (context) {
-          final Widget dialog = MacThemeWrapper(
-            child: CallbackShortcuts(
-              bindings: shortcutBindings,
-              child: Focus(
-                autofocus: true,
-                child: PopScope(
-                  canPop: canPop,
-                  onPopInvokedWithResult: onPopInvokedWithResult,
-                  child: MacosAlertDialog(
-                    title: titleText ?? const SizedBox.shrink(),
-                    message: messageText ?? const SizedBox.shrink(),
-                    primaryButton: const _DummyEmptyMacosPushButton(),
-                    suppress: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: buttons,
-                    ),
-                    appIcon:
-                        macOSApplicationIcon ??
-                        AdaptiveDialog.instance.macOS.applicationIcon ??
-                        const Icon(Icons.info),
-                  ),
-                ),
-              ),
-            ),
-          );
-          return builder == null ? dialog : builder(context, dialog);
-        },
+        selectionMode: selectionMode,
+        shortcutBindings: shortcutBindings,
+        pop: pop,
       );
     case AdaptiveStyle.material:
       return showModal(
@@ -224,21 +198,4 @@ Future<T?> showAlertDialog<T>({
 enum OkCancelAlertDefaultType {
   ok,
   cancel,
-}
-
-class _DummyEmptyMacosPushButton extends PushButton {
-  const _DummyEmptyMacosPushButton()
-    : super(
-        child: const SizedBox.shrink(),
-        controlSize: ControlSize.large,
-      );
-  @override
-  PushButtonState createState() => _DummyEmptyMacosPushButtonState();
-}
-
-class _DummyEmptyMacosPushButtonState extends PushButtonState {
-  @override
-  Widget build(BuildContext context) {
-    return const SizedBox.shrink();
-  }
 }

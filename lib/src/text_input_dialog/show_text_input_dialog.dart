@@ -1,14 +1,11 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:adaptive_dialog/src/helper/macos_theme_wrapper.dart';
 import 'package:adaptive_dialog/src/text_input_dialog/ios_text_input_dialog.dart';
+import 'package:adaptive_dialog/src/text_input_dialog/macos_text_input_dialog_adaptive.dart';
+import 'package:adaptive_dialog/src/text_input_dialog/material_text_input_dialog.dart';
 import 'package:animations/animations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:macos_ui/macos_ui.dart';
 import 'package:meta/meta.dart';
-
-import 'macos_text_input_dialog.dart';
-import 'material_text_input_dialog.dart';
 
 @useResult
 Future<List<String>?> showTextInputDialog({
@@ -60,29 +57,24 @@ Future<List<String>?> showTextInputDialog({
         },
       );
     case AdaptiveStyle.macOS:
-      return showMacosAlertDialog(
-        routeSettings: routeSettings,
-        useRootNavigator: useRootNavigator,
+      return showMacOSTextInputDialog(
         context: context,
-        builder: (context) {
-          final dialog = MacThemeWrapper(
-            child: MacOSTextInputDialog(
-              textFields: textFields,
-              title: title,
-              message: message,
-              okLabel: okLabel,
-              cancelLabel: cancelLabel,
-              isDestructiveAction: isDestructiveAction,
-              style: adaptiveStyle,
-              useRootNavigator: useRootNavigator,
-              canPop: canPop,
-              onPopInvokedWithResult: onPopInvokedWithResult,
-              autoSubmit: autoSubmit,
-              selectionMode: selectionMode,
-            ),
-          );
-          return builder == null ? dialog : builder(context, dialog);
-        },
+        textFields: textFields,
+        title: title,
+        message: message,
+        okLabel: okLabel,
+        cancelLabel: cancelLabel,
+        isDestructiveAction: isDestructiveAction,
+        style: adaptiveStyle,
+        useRootNavigator: useRootNavigator,
+        actionsOverflowDirection: actionsOverflowDirection,
+        fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
+        canPop: canPop,
+        onPopInvokedWithResult: onPopInvokedWithResult,
+        autoSubmit: autoSubmit,
+        builder: builder,
+        routeSettings: routeSettings,
+        selectionMode: selectionMode,
       );
     case AdaptiveStyle.material:
       return showModal(

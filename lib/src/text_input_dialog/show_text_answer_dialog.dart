@@ -71,30 +71,31 @@ Future<bool> showTextAnswerDialog({
     builder: builder,
     selectionMode: selectionMode,
   );
-  return result == OkCancelResult.ok
-      ? await showTextAnswerDialog(
-          context: context,
-          keyword: keyword,
-          title: title,
-          message: message,
-          okLabel: okLabel,
-          cancelLabel: cancelLabel,
-          isDestructiveAction: isDestructiveAction,
-          barrierDismissible: barrierDismissible,
-          hintText: hintText,
-          retryTitle: retryTitle,
-          retryMessage: retryMessage,
-          retryOkLabel: retryOkLabel,
-          retryCancelLabel: retryCancelLabel,
-          style: style,
-          useRootNavigator: useRootNavigator,
-          actionsOverflowDirection: actionsOverflowDirection,
-          fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
-          canPop: canPop,
-          onPopInvokedWithResult: onPopInvokedWithResult,
-          autoSubmit: autoSubmit,
-          builder: builder,
-          selectionMode: selectionMode,
-        )
-      : Future.value(false);
+  if (result == OkCancelResult.ok) {
+    return showTextAnswerDialog(
+      context: context,
+      keyword: keyword,
+      title: title,
+      message: message,
+      okLabel: okLabel,
+      cancelLabel: cancelLabel,
+      isDestructiveAction: isDestructiveAction,
+      barrierDismissible: barrierDismissible,
+      hintText: hintText,
+      retryTitle: retryTitle,
+      retryMessage: retryMessage,
+      retryOkLabel: retryOkLabel,
+      retryCancelLabel: retryCancelLabel,
+      style: style,
+      useRootNavigator: useRootNavigator,
+      actionsOverflowDirection: actionsOverflowDirection,
+      fullyCapitalizedForMaterial: fullyCapitalizedForMaterial,
+      canPop: canPop,
+      onPopInvokedWithResult: onPopInvokedWithResult,
+      autoSubmit: autoSubmit,
+      builder: builder,
+      selectionMode: selectionMode,
+    );
+  }
+  return false;
 }
