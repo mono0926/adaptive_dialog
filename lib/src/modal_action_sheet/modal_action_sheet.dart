@@ -9,7 +9,8 @@ import 'cupertino_modal_action_sheet.dart';
 export 'sheet_action.dart';
 
 /// Show modal action sheet, whose appearance is adaptive according to platform
-
+///
+/// [style] specifies the style of the sheet.
 /// The [isDismissible] parameter only works for material style and it specifies
 /// whether the bottom sheet will be dismissed when user taps on the scrim.
 @useResult

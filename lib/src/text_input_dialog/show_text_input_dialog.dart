@@ -7,6 +7,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
+/// Show text input dialog, whose appearance is adaptive according to platform.
+///
+/// [style] specifies the dialog style. Note that [AdaptiveStyle.macOS]
+/// falls back to Cupertino (iOS-style) dialogs on Web platforms.
+/// [barrierDismissible] (default: true) only works for Material style.
 @useResult
 Future<List<String>?> showTextInputDialog({
   required BuildContext context,

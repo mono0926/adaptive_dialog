@@ -6,6 +6,8 @@ import 'package:meta/meta.dart';
 /// Show OK/Cancel alert dialog, whose appearance is adaptive according to platform
 ///
 /// This is convenient wrapper of [showAlertDialog].
+/// [style] specifies the dialog style. Note that [AdaptiveStyle.macOS]
+/// falls back to Cupertino (iOS-style) dialogs on Web platforms.
 /// [barrierDismissible] (default: true) only works for material style,
 /// and if it is set to false, pressing OK or Cancel buttons is only way to
 /// close alert.

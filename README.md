@@ -114,3 +114,9 @@ class App extends StatelessWidget {
   }
 }
 ```
+
+## macOS style and Web / WASM compatibility
+
+`AdaptiveStyle.macOS` utilizes `macos_ui` widgets on native macOS.
+On Web platforms (both JavaScript and WASM), `macos_ui` is excluded to ensure Web and WASM compatibility, and dialogs configured with macOS style automatically fall back to Cupertino (iOS-style) dialogs.
+

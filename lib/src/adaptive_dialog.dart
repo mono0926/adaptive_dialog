@@ -19,12 +19,18 @@ class AdaptiveDialog {
   var _selectionMode = AdaptiveSelectionMode.desktop;
   Color? _cachedAccentColor;
 
+  /// The default style for dialogs when `style` is not explicitly specified.
+  ///
+  /// Defaults to [AdaptiveStyle.adaptive].
   AdaptiveStyle get defaultStyle => _defaultStyle;
   AdaptiveDialogMacOSConfiguration get macOS => _macOS;
   AdaptiveSelectionMode get selectionMode => _selectionMode;
   Color? get cachedAccentColor => _cachedAccentColor;
 
-  /// Update default configuration
+  /// Update default configuration.
+  ///
+  /// Note: When [defaultStyle] is set to [AdaptiveStyle.macOS], it falls
+  /// back to Cupertino (iOS-style) dialogs on Web platforms.
   void updateConfiguration({
     AdaptiveStyle? defaultStyle,
     AdaptiveDialogMacOSConfiguration? macOS,

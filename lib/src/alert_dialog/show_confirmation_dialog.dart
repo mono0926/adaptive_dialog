@@ -7,6 +7,8 @@ import 'package:meta/meta.dart';
 /// Show [confirmation dialog](https://material.io/components/dialogs#confirmation-dialog),
 /// whose appearance is adaptive according to platform
 ///
+/// [style] specifies the dialog style. Note that [AdaptiveStyle.macOS]
+/// falls back to Cupertino (iOS-style) dialogs on Web platforms.
 /// For Cupertino, fallback to ActionSheet.
 ///
 /// If [shrinkWrap] is true, material dialog height is determined by the

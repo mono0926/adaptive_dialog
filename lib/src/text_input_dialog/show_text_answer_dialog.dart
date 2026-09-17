@@ -2,6 +2,12 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
+/// Show text input dialog until answer matches [keyword] or dialog is
+/// cancelled.
+///
+/// [style] specifies the dialog style. Note that [AdaptiveStyle.macOS]
+/// falls back to Cupertino (iOS-style) dialogs on Web platforms.
+/// [barrierDismissible] (default: true) only works for Material style.
 @useResult
 Future<bool> showTextAnswerDialog({
   required BuildContext context,
