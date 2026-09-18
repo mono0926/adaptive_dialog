@@ -1,3 +1,14 @@
+## 2.8.3 - 2026-09-18
+
+### Bug Fixes
+
+- Await `showTextAnswerDialog` recursive call to resolve Dart 3.13 `async_return_with_no_await` lint and restore full pub.dev static analysis score.
+
+### Maintenance
+
+- Upgrade `pedantic_mono` to latest version and remove redundant custom linter rules.
+- Specify explicit property types and add `context.mounted` guards to fully comply with updated linter rules.
+
 ## 2.8.2 - 2026-09-18
 
 ### Bug Fixes
