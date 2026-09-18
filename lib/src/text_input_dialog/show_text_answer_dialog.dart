@@ -63,6 +63,9 @@ Future<bool> showTextAnswerDialog({
       : text.toUpperCase() == keyword.toUpperCase()) {
     return true;
   }
+  if (!context.mounted) {
+    return false;
+  }
   final result = await showOkCancelAlertDialog(
     context: context,
     title: retryTitle,
@@ -78,6 +81,9 @@ Future<bool> showTextAnswerDialog({
     selectionMode: selectionMode,
   );
   if (result == OkCancelResult.ok) {
+    if (!context.mounted) {
+      return false;
+    }
     return await showTextAnswerDialog(
       context: context,
       keyword: keyword,
