@@ -16,7 +16,7 @@ class MacThemeWrapper extends StatefulWidget {
 }
 
 class _MacThemeWrapperState extends State<MacThemeWrapper> {
-  final accentColor = DynamicColorPlugin.getAccentColor();
+  final Future<Color?> accentColor = DynamicColorPlugin.getAccentColor();
 
   @override
   Widget build(BuildContext context) {

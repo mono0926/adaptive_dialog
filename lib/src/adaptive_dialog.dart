@@ -14,9 +14,9 @@ class AdaptiveDialog {
   // ignore: prefer_constructors_over_static_methods
   static AdaptiveDialog get instance => _instance ??= AdaptiveDialog._();
 
-  var _defaultStyle = AdaptiveStyle.adaptive;
+  AdaptiveStyle _defaultStyle = AdaptiveStyle.adaptive;
   var _macOS = AdaptiveDialogMacOSConfiguration();
-  var _selectionMode = AdaptiveSelectionMode.desktop;
+  AdaptiveSelectionMode _selectionMode = AdaptiveSelectionMode.desktop;
   Color? _cachedAccentColor;
 
   /// The default style for dialogs when `style` is not explicitly specified.

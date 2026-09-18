@@ -4,10 +4,3 @@ analyzer:
   exclude:
     - '**/generated_plugin_registrant.dart'
     - build/**
-linter:
-  rules:
-    use_build_context_synchronously: false
-    specify_nonobvious_property_types: false
-    unnecessary_await_in_return: false
-    async_return_with_no_await: true
-

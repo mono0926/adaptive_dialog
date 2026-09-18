@@ -49,7 +49,7 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
       .map((tf) => TextEditingController(text: tf.initialText))
       .toList();
   final _formKey = GlobalKey<FormState>();
-  var _autovalidateMode = AutovalidateMode.disabled;
+  AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
 
   @override
   void initState() {

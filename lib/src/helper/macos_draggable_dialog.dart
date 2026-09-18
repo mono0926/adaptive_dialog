@@ -14,7 +14,7 @@ class MacosDraggableDialog extends StatefulWidget {
 }
 
 class _MacosDraggableDialogState extends State<MacosDraggableDialog> {
-  var _offset = Offset.zero;
+  Offset _offset = Offset.zero;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
