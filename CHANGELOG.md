@@ -1,3 +1,14 @@
+## 2.8.2 - 2026-09-18
+
+### Bug Fixes
+- Support Web (WASM) by conditionally importing macOS dialog implementations (#159, #160).
+  - Note: On Web (WASM/JS), macOS-style dialogs now fall back to Cupertino dialogs to ensure WASM compatibility.
+- Resolve static analysis warning in `showTextAnswerDialog` (#159, #160).
+
+### Documentation
+- Document macOS style Web fallback behavior in public APIs and README (#161, #162).
+- Update example app style selector on Web to clarify iOS fallback for macOS style (#161, #162).
+
 ## 2.8.1
 
 ### Features
