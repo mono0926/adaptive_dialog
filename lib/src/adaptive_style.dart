@@ -39,40 +39,26 @@ enum AdaptiveStyle {
       (this == AdaptiveStyle.adaptive &&
           theme.platform == TargetPlatform.android);
 
-  AdaptiveStyle effectiveStyle(ThemeData data) {
-    switch (this) {
-      case AdaptiveStyle.material:
-      case AdaptiveStyle.cupertino:
-      case AdaptiveStyle.iOS:
-      case AdaptiveStyle.macOS:
-        return this;
-      case AdaptiveStyle.adaptive:
-        switch (data.platform) {
-          case TargetPlatform.iOS:
-            return AdaptiveStyle.iOS;
-          case TargetPlatform.macOS:
-            return AdaptiveStyle.macOS;
-          case TargetPlatform.android:
-          case TargetPlatform.fuchsia:
-          case TargetPlatform.linux:
-          case TargetPlatform.windows:
-            return AdaptiveStyle.material;
-        }
-    }
-  }
+  AdaptiveStyle effectiveStyle(ThemeData data) => switch (this) {
+    AdaptiveStyle.material ||
+    AdaptiveStyle.cupertino ||
+    AdaptiveStyle.iOS ||
+    AdaptiveStyle.macOS => this,
+    AdaptiveStyle.adaptive => switch (data.platform) {
+      TargetPlatform.iOS => AdaptiveStyle.iOS,
+      TargetPlatform.macOS => AdaptiveStyle.macOS,
+      TargetPlatform.android ||
+      TargetPlatform.fuchsia ||
+      TargetPlatform.linux ||
+      TargetPlatform.windows => AdaptiveStyle.material,
+    },
+  };
 
-  String get label {
-    switch (this) {
-      case AdaptiveStyle.adaptive:
-        return 'Adaptive';
-      case AdaptiveStyle.cupertino:
-        return 'Cupertino';
-      case AdaptiveStyle.iOS:
-        return 'iOS';
-      case AdaptiveStyle.macOS:
-        return 'macOS';
-      case AdaptiveStyle.material:
-        return 'Material';
-    }
-  }
+  String get label => switch (this) {
+    AdaptiveStyle.adaptive => 'Adaptive',
+    AdaptiveStyle.cupertino => 'Cupertino',
+    AdaptiveStyle.iOS => 'iOS',
+    AdaptiveStyle.macOS => 'macOS',
+    AdaptiveStyle.material => 'Material',
+  };
 }

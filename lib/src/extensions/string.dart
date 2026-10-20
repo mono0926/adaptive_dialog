@@ -1,6 +1,7 @@
 extension StringEx on String {
   /// Capitalize first letter
-  String get capitalized => '${this[0].toUpperCase()}${substring(1)}';
+  String get capitalized =>
+      isEmpty ? '' : '${this[0].toUpperCase()}${substring(1)}';
 
   /// Change to lower case and capitalize first letter
   ///

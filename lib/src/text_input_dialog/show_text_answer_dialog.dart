@@ -54,7 +54,7 @@ Future<bool> showTextAnswerDialog({
     builder: builder,
     selectionMode: selectionMode,
   );
-  final text = texts == null ? null : texts[0];
+  final text = texts?.firstOrNull;
   if (text == null) {
     return false;
   }

@@ -71,17 +71,13 @@ enum AdaptiveSelectionMode {
 
 extension AdaptiveSelectionModeExtension on AdaptiveSelectionMode {
   /// Returns true if text should be selectable on the current platform
-  bool get isSelectable {
-    switch (this) {
-      case AdaptiveSelectionMode.none:
-        return false;
-      case AdaptiveSelectionMode.desktop:
-        return kIsWeb ||
-            defaultTargetPlatform == TargetPlatform.macOS ||
-            defaultTargetPlatform == TargetPlatform.windows ||
-            defaultTargetPlatform == TargetPlatform.linux;
-      case AdaptiveSelectionMode.all:
-        return true;
-    }
-  }
+  bool get isSelectable => switch (this) {
+    AdaptiveSelectionMode.none => false,
+    AdaptiveSelectionMode.desktop =>
+      kIsWeb ||
+          defaultTargetPlatform == TargetPlatform.macOS ||
+          defaultTargetPlatform == TargetPlatform.windows ||
+          defaultTargetPlatform == TargetPlatform.linux,
+    AdaptiveSelectionMode.all => true,
+  };
 }

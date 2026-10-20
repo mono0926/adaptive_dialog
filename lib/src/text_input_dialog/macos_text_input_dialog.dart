@@ -7,7 +7,6 @@ import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intersperse/intersperse.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 class MacOSTextInputDialog extends StatefulWidget {
@@ -103,139 +102,151 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
           textControllers: _textControllers,
         ): cancel,
       },
-      child: MacosDraggableDialog(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (icon != null)
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 8,
-                    right: 20,
-                  ),
-                  child: SizedBox(
-                    width: 52,
-                    height: 52,
-                    child: icon,
-                  ),
-                ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (title != null)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
-                        child: AdaptiveSelectionArea(
-                          mode: widget.selectionMode,
-                          child: Text(
-                            title,
-                            style: theme.textTheme.titleMedium!.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    if (message != null)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
-                        child: AdaptiveSelectionArea(
-                          mode: widget.selectionMode,
-                          child: Text(message),
-                        ),
-                      ),
-                    const SizedBox(height: 8),
-                    ..._textControllers
-                        .mapIndexed<Widget>(
-                          (i, c) {
-                            final isLast = widget.textFields.length == i + 1;
-                            final field = widget.textFields[i];
-                            final prefixText = field.prefixText;
-                            final suffixText = field.suffixText;
-                            return Center(
-                              child: FractionallySizedBox(
-                                widthFactor: 0.7,
-                                child: MacosTextField(
-                                  controller: c,
-                                  autofocus: i == 0,
-                                  placeholder: field.hintText,
-                                  obscureText: field.obscureText,
-                                  keyboardType: field.keyboardType,
-                                  textCapitalization: field.textCapitalization,
-                                  minLines: field.minLines,
-                                  maxLines: field.maxLines,
-                                  maxLength: field.maxLength,
-                                  autocorrect: field.autocorrect,
-                                  prefix: prefixText == null
-                                      ? null
-                                      : Text(prefixText),
-                                  suffix: suffixText == null
-                                      ? null
-                                      : Text(suffixText),
-                                  textInputAction: isLast
-                                      ? null
-                                      : TextInputAction.next,
-                                  onSubmitted: isLast && widget.autoSubmit
-                                      ? (_) => submitIfValid()
-                                      : null,
-                                  // No spellCheckConfiguration for macos_ui
-                                ),
-                              ),
-                            );
-                          },
-                        )
-                        .intersperse(const SizedBox(height: 4)),
-                    if (validationMessage != null)
-                      Padding(
-                        padding: const EdgeInsets.only(top: 18),
-                        child: Text(
-                          validationMessage,
-                          style: const TextStyle(
-                            color: CupertinoColors.destructiveRed,
-                          ),
-                        ),
-                      ),
-                    const SizedBox(height: 12),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        PushButton(
-                          controlSize: ControlSize.large,
-                          secondary: true,
-                          onPressed: cancel,
-                          child: Text(
-                            widget.cancelLabel ??
-                                MaterialLocalizations.of(
-                                  context,
-                                ).cancelButtonLabel.capitalizedForce,
-                          ),
-                        ),
-                        const SizedBox(width: 14),
-                        PushButton(
-                          controlSize: ControlSize.large,
-                          onPressed: submitIfValid,
-                          secondary: widget.isDestructiveAction,
-                          child: Text(
-                            widget.okLabel ??
-                                MaterialLocalizations.of(context).okButtonLabel,
-                            style: TextStyle(
-                              color: widget.isDestructiveAction
-                                  ? CupertinoColors.systemRed.resolveFrom(
-                                      context,
-                                    )
-                                  : null,
-                            ),
-                          ),
-                        ),
-                      ],
+      child: PopScope(
+        canPop: widget.canPop,
+        onPopInvokedWithResult: widget.onPopInvokedWithResult,
+        child: MacosDraggableDialog(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (icon != null)
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 8,
+                      right: 20,
                     ),
-                  ],
+                    child: SizedBox(
+                      width: 52,
+                      height: 52,
+                      child: icon,
+                    ),
+                  ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (title != null)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: AdaptiveSelectionArea(
+                            mode: widget.selectionMode,
+                            child: Text(
+                              title,
+                              style: theme.textTheme.titleMedium!.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      if (message != null)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: AdaptiveSelectionArea(
+                            mode: widget.selectionMode,
+                            child: Text(message),
+                          ),
+                        ),
+                      const SizedBox(height: 8),
+                      Column(
+                        spacing: 4,
+                        children: [
+                          for (final (i, c) in _textControllers.indexed)
+                            Builder(
+                              builder: (context) {
+                                final isLast =
+                                    widget.textFields.length == i + 1;
+                                final field = widget.textFields[i];
+                                final prefixText = field.prefixText;
+                                final suffixText = field.suffixText;
+                                return Center(
+                                  child: FractionallySizedBox(
+                                    widthFactor: 0.7,
+                                    child: MacosTextField(
+                                      controller: c,
+                                      autofocus: i == 0,
+                                      placeholder: field.hintText,
+                                      obscureText: field.obscureText,
+                                      keyboardType: field.keyboardType,
+                                      textCapitalization:
+                                          field.textCapitalization,
+                                      minLines: field.minLines,
+                                      maxLines: field.maxLines,
+                                      maxLength: field.maxLength,
+                                      autocorrect: field.autocorrect,
+                                      prefix: prefixText == null
+                                          ? null
+                                          : Text(prefixText),
+                                      suffix: suffixText == null
+                                          ? null
+                                          : Text(suffixText),
+                                      textInputAction: isLast
+                                          ? null
+                                          : TextInputAction.next,
+                                      onSubmitted: isLast && widget.autoSubmit
+                                          ? (_) => submitIfValid()
+                                          : null,
+                                      // No spellCheckConfiguration for macos_ui
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                        ],
+                      ),
+                      if (validationMessage != null)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 18),
+                          child: Text(
+                            validationMessage,
+                            style: const TextStyle(
+                              color: CupertinoColors.destructiveRed,
+                            ),
+                          ),
+                        ),
+                      const SizedBox(height: 12),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          PushButton(
+                            controlSize: ControlSize.large,
+                            secondary: true,
+                            onPressed: cancel,
+                            child: Text(
+                              widget.cancelLabel ??
+                                  MaterialLocalizations.of(
+                                    context,
+                                  ).cancelButtonLabel.capitalizedForce,
+                            ),
+                          ),
+                          const SizedBox(width: 14),
+                          PushButton(
+                            controlSize: ControlSize.large,
+                            onPressed: submitIfValid,
+                            secondary: widget.isDestructiveAction,
+                            child: Text(
+                              widget.okLabel ??
+                                  MaterialLocalizations.of(
+                                    context,
+                                  ).okButtonLabel,
+                              style: TextStyle(
+                                color: widget.isDestructiveAction
+                                    ? CupertinoColors.systemRed.resolveFrom(
+                                        context,
+                                      )
+                                    : null,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -245,13 +256,10 @@ class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
   bool _validate() {
     _autovalidate = true;
     final validations = widget.textFields
-        .mapIndexed((i, tf) {
-          final validator = tf.validator;
-          return validator == null ? null : validator(_textControllers[i].text);
-        })
-        .where((result) => result != null);
+        .mapIndexed((i, tf) => tf.validator?.call(_textControllers[i].text))
+        .nonNulls;
     setState(() {
-      _validationMessage = validations.join('\n');
+      _validationMessage = validations.isEmpty ? null : validations.join('\n');
     });
     return validations.isEmpty;
   }

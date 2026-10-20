@@ -1,5 +1,6 @@
 import 'package:adaptive_dialog/src/action_callback.dart';
 import 'package:adaptive_dialog/src/modal_action_sheet/sheet_action.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -73,14 +74,8 @@ extension AlertDialogActionListEx<T> on List<AlertDialogAction<T>> {
           )
           .toList();
 
-  String? findCancelLabel() {
-    try {
-      return firstWhere((a) => a.key == OkCancelResult.cancel).label;
-      // ignore: avoid_catching_errors
-    } on StateError {
-      return null;
-    }
-  }
+  String? findCancelLabel() =>
+      firstWhereOrNull((a) => a.key == OkCancelResult.cancel)?.label;
 }
 
 // Result type of [showOkAlertDialog] or [showOkCancelAlertDialog].

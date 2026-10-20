@@ -103,12 +103,7 @@ class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
           color: CupertinoColors.white,
           darkColor: CupertinoColors.black,
         ),
-        border: const Border(
-          top: borderSide,
-          bottom: borderSide,
-          left: borderSide,
-          right: borderSide,
-        ),
+        border: const Border.fromBorderSide(borderSide),
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(isTopRounded ? radius : 0),
           bottom: Radius.circular(isBottomRounded ? radius : 0),
@@ -229,11 +224,8 @@ class _IOSTextInputDialogState extends State<IOSTextInputDialog> {
   bool _validate() {
     _autovalidate = true;
     final validations = widget.textFields
-        .mapIndexed((i, tf) {
-          final validator = tf.validator;
-          return validator == null ? null : validator(_textControllers[i].text);
-        })
-        .where((result) => result != null);
+        .mapIndexed((i, tf) => tf.validator?.call(_textControllers[i].text))
+        .nonNulls;
     setState(() {
       _validationMessage = validations.isEmpty ? null : validations.join('\n');
     });

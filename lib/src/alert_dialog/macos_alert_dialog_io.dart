@@ -3,7 +3,6 @@ import 'package:adaptive_dialog/src/action_callback.dart';
 import 'package:adaptive_dialog/src/helper/macos_theme_wrapper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intersperse/intersperse.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 Future<T?> showMacOSAlertDialog<T>({
@@ -25,17 +24,13 @@ Future<T?> showMacOSAlertDialog<T>({
   required Map<ShortcutActivator, VoidCallback> shortcutBindings,
   required void Function({required BuildContext context, required T? key}) pop,
 }) {
-  final buttons = actions
-      .map(
-        (a) => _convertToMacOSDialogAction(
-          a,
-          onPressed: (key) => pop(context: context, key: key),
-        ),
-      )
-      .intersperse(const SizedBox(height: 8))
-      .toList()
-      .reversed
-      .toList();
+  final buttons = [
+    for (final a in actions.reversed)
+      _convertToMacOSDialogAction(
+        a,
+        onPressed: (key) => pop(context: context, key: key),
+      ),
+  ];
   return showMacosAlertDialog<T>(
     context: context,
     useRootNavigator: useRootNavigator,
@@ -55,6 +50,7 @@ Future<T?> showMacOSAlertDialog<T>({
                 primaryButton: const _DummyEmptyMacosPushButton(),
                 suppress: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
+                  spacing: 8,
                   children: buttons,
                 ),
                 appIcon:
