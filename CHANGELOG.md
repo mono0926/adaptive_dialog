@@ -1,3 +1,11 @@
+## 2.8.4 - 2026-10-20
+
+### Bug Fixes
+- Guard `StringEx.capitalized` against empty strings to prevent `RangeError`
+- Dispose `ScrollController` in `_ConfirmationMaterialDialogState`
+- Wrap `MacOSTextInputDialog` in `PopScope` and fix empty validation message padding
+- Modernize internals with Dart 3 switch expressions, `firstWhereOrNull`, `.nonNulls`, and Flutter `Column(spacing: ...)` (removing `intersperse` dependency)
+
 ## 2.8.3 - 2026-09-18
 
 ### Bug Fixes
