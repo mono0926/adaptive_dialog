@@ -1,3 +1,10 @@
+## 3.0.0 - 2026-10-27
+
+### Breaking Changes
+- Migrate from `package:flutter/material.dart` and `package:flutter/cupertino.dart` to standalone `package:material_ui/material_ui.dart` (`^1.0.0`) and `package:cupertino_ui/cupertino_ui.dart` (`^1.0.0`)
+- Require Dart `^3.13.0` and Flutter `>=3.47.0`
+- Bump `animations` to `^3.0.0` and `dynamic_color` to `^2.0.0`
+
 ## 2.8.4 - 2026-10-20
 
 ### Bug Fixes
