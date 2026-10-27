@@ -1,8 +1,8 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_dialog/src/helper/macos_theme_wrapper.dart';
 import 'package:adaptive_dialog/src/text_input_dialog/macos_text_input_dialog.dart';
-import 'package:flutter/material.dart';
 import 'package:macos_ui/macos_ui.dart';
+import 'package:material_ui/material_ui.dart';
 
 Future<List<String>?> showMacOSTextInputDialog({
   required BuildContext context,

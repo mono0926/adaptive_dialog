@@ -4,45 +4,32 @@ import 'package:adaptive_dialog/src/helper/adaptive_selection_area.dart';
 import 'package:adaptive_dialog/src/helper/ime_aware_single_activator.dart';
 import 'package:adaptive_dialog/src/helper/macos_draggable_dialog.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:macos_ui/macos_ui.dart';
+import 'package:material_ui/material_ui.dart';
 
-class MacOSTextInputDialog extends StatefulWidget {
-  const MacOSTextInputDialog({
-    super.key,
-    required this.textFields,
-    this.title,
-    this.message,
-    this.okLabel,
-    this.cancelLabel,
-    this.isDestructiveAction = false,
-    this.style = AdaptiveStyle.adaptive,
-    this.useRootNavigator = true,
-    required this.canPop,
-    required this.onPopInvokedWithResult,
-    this.autoSubmit = false,
-    this.selectionMode,
-  });
+class const MacOSTextInputDialog({
+  super.key,
+  required final List<DialogTextField> textFields,
+  final String? title,
+  final String? message,
+  final String? okLabel,
+  final String? cancelLabel,
+  final bool isDestructiveAction = false,
+  final AdaptiveStyle style = AdaptiveStyle.adaptive,
+  final bool useRootNavigator = true,
+  required final bool canPop,
+  required final PopInvokedWithResultCallback<List<String>?>?
+  onPopInvokedWithResult,
+  final bool autoSubmit = false,
+  final AdaptiveSelectionMode? selectionMode,
+}) extends StatefulWidget {
   @override
   State<MacOSTextInputDialog> createState() => _MacOSTextInputDialogState();
-
-  final List<DialogTextField> textFields;
-  final String? title;
-  final String? message;
-  final String? okLabel;
-  final String? cancelLabel;
-  final bool isDestructiveAction;
-  final AdaptiveStyle style;
-  final bool useRootNavigator;
-  final bool canPop;
-  final PopInvokedWithResultCallback<List<String>?>? onPopInvokedWithResult;
-  final bool autoSubmit;
-  final AdaptiveSelectionMode? selectionMode;
 }
 
-class _MacOSTextInputDialogState extends State<MacOSTextInputDialog> {
+class _MacOSTextInputDialogState() extends State<MacOSTextInputDialog> {
   late final List<TextEditingController> _textControllers = widget.textFields
       .map((tf) => TextEditingController(text: tf.initialText))
       .toList();

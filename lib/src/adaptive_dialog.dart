@@ -1,11 +1,11 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Manage common adaptive_dialog settings, etc.
-class AdaptiveDialog {
-  AdaptiveDialog._() {
+class AdaptiveDialog._() {
+  this {
     Future(() async {
       _cachedAccentColor = await DynamicColorPlugin.getAccentColor();
     });
@@ -48,17 +48,13 @@ class AdaptiveDialog {
 }
 
 /// Manage common macOS settings
-class AdaptiveDialogMacOSConfiguration {
-  AdaptiveDialogMacOSConfiguration({
-    this.applicationIcon,
-  });
-
+class AdaptiveDialogMacOSConfiguration({
   /// Used for macOS style dialog
-  final Widget? applicationIcon;
-}
+  final Widget? applicationIcon,
+});
 
 /// Adaptive selection mode
-enum AdaptiveSelectionMode {
+enum AdaptiveSelectionMode() {
   /// No selectable text
   none,
 

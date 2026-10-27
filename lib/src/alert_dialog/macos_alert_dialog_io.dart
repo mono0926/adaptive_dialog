@@ -1,9 +1,9 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_dialog/src/action_callback.dart';
 import 'package:adaptive_dialog/src/helper/macos_theme_wrapper.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:macos_ui/macos_ui.dart';
+import 'package:material_ui/material_ui.dart';
 
 Future<T?> showMacOSAlertDialog<T>({
   required BuildContext context,
@@ -86,8 +86,8 @@ Widget _convertToMacOSDialogAction<T>(
   );
 }
 
-class _DummyEmptyMacosPushButton extends PushButton {
-  const _DummyEmptyMacosPushButton()
+class const _DummyEmptyMacosPushButton() extends PushButton {
+  this
     : super(
         child: const SizedBox.shrink(),
         controlSize: ControlSize.large,
@@ -96,7 +96,7 @@ class _DummyEmptyMacosPushButton extends PushButton {
   PushButtonState createState() => _DummyEmptyMacosPushButtonState();
 }
 
-class _DummyEmptyMacosPushButtonState extends PushButtonState {
+class _DummyEmptyMacosPushButtonState() extends PushButtonState {
   @override
   Widget build(BuildContext context) {
     return const SizedBox.shrink();

@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'extensions/theme_data.dart';
 
 /// The visual style of dialogs and sheets.
-enum AdaptiveStyle {
+enum AdaptiveStyle() {
   /// Automatically adapt the dialog style based on the current platform.
   ///
   /// - iOS: [AdaptiveStyle.iOS] (Cupertino)

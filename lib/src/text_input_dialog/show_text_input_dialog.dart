@@ -3,8 +3,8 @@ import 'package:adaptive_dialog/src/text_input_dialog/ios_text_input_dialog.dart
 import 'package:adaptive_dialog/src/text_input_dialog/macos_text_input_dialog_adaptive.dart';
 import 'package:adaptive_dialog/src/text_input_dialog/material_text_input_dialog.dart';
 import 'package:animations/animations.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:meta/meta.dart';
 
 /// Show text input dialog, whose appearance is adaptive according to platform.
@@ -117,33 +117,18 @@ Future<List<String>?> showTextInputDialog({
 
 // TODO(mono): Add more options
 @immutable
-class DialogTextField {
-  const DialogTextField({
-    this.initialText,
-    this.hintText,
-    this.obscureText = false,
-    this.validator,
-    this.keyboardType,
-    this.textCapitalization = TextCapitalization.none,
-    this.prefixText,
-    this.suffixText,
-    this.minLines,
-    this.maxLines = 1,
-    this.maxLength,
-    this.autocorrect = true,
-    this.spellCheckConfiguration,
-  });
-  final String? initialText;
-  final String? hintText;
-  final bool obscureText;
-  final FormFieldValidator<String>? validator;
-  final TextInputType? keyboardType;
-  final TextCapitalization textCapitalization;
-  final String? prefixText;
-  final String? suffixText;
-  final int? minLines;
-  final int maxLines;
-  final int? maxLength;
-  final bool autocorrect;
-  final SpellCheckConfiguration? spellCheckConfiguration;
-}
+class const DialogTextField({
+  final String? initialText,
+  final String? hintText,
+  final bool obscureText = false,
+  final FormFieldValidator<String>? validator,
+  final TextInputType? keyboardType,
+  final TextCapitalization textCapitalization = TextCapitalization.none,
+  final String? prefixText,
+  final String? suffixText,
+  final int? minLines,
+  final int maxLines = 1,
+  final int? maxLength,
+  final bool autocorrect = true,
+  final SpellCheckConfiguration? spellCheckConfiguration,
+});

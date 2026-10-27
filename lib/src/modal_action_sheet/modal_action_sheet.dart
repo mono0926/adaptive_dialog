@@ -1,7 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_dialog/src/modal_action_sheet/material_modal_action_sheet.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:meta/meta.dart';
 
 import 'cupertino_modal_action_sheet.dart';
@@ -79,13 +79,8 @@ Future<T?> showModalActionSheet<T>({
 }
 
 @immutable
-class MaterialModalActionSheetConfiguration {
-  const MaterialModalActionSheetConfiguration({
-    this.initialChildSize = 0.5,
-    this.minChildSize = 0.25,
-    this.maxChildSize = 0.9,
-  });
-  final double initialChildSize;
-  final double minChildSize;
-  final double maxChildSize;
-}
+class const MaterialModalActionSheetConfiguration({
+  final double initialChildSize = 0.5,
+  final double minChildSize = 0.25,
+  final double maxChildSize = 0.9,
+});

@@ -1,6 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_dialog/src/text_input_dialog/ios_text_input_dialog.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 
 Future<List<String>?> showMacOSTextInputDialog({
   required BuildContext context,

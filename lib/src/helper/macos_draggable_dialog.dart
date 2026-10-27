@@ -1,19 +1,15 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
+import 'package:material_ui/material_ui.dart';
 
-class MacosDraggableDialog extends StatefulWidget {
-  const MacosDraggableDialog({
-    super.key,
-    required this.child,
-  });
-
-  final Widget child;
-
+class const MacosDraggableDialog({
+  super.key,
+  required final Widget child,
+}) extends StatefulWidget {
   @override
   State<MacosDraggableDialog> createState() => _MacosDraggableDialogState();
 }
 
-class _MacosDraggableDialogState extends State<MacosDraggableDialog> {
+class _MacosDraggableDialogState() extends State<MacosDraggableDialog> {
   Offset _offset = Offset.zero;
   @override
   Widget build(BuildContext context) {

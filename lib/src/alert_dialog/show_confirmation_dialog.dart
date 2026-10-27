@@ -1,7 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_dialog/src/helper/adaptive_selection_area.dart';
 import 'package:animations/animations.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:meta/meta.dart';
 
 /// Show [confirmation dialog](https://material.io/components/dialogs#confirmation-dialog),
@@ -93,46 +93,29 @@ Future<T?> showConfirmationDialog<T>({
         );
 }
 
-class _ConfirmationMaterialDialog<T> extends StatefulWidget {
-  const _ConfirmationMaterialDialog({
-    super.key,
-    required this.title,
-    required this.onSelect,
-    required this.message,
-    required this.okLabel,
-    required this.cancelLabel,
-    required this.actions,
-    required this.initialSelectedActionKey,
-    required this.contentMaxHeight,
-    required this.shrinkWrap,
-    required this.fullyCapitalized,
-    required this.canPop,
-    required this.onPopInvokedWithResult,
-    required this.toggleable,
-    this.selectionMode,
-  });
-
-  final String title;
-  final ValueChanged<T?> onSelect;
-  final String? message;
-  final String? okLabel;
-  final String? cancelLabel;
-  final List<AlertDialogAction<T>> actions;
-  final T? initialSelectedActionKey;
-  final double? contentMaxHeight;
-  final bool shrinkWrap;
-  final bool fullyCapitalized;
-  final bool canPop;
-  final PopInvokedWithResultCallback<T>? onPopInvokedWithResult;
-  final bool toggleable;
-  final AdaptiveSelectionMode? selectionMode;
-
+class const _ConfirmationMaterialDialog<T>({
+  super.key,
+  required final String title,
+  required final ValueChanged<T?> onSelect,
+  required final String? message,
+  required final String? okLabel,
+  required final String? cancelLabel,
+  required final List<AlertDialogAction<T>> actions,
+  required final T? initialSelectedActionKey,
+  required final double? contentMaxHeight,
+  required final bool shrinkWrap,
+  required final bool fullyCapitalized,
+  required final bool canPop,
+  required final PopInvokedWithResultCallback<T>? onPopInvokedWithResult,
+  required final bool toggleable,
+  final AdaptiveSelectionMode? selectionMode,
+}) extends StatefulWidget {
   @override
   _ConfirmationMaterialDialogState<T> createState() =>
       _ConfirmationMaterialDialogState<T>();
 }
 
-class _ConfirmationMaterialDialogState<T>
+class _ConfirmationMaterialDialogState<T>()
     extends State<_ConfirmationMaterialDialog<T>> {
   T? _selectedKey;
   final _scrollController = ScrollController();

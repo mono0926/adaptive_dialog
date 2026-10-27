@@ -29,7 +29,7 @@ description: >-
 
 ```dart
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 Future<void> confirmAccountDeletion(BuildContext context) async {
   final result = await showOkCancelAlertDialog(
@@ -51,7 +51,7 @@ Future<void> confirmAccountDeletion(BuildContext context) async {
 
 ```dart
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 enum PostAction { edit, share, delete }
 
@@ -92,7 +92,7 @@ Future<void> showPostMenu(BuildContext context) async {
 
 ```dart
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 Future<void> renameItem(BuildContext context, String currentName) async {
   final inputs = await showTextInputDialog(

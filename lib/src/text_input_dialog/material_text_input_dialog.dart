@@ -2,49 +2,34 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_dialog/src/helper/adaptive_selection_area.dart';
 import 'package:adaptive_dialog/src/helper/ime_aware_single_activator.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:material_ui/material_ui.dart';
 
 // TODO(mono): 3ファイルでコピペ実装になっているのを良い感じにまとめたい
-class MaterialTextInputDialog extends StatefulWidget {
-  const MaterialTextInputDialog({
-    super.key,
-    required this.textFields,
-    this.title,
-    this.message,
-    this.okLabel,
-    this.cancelLabel,
-    this.isDestructiveAction = false,
-    this.style = AdaptiveStyle.adaptive,
-    this.actionsOverflowDirection = VerticalDirection.up,
-    this.useRootNavigator = true,
-    this.fullyCapitalized = true,
-    required this.canPop,
-    required this.onPopInvokedWithResult,
-    this.autoSubmit = false,
-    this.selectionMode,
-  });
+class const MaterialTextInputDialog({
+  super.key,
+  required final List<DialogTextField> textFields,
+  final String? title,
+  final String? message,
+  final String? okLabel,
+  final String? cancelLabel,
+  final bool isDestructiveAction = false,
+  final AdaptiveStyle style = AdaptiveStyle.adaptive,
+  final VerticalDirection actionsOverflowDirection = VerticalDirection.up,
+  final bool useRootNavigator = true,
+  final bool fullyCapitalized = true,
+  required final bool canPop,
+  required final PopInvokedWithResultCallback<List<String>?>?
+  onPopInvokedWithResult,
+  final bool autoSubmit = false,
+  final AdaptiveSelectionMode? selectionMode,
+}) extends StatefulWidget {
   @override
   State<MaterialTextInputDialog> createState() =>
       _MaterialTextInputDialogState();
-
-  final List<DialogTextField> textFields;
-  final String? title;
-  final String? message;
-  final String? okLabel;
-  final String? cancelLabel;
-  final bool isDestructiveAction;
-  final AdaptiveStyle style;
-  final VerticalDirection actionsOverflowDirection;
-  final bool useRootNavigator;
-  final bool fullyCapitalized;
-  final bool canPop;
-  final PopInvokedWithResultCallback<List<String>?>? onPopInvokedWithResult;
-  final bool autoSubmit;
-  final AdaptiveSelectionMode? selectionMode;
 }
 
-class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
+class _MaterialTextInputDialogState() extends State<MaterialTextInputDialog> {
   late final List<TextEditingController> _textControllers = widget.textFields
       .map((tf) => TextEditingController(text: tf.initialText))
       .toList();

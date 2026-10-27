@@ -2,31 +2,20 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_dialog/src/action_callback.dart';
 import 'package:adaptive_dialog/src/extensions/extensions.dart';
 import 'package:adaptive_dialog/src/helper/adaptive_selection_area.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
+import 'package:material_ui/material_ui.dart';
 
-class CupertinoModalActionSheet<T> extends StatelessWidget {
-  const CupertinoModalActionSheet({
-    super.key,
-    required this.onPressed,
-    required this.actions,
-    this.title,
-    this.message,
-    this.cancelLabel,
-    required this.canPop,
-    required this.onPopInvokedWithResult,
-    this.selectionMode,
-  });
-
-  final ActionCallback<T> onPressed;
-  final List<SheetAction<T>> actions;
-  final String? title;
-  final String? message;
-  final String? cancelLabel;
-  final bool canPop;
-  final PopInvokedWithResultCallback<T>? onPopInvokedWithResult;
-  final AdaptiveSelectionMode? selectionMode;
-
+class const CupertinoModalActionSheet<T>({
+  super.key,
+  required final ActionCallback<T> onPressed,
+  required final List<SheetAction<T>> actions,
+  final String? title,
+  final String? message,
+  final String? cancelLabel,
+  required final bool canPop,
+  required final PopInvokedWithResultCallback<T>? onPopInvokedWithResult,
+  final AdaptiveSelectionMode? selectionMode,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final title = this.title;

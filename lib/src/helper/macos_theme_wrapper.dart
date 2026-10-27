@@ -1,21 +1,17 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:dynamic_color/dynamic_color.dart';
-import 'package:flutter/material.dart';
 import 'package:macos_ui/macos_ui.dart';
+import 'package:material_ui/material_ui.dart';
 
-class MacThemeWrapper extends StatefulWidget {
-  const MacThemeWrapper({
-    super.key,
-    required this.child,
-  });
-
-  final Widget child;
-
+class const MacThemeWrapper({
+  super.key,
+  required final Widget child,
+}) extends StatefulWidget {
   @override
   State<MacThemeWrapper> createState() => _MacThemeWrapperState();
 }
 
-class _MacThemeWrapperState extends State<MacThemeWrapper> {
+class _MacThemeWrapperState() extends State<MacThemeWrapper> {
   final Future<Color?> accentColor = DynamicColorPlugin.getAccentColor();
 
   @override

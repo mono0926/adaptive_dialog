@@ -1,34 +1,26 @@
 import 'package:adaptive_dialog/src/action_callback.dart';
 import 'package:adaptive_dialog/src/modal_action_sheet/sheet_action.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Used for specifying showAlertDialog's actions.
 @immutable
-class AlertDialogAction<T> {
-  const AlertDialogAction({
-    required this.key,
-    required this.label,
-    this.isDefaultAction = false,
-    this.isDestructiveAction = false,
-    this.textStyle = const TextStyle(),
-  });
-
-  final T key;
-  final String label;
+class const AlertDialogAction<T>({
+  required final T key,
+  required final String label,
 
   /// Make font weight to bold(Only works for CupertinoStyle).
-  final bool isDefaultAction;
+  final bool isDefaultAction = false,
 
   /// Make font color to destructive/error color(red).
-  final bool isDestructiveAction;
+  final bool isDestructiveAction = false,
 
   /// Change textStyle to another from default.
   ///
   /// Recommended to keep null.
-  final TextStyle textStyle;
-}
+  final TextStyle textStyle = const TextStyle(),
+});
 
 extension AlertDialogActionEx<T> on AlertDialogAction<T> {
   Widget convertToIOSDialogAction({
@@ -79,7 +71,7 @@ extension AlertDialogActionListEx<T> on List<AlertDialogAction<T>> {
 }
 
 // Result type of [showOkAlertDialog] or [showOkCancelAlertDialog].
-enum OkCancelResult {
+enum OkCancelResult() {
   ok,
   cancel,
 }
