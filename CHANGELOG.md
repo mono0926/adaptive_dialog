@@ -1,3 +1,8 @@
+## 3.0.1 - 2026-10-27
+
+### Maintenance
+- Disable `remove_deprecations_in_breaking_versions` lint in `analysis_options.yaml` to restore full pub.dev static analysis score
+
 ## 3.0.0 - 2026-10-27
 
 ### Breaking Changes
