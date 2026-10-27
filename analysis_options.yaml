@@ -4,3 +4,6 @@ analyzer:
   exclude:
     - '**/generated_plugin_registrant.dart'
     - build/**
+linter:
+  rules:
+    remove_deprecations_in_breaking_versions: false
