@@ -1,3 +1,9 @@
+## 3.1.0 - 2026-11-12
+
+### Features
+- Support Flutter `>=3.50.0` and Dart `^3.14.0` (#169)
+- Bump `pedantic_mono` to `^1.39.0` (#169)
+
 ## 3.0.1 - 2026-10-27
 
 ### Maintenance
