@@ -15,9 +15,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(App.title),
-        actions: const [
-          _StyleDropdownButton(),
-        ],
+        actions: const [_StyleDropdownButton()],
       ),
       body: ListView(
         children: [
@@ -43,15 +41,14 @@ class HomePage extends StatelessWidget {
             title: const Text('adaptive_dialog | pub.dev'),
             onTap: _launchPubSite,
             leading: const Icon(Icons.open_in_browser),
-          )
+          ),
         ],
       ),
     );
   }
 
-  void _launchPubSite() => launchUrl(
-        Uri.parse('https://pub.dev/packages/adaptive_dialog'),
-      );
+  void _launchPubSite() =>
+      launchUrl(Uri.parse('https://pub.dev/packages/adaptive_dialog'));
 }
 
 class _StyleDropdownButton extends ConsumerWidget {
@@ -87,8 +84,8 @@ class _StyleDropdownButton extends ConsumerWidget {
 
 final adaptiveStyleProvider =
     NotifierProvider<AdaptiveStyleNotifier, AdaptiveStyle>(
-  () => AdaptiveStyleNotifier(),
-);
+      () => AdaptiveStyleNotifier(),
+    );
 
 class AdaptiveStyleNotifier extends Notifier<AdaptiveStyle> {
   void update(AdaptiveStyle style) {

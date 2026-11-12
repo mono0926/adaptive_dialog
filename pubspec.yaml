@@ -5,8 +5,8 @@ repository: https://github.com/mono0926/adaptive_dialog
 funding:
   - https://github.com/sponsors/mono0926
 environment:
-  sdk: ^3.13.0
-  flutter: '>=3.47.0'
+  sdk: ^3.14.0
+  flutter: '>=3.50.0'
 dependencies:
   animations: ^3.0.0
   collection: ^1.15.0
@@ -20,7 +20,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  pedantic_mono: any
+  pedantic_mono: ^1.39.0
 platforms:
   android:
   ios:

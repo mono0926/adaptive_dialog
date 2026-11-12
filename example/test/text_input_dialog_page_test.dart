@@ -17,11 +17,7 @@ void main() {
       initialLocation: '/text-input',
     );
     await tester.pumpWidget(
-      ProviderScope(
-        child: MaterialApp.router(
-          routerConfig: router,
-        ),
-      ),
+      ProviderScope(child: MaterialApp.router(routerConfig: router)),
     );
     await tester.pumpAndSettle();
 
@@ -53,11 +49,7 @@ void main() {
       initialLocation: '/text-input',
     );
     await tester.pumpWidget(
-      ProviderScope(
-        child: MaterialApp.router(
-          routerConfig: router,
-        ),
-      ),
+      ProviderScope(child: MaterialApp.router(routerConfig: router)),
     );
     await tester.pumpAndSettle();
 

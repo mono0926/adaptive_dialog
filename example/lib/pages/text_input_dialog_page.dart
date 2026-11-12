@@ -23,16 +23,15 @@ class TextInputDialogPage extends ConsumerWidget {
             onTap: () async {
               final text = await showTextInputDialog(
                 context: context,
-                textFields: const [
-                  DialogTextField(),
-                ],
+                textFields: const [DialogTextField()],
               );
               logger.info(text);
             },
           ),
           ListTile(
             title: const Text(
-                'No Title/Message(spellCheckConfiguration disabled)'),
+              'No Title/Message(spellCheckConfiguration disabled)',
+            ),
             onTap: () async {
               final text = await showTextInputDialog(
                 context: context,
@@ -51,9 +50,7 @@ class TextInputDialogPage extends ConsumerWidget {
             onTap: () async {
               final text = await showTextInputDialog(
                 context: context,
-                textFields: const [
-                  DialogTextField(),
-                ],
+                textFields: const [DialogTextField()],
                 title: 'Hello',
               );
               logger.info(text);
@@ -65,10 +62,7 @@ class TextInputDialogPage extends ConsumerWidget {
               final text = await showTextInputDialog(
                 context: context,
                 textFields: const [
-                  DialogTextField(
-                    hintText: 'hintText',
-                    maxLength: 24,
-                  ),
+                  DialogTextField(hintText: 'hintText', maxLength: 24),
                 ],
                 title: 'Hello',
                 message: 'This is a message',
@@ -153,10 +147,7 @@ class TextInputDialogPage extends ConsumerWidget {
                     hintText: 'Email',
                     initialText: 'mono0926@gmail.com',
                   ),
-                  DialogTextField(
-                    hintText: 'Password',
-                    obscureText: true,
-                  ),
+                  DialogTextField(hintText: 'Password', obscureText: true),
                 ],
                 title: 'Hello',
                 message: 'This is a message',
@@ -177,7 +168,8 @@ class TextInputDialogPage extends ConsumerWidget {
                 hintText: 'Start with "F"',
                 retryTitle: 'Incorrect',
                 retryMessage: 'Retry?',
-                retryOkLabel: ref
+                retryOkLabel:
+                    ref
                         .watch(adaptiveStyleProvider)
                         .effectiveStyle(theme)
                         .isMaterial(theme)

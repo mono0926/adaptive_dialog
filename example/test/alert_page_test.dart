@@ -8,19 +8,12 @@ void main() {
   testWidgets('AlertPage matches material style', (tester) async {
     final router = GoRouter(
       routes: [
-        GoRoute(
-          path: '/alert',
-          builder: (context, state) => const AlertPage(),
-        ),
+        GoRoute(path: '/alert', builder: (context, state) => const AlertPage()),
       ],
       initialLocation: '/alert',
     );
     await tester.pumpWidget(
-      ProviderScope(
-        child: MaterialApp.router(
-          routerConfig: router,
-        ),
-      ),
+      ProviderScope(child: MaterialApp.router(routerConfig: router)),
     );
     await tester.pumpAndSettle();
 

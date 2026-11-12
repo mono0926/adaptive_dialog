@@ -91,12 +91,7 @@ class SheetPage extends StatelessWidget {
                 context: context,
                 title: 'Title',
                 message: 'Message',
-                actions: const [
-                  SheetAction(
-                    label: 'Hello',
-                    key: 'helloKey',
-                  ),
-                ],
+                actions: const [SheetAction(label: 'Hello', key: 'helloKey')],
               );
               logger.info(result);
             },
@@ -199,9 +194,7 @@ class SheetPage extends StatelessWidget {
             },
           ),
           ListTile(
-            title: const Text(
-              'showModalActionSheet (custom TextStyle)',
-            ),
+            title: const Text('showModalActionSheet (custom TextStyle)'),
             onTap: () async {
               final result = await showModalActionSheet(
                 context: context,
@@ -211,10 +204,7 @@ class SheetPage extends StatelessWidget {
                   const SheetAction(
                     key: 'a',
                     label: 'A',
-                    textStyle: TextStyle(
-                      color: Colors.yellow,
-                      fontSize: 50,
-                    ),
+                    textStyle: TextStyle(color: Colors.yellow, fontSize: 50),
                   ),
                 ],
               );

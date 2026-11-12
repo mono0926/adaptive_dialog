@@ -6,21 +6,12 @@ import 'package:go_router/go_router.dart';
 
 void main() {
   testWidgets('Smoke test', (tester) async {
-    await tester.pumpWidget(
-      const ProviderScope(
-        child: App(),
-      ),
-    );
+    await tester.pumpWidget(const ProviderScope(child: App()));
     await tester.pumpAndSettle();
 
     expect(find.text(App.title), findsOneWidget);
 
-    final routes = [
-      'Alert',
-      'Sheet',
-      'TextInput',
-      'NestedNavigator',
-    ];
+    final routes = ['Alert', 'Sheet', 'TextInput', 'NestedNavigator'];
 
     for (final route in routes) {
       final tile = find.widgetWithText(ListTile, route);
