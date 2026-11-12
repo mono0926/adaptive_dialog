@@ -2,7 +2,8 @@ name: example
 description: Example application.
 version: 1.0.0+1
 environment:
-  sdk: ^3.5.0
+  sdk: ^3.14.0
+  flutter: ^3.50.0
 publish_to: none
 dependencies:
   adaptive_dialog:

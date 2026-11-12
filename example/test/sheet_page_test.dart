@@ -8,19 +8,12 @@ void main() {
   testWidgets('SheetPage test', (tester) async {
     final router = GoRouter(
       routes: [
-        GoRoute(
-          path: '/sheet',
-          builder: (context, state) => const SheetPage(),
-        ),
+        GoRoute(path: '/sheet', builder: (context, state) => const SheetPage()),
       ],
       initialLocation: '/sheet',
     );
     await tester.pumpWidget(
-      ProviderScope(
-        child: MaterialApp.router(
-          routerConfig: router,
-        ),
-      ),
+      ProviderScope(child: MaterialApp.router(routerConfig: router)),
     );
     await tester.pumpAndSettle();
 

@@ -110,9 +110,7 @@ class AlertPage extends StatelessWidget {
               logger.info(result);
             },
           ),
-          const ListTile(
-            title: Text('OK/Cancel Dialog (Destructive)'),
-          ),
+          const ListTile(title: Text('OK/Cancel Dialog (Destructive)')),
           ListTile(
             title: const Text('OK/Cancel Dialog (Theme builder)'),
             onTap: () async {
@@ -208,10 +206,8 @@ class AlertPage extends StatelessWidget {
                 actions: [
                   ...List.generate(
                     5,
-                    (index) => AlertDialogAction(
-                      label: 'Answer $index',
-                      key: index,
-                    ),
+                    (index) =>
+                        AlertDialogAction(label: 'Answer $index', key: index),
                   ),
                 ],
               );
@@ -230,10 +226,8 @@ class AlertPage extends StatelessWidget {
                 actions: [
                   ...List.generate(
                     5,
-                    (index) => AlertDialogAction(
-                      label: 'Answer $index',
-                      key: index,
-                    ),
+                    (index) =>
+                        AlertDialogAction(label: 'Answer $index', key: index),
                   ),
                 ],
                 initialSelectedActionKey: 1,
@@ -251,10 +245,8 @@ class AlertPage extends StatelessWidget {
                 actions: [
                   ...List.generate(
                     20,
-                    (index) => AlertDialogAction(
-                      label: 'Answer $index',
-                      key: index,
-                    ),
+                    (index) =>
+                        AlertDialogAction(label: 'Answer $index', key: index),
                   ),
                 ],
                 shrinkWrap: false,
@@ -263,9 +255,7 @@ class AlertPage extends StatelessWidget {
             },
           ),
           ListTile(
-            title: const Text(
-              'showConfirmationDialog (custom TextStyle)',
-            ),
+            title: const Text('showConfirmationDialog (custom TextStyle)'),
             onTap: () async {
               final result = await showConfirmationDialog(
                 context: context,
@@ -275,10 +265,7 @@ class AlertPage extends StatelessWidget {
                   const AlertDialogAction(
                     key: 'a',
                     label: 'A',
-                    textStyle: TextStyle(
-                      color: Colors.yellow,
-                      fontSize: 50,
-                    ),
+                    textStyle: TextStyle(color: Colors.yellow, fontSize: 50),
                   ),
                 ],
               );

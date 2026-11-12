@@ -20,14 +20,10 @@ void main() {
     Builder(
       builder: (context) {
         precacheImage(_applicationIconImage.image, context);
-        return const ProviderScope(
-          child: App(),
-        );
+        return const ProviderScope(child: App());
       },
     ),
   );
 }
 
-final _applicationIconImage = Image.asset(
-  'assets/images/love.png',
-);
+final _applicationIconImage = Image.asset('assets/images/love.png');

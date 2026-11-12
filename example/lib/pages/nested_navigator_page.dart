@@ -8,9 +8,8 @@ class NestedNavigatorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Navigator(
-      onGenerateRoute: (settings) => MaterialPageRoute<void>(
-        builder: (context) => const _RootPage(),
-      ),
+      onGenerateRoute: (settings) =>
+          MaterialPageRoute<void>(builder: (context) => const _RootPage()),
     );
   }
 }
@@ -63,9 +62,7 @@ class _RootPage extends StatelessWidget {
             child: const Text('Next Page'),
             onPressed: () {
               Navigator.of(context).push<void>(
-                MaterialPageRoute(
-                  builder: (context) => const _RootPage(),
-                ),
+                MaterialPageRoute(builder: (context) => const _RootPage()),
               );
             },
           ),

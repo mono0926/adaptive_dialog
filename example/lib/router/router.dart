@@ -13,10 +13,7 @@ import '../pages/sheet_page.dart';
 part 'router.g.dart';
 
 final routerProvider = Provider(
-  (ref) => GoRouter(
-    routes: $appRoutes,
-    debugLogDiagnostics: kDebugMode,
-  ),
+  (ref) => GoRouter(routes: $appRoutes, debugLogDiagnostics: kDebugMode),
 );
 
 @TypedGoRoute<HomeRoute>(
@@ -65,8 +62,8 @@ String pascalCaseFromRouteUri(Uri uri) =>
     pascalCaseFromRouteName(uri.toString());
 
 List<String> get allRouteLocations => [
-      const AlertRoute().location,
-      const SheetRoute().location,
-      const TextInputDialogRoute().location,
-      const NestedNavigatorRoute().location,
-    ];
+  const AlertRoute().location,
+  const SheetRoute().location,
+  const TextInputDialogRoute().location,
+  const NestedNavigatorRoute().location,
+];

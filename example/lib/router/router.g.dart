@@ -6,40 +6,30 @@ part of 'router.dart';
 // GoRouterGenerator
 // **************************************************************************
 
-List<RouteBase> get $appRoutes => [
-      $homeRoute,
-    ];
+List<RouteBase> get $appRoutes => [$homeRoute];
 
 RouteBase get $homeRoute => GoRouteData.$route(
-      path: '/',
-      factory: _$HomeRoute._fromState,
-      routes: [
-        GoRouteData.$route(
-          path: 'alert',
-          factory: _$AlertRoute._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'sheet',
-          factory: _$SheetRoute._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'text-input',
-          factory: _$TextInputDialogRoute._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'nested-navigator',
-          factory: _$NestedNavigatorRoute._fromState,
-        ),
-      ],
-    );
+  path: '/',
+  factory: _$HomeRoute._fromState,
+  routes: [
+    GoRouteData.$route(path: 'alert', factory: _$AlertRoute._fromState),
+    GoRouteData.$route(path: 'sheet', factory: _$SheetRoute._fromState),
+    GoRouteData.$route(
+      path: 'text-input',
+      factory: _$TextInputDialogRoute._fromState,
+    ),
+    GoRouteData.$route(
+      path: 'nested-navigator',
+      factory: _$NestedNavigatorRoute._fromState,
+    ),
+  ],
+);
 
 mixin _$HomeRoute on GoRouteData {
   static HomeRoute _fromState(GoRouterState state) => const HomeRoute();
 
   @override
-  String get location => GoRouteData.$location(
-        '/',
-      );
+  String get location => GoRouteData.$location('/');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -59,9 +49,7 @@ mixin _$AlertRoute on GoRouteData {
   static AlertRoute _fromState(GoRouterState state) => const AlertRoute();
 
   @override
-  String get location => GoRouteData.$location(
-        '/alert',
-      );
+  String get location => GoRouteData.$location('/alert');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -81,9 +69,7 @@ mixin _$SheetRoute on GoRouteData {
   static SheetRoute _fromState(GoRouterState state) => const SheetRoute();
 
   @override
-  String get location => GoRouteData.$location(
-        '/sheet',
-      );
+  String get location => GoRouteData.$location('/sheet');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -104,9 +90,7 @@ mixin _$TextInputDialogRoute on GoRouteData {
       const TextInputDialogRoute();
 
   @override
-  String get location => GoRouteData.$location(
-        '/text-input',
-      );
+  String get location => GoRouteData.$location('/text-input');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -127,9 +111,7 @@ mixin _$NestedNavigatorRoute on GoRouteData {
       const NestedNavigatorRoute();
 
   @override
-  String get location => GoRouteData.$location(
-        '/nested-navigator',
-      );
+  String get location => GoRouteData.$location('/nested-navigator');
 
   @override
   void go(BuildContext context) => context.go(location);
